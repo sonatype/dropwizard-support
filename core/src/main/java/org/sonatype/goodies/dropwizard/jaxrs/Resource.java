@@ -10,24 +10,14 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
-package org.glassfish.jersey.test.inmemory;
-
-import java.net.URI;
-
-import org.sonatype.goodies.dropwizard.jersey.BindableTestContainer;
-
-import org.glassfish.jersey.server.ApplicationHandler;
+package org.sonatype.goodies.dropwizard.jaxrs;
 
 /**
- * Custom {@link InMemoryConnector} provider that is exposed for out-of-package usage.
+ * Marker for JAX-RS resource implementations.
  *
- * @see BindableTestContainer
  * @since ???
  */
-public class ExposedInMemoryConnectorProvider
-    extends InMemoryConnector.Provider
+public interface Resource
 {
-  public ExposedInMemoryConnectorProvider(final URI baseUri, final ApplicationHandler appHandler) {
-    super(baseUri, appHandler);
-  }
+  // empty
 }

@@ -10,24 +10,30 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
-package org.glassfish.jersey.test.inmemory;
+package org.sonatype.goodies.dropwizard.internal;
 
-import java.net.URI;
+import com.google.inject.AbstractModule;
+import io.dropwizard.Configuration;
 
-import org.sonatype.goodies.dropwizard.jersey.BindableTestContainer;
-
-import org.glassfish.jersey.server.ApplicationHandler;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * Custom {@link InMemoryConnector} provider that is exposed for out-of-package usage.
+ * Adds bindings for {@link Configuration}.
  *
- * @see BindableTestContainer
  * @since ???
  */
-public class ExposedInMemoryConnectorProvider
-    extends InMemoryConnector.Provider
+public class ConfigurationModule
+    extends AbstractModule
 {
-  public ExposedInMemoryConnectorProvider(final URI baseUri, final ApplicationHandler appHandler) {
-    super(baseUri, appHandler);
+  private final Configuration configuration;
+
+  public ConfigurationModule(final Configuration configuration) {
+    this.configuration = checkNotNull(configuration);
+  }
+
+  @SuppressWarnings("unchecked")
+  @Override
+  protected void configure() {
+    bind((Class) configuration.getClass()).toInstance(configuration);
   }
 }

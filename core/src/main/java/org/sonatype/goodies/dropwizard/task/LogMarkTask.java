@@ -10,24 +10,33 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
-package org.glassfish.jersey.test.inmemory;
+package org.sonatype.goodies.dropwizard.task;
 
-import java.net.URI;
+import java.io.PrintWriter;
 
-import org.sonatype.goodies.dropwizard.jersey.BindableTestContainer;
+import javax.inject.Named;
+import javax.inject.Singleton;
 
-import org.glassfish.jersey.server.ApplicationHandler;
+import com.google.common.base.Strings;
 
 /**
- * Custom {@link InMemoryConnector} provider that is exposed for out-of-package usage.
+ * Mark the log.
  *
- * @see BindableTestContainer
  * @since ???
  */
-public class ExposedInMemoryConnectorProvider
-    extends InMemoryConnector.Provider
+@Named
+@Singleton
+public class LogMarkTask
+    extends TaskSupport
 {
-  public ExposedInMemoryConnectorProvider(final URI baseUri, final ApplicationHandler appHandler) {
-    super(baseUri, appHandler);
+  public LogMarkTask() {
+    super("log-mark");
+  }
+
+  @Override
+  protected void doExecute(final Parameters parameters, final PrintWriter output) throws Exception {
+    String message = parameters.value("message", "MARK");
+    String asterixes = Strings.repeat("*", message.length() + 4);
+    log.info("\n{}\n* {} *\n{}", asterixes, message, asterixes);
   }
 }

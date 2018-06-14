@@ -10,24 +10,32 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
-package org.glassfish.jersey.test.inmemory;
+package org.sonatype.goodies.dropwizard.servlet;
 
-import java.net.URI;
+import javax.servlet.Filter;
+import javax.servlet.FilterConfig;
+import javax.servlet.ServletException;
 
-import org.sonatype.goodies.dropwizard.jersey.BindableTestContainer;
-
-import org.glassfish.jersey.server.ApplicationHandler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
- * Custom {@link InMemoryConnector} provider that is exposed for out-of-package usage.
+ * Support for {@link Filter} implementations.
  *
- * @see BindableTestContainer
  * @since ???
  */
-public class ExposedInMemoryConnectorProvider
-    extends InMemoryConnector.Provider
+public abstract class FilterSupport
+    implements Filter
 {
-  public ExposedInMemoryConnectorProvider(final URI baseUri, final ApplicationHandler appHandler) {
-    super(baseUri, appHandler);
+  protected final Logger log = LoggerFactory.getLogger(getClass());
+
+  @Override
+  public void init(final FilterConfig config) throws ServletException {
+    log.trace("Initialized");
+  }
+
+  @Override
+  public void destroy() {
+    log.trace("Destroyed");
   }
 }

@@ -10,24 +10,19 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
-package org.glassfish.jersey.test.inmemory;
+package org.sonatype.goodies.dropwizard;
 
-import java.net.URI;
-
-import org.sonatype.goodies.dropwizard.jersey.BindableTestContainer;
-
-import org.glassfish.jersey.server.ApplicationHandler;
+import io.dropwizard.setup.Environment;
 
 /**
- * Custom {@link InMemoryConnector} provider that is exposed for out-of-package usage.
+ * Allows customization of application {@link Environment}.
  *
- * @see BindableTestContainer
  * @since ???
  */
-public class ExposedInMemoryConnectorProvider
-    extends InMemoryConnector.Provider
+public interface EnvironmentCustomizer
 {
-  public ExposedInMemoryConnectorProvider(final URI baseUri, final ApplicationHandler appHandler) {
-    super(baseUri, appHandler);
-  }
+  /**
+   * Apply configuration to environment.
+   */
+  void customize(Environment environment);
 }

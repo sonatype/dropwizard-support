@@ -10,24 +10,31 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
-package org.glassfish.jersey.test.inmemory;
+package org.sonatype.goodies.dropwizard.security;
 
-import java.net.URI;
+import java.util.concurrent.Callable;
 
-import org.sonatype.goodies.dropwizard.jersey.BindableTestContainer;
-
-import org.glassfish.jersey.server.ApplicationHandler;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * Custom {@link InMemoryConnector} provider that is exposed for out-of-package usage.
+ * Adapter to execute given {@link Callable} as {@link SystemSubject}.
  *
- * @see BindableTestContainer
  * @since ???
  */
-public class ExposedInMemoryConnectorProvider
-    extends InMemoryConnector.Provider
+public class SystemCallable<V>
+  implements Callable<V>
 {
-  public ExposedInMemoryConnectorProvider(final URI baseUri, final ApplicationHandler appHandler) {
-    super(baseUri, appHandler);
+  private final Callable<V> delegete;
+
+  public SystemCallable(final Callable<V> delegete) {
+    this.delegete = checkNotNull(delegete);
+  }
+
+  @Override
+  public V call() throws Exception {
+    SystemSubject subject = SystemSubject.get();
+    try (MdcUserScope scope = MdcUserScope.forSubject(subject)) {
+      return subject.execute(delegete);
+    }
   }
 }

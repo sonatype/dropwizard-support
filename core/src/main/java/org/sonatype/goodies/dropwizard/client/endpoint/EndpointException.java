@@ -10,24 +10,31 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
-package org.glassfish.jersey.test.inmemory;
+package org.sonatype.goodies.dropwizard.client.endpoint;
 
-import java.net.URI;
-
-import org.sonatype.goodies.dropwizard.jersey.BindableTestContainer;
-
-import org.glassfish.jersey.server.ApplicationHandler;
+import javax.ws.rs.ClientErrorException;
+import javax.ws.rs.core.Response;
 
 /**
- * Custom {@link InMemoryConnector} provider that is exposed for out-of-package usage.
+ * Endpoint exception.
  *
- * @see BindableTestContainer
+ * Thrown to wrap {@link ClientErrorException} and prevent propagation of JAX-RS exception outside of scope.
+ *
  * @since ???
  */
-public class ExposedInMemoryConnectorProvider
-    extends InMemoryConnector.Provider
+public class EndpointException
+  extends RuntimeException
 {
-  public ExposedInMemoryConnectorProvider(final URI baseUri, final ApplicationHandler appHandler) {
-    super(baseUri, appHandler);
+  public EndpointException(final ClientErrorException cause) {
+    super(cause);
+  }
+
+  @Override
+  public ClientErrorException getCause() {
+    return (ClientErrorException)super.getCause();
+  }
+
+  public Response getResponse() {
+    return getCause().getResponse();
   }
 }

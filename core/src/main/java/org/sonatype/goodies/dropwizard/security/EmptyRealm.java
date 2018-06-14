@@ -10,24 +10,32 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
-package org.glassfish.jersey.test.inmemory;
+package org.sonatype.goodies.dropwizard.security;
 
-import java.net.URI;
-
-import org.sonatype.goodies.dropwizard.jersey.BindableTestContainer;
-
-import org.glassfish.jersey.server.ApplicationHandler;
+import org.apache.shiro.authc.AuthenticationInfo;
+import org.apache.shiro.authc.AuthenticationToken;
+import org.apache.shiro.realm.Realm;
 
 /**
- * Custom {@link InMemoryConnector} provider that is exposed for out-of-package usage.
+ * Empty {@link Realm} - only used to satisfy Shiro's need for an initial realm binding.
  *
- * @see BindableTestContainer
  * @since ???
  */
-public class ExposedInMemoryConnectorProvider
-    extends InMemoryConnector.Provider
+public final class EmptyRealm
+    implements Realm
 {
-  public ExposedInMemoryConnectorProvider(final URI baseUri, final ApplicationHandler appHandler) {
-    super(baseUri, appHandler);
+  @Override
+  public String getName() {
+    return getClass().getName();
+  }
+
+  @Override
+  public boolean supports(final AuthenticationToken token) {
+    return false;
+  }
+
+  @Override
+  public AuthenticationInfo getAuthenticationInfo(final AuthenticationToken token) {
+    return null;
   }
 }
