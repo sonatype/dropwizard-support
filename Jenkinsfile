@@ -53,9 +53,7 @@ pipeline {
         withMaven(maven: mavenVersion, jdk: jdkVersion, mavenSettingsConfig: mavenSettings, mavenLocalRepo: mavenRepo,
             // disable automatic artifact publisher
             options: [ artifactsPublisher(disabled: true) ]) {
-          // HACK: initial testing only do an install
-          sh "mvn $mavenOptions clean install"
-//          sh "mvn $mavenOptions clean deploy"
+          sh "mvn $mavenOptions clean deploy"
         }
       }
     }
