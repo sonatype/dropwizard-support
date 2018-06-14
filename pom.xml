@@ -30,6 +30,13 @@
 
   <version>1-SNAPSHOT</version>
 
+  <licenses>
+    <license>
+      <name>ASL2</name>
+      <url>http://opensource.org/licenses/Apache-2.0</url>
+    </license>
+  </licenses>
+
   <url>https://github.com/sonatype/dropwizard-support</url>
 
   <scm>
