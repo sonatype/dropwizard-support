@@ -38,10 +38,10 @@
     <url>https://github.com/sonatype/dropwizard-support</url>
   </scm>
 
-  <!--<ciManagement>-->
-    <!--<system>jenkins</system>-->
-    <!--<url>https://jenkins.zion.aws.s/job/goodies/job/dropwizard-support</url>-->
-  <!--</ciManagement>-->
+  <ciManagement>
+    <system>jenkins</system>
+    <url>https://jenkins.zion.aws.s/job/goodies/job/dropwizard-support</url>
+  </ciManagement>
 
   <properties>
     <maven.compiler.source>1.8</maven.compiler.source>
