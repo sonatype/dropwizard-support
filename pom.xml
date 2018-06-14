@@ -30,13 +30,6 @@
 
   <version>1-SNAPSHOT</version>
 
-  <licenses>
-    <license>
-      <name>ASL2</name>
-      <url>http://opensource.org/licenses/Apache-2.0</url>
-    </license>
-  </licenses>
-
   <url>https://github.com/sonatype/dropwizard-support</url>
 
   <scm>
@@ -44,6 +37,13 @@
     <developerConnection>scm:git:ssh://git@github.com/sonatype/dropwizard-support.git</developerConnection>
     <url>https://github.com/sonatype/dropwizard-support</url>
   </scm>
+
+  <licenses>
+    <license>
+      <name>ASL2</name>
+      <url>http://opensource.org/licenses/Apache-2.0</url>
+    </license>
+  </licenses>
 
   <issueManagement>
     <system>github</system>
