@@ -38,6 +38,11 @@
     <url>https://github.com/sonatype/dropwizard-support</url>
   </scm>
 
+  <issueManagement>
+    <system>github</system>
+    <url>https://github.com/sonatype/dropwizard-support/issues</url>
+  </issueManagement>
+
   <ciManagement>
     <system>jenkins</system>
     <url>https://jenkins.zion.aws.s/job/goodies/job/dropwizard-support</url>
