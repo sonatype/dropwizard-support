@@ -30,8 +30,10 @@ public interface ApplicationCustomizer<T extends ApplicationSupport<C>, C extend
 {
   /**
    * Contribute to bootstrap.
+   *
+   * @throws Exception  Any exception from customization will cause the server to abort.
    */
-  default void initialize(final Bootstrap<C> bootstrap) {
+  default void initialize(final Bootstrap<C> bootstrap) throws Exception {
     // empty
   }
 
@@ -39,15 +41,19 @@ public interface ApplicationCustomizer<T extends ApplicationSupport<C>, C extend
    * Contribute modules for injection.
    *
    * This is called before the container environment is constructed.
+   *
+   * @throws Exception  Any exception from customization will cause the server to abort.
    */
-  default List<Module> modules(final C config, final Environment environment) {
+  default List<Module> modules(final C config, final Environment environment) throws Exception {
     return Collections.emptyList();
   }
 
   /**
    * Applied after injection is ready.
+   *
+   * @throws Exception  Any exception from customization will cause the server to abort.
    */
-  default void customize(final T application, final C config, final Environment environment) {
+  default void customize(final T application, final C config, final Environment environment) throws Exception {
     // empty
   }
 }

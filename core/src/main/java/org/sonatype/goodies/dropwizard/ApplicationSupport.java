@@ -77,8 +77,14 @@ public abstract class ApplicationSupport<T extends Configuration>
     // allow customizer to contribute bootstrap
     for (ApplicationCustomizer customizer : customizers) {
       log.debug("Customizer initialize: {}", customizer);
-      //noinspection unchecked
-      customizer.initialize(bootstrap);
+      try {
+        //noinspection unchecked
+        customizer.initialize(bootstrap);
+      }
+      catch (Exception e) {
+        log.error("Customizer failed; aborting", e);
+        throw new RuntimeException(e);
+      }
     }
   }
 
@@ -134,8 +140,14 @@ public abstract class ApplicationSupport<T extends Configuration>
     // allow customizer to contribute modules
     for (ApplicationCustomizer customizer : customizers) {
       log.debug("Customizer modules: {}", customizer);
-      //noinspection unchecked
-      modules.addAll(customizer.modules(config, environment));
+      try {
+        //noinspection unchecked
+        modules.addAll(customizer.modules(config, environment));
+      }
+      catch (Exception e) {
+        log.error("Customizer failed; aborting", e);
+        throw new RuntimeException(e);
+      }
     }
 
     BeanScanning scanning = scanning(config);
@@ -171,8 +183,14 @@ public abstract class ApplicationSupport<T extends Configuration>
 
     for (ApplicationCustomizer customizer : customizers) {
       log.debug("Customizer customize: {}", customizer);
-      //noinspection unchecked
-      customizer.customize(this, config, environment);
+      try {
+        //noinspection unchecked
+        customizer.customize(this, config, environment);
+      }
+      catch (Exception e) {
+        log.error("Customizer failed; aborting", e);
+        throw new RuntimeException(e);
+      }
     }
 
     // install guice bridge into jersey hk2
