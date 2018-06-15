@@ -130,12 +130,6 @@
         <version>2.0.1</version>
       </dependency>
 
-      <!--<dependency>-->
-        <!--<groupId>org.sonatype.goodies</groupId>-->
-        <!--<artifactId>package-url-java</artifactId>-->
-        <!--<version>1-SNAPSHOT</version>-->
-      <!--</dependency>-->
-
       <dependency>
         <groupId>org.sonatype.goodies</groupId>
         <artifactId>goodies-testsupport</artifactId>
