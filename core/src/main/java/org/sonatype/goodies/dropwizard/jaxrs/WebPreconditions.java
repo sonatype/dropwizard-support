@@ -28,6 +28,41 @@ public final class WebPreconditions
     // empty
   }
 
+  //
+  // Status.NOT_FOUND
+  //
+
+  /**
+   * Throws {@link WebApplicationException} with {@link Status#NOT_FOUND} if expression is false.
+   */
+  public static void checkFound(final boolean expression, final String message, final Object... params) {
+    if (!expression) {
+      throw new WebApplicationException(String.format(message, params), Status.NOT_FOUND);
+    }
+  }
+
+  /**
+   * Throws {@link WebApplicationException} with {@link Status#NOT_FOUND} if expression is false.
+   */
+  public static void checkFound(final boolean expression, final Object message) {
+    if (!expression) {
+      throw new WebApplicationException(String.valueOf(message), Status.NOT_FOUND);
+    }
+  }
+
+  /**
+   * Throws {@link WebApplicationException} with {@link Status#NOT_FOUND} if expression is false.
+   */
+  public static void checkFound(final boolean expression) {
+    if (!expression) {
+      throw new WebApplicationException(Status.NOT_FOUND);
+    }
+  }
+
+  //
+  // Status.BAD_REQUEST
+  //
+
   /**
    * Throws {@link WebApplicationException} with {@link Status#BAD_REQUEST} if expression is false.
    */
@@ -40,7 +75,7 @@ public final class WebPreconditions
   /**
    * Throws {@link WebApplicationException} with {@link Status#BAD_REQUEST} if expression is false.
    */
-  public static  void checkRequest(final boolean expression, final Object message) {
+  public static void checkRequest(final boolean expression, final Object message) {
     if (!expression) {
       throw new WebApplicationException(String.valueOf(message), Status.BAD_REQUEST);
     }
@@ -49,7 +84,7 @@ public final class WebPreconditions
   /**
    * Throws {@link WebApplicationException} with {@link Status#BAD_REQUEST} if expression is false.
    */
-  public static  void checkRequest(final boolean expression) {
+  public static void checkRequest(final boolean expression) {
     if (!expression) {
       throw new WebApplicationException(Status.BAD_REQUEST);
     }
