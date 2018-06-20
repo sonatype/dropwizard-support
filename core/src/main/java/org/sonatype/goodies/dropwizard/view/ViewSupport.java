@@ -87,6 +87,10 @@ public class ViewSupport
     return path;
   }
 
+  //
+  // Place-holder text
+  //
+
   /**
    * Generate some place-holder text.
    */
