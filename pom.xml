@@ -67,6 +67,7 @@
     <module>core</module>
     <module>fontawesome</module>
     <module>swagger</module>
+    <module>testsupport</module>
   </modules>
 
   <build>

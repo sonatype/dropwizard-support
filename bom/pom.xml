@@ -429,6 +429,12 @@
         <version>1-SNAPSHOT</version>
       </dependency>
 
+      <dependency>
+        <groupId>org.sonatype.goodies.dropwizard</groupId>
+        <artifactId>dropwizard-support-testsupport</artifactId>
+        <version>1-SNAPSHOT</version>
+      </dependency>
+
     </dependencies>
   </dependencyManagement>
 
