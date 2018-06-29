@@ -14,7 +14,7 @@ package org.glassfish.jersey.test.inmemory;
 
 import java.net.URI;
 
-import org.sonatype.goodies.dropwizard.jersey.BindableTestContainer;
+import org.sonatype.goodies.dropwizard.testsupport.jersey.BindableTestContainer;
 
 import org.glassfish.jersey.server.ApplicationHandler;
 

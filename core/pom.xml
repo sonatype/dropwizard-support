@@ -50,15 +50,6 @@
       <artifactId>dropwizard-assets</artifactId>
     </dependency>
 
-    <!--
-    FIXME: this is to expose some shared testing helpers, which would better moved to testsupport module.
-    -->
-    <dependency>
-      <groupId>io.dropwizard</groupId>
-      <artifactId>dropwizard-testing</artifactId>
-      <optional>true</optional>
-    </dependency>
-
     <dependency>
       <groupId>com.google.inject</groupId>
       <artifactId>guice</artifactId>
@@ -88,6 +79,12 @@
     <dependency>
       <groupId>org.codehaus.groovy</groupId>
       <artifactId>groovy-all</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>io.dropwizard</groupId>
+      <artifactId>dropwizard-testing</artifactId>
       <scope>test</scope>
     </dependency>
   </dependencies>
