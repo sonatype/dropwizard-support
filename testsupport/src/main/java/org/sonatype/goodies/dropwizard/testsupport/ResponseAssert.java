@@ -10,24 +10,31 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
-package org.sonatype.goodies.dropwizard.testsupport
+package org.sonatype.goodies.dropwizard.testsupport;
 
-import javax.ws.rs.core.Response
+import javax.ws.rs.core.Response;
 
-import org.apache.http.HttpHeaders
+import org.apache.http.HttpHeaders;
+
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
 
 /**
  * JAX-RS {@link Response} assert helpers.
  *
  * @since ???
  */
-class ResponseAssert
+public final class ResponseAssert
 {
-  static assertStatus(final Response response, final Response.Status status) {
-    assert response.status == status.statusCode
+  private ResponseAssert() {
+    // empty
   }
 
-  static assertContentType(final Response response, final String mediaType) {
-    assert response.getHeaderString(HttpHeaders.CONTENT_TYPE) == mediaType
+  public static void assertStatus(final Response response, final Response.Status status) {
+    assertThat(response.getStatus(), is(status));
+  }
+
+  public static void assertContentType(final Response response, final String mediaType) {
+    assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(mediaType));
   }
 }
