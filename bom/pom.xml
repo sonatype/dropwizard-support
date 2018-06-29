@@ -425,6 +425,12 @@
 
       <dependency>
         <groupId>org.sonatype.goodies.dropwizard</groupId>
+        <artifactId>dropwizard-support-client</artifactId>
+        <version>1-SNAPSHOT</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.sonatype.goodies.dropwizard</groupId>
         <artifactId>dropwizard-support-views</artifactId>
         <version>1-SNAPSHOT</version>
       </dependency>

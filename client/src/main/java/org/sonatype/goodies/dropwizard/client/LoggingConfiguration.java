@@ -30,7 +30,7 @@ public class LoggingConfiguration
 
   @NotNull
   @JsonProperty
-  private String logger = org.glassfish.jersey.logging.LoggingFeature.DEFAULT_LOGGER_NAME;
+  private String logger = LoggingFeature.DEFAULT_LOGGER_NAME;
 
   @NotNull
   @JsonProperty
@@ -38,10 +38,10 @@ public class LoggingConfiguration
 
   @NotNull
   @JsonProperty
-  private org.glassfish.jersey.logging.LoggingFeature.Verbosity verbosity = org.glassfish.jersey.logging.LoggingFeature.Verbosity.PAYLOAD_ANY;
+  private LoggingFeature.Verbosity verbosity = LoggingFeature.Verbosity.PAYLOAD_ANY;
 
   @JsonProperty
-  private int maxEntitySize = org.glassfish.jersey.logging.LoggingFeature.DEFAULT_MAX_ENTITY_SIZE;
+  private int maxEntitySize = LoggingFeature.DEFAULT_MAX_ENTITY_SIZE;
 
   public boolean isEnabled() {
     return enabled;
@@ -67,7 +67,7 @@ public class LoggingConfiguration
     this.level = level;
   }
 
-  public org.glassfish.jersey.logging.LoggingFeature.Verbosity getVerbosity() {
+  public LoggingFeature.Verbosity getVerbosity() {
     return verbosity;
   }
 

@@ -14,7 +14,7 @@ package org.sonatype.goodies.dropwizard.testsupport;
 
 import javax.ws.rs.core.Response;
 
-import org.apache.http.HttpHeaders;
+import com.google.common.net.HttpHeaders;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
