@@ -20,7 +20,6 @@ import org.sonatype.goodies.dropwizard.internal.ComponentDiscovery;
 import org.sonatype.goodies.dropwizard.internal.ConfigurationModule;
 import org.sonatype.goodies.dropwizard.internal.EnvironmentModule;
 import org.sonatype.goodies.dropwizard.jersey.JerseyGuiceBridgeFeature;
-import org.sonatype.goodies.dropwizard.security.MdcUserScope;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
@@ -230,7 +229,10 @@ public abstract class ApplicationSupport<T extends Configuration>
   @Override
   public final void run(final String... arguments) throws Exception {
     checkNotNull(arguments);
-    MdcUserScope.forSystem();
+
+    // FIXME: adjust for security seperation
+    //MdcUserScope.forSystem();
+
     Runtime.getRuntime().addShutdownHook(new Thread(this::onShutdown));
     super.run(arguments);
   }
