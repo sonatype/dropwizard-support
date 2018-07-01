@@ -30,7 +30,7 @@
 
   <version>1-SNAPSHOT</version>
 
-  <url>https://github.com/sonatype/dropwizard-support</url>
+  <url>https://sonatype.github.io/dropwizard-support</url>
 
   <scm>
     <connection>scm:git:git://github.com/sonatype/dropwizard-support.git</connection>
@@ -57,9 +57,18 @@
     <url>https://jenkins.zion.aws.s/job/goodies/job/dropwizard-support</url>
   </ciManagement>
 
+  <distributionManagement>
+    <site>
+      <id>sonatype-ghpages</id>
+      <url>scm:git:ssh://git@github.com/sonatype/dropwizard-support.git</url>
+    </site>
+  </distributionManagement>
+
   <properties>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
+
+    <apache-maven-javadoc-plugin.version>3.0.1</apache-maven-javadoc-plugin.version>
   </properties>
 
   <modules>
@@ -104,6 +113,34 @@
           <groupId>com.sonatype.clm</groupId>
           <artifactId>clm-maven-plugin</artifactId>
           <version>2.8.1-01</version>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-site-plugin</artifactId>
+          <version>3.7.1</version>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-scm-publish-plugin</artifactId>
+          <version>3.0.0</version>
+          <configuration>
+            <scmBranch>gh-pages</scmBranch>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-javadoc-plugin</artifactId>
+          <version>${apache-maven-javadoc-plugin.version}</version>
+          <configuration>
+            <source>${maven.compiler.source}</source>
+            <additionalOptions>
+              <!-- Turn off strict javadoc checks in Java-8 -->
+              <option>-Xdoclint:none</option>
+            </additionalOptions>
+          </configuration>
         </plugin>
       </plugins>
     </pluginManagement>
@@ -231,6 +268,53 @@
     </plugins>
   </build>
 
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-project-info-reports-plugin</artifactId>
+        <version>2.9</version>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jxr-plugin</artifactId>
+        <version>2.5</version>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>${apache-maven-javadoc-plugin.version}</version>
+        <configuration>
+          <source>${maven.compiler.source}</source>
+          <additionalOptions>
+            <!-- Turn off strict javadoc checks in Java-8 -->
+            <option>-Xdoclint:none</option>
+          </additionalOptions>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-pmd-plugin</artifactId>
+        <version>3.10.0</version>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-report-plugin</artifactId>
+        <version>2.22.0</version>
+      </plugin>
+
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>findbugs-maven-plugin</artifactId>
+        <version>3.0.5</version>
+      </plugin>
+    </plugins>
+  </reporting>
+
   <profiles>
     <profile>
       <id>it</id>
@@ -256,6 +340,27 @@
             </executions>
           </plugin>
         </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>site-stage</id>
+
+      <build>
+        <defaultGoal>clean install site:site site:stage</defaultGoal>
+
+        <pluginManagement>
+          <plugins>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-enforcer-plugin</artifactId>
+              <configuration>
+                <!-- site generation causes problems with project dependency resolution? -->
+                <skip>true</skip>
+              </configuration>
+            </plugin>
+          </plugins>
+        </pluginManagement>
       </build>
     </profile>
   </profiles>
