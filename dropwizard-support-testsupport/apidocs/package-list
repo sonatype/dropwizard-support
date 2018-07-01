@@ -1,0 +1,3 @@
+org.glassfish.jersey.test.inmemory
+org.sonatype.goodies.dropwizard.testsupport
+org.sonatype.goodies.dropwizard.testsupport.jersey
