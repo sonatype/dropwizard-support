@@ -14,4 +14,27 @@
 -->
 # Goodies: Dropwizard Support
 
-Provides additional support for Guice+Sisu enabled applications.
+![License](https://img.shields.io/github/license/sonatype/dropwizard-support.svg?label=License)
+
+Provides support for [Dropwizard](https://www.dropwizard.io/) Guice+Sisu enabled applications.
+
+## Building
+
+### Requirements
+
+* Apache Maven 3.3+
+* JDK 8+ (10 is **NOT** supported)
+
+### Build
+
+    mvn clean install
+
+## Site 
+
+### Staging
+
+    mvn -Psite-stage && open target/staging/index.html 
+
+### Publishing
+
+    mvn -Psite-stage && mvn scm-publish:publish-scm
