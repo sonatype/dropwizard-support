@@ -143,6 +143,12 @@
       </dependency>
 
       <dependency>
+        <groupId>com.fasterxml.jackson.dataformat</groupId>
+        <artifactId>jackson-dataformat-cbor</artifactId>
+        <version>${jackson.version}</version>
+      </dependency>
+
+      <dependency>
         <groupId>javax.ws.rs</groupId>
         <artifactId>javax.ws.rs-api</artifactId>
         <version>2.0.1</version>
@@ -419,6 +425,24 @@
 
       <dependency>
         <groupId>org.sonatype.goodies.dropwizard</groupId>
+        <artifactId>dropwizard-support-client</artifactId>
+        <version>1-SNAPSHOT</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.sonatype.goodies.dropwizard</groupId>
+        <artifactId>dropwizard-support-views</artifactId>
+        <version>1-SNAPSHOT</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.sonatype.goodies.dropwizard</groupId>
+        <artifactId>dropwizard-support-security</artifactId>
+        <version>1-SNAPSHOT</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.sonatype.goodies.dropwizard</groupId>
         <artifactId>dropwizard-support-fontawesome</artifactId>
         <version>1-SNAPSHOT</version>
       </dependency>
@@ -426,6 +450,12 @@
       <dependency>
         <groupId>org.sonatype.goodies.dropwizard</groupId>
         <artifactId>dropwizard-support-swagger</artifactId>
+        <version>1-SNAPSHOT</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.sonatype.goodies.dropwizard</groupId>
+        <artifactId>dropwizard-support-testsupport</artifactId>
         <version>1-SNAPSHOT</version>
       </dependency>
 

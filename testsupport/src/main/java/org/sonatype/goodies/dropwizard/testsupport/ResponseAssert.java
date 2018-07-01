@@ -10,24 +10,31 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
-package org.glassfish.jersey.test.inmemory;
+package org.sonatype.goodies.dropwizard.testsupport;
 
-import java.net.URI;
+import javax.ws.rs.core.Response;
 
-import org.sonatype.goodies.dropwizard.jersey.BindableTestContainer;
+import com.google.common.net.HttpHeaders;
 
-import org.glassfish.jersey.server.ApplicationHandler;
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
 
 /**
- * Custom {@link InMemoryConnector} provider that is exposed for out-of-package usage.
+ * JAX-RS {@link Response} assert helpers.
  *
- * @see BindableTestContainer
  * @since ???
  */
-public class ExposedInMemoryConnectorProvider
-    extends InMemoryConnector.Provider
+public final class ResponseAssert
 {
-  public ExposedInMemoryConnectorProvider(final URI baseUri, final ApplicationHandler appHandler) {
-    super(baseUri, appHandler);
+  private ResponseAssert() {
+    // empty
+  }
+
+  public static void assertStatus(final Response response, final Response.Status status) {
+    assertThat(response.getStatus(), is(status));
+  }
+
+  public static void assertContentType(final Response response, final String mediaType) {
+    assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(mediaType));
   }
 }

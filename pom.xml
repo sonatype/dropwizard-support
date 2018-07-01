@@ -65,8 +65,12 @@
   <modules>
     <module>bom</module>
     <module>core</module>
+    <module>client</module>
+    <module>views</module>
+    <module>security</module>
     <module>fontawesome</module>
     <module>swagger</module>
+    <module>testsupport</module>
   </modules>
 
   <build>
@@ -82,6 +86,12 @@
               <version>1.0.0</version>
             </dependency>
           </dependencies>
+        </plugin>
+
+        <plugin>
+          <groupId>ro.isdc.wro4j</groupId>
+          <artifactId>wro4j-maven-plugin</artifactId>
+          <version>1.8.0</version>
         </plugin>
 
         <plugin>
