@@ -14,4 +14,5 @@
 -->
 # About
 
-Support for generating [Swagger](https://swagger.io/) REST documentation.
+Support for generating [Swagger](https://swagger.io/) descriptors and integrating
+[Swagger UI](https://swagger.io/tools/swagger-ui/) for REST documentation.

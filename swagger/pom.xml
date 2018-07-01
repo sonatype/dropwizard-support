@@ -80,7 +80,8 @@
               <goal>run</goal>
             </goals>
             <configuration>
-              <wroManagerFactory>ro.isdc.wro.maven.plugin.manager.factory.ConfigurableWroManagerFactory
+              <wroManagerFactory>
+                ro.isdc.wro.maven.plugin.manager.factory.ConfigurableWroManagerFactory
               </wroManagerFactory>
               <wroFile>${project.basedir}/src/main/config/wro.xml</wroFile>
               <extraConfigFile>${project.basedir}/src/main/config/wro.properties</extraConfigFile>

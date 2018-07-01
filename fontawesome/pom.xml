@@ -27,6 +27,14 @@
   <name>${project.groupId}:${project.artifactId}</name>
   <packaging>jar</packaging>
 
+  <licenses>
+    <license>
+      <name>CC BY 3.0</name>
+      <url>http://creativecommons.org/licenses/by/3.0/</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
   <properties>
     <fontawesome.version>5.0.13</fontawesome.version>
     <fontawesome.baseUrl>https://use.fontawesome.com/releases/v${fontawesome.version}</fontawesome.baseUrl>
