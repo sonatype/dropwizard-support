@@ -126,6 +126,44 @@
             </additionalOptions>
           </configuration>
         </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-jxr-plugin</artifactId>
+          <version>2.5</version>
+        </plugin>
+
+        <plugin>
+          <groupId>org.sonatype.goodies.dionysus</groupId>
+          <artifactId>dionysus-maven-plugin</artifactId>
+          <version>1.0.0</version>
+          <configuration>
+            <theme>
+              <groupId>org.sonatype.goodies.dionysus</groupId>
+              <artifactId>dionysus-hugo-theme</artifactId>
+              <version>1.0.0</version>
+            </theme>
+            <mavenGoals>
+              <goal>javadoc:aggregate</goal>
+              <goal>jxr:aggregate</goal>
+            </mavenGoals>
+            <generators>
+              <mavenLicenses/>
+              <mavenModules/>
+              <mavenPom/>
+            </generators>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>com.mycila</groupId>
+          <artifactId>license-maven-plugin</artifactId>
+          <configuration>
+            <excludes combine.children="append">
+              <exclude>src/site/hugo/**</exclude>
+            </excludes>
+          </configuration>
+        </plugin>
       </plugins>
     </pluginManagement>
 
@@ -277,6 +315,24 @@
             </executions>
           </plugin>
         </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>dionysus</id>
+      <build>
+        <pluginManagement>
+          <plugins>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-enforcer-plugin</artifactId>
+              <configuration>
+                <!-- site generation causes problems with project dependency resolution? -->
+                <skip>true</skip>
+              </configuration>
+            </plugin>
+          </plugins>
+        </pluginManagement>
       </build>
     </profile>
   </profiles>

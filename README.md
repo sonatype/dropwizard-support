@@ -30,3 +30,13 @@ Provides support for [Dropwizard](https://www.dropwizard.io/) Guice+Sisu enabled
 ### Build
 
     ./mvnw clean install
+
+## Site 
+
+### Building
+
+    ./mvnw clean install dionysus:build
+    
+### Publishing
+
+    ./mvnw dionysus:publish
