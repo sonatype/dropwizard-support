@@ -28,13 +28,3 @@ Provides support for [Dropwizard](https://www.dropwizard.io/) Guice+Sisu enabled
 ### Build
 
     mvn clean install
-
-## Site 
-
-### Staging
-
-    mvn -Psite-stage && open target/staging/index.html 
-
-### Publishing
-
-    mvn -Psite-stage && mvn scm-publish:publish-scm
