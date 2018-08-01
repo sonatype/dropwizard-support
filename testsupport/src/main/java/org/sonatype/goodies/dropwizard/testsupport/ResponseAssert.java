@@ -31,7 +31,7 @@ public final class ResponseAssert
   }
 
   public static void assertStatus(final Response response, final Response.Status status) {
-    assertThat(response.getStatus(), is(status));
+    assertThat(response.getStatus(), is(status.getStatusCode()));
   }
 
   public static void assertContentType(final Response response, final String mediaType) {
