@@ -19,6 +19,7 @@ import java.util.List;
 import org.sonatype.goodies.dropwizard.internal.ComponentDiscovery;
 import org.sonatype.goodies.dropwizard.internal.ConfigurationModule;
 import org.sonatype.goodies.dropwizard.internal.EnvironmentModule;
+import org.sonatype.goodies.dropwizard.internal.MetricsAopModule;
 import org.sonatype.goodies.dropwizard.jersey.JerseyGuiceBridgeFeature;
 
 import com.google.inject.Guice;
@@ -135,6 +136,9 @@ public abstract class ApplicationSupport<T extends Configuration>
 
     // configure various environment bindings
     modules.add(new EnvironmentModule(environment));
+
+    // configure support for Guice-AOP metrics
+    modules.add(new MetricsAopModule(environment));
 
     // allow customizer to contribute modules
     for (ApplicationCustomizer customizer : customizers) {
