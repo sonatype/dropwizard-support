@@ -14,7 +14,9 @@
 -->
 # Goodies: Dropwizard Support
 
-![License](https://img.shields.io/github/license/sonatype/dropwizard-support.svg?label=License)
+![license](https://img.shields.io/github/license/sonatype/dropwizard-support.svg)
+
+![maven-central](https://img.shields.io/maven-central/v/org.sonatype.goodies.dropwizard/dropwizard-support.svg)
 
 Provides support for [Dropwizard](https://www.dropwizard.io/) Guice+Sisu enabled applications.
 
