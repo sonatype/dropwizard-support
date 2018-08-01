@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Welcome on Goodies: Dropwizard Support</title>
+    <link>https://sonatype.github.io/dropwizard-support/</link>
+    <description>Recent content in Welcome on Goodies: Dropwizard Support</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="https://sonatype.github.io/dropwizard-support/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>About</title>
+      <link>https://sonatype.github.io/dropwizard-support/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://sonatype.github.io/dropwizard-support/about/</guid>
+      <description> Provides support for Dropwizard Guice+Sisu enabled applications.
+ </description>
+    </item>
+    
+    <item>
+      <title>Development</title>
+      <link>https://sonatype.github.io/dropwizard-support/development/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://sonatype.github.io/dropwizard-support/development/</guid>
+      <description> Open Source on  Github.
+ Source Code  Repository  References  Issue Tracker  </description>
+    </item>
+    
+    <item>
+      <title>License</title>
+      <link>https://sonatype.github.io/dropwizard-support/license/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://sonatype.github.io/dropwizard-support/license/</guid>
+      <description> 1 licenses   Name URL     ASL2 http://opensource.org/licenses/Apache-2.0    ASL2 &amp;lt;html&amp;gt;&amp;lt;head&amp;gt;&amp;lt;title&amp;gt;301 Moved Permanently&amp;lt;/title&amp;gt;&amp;lt;/head&amp;gt;&amp;lt;body bgcolor=&amp;#34;white&amp;#34;&amp;gt;&amp;lt;center&amp;gt;&amp;lt;h1&amp;gt;301 Moved Permanently&amp;lt;/h1&amp;gt;&amp;lt;/center&amp;gt;&amp;lt;hr&amp;gt;&amp;lt;center&amp;gt;nginx/1.10.3 (Ubuntu)&amp;lt;/center&amp;gt;&amp;lt;/body&amp;gt;&amp;lt;/html&amp;gt;    </description>
+    </item>
+    
+    <item>
+      <title>Search</title>
+      <link>https://sonatype.github.io/dropwizard-support/search/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://sonatype.github.io/dropwizard-support/search/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

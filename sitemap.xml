@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://sonatype.github.io/dropwizard-support/about/</loc>
+  </url>
+  
+  <url>
+    <loc>https://sonatype.github.io/dropwizard-support/categories/</loc>
+  </url>
+  
+  <url>
+    <loc>https://sonatype.github.io/dropwizard-support/development/</loc>
+  </url>
+  
+  <url>
+    <loc>https://sonatype.github.io/dropwizard-support/license/</loc>
+  </url>
+  
+  <url>
+    <loc>https://sonatype.github.io/dropwizard-support/search/</loc>
+    <priority>0.1</priority>
+  </url>
+  
+  <url>
+    <loc>https://sonatype.github.io/dropwizard-support/tags/</loc>
+  </url>
+  
+  <url>
+    <loc>https://sonatype.github.io/dropwizard-support/</loc>
+  </url>
+  
+</urlset>

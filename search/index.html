@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html id="site-root" lang="en-us">
 <head>
-	<meta name="generator" content="Hugo 0.44" />
   
 <meta charset="UTF-8"/>
 <meta name="author" content="Sonatype, Inc."/>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<title>Welcome &ndash; Goodies: Dropwizard Support</title>
+<title>Search &ndash; Goodies: Dropwizard Support</title>
 
 <link rel="shortcut icon" href="/dropwizard-support/favicon.ico">
 <link rel="icon" type="image/x-icon" href="/dropwizard-support/favicon.ico"/>
@@ -64,29 +63,39 @@
 </header>
     <main id="site-content">
       
-
-<div class="jumbotron">
-  <h1 class="display-4 welcome-brand">
-    <img src="/dropwizard-support/images/sonatype-48x48.png" width="48" height="48" alt="">
-    Welcome
-  </h1>
-  <p class="lead text-muted">
-    Support for Dropwizard Guice+Sisu enabled applications.
-  </p>
-</div>
-
-<div class="homepage-content">
+<div id="page-description">
+  <h1 class="title"><i class="fas fa-search"></i> Search</h1>
   
-
-<h2 id="reference">Reference</h2>
-
-<ul>
-<li><a href="maven/apidocs/">Javadoc</a></li>
-<li><a href="maven/xref/">Source</a></li>
-</ul>
-
+    <p class="subtitle">Search pages</p>
+  
 </div>
 
+<form method="get" action="https://sonatype.github.io/dropwizard-support/search" role="form">
+  <div class="input-group">
+    <input id="search-query" class="form-control border" type="search" name="q" required placeholder="Search" aria-label="Search">
+    <button class="btn btn-primary ml-2" type="submit">
+      <i class="fa fa-search"></i> Search
+    </button>
+  </div>
+</form>
+
+
+<div id="search-results"></div>
+
+
+<script id="search-result-template" type="text/x-js-template">
+  <div id="search-result-${key}" class="search-result">
+    <h4 class="title">
+      <a href="${link}">${ isset glyph }<i class="${glyph}"></i> ${ end }${title}</a>
+    </h4>
+    ${ isset subtitle }<p class="subtitle">${subtitle}</p>${ end }
+    <p class="snippet">${snippet}</p>
+    <table class="metadata">
+      ${ isset tags }<tr><td class="key">Tags</td><td class="value">${tags}</td></tr>${ end }
+      ${ isset categories }<tr><td class="key">Categories</td><td class="value">${categories}</td></tr>${ end }
+    </table>
+  </div>
+</script>
 
     </main>
     
