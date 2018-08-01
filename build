@@ -56,18 +56,12 @@ case "$command" in
 
     # check license headers
     license-check)
-        mvn -f ./pom.xml -N -P -include-private com.mycila:license-maven-plugin:check
-        if [ -f "private/pom.xml" ]; then
-          mvn -f private/pom.xml -N com.mycila:license-maven-plugin:check "$@"
-        fi
+        mvn -Plicense-check -N $*
         ;;
 
     # format license headers
     license-format)
-        mvn -f ./pom.xml -N -P -include-private com.mycila:license-maven-plugin:format
-        if [ -f "private/pom.xml" ]; then
-          mvn -f private/pom.xml -N com.mycila:license-maven-plugin:format "$@"
-        fi
+        mvn -Plicense-format -N $*
         ;;
 
     # release automation
