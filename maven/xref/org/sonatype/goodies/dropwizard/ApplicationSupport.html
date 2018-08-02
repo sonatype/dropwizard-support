@@ -51,7 +51,7 @@
 <a class="jxr_linenumber" name="L43" href="#L43">43</a>  <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L44" href="#L44">44</a>  <em class="jxr_javadoccomment"> * Support for DropWizard Guice+Sisu applications.</em>
 <a class="jxr_linenumber" name="L45" href="#L45">45</a>  <em class="jxr_javadoccomment"> *</em>
-<a class="jxr_linenumber" name="L46" href="#L46">46</a>  <em class="jxr_javadoccomment"> * @since ???</em>
+<a class="jxr_linenumber" name="L46" href="#L46">46</a>  <em class="jxr_javadoccomment"> * @since 1.0.0</em>
 <a class="jxr_linenumber" name="L47" href="#L47">47</a>  <em class="jxr_javadoccomment"> * @see ApplicationCustomizer</em>
 <a class="jxr_linenumber" name="L48" href="#L48">48</a>  <em class="jxr_javadoccomment"> * @see ComponentDiscovery</em>
 <a class="jxr_linenumber" name="L49" href="#L49">49</a>  <em class="jxr_javadoccomment"> */</em>
@@ -242,30 +242,27 @@
 <a class="jxr_linenumber" name="L234" href="#L234">234</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">void</strong> run(<strong class="jxr_keyword">final</strong> String... arguments) <strong class="jxr_keyword">throws</strong> Exception {
 <a class="jxr_linenumber" name="L235" href="#L235">235</a>     checkNotNull(arguments);
 <a class="jxr_linenumber" name="L236" href="#L236">236</a> 
-<a class="jxr_linenumber" name="L237" href="#L237">237</a>     <em class="jxr_comment">// FIXME: adjust for security seperation</em>
-<a class="jxr_linenumber" name="L238" href="#L238">238</a>     <em class="jxr_comment">//MdcUserScope.forSystem();</em>
-<a class="jxr_linenumber" name="L239" href="#L239">239</a> 
-<a class="jxr_linenumber" name="L240" href="#L240">240</a>     Runtime.getRuntime().addShutdownHook(<strong class="jxr_keyword">new</strong> Thread(<strong class="jxr_keyword">this</strong>::onShutdown));
-<a class="jxr_linenumber" name="L241" href="#L241">241</a>     <strong class="jxr_keyword">super</strong>.run(arguments);
-<a class="jxr_linenumber" name="L242" href="#L242">242</a>   }
-<a class="jxr_linenumber" name="L243" href="#L243">243</a> 
-<a class="jxr_linenumber" name="L244" href="#L244">244</a>   <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L245" href="#L245">245</a> <em class="jxr_javadoccomment">   * Invoked on application shutdown.</em>
-<a class="jxr_linenumber" name="L246" href="#L246">246</a> <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L247" href="#L247">247</a>   @SuppressWarnings(<span class="jxr_string">"WeakerAccess"</span>)
-<a class="jxr_linenumber" name="L248" href="#L248">248</a>   <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">void</strong> onShutdown() {
-<a class="jxr_linenumber" name="L249" href="#L249">249</a>     log.info(<span class="jxr_string">"Shutting down"</span>);
-<a class="jxr_linenumber" name="L250" href="#L250">250</a>   }
-<a class="jxr_linenumber" name="L251" href="#L251">251</a> 
-<a class="jxr_linenumber" name="L252" href="#L252">252</a>   <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L253" href="#L253">253</a> <em class="jxr_javadoccomment">   * Invoked on fatal error before shutdown.</em>
-<a class="jxr_linenumber" name="L254" href="#L254">254</a> <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L255" href="#L255">255</a>   @Override
-<a class="jxr_linenumber" name="L256" href="#L256">256</a>   <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">void</strong> onFatalError() {
-<a class="jxr_linenumber" name="L257" href="#L257">257</a>     log.error(<span class="jxr_string">"Fatal error detected; shutting down"</span>);
-<a class="jxr_linenumber" name="L258" href="#L258">258</a>     <strong class="jxr_keyword">super</strong>.onFatalError();
-<a class="jxr_linenumber" name="L259" href="#L259">259</a>   }
-<a class="jxr_linenumber" name="L260" href="#L260">260</a> }
+<a class="jxr_linenumber" name="L237" href="#L237">237</a>     Runtime.getRuntime().addShutdownHook(<strong class="jxr_keyword">new</strong> Thread(<strong class="jxr_keyword">this</strong>::onShutdown));
+<a class="jxr_linenumber" name="L238" href="#L238">238</a>     <strong class="jxr_keyword">super</strong>.run(arguments);
+<a class="jxr_linenumber" name="L239" href="#L239">239</a>   }
+<a class="jxr_linenumber" name="L240" href="#L240">240</a> 
+<a class="jxr_linenumber" name="L241" href="#L241">241</a>   <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L242" href="#L242">242</a> <em class="jxr_javadoccomment">   * Invoked on application shutdown.</em>
+<a class="jxr_linenumber" name="L243" href="#L243">243</a> <em class="jxr_javadoccomment">   */</em>
+<a class="jxr_linenumber" name="L244" href="#L244">244</a>   @SuppressWarnings(<span class="jxr_string">"WeakerAccess"</span>)
+<a class="jxr_linenumber" name="L245" href="#L245">245</a>   <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">void</strong> onShutdown() {
+<a class="jxr_linenumber" name="L246" href="#L246">246</a>     log.info(<span class="jxr_string">"Shutting down"</span>);
+<a class="jxr_linenumber" name="L247" href="#L247">247</a>   }
+<a class="jxr_linenumber" name="L248" href="#L248">248</a> 
+<a class="jxr_linenumber" name="L249" href="#L249">249</a>   <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L250" href="#L250">250</a> <em class="jxr_javadoccomment">   * Invoked on fatal error before shutdown.</em>
+<a class="jxr_linenumber" name="L251" href="#L251">251</a> <em class="jxr_javadoccomment">   */</em>
+<a class="jxr_linenumber" name="L252" href="#L252">252</a>   @Override
+<a class="jxr_linenumber" name="L253" href="#L253">253</a>   <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">void</strong> onFatalError() {
+<a class="jxr_linenumber" name="L254" href="#L254">254</a>     log.error(<span class="jxr_string">"Fatal error detected; shutting down"</span>);
+<a class="jxr_linenumber" name="L255" href="#L255">255</a>     <strong class="jxr_keyword">super</strong>.onFatalError();
+<a class="jxr_linenumber" name="L256" href="#L256">256</a>   }
+<a class="jxr_linenumber" name="L257" href="#L257">257</a> }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2018 <a href="http://www.sonatype.com">Sonatype, Inc.</a>. All rights reserved.</div>
