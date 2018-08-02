@@ -76,7 +76,6 @@
     <module>views</module>
     <module>security</module>
     <module>datadog</module>
-    <module>fontawesome</module>
     <module>swagger</module>
     <module>testsupport</module>
   </modules>
