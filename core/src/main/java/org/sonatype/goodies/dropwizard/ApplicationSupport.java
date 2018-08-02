@@ -234,9 +234,6 @@ public abstract class ApplicationSupport<T extends Configuration>
   public final void run(final String... arguments) throws Exception {
     checkNotNull(arguments);
 
-    // FIXME: adjust for security seperation
-    //MdcUserScope.forSystem();
-
     Runtime.getRuntime().addShutdownHook(new Thread(this::onShutdown));
     super.run(arguments);
   }
