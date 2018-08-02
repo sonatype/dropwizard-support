@@ -369,12 +369,11 @@
         <version>4.1.0</version>
       </dependency>
 
-      <!-- HACK: webjars is lagging behind, see private/fontaweome -->
-      <!--<dependency>-->
-        <!--<groupId>org.webjars</groupId>-->
-        <!--<artifactId>font-awesome</artifactId>-->
-        <!--<version>5.0.10</version>-->
-      <!--</dependency>-->
+      <dependency>
+        <groupId>org.webjars</groupId>
+        <artifactId>font-awesome</artifactId>
+        <version>5.2.0</version>
+      </dependency>
 
       <dependency>
         <groupId>org.webjars</groupId>
