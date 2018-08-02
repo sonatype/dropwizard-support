@@ -17,7 +17,7 @@ import io.swagger.models.Swagger;
 /**
  * Swagger contributor.
  *
- * @since ???
+ * @since 1.0.0
  */
 public interface SwaggerContributor
 {

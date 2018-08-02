@@ -23,7 +23,7 @@ import io.dropwizard.setup.Environment;
  * Swagger bundle.
  *
  * @see SwaggerModule
- * @since ???
+ * @since 1.0.0
  */
 public class SwaggerBundle<T extends Configuration>
     implements ConfiguredBundle<T>

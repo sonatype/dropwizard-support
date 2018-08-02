@@ -19,7 +19,7 @@ import org.slf4j.Logger;
 /**
  * Support for {@link Resource} implementations.
  *
- * @since ???
+ * @since 1.0.0
  */
 public abstract class ResourceSupport
     implements Resource

@@ -19,7 +19,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * Adapter to execute given {@link Callable} as {@link SystemSubject}.
  *
- * @since ???
+ * @since 1.0.0
  */
 public class SystemCallable<V>
   implements Callable<V>

@@ -22,7 +22,7 @@ import io.dropwizard.client.JerseyClientConfiguration;
  * Extended {@link JerseyClientConfiguration}.
  *
  * @see JerseyClientFactory
- * @since ???
+ * @since 1.0.0
  */
 public class ExtJerseyClientConfiguration
     extends JerseyClientConfiguration

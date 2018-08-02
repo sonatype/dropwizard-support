@@ -26,7 +26,7 @@ import static com.google.common.base.Preconditions.checkState;
 /**
  * Provides HK2 {@link ServiceLocator}.
  *
- * @since ???
+ * @since 1.0.0
  */
 @Named
 public class ServiceLocatorProvider

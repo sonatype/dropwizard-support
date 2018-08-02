@@ -20,7 +20,7 @@ import javax.ws.rs.core.Response.Status;
  *
  * Throws {@link WebApplicationException} appropriate for precondition failure.
  *
- * @since ???
+ * @since 1.0.0
  */
 public final class WebPreconditions
 {

@@ -33,7 +33,7 @@ import org.slf4j.LoggerFactory;
  *
  * Enables {@link View} implementations to receive injection from HK2.
  *
- * @since ???
+ * @since 1.0.0
  */
 public class InjectableViewBundle<T extends Configuration>
     implements ConfiguredBundle<T>, ViewConfigurable<T>

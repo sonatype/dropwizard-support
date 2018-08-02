@@ -22,7 +22,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * MDC user scope helper.
  *
- * @since ???
+ * @since 1.0.0
  */
 public final class MdcUserScope
   implements AutoCloseable

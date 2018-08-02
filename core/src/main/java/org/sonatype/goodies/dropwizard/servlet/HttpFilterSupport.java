@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Adapt filter to {@link HttpServletRequest} and {@link HttpServletResponse}.
  *
- * @since ???
+ * @since 1.0.0
  */
 public abstract class HttpFilterSupport
     extends FilterSupport

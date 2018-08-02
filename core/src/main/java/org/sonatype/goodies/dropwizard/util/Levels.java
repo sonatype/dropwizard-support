@@ -17,7 +17,7 @@ import ch.qos.logback.classic.Level;
 /**
  * Logging level helpers.
  *
- * @since ???
+ * @since 1.0.0
  */
 public final class Levels
 {

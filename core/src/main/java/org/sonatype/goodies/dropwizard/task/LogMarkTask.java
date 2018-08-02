@@ -22,7 +22,7 @@ import com.google.common.base.Strings;
 /**
  * Mark the log.
  *
- * @since ???
+ * @since 1.0.0
  */
 @Named
 @Singleton

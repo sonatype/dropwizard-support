@@ -30,7 +30,7 @@ import io.dropwizard.jersey.validation.ValidationErrorMessage;
 /**
  * {@link ConstraintViolationMapper} exception-mapper.
  *
- * @since ???
+ * @since 1.0.0
  */
 @Named
 @Singleton

@@ -31,7 +31,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * Support rule for endpoint tests.
  *
- * @since ???
+ * @since 1.0.0
  */
 public class EndpointSupportRule<T extends ApplicationSupport<C>, C extends Configuration>
     extends DropwizardAppRule<C>

@@ -19,7 +19,7 @@ import javax.ws.rs.ClientErrorException;
  *
  * Thrown to wrap any exception other than {@link ClientErrorException} (or sub-class).
  *
- * @since ???
+ * @since 1.0.0
  */
 public class EndpointErrorException
   extends RuntimeException

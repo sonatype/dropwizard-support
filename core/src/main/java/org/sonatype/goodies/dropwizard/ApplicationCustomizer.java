@@ -23,7 +23,7 @@ import io.dropwizard.setup.Environment;
 /**
  * Allows various customization of application configuration and environment.
  *
- * @since ???
+ * @since 1.0.0
  * @see ApplicationSupport#addCustomizer(ApplicationCustomizer[])
  */
 public interface ApplicationCustomizer<T extends ApplicationSupport<C>, C extends Configuration>

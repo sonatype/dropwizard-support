@@ -29,7 +29,7 @@ import static com.google.common.base.Preconditions.checkState;
 /**
  * Support for {@link Task} implementations.
  *
- * @since ???
+ * @since 1.0.0
  */
 public abstract class TaskSupport
     extends Task

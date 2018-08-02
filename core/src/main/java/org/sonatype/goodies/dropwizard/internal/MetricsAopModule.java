@@ -32,7 +32,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * Adds support for Guice-AOP based metrics.
  *
- * @since ???
+ * @since 1.0.0
  */
 public class MetricsAopModule
     extends AbstractModule

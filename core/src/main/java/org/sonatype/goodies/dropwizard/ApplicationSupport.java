@@ -43,7 +43,7 @@ import static com.google.common.base.Preconditions.checkState;
 /**
  * Support for DropWizard Guice+Sisu applications.
  *
- * @since ???
+ * @since 1.0.0
  * @see ApplicationCustomizer
  * @see ComponentDiscovery
  */

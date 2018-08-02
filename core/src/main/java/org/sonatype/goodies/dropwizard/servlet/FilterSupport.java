@@ -22,7 +22,7 @@ import org.slf4j.LoggerFactory;
 /**
  * Support for {@link Filter} implementations.
  *
- * @since ???
+ * @since 1.0.0
  */
 public abstract class FilterSupport
     implements Filter

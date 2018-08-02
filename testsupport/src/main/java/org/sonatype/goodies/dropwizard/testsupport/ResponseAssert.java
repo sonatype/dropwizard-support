@@ -22,7 +22,7 @@ import static org.junit.Assert.assertThat;
 /**
  * JAX-RS {@link Response} assert helpers.
  *
- * @since ???
+ * @since 1.0.0
  */
 public final class ResponseAssert
 {

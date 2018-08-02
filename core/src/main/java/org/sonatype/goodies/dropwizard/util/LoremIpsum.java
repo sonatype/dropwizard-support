@@ -19,7 +19,7 @@ import static com.google.common.base.Preconditions.checkArgument;
 /**
  * "Lorem Ipsum" placeholder-text helpers.
  *
- * @since ???
+ * @since 1.0.0
  */
 public final class LoremIpsum
 {

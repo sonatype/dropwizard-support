@@ -28,7 +28,7 @@ import org.slf4j.LoggerFactory;
 /**
  * Custom Datadog metric-name formatter.
  *
- * @since ???
+ * @since 1.0.0
  */
 public class MetricNameFormatterImpl
     extends DefaultMetricNameFormatter

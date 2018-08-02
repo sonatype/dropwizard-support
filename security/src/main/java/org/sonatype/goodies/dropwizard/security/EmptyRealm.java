@@ -19,7 +19,7 @@ import org.apache.shiro.realm.Realm;
 /**
  * Empty {@link Realm} - only used to satisfy Shiro's need for an initial realm binding.
  *
- * @since ???
+ * @since 1.0.0
  */
 public final class EmptyRealm
     implements Realm

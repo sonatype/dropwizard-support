@@ -20,7 +20,7 @@ import javax.ws.rs.core.Response;
  *
  * Thrown to wrap {@link ClientErrorException} and prevent propagation of JAX-RS exception outside of scope.
  *
- * @since ???
+ * @since 1.0.0
  */
 public class EndpointException
   extends RuntimeException

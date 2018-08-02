@@ -33,7 +33,7 @@ import org.glassfish.hk2.api.ServiceLocator;
  * Injectable view {@link javax.ws.rs.ext.MessageBodyWriter}.
  *
  * @see InjectableViewBundle
- * @since ???
+ * @since 1.0.0
  */
 @Provider
 @Produces({MediaType.TEXT_HTML, MediaType.APPLICATION_XHTML_XML})

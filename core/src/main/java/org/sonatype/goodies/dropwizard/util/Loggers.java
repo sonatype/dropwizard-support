@@ -24,7 +24,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
  *
  * For use in place of {@link LoggerFactory#getLogger(Class)} when target type is expected to be potentially AOP adapted.
  *
- * @since ???
+ * @since 1.0.0
  */
 public final class Loggers
 {

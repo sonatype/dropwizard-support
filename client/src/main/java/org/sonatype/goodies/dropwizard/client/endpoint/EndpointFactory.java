@@ -41,7 +41,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
  *
  * Creates REST-client proxies based on {@link WebResourceFactory}, with additional exception handling and logging.
  *
- * @since ???
+ * @since 1.0.0
  * @see EndpointException
  * @see EndpointErrorException
  */

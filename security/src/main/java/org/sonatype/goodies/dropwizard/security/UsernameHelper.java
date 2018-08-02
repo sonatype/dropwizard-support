@@ -22,7 +22,7 @@ import org.slf4j.LoggerFactory;
 /**
  * User-name helper.
  *
- * @since ???
+ * @since 1.0.0
  */
 public final class UsernameHelper
 {

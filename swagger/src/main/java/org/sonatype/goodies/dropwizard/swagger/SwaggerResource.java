@@ -33,7 +33,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
  * Swagger resource.
  *
  * @see SwaggerModel
- * @since ???
+ * @since 1.0.0
  */
 @Named
 @Singleton

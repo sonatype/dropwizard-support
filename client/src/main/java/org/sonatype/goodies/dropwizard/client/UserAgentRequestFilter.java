@@ -25,7 +25,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * Adds {@link HttpHeaders#USER_AGENT} to requests.
  *
- * @since ???
+ * @since 1.0.0
  */
 public class UserAgentRequestFilter
     implements ClientRequestFilter

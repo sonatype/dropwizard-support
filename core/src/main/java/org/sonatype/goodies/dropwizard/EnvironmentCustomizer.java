@@ -17,7 +17,7 @@ import io.dropwizard.setup.Environment;
 /**
  * Allows customization of application {@link Environment}.
  *
- * @since ???
+ * @since 1.0.0
  */
 public interface EnvironmentCustomizer
 {

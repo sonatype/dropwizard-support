@@ -19,7 +19,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * Swagger module.
  *
- * @since ???
+ * @since 1.0.0
  * @see SwaggerCustomizer
  */
 public class SwaggerModule

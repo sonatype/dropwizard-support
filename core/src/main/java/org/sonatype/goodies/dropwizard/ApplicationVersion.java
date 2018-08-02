@@ -15,7 +15,7 @@ package org.sonatype.goodies.dropwizard;
 /**
  * Provides application version information.
  *
- * @since ???
+ * @since 1.0.0
  */
 public interface ApplicationVersion
 {

@@ -31,7 +31,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * {@link TestContainer} which exposes {@link Binder}.
  *
- * @since ???
+ * @since 1.0.0
  */
 public class BindableTestContainer
     implements TestContainer

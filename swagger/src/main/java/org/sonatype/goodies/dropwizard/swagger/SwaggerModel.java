@@ -35,7 +35,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
  *
  * @see SwaggerConfiguration
  * @see SwaggerContributor
- * @since ???
+ * @since 1.0.0
  */
 @Named
 @Singleton

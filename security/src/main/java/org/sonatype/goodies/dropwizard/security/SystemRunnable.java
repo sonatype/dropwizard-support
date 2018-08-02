@@ -17,7 +17,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * Adapter to execute given {@link Runnable} as {@link SystemSubject}.
  *
- * @since ???
+ * @since 1.0.0
  */
 public class SystemRunnable
   implements Runnable

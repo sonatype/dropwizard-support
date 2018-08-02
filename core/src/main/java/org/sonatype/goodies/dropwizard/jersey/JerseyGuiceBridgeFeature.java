@@ -26,7 +26,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * Configures Jersey with {@link GuiceIntoHK2Bridge}.
  *
- * @since ???
+ * @since 1.0.0
  */
 public class JerseyGuiceBridgeFeature
     implements Feature

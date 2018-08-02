@@ -26,7 +26,7 @@ import io.dropwizard.setup.Environment;
 /**
  * Swagger application customizer.
  *
- * @since ???
+ * @since 1.0.0
  */
 public abstract class SwaggerCustomizer<T extends ApplicationSupport<C>, C extends Configuration>
     implements ApplicationCustomizer<T, C>

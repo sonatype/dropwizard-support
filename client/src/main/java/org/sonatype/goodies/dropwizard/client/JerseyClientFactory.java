@@ -33,7 +33,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * Factory to produce Jersey {@link Client} instances from {@link ExtJerseyClientConfiguration}.
  *
- * @since ???
+ * @since 1.0.0
  */
 @Named
 @Singleton

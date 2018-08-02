@@ -31,7 +31,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
  * Supplies {@link com.google.common.net.HttpHeaders#USER_AGENT} value.
  *
  * @see JerseyClientFactory
- * @since ???
+ * @since 1.0.0
  */
 @Named
 @Singleton

@@ -18,7 +18,7 @@ import org.glassfish.hk2.api.Factory;
  * Factory to wrap an instance.
  *
  * @see BinderSupport#bindInstance(Class, Object)
- * @since ???
+ * @since 1.0.0
  */
 public class InstanceFactory<T>
     implements Factory<T>

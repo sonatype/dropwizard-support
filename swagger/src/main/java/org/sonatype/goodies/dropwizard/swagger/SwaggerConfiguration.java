@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * Swagger configuration.
  *
- * @since ???
+ * @since 1.0.0
  */
 public class SwaggerConfiguration
 {

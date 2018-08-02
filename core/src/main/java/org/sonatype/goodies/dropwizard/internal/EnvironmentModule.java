@@ -29,7 +29,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * Adds various bindings for {@link Environment} properties.
  *
- * @since ???
+ * @since 1.0.0
  */
 public class EnvironmentModule
     extends AbstractModule

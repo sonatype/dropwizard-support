@@ -18,7 +18,7 @@ import org.glassfish.hk2.utilities.binding.AbstractBinder;
 /**
  * Support for {@link Binder} implementations.
  *
- * @since ???
+ * @since 1.0.0
  */
 public abstract class BinderSupport
     extends AbstractBinder

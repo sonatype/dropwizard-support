@@ -28,7 +28,7 @@ import static com.google.common.base.Preconditions.checkState;
 /**
  * Support for {@link View} implementations.
  *
- * @since ???
+ * @since 1.0.0
  */
 public class ViewSupport
     extends View

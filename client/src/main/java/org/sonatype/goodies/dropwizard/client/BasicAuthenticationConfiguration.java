@@ -18,7 +18,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 /**
  * Configuration for BASIC authentication credentials.
  *
- * @since ???
+ * @since 1.0.0
  */
 public class BasicAuthenticationConfiguration
 {

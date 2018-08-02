@@ -29,7 +29,7 @@ import io.swagger.models.properties.Property;
 /**
  * Ban groovy meta-class properties.
  *
- * @since ???
+ * @since 1.0.0
  */
 @Named
 @Singleton

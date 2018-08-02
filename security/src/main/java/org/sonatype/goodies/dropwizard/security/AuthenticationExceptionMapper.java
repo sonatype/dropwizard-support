@@ -27,7 +27,7 @@ import org.apache.shiro.authc.AuthenticationException;
  *
  * Converts exceptions to {@link ErrorMessage} for rendering.
  *
- * @since ???
+ * @since 1.0.0
  */
 @Named
 @Singleton

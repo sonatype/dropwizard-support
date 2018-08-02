@@ -22,7 +22,7 @@ import org.glassfish.jersey.server.ApplicationHandler;
  * Custom {@link InMemoryConnector} provider that is exposed for out-of-package usage.
  *
  * @see BindableTestContainer
- * @since ???
+ * @since 1.0.0
  */
 public class ExposedInMemoryConnectorProvider
     extends InMemoryConnector.Provider

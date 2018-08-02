@@ -15,7 +15,7 @@ package org.sonatype.goodies.dropwizard.jaxrs;
 /**
  * Marker for JAX-RS component implementations.
  *
- * @since ???
+ * @since 1.0.0
  */
 public interface Component
 {

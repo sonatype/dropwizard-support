@@ -25,7 +25,7 @@ import org.slf4j.LoggerFactory;
 /**
  * {@link Resource} mediator.
  *
- * @since ???
+ * @since 1.0.0
  */
 @Named
 public class ResourceMediator

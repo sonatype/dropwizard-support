@@ -21,7 +21,7 @@ import static com.google.common.base.Preconditions.checkArgument;
 /**
  * Holder of random things.
  *
- * @since ???
+ * @since 1.0.0
  */
 public final class Rando
 {

@@ -22,7 +22,7 @@ import static com.google.common.base.Preconditions.checkState;
 /**
  * Support for {@link Managed} services.
  *
- * @since ???
+ * @since 1.0.0
  */
 public abstract class ServiceSupport
     implements Managed

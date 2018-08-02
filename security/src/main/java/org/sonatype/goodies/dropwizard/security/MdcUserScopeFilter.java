@@ -27,7 +27,7 @@ import org.apache.shiro.subject.Subject;
 /**
  * Manages {@link MdcUserScope} for request.
  *
- * @since ???
+ * @since 1.0.0
  */
 public class MdcUserScopeFilter
     extends FilterSupport
