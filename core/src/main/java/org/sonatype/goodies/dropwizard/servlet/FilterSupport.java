@@ -16,8 +16,9 @@ import javax.servlet.Filter;
 import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 
+import org.sonatype.goodies.dropwizard.util.Loggers;
+
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Support for {@link Filter} implementations.
@@ -27,7 +28,7 @@ import org.slf4j.LoggerFactory;
 public abstract class FilterSupport
     implements Filter
 {
-  protected final Logger log = LoggerFactory.getLogger(getClass());
+  protected final Logger log = Loggers.getLogger(getClass());
 
   @Override
   public void init(final FilterConfig config) throws ServletException {

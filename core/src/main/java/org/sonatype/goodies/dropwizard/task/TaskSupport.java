@@ -17,11 +17,12 @@ import java.util.Collection;
 
 import javax.annotation.Nullable;
 
+import org.sonatype.goodies.dropwizard.util.Loggers;
+
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import io.dropwizard.servlets.tasks.Task;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkState;
@@ -34,7 +35,7 @@ import static com.google.common.base.Preconditions.checkState;
 public abstract class TaskSupport
     extends Task
 {
-  protected final Logger log = LoggerFactory.getLogger(getClass());
+  protected final Logger log = Loggers.getLogger(getClass());
 
   protected TaskSupport(final String name) {
     super(name);
