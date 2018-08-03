@@ -13,6 +13,7 @@
 package org.sonatype.goodies.dropwizard.datadog;
 
 import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import javax.annotation.Nullable;
@@ -39,9 +40,9 @@ public class MetricNameFormatterImpl
   private final String prefix;
 
   @Nullable
-  private final Map<String,String> replacements;
+  private final LinkedHashMap<String,String> replacements;
 
-  public MetricNameFormatterImpl(@Nullable final String prefix, @Nullable final Map<String,String> replacements) {
+  public MetricNameFormatterImpl(@Nullable final String prefix, @Nullable final LinkedHashMap<String,String> replacements) {
     this.prefix = prefix;
     log.debug("Prefix: {}", prefix);
 
@@ -91,7 +92,7 @@ public class MetricNameFormatterImpl
 
     @Nullable
     @JsonProperty
-    private Map<String,String> replacements;
+    private LinkedHashMap<String,String> replacements;
 
     @Nullable
     public String getPrefix() {
@@ -103,11 +104,11 @@ public class MetricNameFormatterImpl
     }
 
     @Nullable
-    public Map<String, String> getReplacements() {
+    public LinkedHashMap<String, String> getReplacements() {
       return replacements;
     }
 
-    public void setReplacements(@Nullable final Map<String, String> replacements) {
+    public void setReplacements(@Nullable final LinkedHashMap<String, String> replacements) {
       this.replacements = replacements;
     }
 
