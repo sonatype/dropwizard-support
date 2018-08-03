@@ -45,7 +45,7 @@ public class CustomMetricNameFormatter
 
   static {
     LinkedHashMap<String,String> replacements = new LinkedHashMap<>();
-    replacements.put("io.dropwizard.jetty.MutableServletContextHandler", "dropwizard.jetty.servlet");
+    replacements.put("io.dropwizard.jetty.MutableServletContextHandler", "dropwizard.servlet");
     replacements.put("org.eclipse.jetty.util.thread.QueuedThreadPool", "jetty.qtp");
     replacements.put("org.eclipse.jetty.server.HttpConnectionFactory", "jetty.connection-factory");
     replacements.put("ch.qos.logback.core.Appender", "logback.appender");
