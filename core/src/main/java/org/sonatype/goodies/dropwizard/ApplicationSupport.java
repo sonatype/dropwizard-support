@@ -19,7 +19,7 @@ import java.util.List;
 import org.sonatype.goodies.dropwizard.internal.ComponentDiscovery;
 import org.sonatype.goodies.dropwizard.internal.ConfigurationModule;
 import org.sonatype.goodies.dropwizard.internal.EnvironmentModule;
-import org.sonatype.goodies.dropwizard.internal.MetricsAopModule;
+import org.sonatype.goodies.dropwizard.metrics.MetricsAopModule;
 import org.sonatype.goodies.dropwizard.jersey.JerseyGuiceBridgeFeature;
 
 import com.google.inject.Guice;
