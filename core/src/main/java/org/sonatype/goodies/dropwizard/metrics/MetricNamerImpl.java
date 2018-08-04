@@ -33,11 +33,30 @@ import static com.codahale.metrics.MetricRegistry.name;
  * @since 1.0.1
  * @see MetricNameFormat
  */
-@SuppressWarnings("Duplicates")
 public class MetricNamerImpl
     implements MetricNamer
 {
   private static final Logger log = LoggerFactory.getLogger(MetricNamerImpl.class);
+
+  /**
+   * Replaces with class-name.
+   */
+  private static final String CLASS = "#class";
+
+  /**
+   * Replaces with simple class-name.
+   */
+  private static final String SIMPLE_CLASS = "#simpleClass";
+
+  /**
+   * Replaces with method-name.
+   */
+  private static final String METHOD = "#method";
+
+  /**
+   * Replaces with customized name, or if not present method-name.
+   */
+  public static final String NAME = "#name";
 
   /**
    * Generate metric name.
@@ -50,10 +69,10 @@ public class MetricNamerImpl
     MetricNameFormat format = type.getAnnotation(MetricNameFormat.class);
     if (format != null) {
       result = format.value()
-          .replace("#class", type.getName())
-          .replace("#simpleClass", type.getSimpleName())
-          .replace("#method", method.getName())
-          .replace("#name", name.isEmpty() ? method.getName() : name);
+          .replace(CLASS, type.getName())
+          .replace(SIMPLE_CLASS, type.getSimpleName())
+          .replace(METHOD, method.getName())
+          .replace(NAME, name.isEmpty() ? method.getName() : name);
     }
     else if (name.isEmpty()) {
       result = name(type.getName(), method.getName());
