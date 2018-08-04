@@ -62,7 +62,9 @@ public class MetricNamerImpl
       result = name(type.getName(), name);
     }
 
-    log.debug("Metric-name: {}:{}:{} -> {}", type.getName(), method.getName(), name, result);
+    if (log.isTraceEnabled()) {
+      log.trace("Metric-name: {}:{}:{} -> {}", type.getName(), method.getName(), name, result);
+    }
 
     return result;
   }
