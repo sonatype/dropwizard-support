@@ -31,7 +31,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * Custom Datadog {@link MetricNameFormatter}.
  *
- * @since 1.0.0
+ * @since ???
  */
 public class CustomMetricNameFormatter
     extends DefaultMetricNameFormatter

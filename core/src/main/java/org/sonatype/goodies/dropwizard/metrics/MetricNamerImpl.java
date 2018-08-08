@@ -30,7 +30,7 @@ import static com.codahale.metrics.MetricRegistry.name;
 /**
  * Customized metric naming.
  *
- * @since 1.0.1
+ * @since ???
  * @see MetricNameFormat
  */
 public class MetricNamerImpl
