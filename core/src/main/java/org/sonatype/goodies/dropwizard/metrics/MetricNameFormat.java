@@ -30,7 +30,7 @@ import java.lang.annotation.Target;
  *   <li>#name</li>
  * </ul>
  *
- * @since ???
+ * @since 1.0.1
  * @see MetricNamerImpl
  */
 @Inherited
