@@ -9,6 +9,7 @@ org.sonatype.goodies.dropwizard.datadog
 org.sonatype.goodies.dropwizard.internal
 org.sonatype.goodies.dropwizard.jaxrs
 org.sonatype.goodies.dropwizard.jersey
+org.sonatype.goodies.dropwizard.metrics
 org.sonatype.goodies.dropwizard.security
 org.sonatype.goodies.dropwizard.service
 org.sonatype.goodies.dropwizard.servlet
