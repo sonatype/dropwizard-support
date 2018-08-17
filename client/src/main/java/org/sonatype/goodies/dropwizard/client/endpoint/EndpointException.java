@@ -14,6 +14,9 @@ package org.sonatype.goodies.dropwizard.client.endpoint;
 
 import javax.ws.rs.ClientErrorException;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Endpoint exception.
@@ -36,5 +39,15 @@ public class EndpointException
 
   public Response getResponse() {
     return getCause().getResponse();
+  }
+
+  /**
+   * Helper to check if response carries given status.
+   *
+   * @since ???
+   */
+  public boolean isStatus(final Status status) {
+    checkNotNull(status);
+    return getResponse().getStatus() == status.getStatusCode();
   }
 }
