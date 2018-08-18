@@ -14,34 +14,42 @@ package org.sonatype.goodies.dropwizard.testsupport;
 
 import java.net.URI;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Function;
 
 import javax.annotation.Nullable;
+import javax.ws.rs.client.Client;
 import javax.ws.rs.client.WebTarget;
 
 import org.sonatype.goodies.dropwizard.ApplicationCustomizer;
 import org.sonatype.goodies.dropwizard.ApplicationSupport;
 import org.sonatype.goodies.dropwizard.client.endpoint.EndpointFactory;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.base.Stopwatch;
+import com.google.common.collect.ImmutableList;
+import com.google.inject.Module;
 import io.dropwizard.Application;
 import io.dropwizard.Configuration;
 import io.dropwizard.cli.Command;
 import io.dropwizard.cli.ServerCommand;
+import io.dropwizard.jersey.jackson.JacksonBinder;
 import io.dropwizard.setup.Environment;
 import io.dropwizard.testing.ConfigOverride;
-import io.dropwizard.testing.junit.DropwizardAppRule;
+import io.dropwizard.testing.DropwizardTestSupport;
+import io.dropwizard.testing.DropwizardTestSupport.ServiceListener;
+import org.glassfish.jersey.client.ClientProperties;
+import org.glassfish.jersey.client.HttpUrlConnectorProvider;
+import org.glassfish.jersey.client.JerseyClientBuilder;
+import org.junit.rules.ExternalResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import static com.google.common.base.Preconditions.checkNotNull;
-
-// NOTE: Groovy does not like generic types here, so using Java
-
-// FIXME: consider unrolling DropwizardAppRule and just directly delegating to DropwizardTestSupport
 
 /**
  * Support rule for application tests.
@@ -49,51 +57,203 @@ import static com.google.common.base.Preconditions.checkNotNull;
  * @since ???
  */
 public class ApplicationSupportRule<T extends ApplicationSupport<C>, C extends Configuration>
-    extends DropwizardAppRule<C>
+    extends ExternalResource
 {
-  private static final Logger log = LoggerFactory.getLogger(ApplicationSupportRule.class);
+  protected final Logger log = LoggerFactory.getLogger(getClass());
+
+  private final AtomicInteger recursiveCallCount = new AtomicInteger(0);
+
+  private final Class<? extends T> applicationClass;
+
+  @Nullable
+  private String configPath;
+
+  @Nullable
+  private String customPropertyPrefix;
+
+  private Function<Application<C>, Command> commandInstantiator = ServerCommand::new;
+
+  private final Set<ConfigOverride> configOverrides = new LinkedHashSet<>();
+
+  private final List<Module> modules = new ArrayList<>();
 
   private final List<ApplicationCustomizer> customizers = new ArrayList<>();
 
-  /**
-   * See {@link Builder}.
-   */
-  private ApplicationSupportRule(final Class<? extends Application<C>> applicationClass,
-                                 @Nullable final String configPath,
-                                 final Optional<String> customPropertyPrefix,
-                                 final Function<Application<C>, Command> commandInstantiator,
-                                 final ConfigOverride... configOverrides)
-  {
-    super(applicationClass, configPath, customPropertyPrefix, commandInstantiator, configOverrides);
+  private final DropwizardTestSupport<C> delegate;
 
-    // register listener to install application customizers
-    addListener(new ServiceListener<C>()
-    {
+  @Nullable
+  private Client client;
+
+  public interface Configurator
+  {
+    void configure(ApplicationSupportRule rule) throws Exception;
+  }
+
+  public ApplicationSupportRule(final Class<? extends T> applicationClass,
+                                final Configurator configurator)
+  {
+    this.applicationClass = checkNotNull(applicationClass);
+    checkNotNull(configurator);
+
+    try {
+      configurator.configure(this);
+    }
+    catch (Exception e) {
+      throw new RuntimeException(e);
+    }
+
+    delegate = new DropwizardTestSupport<>(
+        applicationClass,
+        configPath,
+        Optional.ofNullable(customPropertyPrefix),
+        commandInstantiator,
+        configOverrides.toArray(new ConfigOverride[0])
+    );
+
+    // register listener to configure application
+    delegate.addListener(new ServiceListener<C>() {
       @Override
-      public void onRun(final C configuration, final Environment environment, final DropwizardAppRule<C> rule)
+      public void onRun(final C configuration, final Environment environment, final DropwizardTestSupport<C> rule)
           throws Exception
       {
-        getApplication().addCustomizer(customizers);
+        configure(getApplication());
       }
     });
   }
 
-  public ApplicationSupportRule(final Class<? extends ApplicationSupport<C>> type,
-                                @Nullable final String configPath,
-                                final ConfigOverride... configOverrides)
-  {
-    this(type, configPath, Optional.empty(), ServerCommand::new, configOverrides);
+  //
+  // Configuration
+  //
+
+  @Nullable
+  public String getConfigPath() {
+    return configPath;
   }
 
-  public ApplicationSupportRule<T, C> addCustomizer(final ApplicationCustomizer... customizers) {
-    checkNotNull(customizers);
-    Collections.addAll(this.customizers, customizers);
-    return this;
+  public void setConfigPath(@Nullable final String configPath) {
+    this.configPath = configPath;
   }
 
-  @SuppressWarnings("unchecked")
-  public ApplicationSupport<C> getApplication() {
-    return super.getApplication();
+  @Nullable
+  public String getCustomPropertyPrefix() {
+    return customPropertyPrefix;
+  }
+
+  public void setCustomPropertyPrefix(@Nullable final String customPropertyPrefix) {
+    this.customPropertyPrefix = customPropertyPrefix;
+  }
+
+  public Function<Application<C>, Command> getCommandInstantiator() {
+    return commandInstantiator;
+  }
+
+  public void setCommandInstantiator(final Function<Application<C>, Command> commandInstantiator) {
+    this.commandInstantiator = checkNotNull(commandInstantiator);
+  }
+
+  public Set<ConfigOverride> getConfigOverrides() {
+    return configOverrides;
+  }
+
+  public void addConfigOverride(final ConfigOverride configOverride) {
+    checkNotNull(configOverride);
+    getConfigOverrides().add(configOverride);
+  }
+
+  public List<Module> getModules() {
+    return modules;
+  }
+
+  public void addModule(final Module module) {
+    checkNotNull(module);
+    modules.add(module);
+  }
+
+  public List<ApplicationCustomizer> getCustomizers() {
+    return customizers;
+  }
+
+  public void addCustomizer(final ApplicationCustomizer customizer) {
+    checkNotNull(customizer);
+    customizers.add(customizer);
+  }
+
+  // TODO: expose listeners for config?
+  // TODO: exposed managed for config?
+
+  /**
+   * Application configuration hook.
+   */
+  protected void configure(final T application) throws Exception {
+    // if any modules are configured then add customizer
+    if (!modules.isEmpty()) {
+      application.addCustomizer(new ApplicationCustomizer()
+      {
+        @Override
+        public List<Module> modules(final Configuration config, final Environment environment) {
+          return ImmutableList.copyOf(modules);
+        }
+      });
+    }
+
+    // add any other customizers
+    application.addCustomizer(ImmutableList.copyOf(customizers));
+  }
+
+  //
+  // ExternalResource
+  //
+
+  private final Stopwatch watch = Stopwatch.createUnstarted();
+
+  @Override
+  protected void before() {
+    if (recursiveCallCount.getAndIncrement() == 0) {
+      log.info("Starting application: {}", applicationClass.getName());
+      watch.start();
+      delegate.before();
+    }
+  }
+
+  @Override
+  protected void after() {
+    if (recursiveCallCount.decrementAndGet() == 0) {
+      delegate.after();
+      synchronized (this) {
+        if (client != null) {
+          client.close();
+        }
+      }
+      log.info("Application stopped; {}", watch);
+    }
+  }
+
+  //
+  // Helpers
+  //
+
+  public DropwizardTestSupport<C> getDelegate() {
+    return delegate;
+  }
+
+  public T getApplication() {
+    return delegate.getApplication();
+  }
+
+  public C getConfiguration() {
+    return delegate.getConfiguration();
+  }
+
+  public int getLocalPort() {
+    return delegate.getLocalPort();
+  }
+
+  public int getPort(final int connectorIndex) {
+    return delegate.getPort(connectorIndex);
+  }
+
+  public int getAdminPort() {
+    return delegate.getAdminPort();
   }
 
   public URI getBaseUrl() {
@@ -104,6 +264,39 @@ public class ApplicationSupportRule<T extends ApplicationSupport<C>, C extends C
   public URI getAdminUrl() {
     // trailing "/" is important
     return URI.create(String.format("http://localhost:%s/", getAdminPort()));
+  }
+
+  public Environment getEnvironment() {
+    return delegate.getEnvironment();
+  }
+
+  public ObjectMapper getObjectMapper() {
+    return delegate.getObjectMapper();
+  }
+
+  //
+  // Client
+  //
+
+  private static final int DEFAULT_CONNECT_TIMEOUT_MS = 1000;
+
+  private static final int DEFAULT_READ_TIMEOUT_MS = 5000;
+
+  protected JerseyClientBuilder clientBuilder() {
+    return new JerseyClientBuilder()
+        .register(new JacksonBinder(getObjectMapper()))
+        .property(ClientProperties.CONNECT_TIMEOUT, DEFAULT_CONNECT_TIMEOUT_MS)
+        .property(ClientProperties.READ_TIMEOUT, DEFAULT_READ_TIMEOUT_MS)
+        .property(HttpUrlConnectorProvider.SET_METHOD_WORKAROUND, true);
+  }
+
+  public Client client() {
+    synchronized (this) {
+      if (client == null) {
+        client = clientBuilder().build();
+      }
+      return client;
+    }
   }
 
   //
@@ -121,78 +314,5 @@ public class ApplicationSupportRule<T extends ApplicationSupport<C>, C extends C
 
   public <E> E endpoint(final Class<E> type) {
     return endpoint(type, null);
-  }
-
-  //
-  // Builder
-  //
-
-  public static class Builder<T extends ApplicationSupport<C>, C extends Configuration>
-  {
-    private Class<? extends T> type;
-
-    private String configPath;
-
-    private String customPropertyPrefix;
-
-    private Function<Application<C>, Command> commandInstantiator = ServerCommand::new;
-
-    private Set<ConfigOverride> configOverrides = Collections.emptySet();
-
-    private final List<ApplicationCustomizer> customizers = new ArrayList<>();
-
-    public Builder() {
-      // empty
-    }
-
-    public Builder(final Function<Builder<T, C>, Void> function) {
-      function.apply(this);
-    }
-
-    public Builder<T, C> type(final Class<? extends T> type) {
-      this.type = type;
-      return this;
-    }
-
-    public Builder<T, C> configPath(final String configPath) {
-      this.configPath = configPath;
-      return this;
-    }
-
-    public Builder<T, C> configOverrides(final Set<ConfigOverride> configOverrides) {
-      this.configOverrides = configOverrides;
-      return this;
-    }
-
-    public Builder<T, C> customPropertyPrefix(final String customPropertyPrefix) {
-      this.customPropertyPrefix = customPropertyPrefix;
-      return this;
-    }
-
-    public Builder<T, C> commandInstantiator(final Function<Application<C>, Command> commandInstantiator) {
-      this.commandInstantiator = commandInstantiator;
-      return this;
-    }
-
-    public Builder<T, C> customizer(final ApplicationCustomizer customizer) {
-      customizers.add(customizer);
-      return this;
-    }
-
-    public ApplicationSupportRule<T, C> build() {
-      checkNotNull(type, "Missing: type");
-
-      ApplicationSupportRule<T, C> rule = new ApplicationSupportRule<>(
-          type,
-          configPath,
-          Optional.ofNullable(customPropertyPrefix),
-          commandInstantiator,
-          configOverrides.toArray(new ConfigOverride[0])
-      );
-
-      rule.addCustomizer(customizers.toArray(new ApplicationCustomizer[0]));
-
-      return rule;
-    }
   }
 }
