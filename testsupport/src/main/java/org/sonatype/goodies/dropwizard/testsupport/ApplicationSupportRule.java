@@ -29,16 +29,16 @@ import static com.google.common.base.Preconditions.checkNotNull;
 // NOTE: Groovy does not like generic types here, so using Java
 
 /**
- * Support rule for endpoint tests.
+ * Support rule for application tests.
  *
- * @since 1.0.0
+ * @since ???
  */
-public class EndpointSupportRule<T extends ApplicationSupport<C>, C extends Configuration>
+public class ApplicationSupportRule<T extends ApplicationSupport<C>, C extends Configuration>
     extends DropwizardAppRule<C>
 {
-  public EndpointSupportRule(final Class<? extends ApplicationSupport<C>> type,
-                             @Nullable final String configPath,
-                             final ConfigOverride... configOverrides)
+  public ApplicationSupportRule(final Class<? extends ApplicationSupport<C>> type,
+                                @Nullable final String configPath,
+                                final ConfigOverride... configOverrides)
   {
     super(type, configPath, configOverrides);
   }
