@@ -20,6 +20,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.concurrent.Callable;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Function;
 
@@ -82,6 +83,19 @@ public class ApplicationSupportRule<T extends ApplicationSupport<C>, C extends C
   private final List<ApplicationCustomizer> customizers = new ArrayList<>();
 
   private final DropwizardTestSupport<C> delegate;
+
+  private static final int DEFAULT_CONNECT_TIMEOUT_MS = 1000;
+
+  private static final int DEFAULT_READ_TIMEOUT_MS = 5000;
+
+  public final Callable<JerseyClientBuilder> defaultClientBuilder = () -> new JerseyClientBuilder()
+      .register(new JacksonBinder(getObjectMapper()))
+      .property(ClientProperties.CONNECT_TIMEOUT, DEFAULT_CONNECT_TIMEOUT_MS)
+      .property(ClientProperties.READ_TIMEOUT, DEFAULT_READ_TIMEOUT_MS)
+      .property(ClientProperties.FOLLOW_REDIRECTS, true)
+      .property(HttpUrlConnectorProvider.SET_METHOD_WORKAROUND, true);
+
+  private Callable<JerseyClientBuilder> clientBuilder = defaultClientBuilder;
 
   @Nullable
   private Client client;
@@ -201,7 +215,17 @@ public class ApplicationSupportRule<T extends ApplicationSupport<C>, C extends C
     customizers.add(customizer);
   }
 
+  public Callable<JerseyClientBuilder> getClientBuilder() {
+    return clientBuilder;
+  }
+
+  public void setClientBuilder(final Callable<JerseyClientBuilder> clientBuilder) {
+    checkNotNull(clientBuilder);
+    this.clientBuilder = clientBuilder;
+  }
+
   // TODO: expose listeners for config?
+
   // TODO: exposed managed for config?
 
   /**
@@ -301,24 +325,15 @@ public class ApplicationSupportRule<T extends ApplicationSupport<C>, C extends C
   // Client
   //
 
-  private static final int DEFAULT_CONNECT_TIMEOUT_MS = 1000;
-
-  private static final int DEFAULT_READ_TIMEOUT_MS = 5000;
-
-  // FIXME: need a nicer way to customize this via configurator; though needs late binding for object-mapper
-
-  protected JerseyClientBuilder clientBuilder() {
-    return new JerseyClientBuilder()
-        .register(new JacksonBinder(getObjectMapper()))
-        .property(ClientProperties.CONNECT_TIMEOUT, DEFAULT_CONNECT_TIMEOUT_MS)
-        .property(ClientProperties.READ_TIMEOUT, DEFAULT_READ_TIMEOUT_MS)
-        .property(HttpUrlConnectorProvider.SET_METHOD_WORKAROUND, true);
-  }
-
   public Client client() {
     synchronized (this) {
       if (client == null) {
-        client = clientBuilder().build();
+        try {
+          client = clientBuilder.call().build();
+        }
+        catch (Exception e) {
+          throw new RuntimeException(e);
+        }
       }
       return client;
     }
