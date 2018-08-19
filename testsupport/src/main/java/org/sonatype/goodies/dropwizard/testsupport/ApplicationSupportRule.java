@@ -12,7 +12,9 @@
  */
 package org.sonatype.goodies.dropwizard.testsupport;
 
+import java.io.File;
 import java.net.URI;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -93,14 +95,22 @@ public class ApplicationSupportRule<T extends ApplicationSupport<C>, C extends C
                                 final Configurator configurator)
   {
     this.applicationClass = checkNotNull(applicationClass);
-    checkNotNull(configurator);
 
+    log.info("Application-class: {}", applicationClass);
+
+    checkNotNull(configurator);
+    log.info("Configurator: {}", configurator);
     try {
       configurator.configure(this);
     }
     catch (Exception e) {
       throw new RuntimeException(e);
     }
+
+    log.info("Config-path: {}", configPath);
+    log.info("Custom property-prefix: {}", customPropertyPrefix);
+    log.info("Command instantiator: {}", commandInstantiator);
+    log.info("Config overrides: {}", configOverrides);
 
     delegate = new DropwizardTestSupport<>(
         applicationClass,
@@ -109,6 +119,9 @@ public class ApplicationSupportRule<T extends ApplicationSupport<C>, C extends C
         commandInstantiator,
         configOverrides.toArray(new ConfigOverride[0])
     );
+
+    log.info("Modules: {}", modules);
+    log.info("Customizers: {}", customizers);
 
     // register listener to configure application
     delegate.addListener(new ServiceListener<C>() {
@@ -130,8 +143,18 @@ public class ApplicationSupportRule<T extends ApplicationSupport<C>, C extends C
     return configPath;
   }
 
-  public void setConfigPath(@Nullable final String configPath) {
-    this.configPath = configPath;
+  public void setConfigPath(@Nullable final String path) {
+    this.configPath = path;
+  }
+
+  public void setConfigPath(final URL url) {
+    checkNotNull(url);
+    setConfigPath(url.getPath());
+  }
+
+  public void setConfigPath(final File file) {
+    checkNotNull(file);
+    setConfigPath(file.getAbsolutePath());
   }
 
   @Nullable
@@ -281,6 +304,8 @@ public class ApplicationSupportRule<T extends ApplicationSupport<C>, C extends C
   private static final int DEFAULT_CONNECT_TIMEOUT_MS = 1000;
 
   private static final int DEFAULT_READ_TIMEOUT_MS = 5000;
+
+  // FIXME: need a nicer way to customize this via configurator; though needs late binding for object-mapper
 
   protected JerseyClientBuilder clientBuilder() {
     return new JerseyClientBuilder()
