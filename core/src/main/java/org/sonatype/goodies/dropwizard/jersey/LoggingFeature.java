@@ -10,7 +10,7 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
-package org.sonatype.goodies.dropwizard.client;
+package org.sonatype.goodies.dropwizard.jersey;
 
 import javax.ws.rs.core.Feature;
 import javax.ws.rs.core.FeatureContext;
@@ -28,7 +28,7 @@ import static com.google.common.base.Preconditions.checkState;
  *
  * Wrapper around {@link org.glassfish.jersey.logging.LoggingFeature} to limit configuration types exposed.
  *
- * @since 1.0.0
+ * @since ???
  */
 public class LoggingFeature
     implements Feature

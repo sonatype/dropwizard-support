@@ -19,6 +19,9 @@ import javax.inject.Provider;
 import javax.inject.Singleton;
 import javax.ws.rs.client.Client;
 
+import org.sonatype.goodies.dropwizard.jersey.LoggingConfiguration;
+import org.sonatype.goodies.dropwizard.jersey.LoggingFeature;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
