@@ -45,7 +45,6 @@ import io.dropwizard.setup.Environment;
 import io.dropwizard.testing.ConfigOverride;
 import io.dropwizard.testing.DropwizardTestSupport;
 import io.dropwizard.testing.DropwizardTestSupport.ServiceListener;
-import io.dropwizard.util.Duration;
 import org.glassfish.jersey.client.ClientProperties;
 import org.glassfish.jersey.client.HttpUrlConnectorProvider;
 import org.glassfish.jersey.client.JerseyClientBuilder;
@@ -87,8 +86,8 @@ public class ApplicationSupportRule<T extends ApplicationSupport<C>, C extends C
 
   private final Callable<JerseyClientBuilder> defaultClientBuilder = () -> new JerseyClientBuilder()
       .register(new JacksonBinder(getObjectMapper()))
-      .property(ClientProperties.CONNECT_TIMEOUT, Duration.seconds(1).toMilliseconds())
-      .property(ClientProperties.READ_TIMEOUT, Duration.seconds(5).toMilliseconds())
+      .property(ClientProperties.CONNECT_TIMEOUT, 1000)
+      .property(ClientProperties.READ_TIMEOUT, 5000)
       .property(ClientProperties.FOLLOW_REDIRECTS, true)
       .property(HttpUrlConnectorProvider.SET_METHOD_WORKAROUND, true);
 
