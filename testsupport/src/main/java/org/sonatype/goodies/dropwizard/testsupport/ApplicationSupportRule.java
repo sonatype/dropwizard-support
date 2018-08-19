@@ -45,6 +45,7 @@ import io.dropwizard.setup.Environment;
 import io.dropwizard.testing.ConfigOverride;
 import io.dropwizard.testing.DropwizardTestSupport;
 import io.dropwizard.testing.DropwizardTestSupport.ServiceListener;
+import io.dropwizard.util.Duration;
 import org.glassfish.jersey.client.ClientProperties;
 import org.glassfish.jersey.client.HttpUrlConnectorProvider;
 import org.glassfish.jersey.client.JerseyClientBuilder;
@@ -84,14 +85,10 @@ public class ApplicationSupportRule<T extends ApplicationSupport<C>, C extends C
 
   private final DropwizardTestSupport<C> delegate;
 
-  private static final int DEFAULT_CONNECT_TIMEOUT_MS = 1000;
-
-  private static final int DEFAULT_READ_TIMEOUT_MS = 5000;
-
-  public final Callable<JerseyClientBuilder> defaultClientBuilder = () -> new JerseyClientBuilder()
+  private final Callable<JerseyClientBuilder> defaultClientBuilder = () -> new JerseyClientBuilder()
       .register(new JacksonBinder(getObjectMapper()))
-      .property(ClientProperties.CONNECT_TIMEOUT, DEFAULT_CONNECT_TIMEOUT_MS)
-      .property(ClientProperties.READ_TIMEOUT, DEFAULT_READ_TIMEOUT_MS)
+      .property(ClientProperties.CONNECT_TIMEOUT, Duration.seconds(1).toMilliseconds())
+      .property(ClientProperties.READ_TIMEOUT, Duration.seconds(5).toMilliseconds())
       .property(ClientProperties.FOLLOW_REDIRECTS, true)
       .property(HttpUrlConnectorProvider.SET_METHOD_WORKAROUND, true);
 
@@ -213,6 +210,10 @@ public class ApplicationSupportRule<T extends ApplicationSupport<C>, C extends C
   public void addCustomizer(final ApplicationCustomizer customizer) {
     checkNotNull(customizer);
     customizers.add(customizer);
+  }
+
+  public Callable<JerseyClientBuilder> getDefaultClientBuilder() {
+    return defaultClientBuilder;
   }
 
   public Callable<JerseyClientBuilder> getClientBuilder() {
