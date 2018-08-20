@@ -14,6 +14,7 @@ package org.sonatype.goodies.dropwizard.testsupport;
 
 import java.io.File;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
@@ -35,6 +36,7 @@ import org.sonatype.goodies.dropwizard.client.endpoint.EndpointFactory;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Stopwatch;
 import com.google.common.collect.ImmutableList;
+import com.google.common.io.Resources;
 import com.google.inject.Module;
 import io.dropwizard.Application;
 import io.dropwizard.Configuration;
@@ -45,6 +47,7 @@ import io.dropwizard.setup.Environment;
 import io.dropwizard.testing.ConfigOverride;
 import io.dropwizard.testing.DropwizardTestSupport;
 import io.dropwizard.testing.DropwizardTestSupport.ServiceListener;
+import io.dropwizard.testing.ResourceHelpers;
 import org.glassfish.jersey.client.ClientProperties;
 import org.glassfish.jersey.client.HttpUrlConnectorProvider;
 import org.glassfish.jersey.client.JerseyClientBuilder;
@@ -69,51 +72,40 @@ public class ApplicationSupportRule<T extends ApplicationSupport<C>, C extends C
   private final Class<? extends T> applicationClass;
 
   @Nullable
-  private String configPath;
+  protected String configPath;
 
   @Nullable
-  private String customPropertyPrefix;
+  protected String customPropertyPrefix;
 
-  private Function<Application<C>, Command> commandInstantiator = ServerCommand::new;
+  protected Function<Application<C>, Command> commandInstantiator = ServerCommand::new;
 
-  private final Set<ConfigOverride> configOverrides = new LinkedHashSet<>();
+  protected final Set<ConfigOverride> configOverrides = new LinkedHashSet<>();
 
-  private final List<Module> modules = new ArrayList<>();
+  protected final List<Module> modules = new ArrayList<>();
 
-  private final List<ApplicationCustomizer> customizers = new ArrayList<>();
+  protected final List<ApplicationCustomizer> customizers = new ArrayList<>();
 
   private final DropwizardTestSupport<C> delegate;
 
-  private final Callable<JerseyClientBuilder> defaultClientBuilder = () -> new JerseyClientBuilder()
+  protected final Callable<JerseyClientBuilder> defaultClientBuilder = () -> new JerseyClientBuilder()
       .register(new JacksonBinder(getObjectMapper()))
       .property(ClientProperties.CONNECT_TIMEOUT, 1000)
       .property(ClientProperties.READ_TIMEOUT, 5000)
       .property(ClientProperties.FOLLOW_REDIRECTS, true)
       .property(HttpUrlConnectorProvider.SET_METHOD_WORKAROUND, true);
 
-  private Callable<JerseyClientBuilder> clientBuilder = defaultClientBuilder;
+  protected Callable<JerseyClientBuilder> clientBuilder = defaultClientBuilder;
 
   @Nullable
   private Client client;
 
-  /**
-   * @see #configure(Configurator)
-   */
-  public interface Configurator
-  {
-    void configure(ApplicationSupportRule rule) throws Exception;
-  }
-
-  public ApplicationSupportRule(final Class<? extends T> applicationClass,
-                                final Configurator configurator)
-  {
+  public ApplicationSupportRule(final Class<? extends T> applicationClass) {
     this.applicationClass = checkNotNull(applicationClass);
 
     log.info("Application-class: {}", applicationClass);
-    log.info("Configurator: {}", configurator);
 
     try {
-      configure(configurator);
+      configure();
     }
     catch (Exception e) {
       throw new RuntimeException(e);
@@ -147,96 +139,11 @@ public class ApplicationSupportRule<T extends ApplicationSupport<C>, C extends C
   }
 
   /**
-   * Configurator application hook.
+   * Rule configuration hook.
    */
-  protected void configure(final Configurator configurator) throws Exception {
-    checkNotNull(configurator);
-    configurator.configure(this);
+  protected void configure() throws Exception {
+    // empty
   }
-
-  //
-  // Configuration
-  //
-
-  @Nullable
-  public String getConfigPath() {
-    return configPath;
-  }
-
-  public void setConfigPath(@Nullable final String path) {
-    this.configPath = path;
-  }
-
-  public void setConfigPath(final URL url) {
-    checkNotNull(url);
-    setConfigPath(url.getPath());
-  }
-
-  public void setConfigPath(final File file) {
-    checkNotNull(file);
-    setConfigPath(file.getAbsolutePath());
-  }
-
-  @Nullable
-  public String getCustomPropertyPrefix() {
-    return customPropertyPrefix;
-  }
-
-  public void setCustomPropertyPrefix(@Nullable final String customPropertyPrefix) {
-    this.customPropertyPrefix = customPropertyPrefix;
-  }
-
-  public Function<Application<C>, Command> getCommandInstantiator() {
-    return commandInstantiator;
-  }
-
-  public void setCommandInstantiator(final Function<Application<C>, Command> commandInstantiator) {
-    this.commandInstantiator = checkNotNull(commandInstantiator);
-  }
-
-  public Set<ConfigOverride> getConfigOverrides() {
-    return configOverrides;
-  }
-
-  public void addConfigOverride(final ConfigOverride configOverride) {
-    checkNotNull(configOverride);
-    getConfigOverrides().add(configOverride);
-  }
-
-  public List<Module> getModules() {
-    return modules;
-  }
-
-  public void addModule(final Module module) {
-    checkNotNull(module);
-    modules.add(module);
-  }
-
-  public List<ApplicationCustomizer> getCustomizers() {
-    return customizers;
-  }
-
-  public void addCustomizer(final ApplicationCustomizer customizer) {
-    checkNotNull(customizer);
-    customizers.add(customizer);
-  }
-
-  public Callable<JerseyClientBuilder> getDefaultClientBuilder() {
-    return defaultClientBuilder;
-  }
-
-  public Callable<JerseyClientBuilder> getClientBuilder() {
-    return clientBuilder;
-  }
-
-  public void setClientBuilder(final Callable<JerseyClientBuilder> clientBuilder) {
-    checkNotNull(clientBuilder);
-    this.clientBuilder = clientBuilder;
-  }
-
-  // TODO: expose listeners for config?
-
-  // TODO: exposed managed for config?
 
   /**
    * Application configuration hook.
@@ -267,7 +174,7 @@ public class ApplicationSupportRule<T extends ApplicationSupport<C>, C extends C
   protected void before() {
     if (recursiveCallCount.getAndIncrement() == 0) {
       log.info("Starting application: {}", applicationClass.getName());
-      watch.start();
+      watch.reset().start();
       delegate.before();
     }
   }
@@ -280,8 +187,9 @@ public class ApplicationSupportRule<T extends ApplicationSupport<C>, C extends C
         if (client != null) {
           client.close();
         }
+        client = null;
       }
-      log.info("Application stopped; {}", watch);
+      log.info("Application stopped; {}", watch.stop());
     }
   }
 
@@ -364,5 +272,29 @@ public class ApplicationSupportRule<T extends ApplicationSupport<C>, C extends C
 
   public <E> E endpoint(final Class<E> type) {
     return endpoint(type, null);
+  }
+
+  //
+  // Helpers
+  //
+
+  public static String resolveConfigPath(final URL url) {
+    checkNotNull(url);
+    try {
+      return new File(url.toURI()).getAbsolutePath();
+    }
+    catch (URISyntaxException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  public static String resolveConfigPath(final String path) {
+    checkNotNull(path);
+    return ResourceHelpers.resourceFilePath(path);
+  }
+
+  @SuppressWarnings("UnstableApiUsage")
+  public static String resolveConfigPath(final Class<?> owner, final String path) {
+    return resolveConfigPath(Resources.getResource(owner, path));
   }
 }
