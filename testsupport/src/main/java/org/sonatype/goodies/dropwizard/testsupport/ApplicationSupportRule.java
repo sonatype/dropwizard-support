@@ -96,6 +96,9 @@ public class ApplicationSupportRule<T extends ApplicationSupport<C>, C extends C
   @Nullable
   private Client client;
 
+  /**
+   * @see #configure(Configurator)
+   */
   public interface Configurator
   {
     void configure(ApplicationSupportRule rule) throws Exception;
@@ -107,11 +110,10 @@ public class ApplicationSupportRule<T extends ApplicationSupport<C>, C extends C
     this.applicationClass = checkNotNull(applicationClass);
 
     log.info("Application-class: {}", applicationClass);
-
-    checkNotNull(configurator);
     log.info("Configurator: {}", configurator);
+
     try {
-      configurator.configure(this);
+      configure(configurator);
     }
     catch (Exception e) {
       throw new RuntimeException(e);
@@ -142,6 +144,14 @@ public class ApplicationSupportRule<T extends ApplicationSupport<C>, C extends C
         configure(getApplication());
       }
     });
+  }
+
+  /**
+   * Configurator application hook.
+   */
+  protected void configure(final Configurator configurator) throws Exception {
+    checkNotNull(configurator);
+    configurator.configure(this);
   }
 
   //
