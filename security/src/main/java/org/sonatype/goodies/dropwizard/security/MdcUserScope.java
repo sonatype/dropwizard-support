@@ -78,7 +78,7 @@ public final class MdcUserScope
    * Return scope for subject.
    */
   public static MdcUserScope forSubject(@Nullable final Subject subject) {
-    String user = UsernameHelper.get(subject);
+    String user = SubjectHelper.getUsername(subject);
     if (user != null) {
       return forUser(user);
     }

@@ -16,26 +16,26 @@ import javax.annotation.Nullable;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * User-name helper.
  *
  * @since 1.0.0
  */
+@Deprecated
 public final class UsernameHelper
 {
-  private static final Logger log = LoggerFactory.getLogger(UsernameHelper.class);
-
   private UsernameHelper() {
     // empty
   }
 
   /**
    * Extract user-name from given subject.
+   *
+   * @deprecated Use {@link SubjectHelper#getUsername(Subject)} instead.
    */
   @Nullable
+  @Deprecated
   public static String get(@Nullable final Subject subject) {
     if (subject != null) {
       Object principal = subject.getPrincipal();
@@ -48,8 +48,11 @@ public final class UsernameHelper
 
   /**
    * Extract user-name from current subject.
+   *
+   * @deprecated Use {@link SubjectHelper#getUsername()}
    */
   @Nullable
+  @Deprecated
   public static String get() {
     return get(SecurityUtils.getSubject());
   }
