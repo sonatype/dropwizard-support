@@ -223,6 +223,8 @@ public class ApplicationSupportRule<T extends ApplicationSupport<C>, C extends C
     return delegate.getAdminPort();
   }
 
+  // TODO: adjust urls to include context-path and/or if we have actually connector hostname/ips
+
   public URI getBaseUrl() {
     // trailing "/" is important
     return URI.create(String.format("http://localhost:%s/", getLocalPort()));
