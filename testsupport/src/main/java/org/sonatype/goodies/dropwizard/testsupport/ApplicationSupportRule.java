@@ -23,6 +23,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.Callable;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Consumer;
 import java.util.function.Function;
 
 import javax.annotation.Nullable;
@@ -32,6 +33,7 @@ import javax.ws.rs.client.WebTarget;
 import org.sonatype.goodies.dropwizard.ApplicationCustomizer;
 import org.sonatype.goodies.dropwizard.ApplicationSupport;
 import org.sonatype.goodies.dropwizard.client.endpoint.EndpointFactory;
+import org.sonatype.goodies.dropwizard.client.endpoint.EndpointFactory.Builder;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Stopwatch;
@@ -272,6 +274,18 @@ public class ApplicationSupportRule<T extends ApplicationSupport<C>, C extends C
 
   public <E> E endpoint(final Class<E> type) {
     return endpoint(type, null);
+  }
+
+  public <E> E endpoint(final Class<E> type, @Nullable final String path, final Consumer<Builder<E>> configurator) {
+    checkNotNull(type);
+    checkNotNull(configurator);
+    WebTarget target = client().target(getBaseUrl());
+    if (path != null) {
+      target = target.path(path);
+    }
+    Builder<E> builder = EndpointFactory.builder(type, target);
+    configurator.accept(builder);
+    return builder.build();
   }
 
   //
