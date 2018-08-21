@@ -58,6 +58,8 @@ public final class SubjectHelper
 
   /**
    * Extract user-name from given subject.
+   *
+   * {@code null} return implies anonymous/guest.
    */
   @Nullable
   public static String getUsername(@Nullable final Subject subject) {
@@ -72,6 +74,8 @@ public final class SubjectHelper
 
   /**
    * Extract user-name from current subject.
+   *
+   * {@code null} return implies anonymous/guest.
    */
   @Nullable
   public static String getUsername() {
