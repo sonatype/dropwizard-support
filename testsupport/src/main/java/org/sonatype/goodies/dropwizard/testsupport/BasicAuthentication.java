@@ -10,37 +10,33 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
-package org.sonatype.goodies.dropwizard.util;
+package org.sonatype.goodies.dropwizard.testsupport;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.nio.charset.StandardCharsets;
+
+import com.google.common.io.BaseEncoding;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * Logger utilities.
+ * Basic authentication helper.
  *
- * For use in place of {@link LoggerFactory#getLogger(Class)} when target type is expected to be potentially AOP adapted.
- *
- * @since 1.0.0
+ * @since ???
  */
-public final class Loggers
+public class BasicAuthentication
 {
-  /**
-   * Helper to create a logger and deal with class-names created by AOP platforms.
-   */
-  public static Logger getLogger(final Class type) {
-    checkNotNull(type);
-    return LoggerFactory.getLogger(GuiceEnhanced.dereference(type));
+  private BasicAuthentication() {
+    // empty
   }
 
-  public static Logger getLogger(final Object obj) {
-    checkNotNull(obj);
-    return getLogger(obj.getClass());
+  public static String headerValue(final String username, final String password) {
+    checkNotNull(username);
+    checkNotNull(password);
+    String encoded = BaseEncoding.base64().encode(bytesOf(username + ":" + password));
+    return "Basic " + encoded;
   }
 
-  public static Logger getLogger(final String name) {
-    checkNotNull(name);
-    return LoggerFactory.getLogger(name);
+  private static byte[] bytesOf(final String value) {
+    return value.getBytes(StandardCharsets.ISO_8859_1);
   }
 }

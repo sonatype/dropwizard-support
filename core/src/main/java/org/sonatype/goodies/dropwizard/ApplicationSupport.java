@@ -22,6 +22,7 @@ import org.sonatype.goodies.dropwizard.internal.EnvironmentModule;
 import org.sonatype.goodies.dropwizard.metrics.MetricsAopModule;
 import org.sonatype.goodies.dropwizard.jersey.JerseyGuiceBridgeFeature;
 
+import com.google.common.annotations.VisibleForTesting;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Module;
@@ -59,9 +60,19 @@ public abstract class ApplicationSupport<T extends Configuration>
   /**
    * Add application customizers.
    */
-  protected void addCustomizer(final ApplicationCustomizer... customizers) {
+  @VisibleForTesting
+  public void addCustomizer(final ApplicationCustomizer... customizers) {
     checkNotNull(customizers);
     this.customizers.addAll(Arrays.asList(customizers));
+  }
+
+  /**
+   * Add application customizers.
+   */
+  @VisibleForTesting
+  public void addCustomizer(final List<ApplicationCustomizer> customizers) {
+    checkNotNull(customizers);
+    this.customizers.addAll(customizers);
   }
 
   /**

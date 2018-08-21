@@ -26,18 +26,18 @@ import io.dropwizard.testing.junit.DropwizardAppRule;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-// NOTE: Groovy does not like generic types here, so using Java
-
 /**
  * Support rule for endpoint tests.
  *
  * @since 1.0.0
+ * @deprecated Use {@link ApplicationSupportRule} instead.
  */
+@Deprecated
 public class EndpointSupportRule<T extends ApplicationSupport<C>, C extends Configuration>
     extends DropwizardAppRule<C>
 {
   public EndpointSupportRule(final Class<? extends ApplicationSupport<C>> type,
-                             final String configPath,
+                             @Nullable final String configPath,
                              final ConfigOverride... configOverrides)
   {
     super(type, configPath, configOverrides);

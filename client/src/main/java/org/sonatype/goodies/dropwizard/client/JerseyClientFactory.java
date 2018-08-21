@@ -13,48 +13,21 @@
 package org.sonatype.goodies.dropwizard.client;
 
 import javax.annotation.Nullable;
-import javax.inject.Inject;
-import javax.inject.Named;
-import javax.inject.Provider;
-import javax.inject.Singleton;
 import javax.ws.rs.client.Client;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import io.dropwizard.client.JerseyClientBuilder;
-import io.dropwizard.jackson.Jackson;
-import io.dropwizard.setup.Environment;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Factory to produce Jersey {@link Client} instances from {@link ExtJerseyClientConfiguration}.
  *
  * @since 1.0.0
  */
-@Named
-@Singleton
-public class JerseyClientFactory
+public interface JerseyClientFactory
 {
-  private static final Logger log = LoggerFactory.getLogger(JerseyClientFactory.class);
-
-  private final Provider<Environment> environment;
-
-  private final UserAgentSupplier userAgent;
-
-  @Inject
-  public JerseyClientFactory(final Provider<Environment> environment, final UserAgentSupplier userAgent) {
-    this.environment = checkNotNull(environment);
-    this.userAgent = checkNotNull(userAgent);
-  }
-
   /**
    * Allow customizer of client-builder.
    */
-  public interface ClientCustomizer
+  interface ClientCustomizer
   {
     void customizer(JerseyClientBuilder builder);
   }
@@ -62,53 +35,12 @@ public class JerseyClientFactory
   /**
    * Create client with optional customizer.
    */
-  public Client create(final ExtJerseyClientConfiguration config,
-                       final String name,
-                       @Nullable final ClientCustomizer customizer)
-  {
-    checkNotNull(config);
-
-    JerseyClientBuilder builder = new JerseyClientBuilder(environment.get())
-        .using(config)
-        .using(createObjectMapper());
-
-    if (customizer != null) {
-      log.debug("Applying customizer: {}", customizer);
-      customizer.customizer(builder);
-    }
-
-    Client client = builder.build(name);
-
-    // due to config.setUserAgent() not working, set header here if not already set
-    client.register(new UserAgentRequestFilter(userAgent));
-
-    // maybe configure logging
-    LoggingConfiguration lconfig = config.getLoggingConfiguration();
-    if (lconfig.isEnabled()) {
-      client.register(new LoggingFeature(lconfig));
-    }
-
-    return client;
-  }
+  Client create(ExtJerseyClientConfiguration config, String name, @Nullable ClientCustomizer customizer);
 
   /**
    * Create client.
    *
    * @see #create(ExtJerseyClientConfiguration, String, ClientCustomizer)
    */
-  public Client create(final ExtJerseyClientConfiguration config, final String name) {
-    return create(config, name, null);
-  }
-
-  /**
-   * Create default (lax) {@link ObjectMapper} for clients.
-   *
-   * To override see {@link ClientCustomizer}.
-   */
-  public static ObjectMapper createObjectMapper() {
-    ObjectMapper objectMapper = Jackson.newObjectMapper();
-    objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
-    objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-    return objectMapper;
-  }
+  Client create(ExtJerseyClientConfiguration config, String name);
 }

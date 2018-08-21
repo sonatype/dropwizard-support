@@ -34,6 +34,10 @@ public final class ResponseAssert
     assertThat(response.getStatus(), is(status.getStatusCode()));
   }
 
+  public static void assertStatus(final Response response, final int status) {
+    assertThat(response.getStatus(), is(status));
+  }
+
   public static void assertContentType(final Response response, final String mediaType) {
     assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(mediaType));
   }

@@ -18,9 +18,11 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import java.security.AccessController;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import javax.annotation.Nullable;
 import javax.ws.rs.ClientErrorException;
 import javax.ws.rs.Path;
 import javax.ws.rs.client.WebTarget;
@@ -49,23 +51,117 @@ public final class EndpointFactory
 {
   private static final Logger log = LoggerFactory.getLogger(EndpointFactory.class);
 
+  private static final MultivaluedMap<String, Object> EMPTY_HEADERS = new MultivaluedHashMap<>();
+
+  private static final List<Cookie> EMPTY_COOKIES = Collections.emptyList();
+
+  private static final Form EMPTY_FORM = new Form();
+
   private EndpointFactory() {
     // empty
   }
 
+  /**
+   * @since ???
+   */
   @SuppressWarnings("unchecked")
-  public static <T> T create(final Class<T> intf, final WebTarget target) {
+  public static <T> T create(final Class<T> intf,
+                             final WebTarget target,
+                             @Nullable final MultivaluedMap<String,Object> headers,
+                             @Nullable final List<Cookie> cookies,
+                             @Nullable final Form form)
+  {
     checkNotNull(intf);
     checkNotNull(target);
 
     T result = (T) Proxy.newProxyInstance(
         AccessController.doPrivileged(ReflectionHelper.getClassLoaderPA(intf)),
         new Class[]{intf},
-        handler(intf, target)
+        handler(
+            intf,
+            target,
+            headers == null ? EMPTY_HEADERS : headers,
+            cookies == null ? EMPTY_COOKIES : cookies,
+            form == null ? EMPTY_FORM : form
+        )
     );
     log.trace("Endpoint: {}", result);
 
     return result;
+  }
+
+  public static <T> T create(final Class<T> intf, final WebTarget target) {
+    return create(intf, target, null, null, null);
+  }
+
+  /**
+   * @since ??
+   */
+  public static <T> Builder<T> builder(final Class<T> intf, final WebTarget target) {
+    return new Builder<>(intf, target);
+  }
+
+  //
+  // Builder
+  //
+
+  /**
+   * @since ???
+   */
+  public static class Builder<T>
+  {
+    private final Class<T> intf;
+
+    private final WebTarget target;
+
+    private MultivaluedMap<String,Object> headers;
+
+    private List<Cookie> cookies;
+
+    private Form form;
+
+    private Builder(final Class<T> intf, final WebTarget target) {
+      this.intf = checkNotNull(intf);
+      this.target = checkNotNull(target);
+    }
+
+    public Builder<T> headers(@Nullable final MultivaluedMap<String,Object> headers) {
+      this.headers = headers;
+      return this;
+    }
+
+    public Builder<T> header(final String name, final Object value) {
+      checkNotNull(name);
+      checkNotNull(value);
+      if (headers == null) {
+        headers = new MultivaluedHashMap<>();
+      }
+      headers.putSingle(name, value);
+      return this;
+    }
+
+    public Builder<T> cookies(@Nullable final List<Cookie> cookies) {
+      this.cookies = cookies;
+      return this;
+    }
+
+    public Builder<T> cookie(final Cookie cookie) {
+      checkNotNull(cookie);
+      if (cookies == null) {
+        cookies = new ArrayList<>();
+      }
+      cookies.add(cookie);
+      return this;
+    }
+
+    public Builder<T> form(@Nullable final Form form) {
+      this.form = form;
+      return this;
+    }
+
+    public T build() {
+      return create(intf, target, headers, cookies, form);
+    }
   }
 
   //
@@ -80,7 +176,7 @@ public final class EndpointFactory
   {
     private final InvocationHandler delegate;
 
-    public Handler(final InvocationHandler delegate) {
+    private Handler(final InvocationHandler delegate) {
       this.delegate = delegate;
     }
 
@@ -100,20 +196,16 @@ public final class EndpointFactory
     }
   }
 
-  // TODO: atm we only support the basic usage with default header, cookies, form and path from intf
-  // TODO: if/when needed expose a builder to configure these bits
-
-  private static final MultivaluedMap<String, Object> EMPTY_HEADERS = new MultivaluedHashMap<>();
-
-  private static final List<Cookie> EMPTY_COOKIES = Collections.emptyList();
-
-  private static final Form EMPTY_FORM = new Form();
-
   private static Constructor<WebResourceFactory> factory;
 
   // NOTE: some reflection here to access private WebResourceFactory ctor, and avoid needless proxy of proxy to impl
 
-  private static Handler handler(final Class intf, final WebTarget target) {
+  private static Handler handler(final Class intf,
+                                 final WebTarget target,
+                                 final MultivaluedMap<String,Object> headers,
+                                 final List<Cookie> cookies,
+                                 final Form form)
+  {
     // resolve delegate factory
     if (factory == null) {
       try {
@@ -141,7 +233,7 @@ public final class EndpointFactory
     InvocationHandler delegate;
     try {
       factory.setAccessible(true);
-      delegate = factory.newInstance(resolved, EMPTY_HEADERS, EMPTY_COOKIES, EMPTY_FORM);
+      delegate = factory.newInstance(resolved, headers, cookies, form);
       log.trace("Delegate: {}", delegate);
     }
     catch (Exception e) {

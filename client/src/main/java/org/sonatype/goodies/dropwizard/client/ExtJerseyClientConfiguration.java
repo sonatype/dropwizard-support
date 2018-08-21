@@ -15,6 +15,8 @@ package org.sonatype.goodies.dropwizard.client;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
+import org.sonatype.goodies.dropwizard.jersey.LoggingConfiguration;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.dropwizard.client.JerseyClientConfiguration;
 
