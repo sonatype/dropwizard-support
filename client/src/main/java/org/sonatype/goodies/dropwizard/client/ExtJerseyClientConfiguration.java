@@ -20,6 +20,8 @@ import org.sonatype.goodies.dropwizard.jersey.LoggingConfiguration;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.dropwizard.client.JerseyClientConfiguration;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 /**
  * Extended {@link JerseyClientConfiguration}.
  *
@@ -38,7 +40,7 @@ public class ExtJerseyClientConfiguration
     return loggingConfiguration;
   }
 
-  public void setLoggingConfiguration(LoggingConfiguration loggingConfiguration) {
-    this.loggingConfiguration = loggingConfiguration;
+  public void setLoggingConfiguration(@NotNull final LoggingConfiguration loggingConfiguration) {
+    this.loggingConfiguration = checkNotNull(loggingConfiguration);
   }
 }
