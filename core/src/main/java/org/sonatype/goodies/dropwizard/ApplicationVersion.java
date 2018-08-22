@@ -33,4 +33,11 @@ public interface ApplicationVersion
    * Returns the application build-tag.
    */
   String getBuildTag();
+
+  /**
+   * Returns application build-notes.
+   *
+   * @since ???
+   */
+  String getBuildNotes();
 }

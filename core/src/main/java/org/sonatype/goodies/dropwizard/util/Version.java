@@ -16,34 +16,69 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.Properties;
 
+import javax.annotation.Nullable;
+import javax.validation.constraints.Null;
+
+import com.google.common.annotations.VisibleForTesting;
+import com.sun.org.apache.regexp.internal.RE;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * Helper to load version information from build via {@link #RESOURCE} resource.
+ * Helper to load version information from build via resource.
  *
  * @since 1.0.0
  */
 @SuppressWarnings("Duplicates")
 public class Version
 {
+
   private static final Logger log = LoggerFactory.getLogger(Version.class);
 
   public static final String RESOURCE = "version.properties";
 
   public static final String UNKNOWN = "unknown";
 
-  private final Class owner;
+  @VisibleForTesting
+  static final String VERSION = "version";
+
+  @VisibleForTesting
+  static final String TIMESTAMP = "timestamp";
+
+  @VisibleForTesting
+  static final String TAG = "tag";
+
+  @VisibleForTesting
+  static final String NOTES = "notes";
+
+  @Nullable
+  private final URL resource;
 
   public Version(final Class owner) {
-    this.owner = checkNotNull(owner);
+    checkNotNull(owner);
+    this.resource = owner.getResource(RESOURCE);
   }
 
-  private Properties load() {
+  /**
+   * @since ???
+   */
+  public Version(@Nullable final URL resource) {
+    this.resource = resource;
+  }
+
+  @VisibleForTesting
+  Version() {
+    this.resource = null;
+  }
+
+  /**
+   * @since ???
+   */
+  @VisibleForTesting
+  protected Properties load() {
     Properties result = new Properties();
-    URL resource = owner.getResource(RESOURCE);
     if (resource == null) {
       log.warn("Missing resource: {}", RESOURCE);
     }
@@ -80,15 +115,22 @@ public class Version
   }
 
   public String getVersion() {
-    return property("version");
+    return property(VERSION);
   }
 
   public String getTimestamp() {
-    return property("timestamp");
+    return property(TIMESTAMP);
   }
 
   public String getTag() {
-    return property("tag");
+    return property(TAG);
+  }
+
+  /**
+   * @since ???
+   */
+  public String getNotes() {
+    return property(NOTES);
   }
 
   @Override
