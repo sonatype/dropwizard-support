@@ -12,11 +12,14 @@
  */
 package org.sonatype.goodies.dropwizard.testsupport;
 
+import java.util.function.Consumer;
+
 import javax.ws.rs.core.Response;
 
 import com.google.common.net.HttpHeaders;
 
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.assertThat;
 
 /**
@@ -34,11 +37,24 @@ public final class ResponseAssert
     assertThat(response.getStatus(), is(status.getStatusCode()));
   }
 
+  /**
+   * @since ???
+   */
   public static void assertStatus(final Response response, final int status) {
     assertThat(response.getStatus(), is(status));
   }
 
   public static void assertContentType(final Response response, final String mediaType) {
     assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(mediaType));
+  }
+
+  /**
+   * @since ???
+   */
+  public static <T> void assertEntity(final Response response, final Class<T> type, final Consumer<T> validator) {
+    assertThat(response.hasEntity(), is(true));
+    T entity = response.readEntity(type);
+    assertThat(entity, notNullValue(type));
+    validator.accept(entity);
   }
 }
