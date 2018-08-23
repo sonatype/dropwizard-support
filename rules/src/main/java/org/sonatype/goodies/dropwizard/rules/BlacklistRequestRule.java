@@ -29,21 +29,26 @@ import com.google.common.collect.ImmutableList;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * Blacklist rule.
+ * Blacklist {@link RequestRule}.
  *
  * @since ???
  */
-@JsonTypeName(BlacklistRule.NAME)
-public class BlacklistRule
-  extends MatchRule
+@JsonTypeName(BlacklistRequestRule.NAME)
+public class BlacklistRequestRule
+    extends MatchRequestRule
 {
   public static final String NAME = "blacklist";
 
-  public static final String REASON = "Blacklisted";
+  public static final String DEFAULT_REASON = "Blacklisted";
+
+  private final String reason;
 
   @JsonCreator
-  public BlacklistRule(@NotNull @JsonProperty("matchers") List<RequestMatcher> matchers) {
+  public BlacklistRequestRule(@NotNull @JsonProperty("matchers") List<RequestMatcher> matchers,
+                              @Nullable @JsonProperty("reason") String reason)
+  {
     super(matchers);
+    this.reason = reason != null ? reason : DEFAULT_REASON;
   }
 
   @Nullable
@@ -53,7 +58,7 @@ public class BlacklistRule
 
     for (RequestMatcher matcher : matchers) {
       if (matcher.match(request)) {
-        return RuleResults.sendError(Status.FORBIDDEN, REASON);
+        return RuleResults.sendError(Status.FORBIDDEN, reason);
       }
     }
 

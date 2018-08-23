@@ -1,1 +1,1 @@
-org.sonatype.goodies.dropwizard.rules.BlacklistRule
+org.sonatype.goodies.dropwizard.rules.BlacklistRequestRule

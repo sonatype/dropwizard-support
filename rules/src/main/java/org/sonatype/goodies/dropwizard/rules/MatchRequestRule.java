@@ -26,18 +26,18 @@ import org.slf4j.LoggerFactory;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * Support for {@link RequestRule} which applies a list of {@link RequestMatcher matchers}.
+ * Support for {@link RequestRule} that applies a list of {@link RequestMatcher matchers}.
  *
  * @since ???
  */
-public abstract class MatchRule
+public abstract class MatchRequestRule
   implements RequestRule
 {
-  private static final Logger log = LoggerFactory.getLogger(MatchRule.class);
+  private static final Logger log = LoggerFactory.getLogger(MatchRequestRule.class);
 
   protected final RequestMatcher[] matchers;
 
-  public MatchRule(final List<RequestMatcher> matchers) {
+  public MatchRequestRule(final List<RequestMatcher> matchers) {
     checkNotNull(matchers);
     log.debug("Matchers: {}", matchers);
     this.matchers = matchers.toArray(new RequestMatcher[0]);
