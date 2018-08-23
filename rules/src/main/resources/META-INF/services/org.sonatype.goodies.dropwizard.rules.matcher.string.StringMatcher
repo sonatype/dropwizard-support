@@ -1,0 +1,4 @@
+org.sonatype.goodies.dropwizard.rules.matcher.string.AndStringMatcher
+org.sonatype.goodies.dropwizard.rules.matcher.string.OrStringMatcher
+org.sonatype.goodies.dropwizard.rules.matcher.string.ContainsStringMatcher
+org.sonatype.goodies.dropwizard.rules.matcher.string.PrefixStringMatcher
