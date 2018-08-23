@@ -21,9 +21,9 @@ import static com.google.common.base.Preconditions.checkNotNull;
  *
  * @since ???
  */
-public final class Strings2
+public final class MoreStrings
 {
-  private Strings2() {
+  private MoreStrings() {
     // empty
   }
 
