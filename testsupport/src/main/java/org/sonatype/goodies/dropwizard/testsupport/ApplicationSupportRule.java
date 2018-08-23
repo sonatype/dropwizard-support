@@ -39,6 +39,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Stopwatch;
 import com.google.common.collect.ImmutableList;
 import com.google.common.io.Resources;
+import com.google.inject.Injector;
 import com.google.inject.Module;
 import io.dropwizard.Application;
 import io.dropwizard.Configuration;
@@ -259,6 +260,18 @@ public class ApplicationSupportRule<T extends ApplicationSupport<C>, C extends C
       }
       return client;
     }
+  }
+
+  //
+  // Components
+  //
+
+  public Injector getInjector() {
+    return getApplication().getInjector();
+  }
+
+  public <C1> C1 getInstance(final Class<C1> type) {
+    return getApplication().getInstance(type);
   }
 
   //
