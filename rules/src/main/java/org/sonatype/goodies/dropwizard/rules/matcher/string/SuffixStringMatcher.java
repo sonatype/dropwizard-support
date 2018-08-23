@@ -10,51 +10,34 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
-package org.sonatype.goodies.dropwizard.rules.matcher.request;
+package org.sonatype.goodies.dropwizard.rules.matcher.string;
 
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.google.common.collect.ImmutableList;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * AND {@link RequestMatcher}.
+ * Match if string ends with another.
  *
  * @since ???
  */
-@JsonTypeName(AndRequestMatcher.TYPE)
-public class AndRequestMatcher
-    implements RequestMatcher
+@JsonTypeName(SuffixStringMatcher.TYPE)
+public class SuffixStringMatcher
+    extends StringMatcherSupport
 {
-  public static final String TYPE = "and";
-
-  private final RequestMatcher[] matchers;
+  public static final String TYPE = "suffix";
 
   @JsonCreator
-  public AndRequestMatcher(@NotNull @JsonProperty("matchers") final List<RequestMatcher> matchers) {
-    checkNotNull(matchers);
-    this.matchers = matchers.toArray(new RequestMatcher[0]);
+  public SuffixStringMatcher(@NotNull @JsonProperty("value") final String value,
+                             @JsonProperty("ignoreCase") final boolean ignoreCase)
+  {
+    super(TYPE, value, ignoreCase);
   }
 
   @Override
-  public boolean match(final HttpServletRequest request) {
-    for (RequestMatcher matcher : matchers) {
-      if (!matcher.match(request)) {
-        return false;
-      }
-    }
-    return true;
-  }
-
-  @Override
-  public String toString() {
-    return String.format("%s{%s}", TYPE, ImmutableList.copyOf(matchers));
+  protected boolean doMatch(final String subject) {
+    return subject.endsWith(value);
   }
 }

@@ -24,14 +24,16 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * ???
+ * Match {@link HttpServletRequest#getRequestURI() request path}.
  *
  * @since ???
  */
-@JsonTypeName("path")
+@JsonTypeName(PathRequestMatcher.TYPE)
 public class PathRequestMatcher
     implements RequestMatcher
 {
+  public static final String TYPE = "path";
+
   private final StringMatcher matcher;
 
   @JsonCreator
@@ -46,6 +48,6 @@ public class PathRequestMatcher
 
   @Override
   public String toString() {
-    return String.format("path{%s}", matcher);
+    return String.format("%s{%s}", TYPE, matcher);
   }
 }

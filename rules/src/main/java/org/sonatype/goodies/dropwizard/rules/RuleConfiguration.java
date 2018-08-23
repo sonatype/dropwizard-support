@@ -10,49 +10,36 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
-package org.sonatype.goodies.dropwizard.rules.matcher.string;
+package org.sonatype.goodies.dropwizard.rules;
 
+import java.util.LinkedList;
 import java.util.List;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.google.common.collect.ImmutableList;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * OR {@link StringMatcher}.
+ * {@link RuleService} configuration.
  *
  * @since ???
  */
-@JsonTypeName(OrStringMatcher.TYPE)
-public class OrStringMatcher
-    implements StringMatcher
+public class RuleConfiguration
 {
-  public static final String TYPE = "or";
+  @NotNull
+  @Valid
+  @JsonProperty
+  private List<RequestRule> rules = new LinkedList<>();
 
-  private final StringMatcher[] matchers;
-
-  public OrStringMatcher(@NotNull @JsonProperty("matchers") final List<StringMatcher> matchers) {
-    checkNotNull(matchers);
-    this.matchers = matchers.toArray(new StringMatcher[0]);
+  @NotNull
+  public List<RequestRule> getRules() {
+    return rules;
   }
 
-  @Override
-  public boolean match(final String value) {
-    for (StringMatcher matcher : matchers) {
-      if (matcher.match(value)) {
-        return true;
-      }
-    }
-
-    return false;
-  }
-
-  @Override
-  public String toString() {
-    return String.format("%s{%s}", TYPE, ImmutableList.copyOf(matchers));
+  public void setRules(@NotNull final List<RequestRule> rules) {
+    this.rules = checkNotNull(rules);
   }
 }

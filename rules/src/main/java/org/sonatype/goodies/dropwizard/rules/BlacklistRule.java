@@ -10,12 +10,16 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
-package org.sonatype.goodies.dropwizard.rules.matcher.request;
+package org.sonatype.goodies.dropwizard.rules;
 
 import java.util.List;
 
+import javax.annotation.Nullable;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.constraints.NotNull;
+import javax.ws.rs.core.Response.Status;
+
+import org.sonatype.goodies.dropwizard.rules.matcher.request.RequestMatcher;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -25,36 +29,39 @@ import com.google.common.collect.ImmutableList;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * AND {@link RequestMatcher}.
+ * Blacklist rule.
  *
  * @since ???
  */
-@JsonTypeName(AndRequestMatcher.TYPE)
-public class AndRequestMatcher
-    implements RequestMatcher
+@JsonTypeName(BlacklistRule.NAME)
+public class BlacklistRule
+  extends MatchRule
 {
-  public static final String TYPE = "and";
+  public static final String NAME = "blacklist";
 
-  private final RequestMatcher[] matchers;
+  public static final String REASON = "Blacklisted";
 
   @JsonCreator
-  public AndRequestMatcher(@NotNull @JsonProperty("matchers") final List<RequestMatcher> matchers) {
-    checkNotNull(matchers);
-    this.matchers = matchers.toArray(new RequestMatcher[0]);
+  public BlacklistRule(@NotNull @JsonProperty("matchers") List<RequestMatcher> matchers) {
+    super(matchers);
   }
 
+  @Nullable
   @Override
-  public boolean match(final HttpServletRequest request) {
+  public RuleResult evaluate(final HttpServletRequest request) {
+    checkNotNull(request);
+
     for (RequestMatcher matcher : matchers) {
-      if (!matcher.match(request)) {
-        return false;
+      if (matcher.match(request)) {
+        return RuleResults.sendError(Status.FORBIDDEN, REASON);
       }
     }
-    return true;
+
+    return null;
   }
 
   @Override
   public String toString() {
-    return String.format("%s{%s}", TYPE, ImmutableList.copyOf(matchers));
+    return String.format("%s{%s}", NAME, ImmutableList.copyOf(matchers));
   }
 }

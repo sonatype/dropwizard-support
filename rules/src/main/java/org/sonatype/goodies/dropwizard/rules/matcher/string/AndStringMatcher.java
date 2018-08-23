@@ -18,6 +18,7 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.google.common.collect.ImmutableList;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -26,14 +27,17 @@ import static com.google.common.base.Preconditions.checkNotNull;
  *
  * @since ???
  */
-@JsonTypeName("and")
+@JsonTypeName(AndStringMatcher.TYPE)
 public class AndStringMatcher
     implements StringMatcher
 {
-  private final List<StringMatcher> matchers;
+  public static final String TYPE = "and";
+
+  private final StringMatcher[] matchers;
 
   public AndStringMatcher(@NotNull @JsonProperty("matchers") final List<StringMatcher> matchers) {
-    this.matchers = checkNotNull(matchers);
+    checkNotNull(matchers);
+    this.matchers = matchers.toArray(new StringMatcher[0]);
   }
 
   @Override
@@ -49,6 +53,6 @@ public class AndStringMatcher
 
   @Override
   public String toString() {
-    return String.format("and{%s}", matchers);
+    return String.format("%s{%s}", TYPE, ImmutableList.copyOf(matchers));
   }
 }

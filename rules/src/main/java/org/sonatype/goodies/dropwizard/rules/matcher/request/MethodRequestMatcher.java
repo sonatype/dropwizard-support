@@ -31,10 +31,12 @@ import static com.google.common.base.Preconditions.checkNotNull;
  *
  * @since ???
  */
-@JsonTypeName("method")
+@JsonTypeName(MethodRequestMatcher.TYPE)
 public class MethodRequestMatcher
     implements RequestMatcher
 {
+  public static final String TYPE = "method";
+
   private final Set<String> methods = new HashSet<>();
 
   @JsonCreator
@@ -52,6 +54,6 @@ public class MethodRequestMatcher
 
   @Override
   public String toString() {
-    return String.format("method{%s}", methods);
+    return String.format("%s{%s}", TYPE, methods);
   }
 }

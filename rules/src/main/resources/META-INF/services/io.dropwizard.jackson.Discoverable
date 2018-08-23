@@ -1,2 +1,3 @@
 org.sonatype.goodies.dropwizard.rules.matcher.request.RequestMatcher
 org.sonatype.goodies.dropwizard.rules.matcher.string.StringMatcher
+org.sonatype.goodies.dropwizard.rules.RequestRule

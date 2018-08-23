@@ -12,6 +12,7 @@
  */
 package org.sonatype.goodies.dropwizard.rules.matcher.request;
 
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +21,7 @@ import javax.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.google.common.collect.ImmutableList;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -28,15 +30,18 @@ import static com.google.common.base.Preconditions.checkNotNull;
  *
  * @since ???
  */
-@JsonTypeName("or")
+@JsonTypeName(OrRequestMatcher.TYPE)
 public class OrRequestMatcher
     implements RequestMatcher
 {
-  private final List<RequestMatcher> matchers;
+  public static final String TYPE = "or";
+
+  private final RequestMatcher[] matchers;
 
   @JsonCreator
   public OrRequestMatcher(@NotNull @JsonProperty("matchers") final List<RequestMatcher> matchers) {
-    this.matchers = checkNotNull(matchers);
+    checkNotNull(matchers);
+    this.matchers = matchers.toArray(new RequestMatcher[0]);
   }
 
   @Override
@@ -51,6 +56,6 @@ public class OrRequestMatcher
 
   @Override
   public String toString() {
-    return String.format("or{%s}", matchers);
+    return String.format("%s{%s}", TYPE, ImmutableList.copyOf(matchers));
   }
 }

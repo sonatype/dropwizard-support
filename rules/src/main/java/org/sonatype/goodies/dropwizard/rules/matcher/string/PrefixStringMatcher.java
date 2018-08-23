@@ -23,17 +23,17 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  *
  * @since ???
  */
-@JsonTypeName(PrefixStringMatcher.NAME)
+@JsonTypeName(PrefixStringMatcher.TYPE)
 public class PrefixStringMatcher
     extends StringMatcherSupport
 {
-  public static final String NAME = "prefix";
+  public static final String TYPE = "prefix";
 
   @JsonCreator
   public PrefixStringMatcher(@NotNull @JsonProperty("value") final String value,
                              @JsonProperty("ignoreCase") final boolean ignoreCase)
   {
-    super(NAME, value, ignoreCase);
+    super(TYPE, value, ignoreCase);
   }
 
   @Override

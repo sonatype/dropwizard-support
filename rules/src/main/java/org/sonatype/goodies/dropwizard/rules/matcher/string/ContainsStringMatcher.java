@@ -23,17 +23,17 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  *
  * @since ???
  */
-@JsonTypeName(ContainsStringMatcher.NAME)
+@JsonTypeName(ContainsStringMatcher.TYPE)
 public class ContainsStringMatcher
     extends StringMatcherSupport
 {
-  public static final String NAME = "contains";
+  public static final String TYPE = "contains";
 
   @JsonCreator
   public ContainsStringMatcher(@NotNull @JsonProperty("value") final String value,
                                @JsonProperty("ignoreCase") final boolean ignoreCase)
   {
-    super(NAME, value, ignoreCase);
+    super(TYPE, value, ignoreCase);
   }
 
   @Override
