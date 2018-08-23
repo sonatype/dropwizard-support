@@ -29,22 +29,22 @@ import com.google.common.collect.ImmutableList;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * Default {@link RuleService}.
+ * Default {@link RequestRuleService}.
  *
  * @since ???
  */
 @Named
 @Singleton
-public class RuleServiceImpl
+public class RequestRuleServiceImpl
     extends ServiceSupport
-    implements RuleService
+    implements RequestRuleService
 {
-  private final RuleConfiguration config;
+  private final RequestRuleConfiguration config;
 
   private RequestRule[] rules;
 
   @Inject
-  public RuleServiceImpl(final RuleConfiguration config) {
+  public RequestRuleServiceImpl(final RequestRuleConfiguration config) {
     this.config = checkNotNull(config);
 
     log.info("Rules: {}", config.getRules());
@@ -120,7 +120,7 @@ public class RuleServiceImpl
 
   @Nullable
   @Override
-  public RuleResult evaluate(final HttpServletRequest request) {
+  public RequestRuleResult evaluate(final HttpServletRequest request) {
     checkNotNull(request);
     ensureStarted();
 
@@ -129,7 +129,7 @@ public class RuleServiceImpl
 
       for (RequestRule rule : rules) {
         log.debug("Evaluating rule: {}", rule);
-        RuleResult result = rule.evaluate(request);
+        RequestRuleResult result = rule.evaluate(request);
 
         if (result != null) {
           log.debug("Rule result: {}", result);

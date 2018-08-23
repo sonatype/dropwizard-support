@@ -12,24 +12,18 @@
  */
 package org.sonatype.goodies.dropwizard.rules;
 
-import java.util.List;
+import java.io.IOException;
 
-import javax.annotation.Nullable;
+import javax.servlet.FilterChain;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
- * Rule service.
+ * {@link RequestRule} result.
  *
  * @since ???
  */
-public interface RuleService
+public interface RequestRuleResult
 {
-  List<RequestRule> getRules();
-
-  <T extends RequestRule> T getRule(Class<T> type);
-
-  <T extends RequestRule> List<T> getRules(Class<T> type);
-
-  @Nullable
-  RuleResult evaluate(HttpServletRequest request);
+  void apply(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException;
 }

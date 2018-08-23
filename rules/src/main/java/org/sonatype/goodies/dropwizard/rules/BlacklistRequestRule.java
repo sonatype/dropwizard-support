@@ -53,12 +53,12 @@ public class BlacklistRequestRule
 
   @Nullable
   @Override
-  public RuleResult evaluate(final HttpServletRequest request) {
+  public RequestRuleResult evaluate(final HttpServletRequest request) {
     checkNotNull(request);
 
     for (RequestMatcher matcher : matchers) {
       if (matcher.match(request)) {
-        return RuleResults.sendError(Status.FORBIDDEN, reason);
+        return RequestRuleResults.sendError(Status.FORBIDDEN, reason);
       }
     }
 

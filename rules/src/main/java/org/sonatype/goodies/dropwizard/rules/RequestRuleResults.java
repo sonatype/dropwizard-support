@@ -20,18 +20,18 @@ import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.core.Response.Status;
 
 /**
- * Helper to create standard {@link RuleResult rule results}.
+ * Helper to create standard {@link RequestRuleResult request-rule results}.
  *
  * @since ???
  */
-public final class RuleResults
+public final class RequestRuleResults
 {
-  private RuleResults() {
+  private RequestRuleResults() {
     // empty
   }
 
-  public static RuleResult sendError(final int code, final String reason) {
-    return new RuleResult()
+  public static RequestRuleResult sendError(final int code, final String reason) {
+    return new RequestRuleResult()
     {
       @Override
       public void apply(final HttpServletRequest request, final HttpServletResponse response, final FilterChain chain)
@@ -47,11 +47,11 @@ public final class RuleResults
     };
   }
 
-  public static RuleResult sendError(final Status status, final String reason) {
+  public static RequestRuleResult sendError(final Status status, final String reason) {
     return sendError(status.getStatusCode(), reason);
   }
 
-  public static RuleResult sendError(final Status status) {
+  public static RequestRuleResult sendError(final Status status) {
     return sendError(status.getStatusCode(), status.getReasonPhrase());
   }
 }

@@ -12,18 +12,34 @@
  */
 package org.sonatype.goodies.dropwizard.rules;
 
-import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
 
-import javax.servlet.FilterChain;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * Rule result.
+ * {@link RequestRuleService} configuration.
  *
  * @since ???
  */
-public interface RuleResult
+public class RequestRuleConfiguration
 {
-  void apply(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException;
+  @NotNull
+  @Valid
+  @JsonProperty
+  private List<RequestRule> rules = new LinkedList<>();
+
+  @NotNull
+  public List<RequestRule> getRules() {
+    return rules;
+  }
+
+  public void setRules(@NotNull final List<RequestRule> rules) {
+    this.rules = checkNotNull(rules);
+  }
 }

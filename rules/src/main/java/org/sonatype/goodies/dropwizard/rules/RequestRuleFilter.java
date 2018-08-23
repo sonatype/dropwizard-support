@@ -27,19 +27,19 @@ import org.sonatype.goodies.dropwizard.servlet.HttpFilterSupport;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * {@link RuleService} filter.
+ * {@link RequestRuleService} filter.
  *
  * @since ???
  */
 @Named
 @Singleton
-public class RuleFilter
+public class RequestRuleFilter
     extends HttpFilterSupport
 {
-  private final RuleService ruleService;
+  private final RequestRuleService ruleService;
 
   @Inject
-  public RuleFilter(final RuleService ruleService) {
+  public RequestRuleFilter(final RequestRuleService ruleService) {
     this.ruleService = checkNotNull(ruleService);
   }
 
@@ -47,7 +47,7 @@ public class RuleFilter
   protected void filter(final HttpServletRequest request, final HttpServletResponse response, final FilterChain chain)
       throws IOException, ServletException
   {
-    RuleResult result = ruleService.evaluate(request);
+    RequestRuleResult result = ruleService.evaluate(request);
     if (result != null) {
       result.apply(request, response, chain);
     }

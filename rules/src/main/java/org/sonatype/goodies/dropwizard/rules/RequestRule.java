@@ -29,5 +29,5 @@ public interface RequestRule
   extends Discoverable
 {
   @Nullable
-  RuleResult evaluate(HttpServletRequest request);
+  RequestRuleResult evaluate(HttpServletRequest request);
 }
