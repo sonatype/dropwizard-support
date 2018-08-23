@@ -26,6 +26,10 @@ import static com.google.common.base.Preconditions.checkNotNull;
  */
 public final class Loggers
 {
+  private Loggers() {
+    // empty
+  }
+
   /**
    * Helper to create a logger and deal with class-names created by AOP platforms.
    */
