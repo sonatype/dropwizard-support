@@ -36,9 +36,7 @@ class RemoteIpRequestMatcherTest
     def request = mock(HttpServletRequest.class)
     when(request.getRemoteAddr()).thenReturn('1.2.3.4')
 
-    def addresses = new IpAddresses()
-    addresses.addAddress('1.2.3.4')
-    def underTest = new RemoteIpRequestMatcher(addresses)
+    def underTest = new RemoteIpRequestMatcher(new IpAddresses([ '1.2.3.4' ]))
 
     assert underTest.matches(request)
 
@@ -51,9 +49,7 @@ class RemoteIpRequestMatcherTest
     def request = mock(HttpServletRequest.class)
     when(request.getRemoteAddr()).thenReturn('1.2.3.4')
 
-    def addresses = new IpAddresses()
-    addresses.addAddress('5.6.7.8')
-    def underTest = new RemoteIpRequestMatcher(addresses)
+    def underTest = new RemoteIpRequestMatcher(new IpAddresses([ '5.6.7.8' ]))
 
     assert !underTest.matches(request)
 
