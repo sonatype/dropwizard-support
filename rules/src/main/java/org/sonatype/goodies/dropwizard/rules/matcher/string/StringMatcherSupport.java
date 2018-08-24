@@ -37,8 +37,16 @@ public abstract class StringMatcherSupport
     this.ignoreCase = ignoreCase;
   }
 
+  /**
+   * Check if given string matches.
+   */
   protected abstract boolean doMatch(final String subject);
 
+  /**
+   * Matches given string.
+   *
+   * If {@link #ignoreCase} then the given string is converted to lower-case before calling {@link #doMatch(String)}.
+   */
   @Override
   public boolean matches(final String string) {
     if (ignoreCase) {
