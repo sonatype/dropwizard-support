@@ -23,6 +23,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.google.common.collect.ImmutableList;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.checkState;
 
 /**
  * OR {@link RequestMatcher}.
@@ -40,6 +41,7 @@ public class OrRequestMatcher
   @JsonCreator
   public OrRequestMatcher(@NotNull @JsonProperty("matchers") final List<RequestMatcher> matchers) {
     checkNotNull(matchers);
+    checkState(!matchers.isEmpty(), "At least one matcher is required");
     this.matchers = matchers.toArray(new RequestMatcher[0]);
   }
 
