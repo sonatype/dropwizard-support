@@ -30,6 +30,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 /**
  * Blacklist {@link RequestRule}.
  *
@@ -45,23 +47,33 @@ public class BlacklistRequestRule
 
   public static final String DEFAULT_REASON = "Blacklisted";
 
-  private final Status status;
+  @JsonProperty
+  private Status status = DEFAULT_STATUS;
 
-  private final String reason;
+  @JsonProperty
+  private String reason = DEFAULT_REASON;
 
   @JsonCreator
-  public BlacklistRequestRule(@NotNull @JsonProperty("matchers") List<RequestMatcher> matchers,
-                              @Nullable @JsonProperty("status") final Status status,
-                              @Nullable @JsonProperty("reason") String reason)
-  {
+  public BlacklistRequestRule(@NotNull @JsonProperty("matchers") final List<RequestMatcher> matchers) {
     super(TYPE, matchers);
     this.status = status != null ? status : DEFAULT_STATUS;
-    log.debug("Status: {}", status);
-    this.reason = reason != null ? reason : DEFAULT_REASON;
-    log.debug("Reason: {}", reason);
   }
 
-  // TODO: add support for metrics to count matched
+  public Status getStatus() {
+    return status;
+  }
+
+  public void setStatus(final Status status) {
+    this.status = checkNotNull(status);
+  }
+
+  public String getReason() {
+    return reason;
+  }
+
+  public void setReason(final String reason) {
+    this.reason = checkNotNull(reason);
+  }
 
   @Nonnull
   @Override

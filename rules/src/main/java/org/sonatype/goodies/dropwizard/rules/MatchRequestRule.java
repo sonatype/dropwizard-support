@@ -21,7 +21,11 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.sonatype.goodies.dropwizard.rules.matcher.request.RequestMatcher;
 
+import com.codahale.metrics.Meter;
+import com.codahale.metrics.MetricRegistry;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.collect.ImmutableList;
+import com.google.inject.Inject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -42,7 +46,16 @@ public abstract class MatchRequestRule
 
   protected final RequestMatcher[] matchers;
 
-  public MatchRequestRule(final String type, final List<RequestMatcher> matchers) {
+  @JsonProperty
+  @Nullable
+  private String metric;
+
+  @Nullable
+  private Meter meter;
+
+  public MatchRequestRule(final String type,
+                          final List<RequestMatcher> matchers)
+  {
     this.type = checkNotNull(type);
     checkNotNull(matchers);
     checkState(!matchers.isEmpty(), "At least one matcher is required");
@@ -92,6 +105,25 @@ public abstract class MatchRequestRule
   }
 
   @Nullable
+  public String getMetric() {
+    return metric;
+  }
+
+  public void setMetric(@Nullable final String metric) {
+    this.metric = metric;
+  }
+
+  // FIXME: find a better name
+
+  @Inject
+  public void configure(final MetricRegistry metricRegistry) {
+    checkNotNull(metricRegistry);
+    checkState(meter == null, "Already configured");
+    meter = metricRegistry.meter(metric);
+    log.debug("Configured; meter: {} -> {}", metric, meter);
+  }
+
+  @Nullable
   @Override
   public RequestRuleResult evaluate(final HttpServletRequest request) {
     checkNotNull(request);
@@ -108,7 +140,14 @@ public abstract class MatchRequestRule
       }
 
       if (matcher.matches(request)) {
-        return matched(matcher, request);
+        RequestRuleResult result = matched(matcher, request);
+
+        if (meter != null) {
+          meter.mark();
+          log.debug("Marked");
+        }
+
+        return result;
       }
     }
 

@@ -62,7 +62,7 @@ class RequestRuleServiceImplTest
 
   @Test
   void 'missing rules'() {
-    underTest = new RequestRuleServiceImpl(new RequestRuleConfiguration())
+    underTest = new RequestRuleServiceImpl(new RequestRuleConfiguration(), null)
     underTest.start()
     assert underTest.evaluate(request) == null
   }
@@ -73,15 +73,15 @@ class RequestRuleServiceImplTest
             firstRule,
             new WhitelistRequestRule([
                 new RemoteIpRequestMatcher([ '1.2.3.4' ])
-            ]),
+            ], null),
             middleRule,
             new BlacklistRequestRule([
                 new RemoteIpRequestMatcher([ '6.6.6.0' ])
-            ], null, null),
+            ], null, null, null),
             lastRule
         ]
     )
-    underTest = new RequestRuleServiceImpl(config)
+    underTest = new RequestRuleServiceImpl(config, null)
     underTest.start()
   }
 

@@ -44,7 +44,8 @@ class BlacklistRequestRuleTest
 
     when(request.getRemoteAddr()).thenReturn(address)
 
-    def underTest = new BlacklistRequestRule([ new RemoteIpRequestMatcher([ address ]) ], null, reason)
+    def underTest = new BlacklistRequestRule([ new RemoteIpRequestMatcher([ address ]) ])
+    underTest.reason = reason
 
     underTest.evaluate(request).with { result ->
       assert result != null
@@ -62,7 +63,8 @@ class BlacklistRequestRuleTest
 
     when(request.getRemoteAddr()).thenReturn(address)
 
-    def underTest = new BlacklistRequestRule([ new RemoteIpRequestMatcher([ address ]) ], BAD_REQUEST, null)
+    def underTest = new BlacklistRequestRule([ new RemoteIpRequestMatcher([ address ]) ])
+    underTest.status = BAD_REQUEST
 
     underTest.evaluate(request).with { result ->
       assert result != null
@@ -77,7 +79,7 @@ class BlacklistRequestRuleTest
 
     when(request.getRemoteAddr()).thenReturn('1.2.3.4')
 
-    def underTest = new BlacklistRequestRule([ new RemoteIpRequestMatcher([ '6.6.6.0' ]) ], null, null)
+    def underTest = new BlacklistRequestRule([ new RemoteIpRequestMatcher([ '6.6.6.0' ]) ])
 
     assert underTest.evaluate(request) == null
   }

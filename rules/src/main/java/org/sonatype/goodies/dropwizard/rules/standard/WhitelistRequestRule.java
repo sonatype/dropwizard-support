@@ -15,6 +15,7 @@ package org.sonatype.goodies.dropwizard.rules.standard;
 import java.util.List;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.constraints.NotNull;
 
@@ -42,11 +43,9 @@ public class WhitelistRequestRule
   public static final String TYPE = "whitelist";
 
   @JsonCreator
-  public WhitelistRequestRule(@NotNull @JsonProperty("matchers") List<RequestMatcher> matchers) {
+  public WhitelistRequestRule(@NotNull @JsonProperty("matchers") final List<RequestMatcher> matchers) {
     super(TYPE, matchers);
   }
-
-  // TODO: add support for metrics to count matched
 
   @Nonnull
   @Override

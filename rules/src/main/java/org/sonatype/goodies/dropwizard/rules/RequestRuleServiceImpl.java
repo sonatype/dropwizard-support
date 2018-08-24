@@ -25,6 +25,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.sonatype.goodies.dropwizard.service.ServiceSupport;
 
 import com.google.common.collect.ImmutableList;
+import com.google.inject.Injector;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -41,12 +42,17 @@ public class RequestRuleServiceImpl
 {
   private final RequestRuleConfiguration config;
 
+  private final Injector injector;
+
   @Nullable
   private RequestRule[] rules;
 
   @Inject
-  public RequestRuleServiceImpl(final RequestRuleConfiguration config) {
+  public RequestRuleServiceImpl(final RequestRuleConfiguration config,
+                                @Nullable final Injector injector)
+  {
     this.config = checkNotNull(config);
+    this.injector = injector;
   }
 
   @Override
@@ -61,6 +67,12 @@ public class RequestRuleServiceImpl
       rules = new RequestRule[count];
       for (int i=0; i<count; i++) {
         RequestRule rule = configured.get(i);
+
+        // if injection is enabled, then inject rule
+        if (injector != null) {
+          injector.injectMembers(rule);
+        }
+
         log.info("Rule[{}]: {}", i, rule);
         rules[i] = rule;
       }
