@@ -24,14 +24,14 @@ import static com.google.common.base.Preconditions.checkNotNull;
 public abstract class StringMatcherSupport
     implements StringMatcher
 {
-  protected final String name;
+  protected final String type;
 
   protected final String value;
 
   protected final boolean ignoreCase;
 
-  public StringMatcherSupport(final String name, final String value, final boolean ignoreCase) {
-    this.name = checkNotNull(name);
+  public StringMatcherSupport(final String type, final String value, final boolean ignoreCase) {
+    this.type = checkNotNull(type);
     checkNotNull(value);
     this.value = ignoreCase ? MoreStrings.lower(value) : value;
     this.ignoreCase = ignoreCase;
@@ -49,6 +49,6 @@ public abstract class StringMatcherSupport
 
   @Override
   public String toString() {
-    return String.format("%s{'%s'%s}", name, value, ignoreCase ? " ignore-case" : "");
+    return String.format("%s{'%s'%s}", type, value, ignoreCase ? " ignore-case" : "");
   }
 }
