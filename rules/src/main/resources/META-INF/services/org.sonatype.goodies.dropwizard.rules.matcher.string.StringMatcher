@@ -4,3 +4,4 @@ org.sonatype.goodies.dropwizard.rules.matcher.string.StringMatcher2
 org.sonatype.goodies.dropwizard.rules.matcher.string.ContainsStringMatcher
 org.sonatype.goodies.dropwizard.rules.matcher.string.PrefixStringMatcher
 org.sonatype.goodies.dropwizard.rules.matcher.string.SuffixStringMatcher
+org.sonatype.goodies.dropwizard.rules.matcher.string.RegexStringMatcher
