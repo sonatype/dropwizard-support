@@ -55,46 +55,75 @@ public class RegexStringMatcher
     }
   }
 
+  /**
+   * Enable {@link Pattern#CANON_EQ} flag.
+   */
   @JsonProperty
   public void setCanonEq(final boolean enable) {
     flag(Pattern.CANON_EQ, enable);
   }
 
+  /**
+   * Enable {@link Pattern#CASE_INSENSITIVE} flag.
+   */
   @JsonProperty
   public void setIgnoreCase(final boolean enable) {
     flag(Pattern.CASE_INSENSITIVE, enable);
   }
 
+  /**
+   * Enable {@link Pattern#COMMENTS} flag.
+   */
   @JsonProperty
   public void setComments(final boolean enable) {
     flag(Pattern.COMMENTS, enable);
   }
 
+  /**
+   * Enable {@link Pattern#DOTALL} flag.
+   */
   @JsonProperty
   public void setDotAll(final boolean enable) {
     flag(Pattern.DOTALL, enable);
   }
 
+  /**
+   * Enable {@link Pattern#LITERAL} flag.
+   */
   @JsonProperty
   public void setLiteral(final boolean enable) {
     flag(Pattern.LITERAL, enable);
   }
 
+  /**
+   * Enable {@link Pattern#MULTILINE} flag.
+   */
   @JsonProperty
   public void setMultiline(final boolean enable) {
     flag(Pattern.MULTILINE, enable);
   }
 
+  /**
+   * Enable {@link Pattern#UNICODE_CASE} flag.
+   */
   @JsonProperty
   public void setUnicodeCase(final boolean enable) {
     flag(Pattern.UNICODE_CASE, enable);
   }
 
+  /**
+   * Enable {@link Pattern#UNIX_LINES} flag.
+   */
   @JsonProperty
   public void setUnixLines(final boolean enable) {
     flag(Pattern.UNIX_LINES, enable);
   }
 
+  /**
+   * Enable inverted/negative match.
+   *
+   * When set; matcher will invert the results of the regular-expression.
+   */
   @JsonProperty
   public void setInvert(final boolean invert) {
     this.invert = invert;
