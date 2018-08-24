@@ -57,4 +57,10 @@ class IpAddressesTest
     assert underTest.removeAddress(' 1.2.3.4 ')
     assert !underTest.match('1.2.3.4')
   }
+
+  @Test
+  void 'set addresses trims'() {
+    underTest.setAddresses([' 1.2.3.4 '])
+    assert underTest.match('1.2.3.4')
+  }
 }

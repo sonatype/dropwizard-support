@@ -15,6 +15,7 @@ package org.sonatype.goodies.dropwizard.util;
 import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.stream.Collectors;
 
 import com.google.common.base.Strings;
 import com.google.common.collect.ImmutableList;
@@ -58,11 +59,13 @@ public class IpAddresses
 
   public void setAddresses(final List<String> addresses) {
     checkNotNull(addresses);
-    log.trace("Addresses: {}", addresses);
+
+    List<String> _addresses = addresses.stream().map(String::trim).collect(Collectors.toList());
+    log.trace("Addresses: {}", _addresses);
 
     // add all entries, then retain all to purge older entries to avoid tiny window where list would be empty
-    this.addresses.addAll(addresses);
-    this.addresses.retainAll(addresses);
+    this.addresses.addAll(_addresses);
+    this.addresses.retainAll(_addresses);
   }
 
   public List<String> getAddresses() {
