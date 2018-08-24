@@ -19,6 +19,7 @@ import org.mockito.Mockito
 
 import static org.junit.Assert.fail
 import static org.mockito.Matchers.anyString
+import static org.mockito.Mockito.mock
 import static org.mockito.Mockito.times
 import static org.mockito.Mockito.verify
 import static org.mockito.Mockito.verifyNoMoreInteractions
@@ -43,7 +44,7 @@ class OrStringMatcherTest
   }
 
   @Test
-  void 'match success'() {
+  void 'match hit'() {
     def underTest = new OrStringMatcher([
         new ContainsStringMatcher('foo', false),
         new ContainsStringMatcher('qux', false)
@@ -56,8 +57,8 @@ class OrStringMatcherTest
 
   @Test
   void 'match order'() {
-    def matcher1 = Mockito.mock(StringMatcher.class)
-    def matcher2 = Mockito.mock(StringMatcher.class)
+    def matcher1 = mock(StringMatcher.class)
+    def matcher2 = mock(StringMatcher.class)
     def underTest = new OrStringMatcher([ matcher1, matcher2 ])
 
     when(matcher1.matches(anyString())).thenReturn(false)
@@ -72,8 +73,8 @@ class OrStringMatcherTest
 
   @Test
   void 'match order short-circuit'() {
-    def matcher1 = Mockito.mock(StringMatcher.class)
-    def matcher2 = Mockito.mock(StringMatcher.class)
+    def matcher1 = mock(StringMatcher.class)
+    def matcher2 = mock(StringMatcher.class)
     def underTest = new OrStringMatcher([ matcher1, matcher2 ])
 
     when(matcher1.matches(anyString())).thenReturn(true)
