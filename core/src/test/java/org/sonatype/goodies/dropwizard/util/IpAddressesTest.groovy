@@ -41,4 +41,16 @@ class IpAddressesTest
     assert underTest.size == 0
     assert !underTest.match('1.2.3.4')
   }
+
+  @Test
+  void 'add and remove trims'() {
+    assert underTest.addAddress(' 1.2.3.4 ')
+    assert underTest.size == 1
+    assert underTest.match('1.2.3.4')
+    assert !underTest.match('5.6.7.8')
+
+    assert underTest.removeAddress(' 1.2.3.4 ')
+    assert underTest.size == 0
+    assert !underTest.match('1.2.3.4')
+  }
 }

@@ -71,10 +71,11 @@ public class IpAddresses
 
   public boolean addAddress(final String address) {
     checkNotNull(address);
-    if (Strings.emptyToNull(address.trim()) != null) {
-      boolean result = addresses.add(address);
+    String _address = address.trim();
+    if (Strings.emptyToNull(_address) != null) {
+      boolean result = addresses.add(_address);
       if (result) {
-        log.trace("Added IP: {}", address);
+        log.trace("Added IP: {}", _address);
       }
       return result;
     }
@@ -83,9 +84,10 @@ public class IpAddresses
 
   public boolean removeAddress(final String address) {
     checkNotNull(address);
-    boolean result = addresses.remove(address.trim());
+    String _address = address.trim();
+    boolean result = addresses.remove(_address);
     if (result) {
-      log.trace("Removed IP: {}", address);
+      log.trace("Removed IP: {}", _address);
     }
     return result;
   }
