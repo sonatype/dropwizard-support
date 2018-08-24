@@ -1,5 +1,6 @@
 io.dropwizard.jackson
 org.apache.shiro.dropwizard
+org.apache.shiro.guice.aop
 org.glassfish.jersey.test.inmemory
 org.sonatype.goodies.dropwizard
 org.sonatype.goodies.dropwizard.assets
