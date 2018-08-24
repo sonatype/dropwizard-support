@@ -21,6 +21,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.google.common.collect.ImmutableList;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.checkState;
 
 /**
  * OR {@link StringMatcher}.
@@ -37,6 +38,7 @@ public class OrStringMatcher
 
   public OrStringMatcher(@NotNull @JsonProperty("matchers") final List<StringMatcher> matchers) {
     checkNotNull(matchers);
+    checkState(!matchers.isEmpty(), "At least one matcher is required");
     this.matchers = matchers.toArray(new StringMatcher[0]);
   }
 
