@@ -51,7 +51,7 @@ public abstract class MatchRequestRule
   }
 
   /**
-   * Returns all matcher.
+   * Returns all matchers.
    */
   public List<RequestMatcher> getMatchers() {
     return ImmutableList.copyOf(matchers);
