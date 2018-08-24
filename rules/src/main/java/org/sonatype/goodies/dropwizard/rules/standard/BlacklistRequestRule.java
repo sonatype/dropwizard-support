@@ -56,6 +56,7 @@ public class BlacklistRequestRule
   {
     super(TYPE, matchers);
     this.status = status != null ? status : DEFAULT_STATUS;
+    log.debug("Status: {}", status);
     this.reason = reason != null ? reason : DEFAULT_REASON;
     log.debug("Reason: {}", reason);
   }
