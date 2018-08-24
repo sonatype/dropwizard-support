@@ -52,7 +52,7 @@ public class RequestRuleServiceImpl
   protected void doStart() throws Exception {
     List<RequestRule> configured = config.getRules();
     if (configured.isEmpty()) {
-      log.debug("No rules; disabling");
+      log.debug("No rules");
     }
     else {
       int count = configured.size();
