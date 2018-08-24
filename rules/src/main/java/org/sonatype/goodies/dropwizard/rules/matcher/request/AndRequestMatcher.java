@@ -44,9 +44,9 @@ public class AndRequestMatcher
   }
 
   @Override
-  public boolean match(final HttpServletRequest request) {
+  public boolean matches(final HttpServletRequest request) {
     for (RequestMatcher matcher : matchers) {
-      if (!matcher.match(request)) {
+      if (!matcher.matches(request)) {
         return false;
       }
     }

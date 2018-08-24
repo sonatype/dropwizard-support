@@ -64,7 +64,7 @@ public class RemoteIpRequestMatcher
   }
 
   @Override
-  public boolean match(final HttpServletRequest request) {
+  public boolean matches(final HttpServletRequest request) {
     return match(request.getRemoteAddr());
   }
 

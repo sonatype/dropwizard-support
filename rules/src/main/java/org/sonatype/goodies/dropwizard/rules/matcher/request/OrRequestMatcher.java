@@ -12,7 +12,6 @@
  */
 package org.sonatype.goodies.dropwizard.rules.matcher.request;
 
-import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -45,9 +44,9 @@ public class OrRequestMatcher
   }
 
   @Override
-  public boolean match(final HttpServletRequest request) {
+  public boolean matches(final HttpServletRequest request) {
     for (RequestMatcher matcher : matchers) {
-      if (matcher.match(request)) {
+      if (matcher.matches(request)) {
         return true;
       }
     }

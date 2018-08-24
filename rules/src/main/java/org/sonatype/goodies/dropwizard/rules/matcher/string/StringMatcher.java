@@ -26,9 +26,9 @@ public interface StringMatcher
     extends Discoverable
 {
   /**
-   * Match value.
+   * Check if string matches.
    *
-   * @return {@code true} if value matches.
+   * @return {@code true} if string matches.
    */
-  boolean match(String value);
+  boolean matches(String string);
 }

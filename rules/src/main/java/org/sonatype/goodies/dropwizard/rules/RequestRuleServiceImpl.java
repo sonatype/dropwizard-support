@@ -127,8 +127,9 @@ public class RequestRuleServiceImpl
     if (rules.length != 0) {
       log.debug("Evaluating request: {}", request);
 
-      for (RequestRule rule : rules) {
-        log.debug("Evaluating rule: {}", rule);
+      for (int i=0; i<rules.length; i++) {
+        RequestRule rule = rules[i];
+        log.debug("Evaluating rule[{}]: {}", i, rule);
         RequestRuleResult result = rule.evaluate(request);
 
         if (result != null) {

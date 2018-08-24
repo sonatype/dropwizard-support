@@ -42,8 +42,8 @@ public class PathRequestMatcher
   }
 
   @Override
-  public boolean match(final HttpServletRequest request) {
-    return matcher.match(request.getRequestURI());
+  public boolean matches(final HttpServletRequest request) {
+    return matcher.matches(request.getRequestURI());
   }
 
   @Override

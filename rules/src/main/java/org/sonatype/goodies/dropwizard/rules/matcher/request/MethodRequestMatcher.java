@@ -48,7 +48,7 @@ public class MethodRequestMatcher
   }
 
   @Override
-  public boolean match(final HttpServletRequest request) {
+  public boolean matches(final HttpServletRequest request) {
     return methods.contains(MoreStrings.upper(request.getMethod()));
   }
 

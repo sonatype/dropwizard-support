@@ -40,11 +40,11 @@ public abstract class StringMatcherSupport
   protected abstract boolean doMatch(final String subject);
 
   @Override
-  public boolean match(final String value) {
+  public boolean matches(final String string) {
     if (ignoreCase) {
-      return doMatch(MoreStrings.lower(value));
+      return doMatch(MoreStrings.lower(string));
     }
-    return doMatch(value);
+    return doMatch(string);
   }
 
   @Override

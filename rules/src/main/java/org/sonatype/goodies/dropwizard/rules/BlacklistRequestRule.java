@@ -24,20 +24,17 @@ import org.sonatype.goodies.dropwizard.rules.matcher.request.RequestMatcher;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.google.common.collect.ImmutableList;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Blacklist {@link RequestRule}.
  *
  * @since ???
  */
-@JsonTypeName(BlacklistRequestRule.NAME)
+@JsonTypeName(BlacklistRequestRule.TYPE)
 public class BlacklistRequestRule
     extends MatchRequestRule
 {
-  public static final String NAME = "blacklist";
+  public static final String TYPE = "blacklist";
 
   public static final String DEFAULT_REASON = "Blacklisted";
 
@@ -47,26 +44,12 @@ public class BlacklistRequestRule
   public BlacklistRequestRule(@NotNull @JsonProperty("matchers") List<RequestMatcher> matchers,
                               @Nullable @JsonProperty("reason") String reason)
   {
-    super(matchers);
+    super(TYPE, matchers);
     this.reason = reason != null ? reason : DEFAULT_REASON;
   }
 
-  @Nullable
   @Override
-  public RequestRuleResult evaluate(final HttpServletRequest request) {
-    checkNotNull(request);
-
-    for (RequestMatcher matcher : matchers) {
-      if (matcher.match(request)) {
-        return RequestRuleResults.sendError(Status.FORBIDDEN, reason);
-      }
-    }
-
-    return null;
-  }
-
-  @Override
-  public String toString() {
-    return String.format("%s{%s}", NAME, ImmutableList.copyOf(matchers));
+  protected RequestRuleResult matched(final HttpServletRequest request) {
+    return RequestRuleResults.sendError(Status.FORBIDDEN, reason);
   }
 }

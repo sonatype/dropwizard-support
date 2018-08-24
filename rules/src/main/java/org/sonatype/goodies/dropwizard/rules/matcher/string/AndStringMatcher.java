@@ -41,9 +41,9 @@ public class AndStringMatcher
   }
 
   @Override
-  public boolean match(final String value) {
+  public boolean matches(final String string) {
     for (StringMatcher matcher : matchers) {
-      if (!matcher.match(value)) {
+      if (!matcher.matches(string)) {
         return false;
       }
     }

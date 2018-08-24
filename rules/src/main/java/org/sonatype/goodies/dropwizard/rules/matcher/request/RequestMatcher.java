@@ -28,9 +28,9 @@ public interface RequestMatcher
     extends Discoverable
 {
   /**
-   * Match request.
+   * Check if request matches.
    *
    * @return {@code true} if request matches.
    */
-  boolean match(HttpServletRequest request);
+  boolean matches(HttpServletRequest request);
 }
