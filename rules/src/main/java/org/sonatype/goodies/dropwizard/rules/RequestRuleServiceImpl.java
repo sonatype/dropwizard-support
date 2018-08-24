@@ -46,8 +46,6 @@ public class RequestRuleServiceImpl
   @Inject
   public RequestRuleServiceImpl(final RequestRuleConfiguration config) {
     this.config = checkNotNull(config);
-
-    log.info("Rules: {}", config.getRules());
   }
 
   @Override
