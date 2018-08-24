@@ -15,6 +15,7 @@ package org.sonatype.goodies.dropwizard.rules;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.servlet.http.HttpServletRequest;
 
@@ -49,10 +50,16 @@ public abstract class MatchRequestRule
     this.matchers = matchers.toArray(new RequestMatcher[0]);
   }
 
+  /**
+   * Returns all matcher.
+   */
   public List<RequestMatcher> getMatchers() {
     return ImmutableList.copyOf(matchers);
   }
 
+  /**
+   * Returns a matcher of given type or {@code null} if there is none.
+   */
   @SuppressWarnings("unchecked")
   @Nullable
   public <T extends RequestMatcher> T getMatcher(final Class<T> type) {
@@ -67,6 +74,9 @@ public abstract class MatchRequestRule
     return null;
   }
 
+  /**
+   * Returns a list of matchers of the given type.
+   */
   @SuppressWarnings("unchecked")
   public <T extends RequestMatcher> List<T> getMatchers(final Class<T> type) {
     checkNotNull(type);
@@ -93,14 +103,18 @@ public abstract class MatchRequestRule
       log.debug("Matching matcher[{}]: {}", i, matcher);
 
       if (matcher.matches(request)) {
-        return matched(request);
+        return matched(matcher, request);
       }
     }
 
     return null;
   }
 
-  protected abstract RequestRuleResult matched(final HttpServletRequest request);
+  /**
+   * Create result for matched request.
+   */
+  @Nonnull
+  protected abstract RequestRuleResult matched(final RequestMatcher matcher, final HttpServletRequest request);
 
   @Override
   public String toString() {

@@ -22,10 +22,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * {@link RequestRule} result.
  *
+ * @see RequestRuleResults
  * @since ???
  */
 public interface RequestRuleResult
 {
+  /**
+   * Apply response for rule.
+   */
   void apply(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
       throws IOException, ServletException;
 }

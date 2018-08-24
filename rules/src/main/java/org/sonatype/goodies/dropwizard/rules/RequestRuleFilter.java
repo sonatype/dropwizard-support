@@ -48,10 +48,14 @@ public class RequestRuleFilter
       throws IOException, ServletException
   {
     RequestRuleResult result = ruleService.evaluate(request);
+
+    // if there is a result then apply
     if (result != null) {
+      log.debug("Applying result: {}", result);
       result.apply(request, response, chain);
     }
     else {
+      // else continue the chain
       chain.doFilter(request, response);
     }
   }

@@ -28,6 +28,11 @@ import io.dropwizard.jackson.Discoverable;
 public interface RequestRule
   extends Discoverable
 {
+  /**
+   * Evaluate request.
+   *
+   * @return Result to apply; or {@code null} to continue with other rule-evaluations.
+   */
   @Nullable
   RequestRuleResult evaluate(HttpServletRequest request);
 }

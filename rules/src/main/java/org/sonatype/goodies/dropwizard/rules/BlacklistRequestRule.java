@@ -14,6 +14,7 @@ package org.sonatype.goodies.dropwizard.rules;
 
 import java.util.List;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.constraints.NotNull;
@@ -48,8 +49,9 @@ public class BlacklistRequestRule
     this.reason = reason != null ? reason : DEFAULT_REASON;
   }
 
+  @Nonnull
   @Override
-  protected RequestRuleResult matched(final HttpServletRequest request) {
+  protected RequestRuleResult matched(final RequestMatcher matcher, final HttpServletRequest request) {
     return RequestRuleResults.sendError(Status.FORBIDDEN, reason);
   }
 }

@@ -24,12 +24,27 @@ import javax.servlet.http.HttpServletRequest;
  */
 public interface RequestRuleService
 {
+  /**
+   * Returns all rules.
+   */
   List<RequestRule> getRules();
 
+  /**
+   * Returns a rule of given type or {@code null} if there is none.
+   */
+  @Nullable
   <T extends RequestRule> T getRule(Class<T> type);
 
+  /**
+   * Returns a list of rules of the given type.
+   */
   <T extends RequestRule> List<T> getRules(Class<T> type);
 
+  /**
+   * Evaluate rules for given request.
+   *
+   * @return Result to apply; or {@code null} if no rules evaluated with results.
+   */
   @Nullable
   RequestRuleResult evaluate(HttpServletRequest request);
 }

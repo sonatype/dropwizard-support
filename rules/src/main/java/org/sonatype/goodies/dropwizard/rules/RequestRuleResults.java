@@ -16,6 +16,8 @@ import java.io.IOException;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.core.Response.Status;
@@ -23,6 +25,7 @@ import javax.ws.rs.core.Response.Status;
 /**
  * Helper to create standard {@link RequestRuleResult request-rule results}.
  *
+ * @see RequestRuleResult
  * @since ???
  */
 public final class RequestRuleResults
@@ -35,6 +38,9 @@ public final class RequestRuleResults
   // send-error
   //
 
+  /**
+   * Create result to {@link HttpServletResponse#sendError(int, String) send-error}.
+   */
   public static RequestRuleResult sendError(final int code, final String reason) {
     return new RequestRuleResult()
     {
@@ -52,10 +58,16 @@ public final class RequestRuleResults
     };
   }
 
+  /**
+   * @see #sendError(int, String)
+   */
   public static RequestRuleResult sendError(final Status status, final String reason) {
     return sendError(status.getStatusCode(), reason);
   }
 
+  /**
+   * @see #sendError(int, String)
+   */
   public static RequestRuleResult sendError(final Status status) {
     return sendError(status.getStatusCode(), status.getReasonPhrase());
   }
@@ -64,6 +76,9 @@ public final class RequestRuleResults
   // continue-chain
   //
 
+  /**
+   * Create result to {@link FilterChain#doFilter(ServletRequest, ServletResponse) continue-chain}.
+   */
   public static RequestRuleResult continueChain() {
     return new RequestRuleResult() {
       @Override
