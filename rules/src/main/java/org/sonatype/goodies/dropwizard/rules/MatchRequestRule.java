@@ -96,11 +96,16 @@ public abstract class MatchRequestRule
   public RequestRuleResult evaluate(final HttpServletRequest request) {
     checkNotNull(request);
 
-    log.debug("Matching: {}", request);
+    final boolean trace = log.isTraceEnabled();
+    if (trace) {
+      log.trace("Matching: {}", request);
+    }
 
     for (int i=0; i<matchers.length; i++) {
       RequestMatcher matcher = matchers[i];
-      log.debug("Matcher[{}]: {}", i, matcher);
+      if (trace) {
+        log.trace("Matcher[{}]: {}", i, matcher);
+      }
 
       if (matcher.matches(request)) {
         return matched(matcher, request);
