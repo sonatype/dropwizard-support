@@ -51,7 +51,7 @@ public class RequestRuleFilter
 
     // if there is a result then apply
     if (result != null) {
-      log.debug("Applying result: {}", result);
+      log.debug("Applying: {}", result);
       result.apply(request, response, chain);
     }
     else {

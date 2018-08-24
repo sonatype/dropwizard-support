@@ -125,15 +125,15 @@ public class RequestRuleServiceImpl
     ensureStarted();
 
     if (rules.length != 0) {
-      log.debug("Evaluating request: {}", request);
+      log.debug("Evaluating: {}", request);
 
       for (int i=0; i<rules.length; i++) {
         RequestRule rule = rules[i];
-        log.debug("Evaluating rule[{}]: {}", i, rule);
+        log.debug("Rule[{}]: {}", i, rule);
         RequestRuleResult result = rule.evaluate(request);
 
         if (result != null) {
-          log.debug("Rule result: {}", result);
+          log.debug("Result: {}", result);
           return result;
         }
       }
