@@ -36,7 +36,7 @@ import static com.google.common.base.Preconditions.checkState;
 public abstract class MatchRequestRule
   implements RequestRule
 {
-  private static final Logger log = LoggerFactory.getLogger(MatchRequestRule.class);
+  protected final Logger log = LoggerFactory.getLogger(getClass());
 
   protected final String type;
 
