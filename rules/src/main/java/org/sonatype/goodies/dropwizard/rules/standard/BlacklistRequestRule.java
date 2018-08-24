@@ -41,15 +41,21 @@ public class BlacklistRequestRule
 {
   public static final String TYPE = "blacklist";
 
+  public static final Status DEFAULT_STATUS = Status.FORBIDDEN;
+
   public static final String DEFAULT_REASON = "Blacklisted";
+
+  private final Status status;
 
   private final String reason;
 
   @JsonCreator
   public BlacklistRequestRule(@NotNull @JsonProperty("matchers") List<RequestMatcher> matchers,
+                              @Nullable @JsonProperty("status") final Status status,
                               @Nullable @JsonProperty("reason") String reason)
   {
     super(TYPE, matchers);
+    this.status = status != null ? status : DEFAULT_STATUS;
     this.reason = reason != null ? reason : DEFAULT_REASON;
     log.debug("Reason: {}", reason);
   }
@@ -57,6 +63,6 @@ public class BlacklistRequestRule
   @Nonnull
   @Override
   protected RequestRuleResult matched(final RequestMatcher matcher, final HttpServletRequest request) {
-    return RequestRuleResults.sendError(Status.FORBIDDEN, reason);
+    return RequestRuleResults.sendError(status, reason);
   }
 }
