@@ -73,11 +73,11 @@ class RequestRuleServiceImplTest
             firstRule,
             new WhitelistRequestRule([
                 new RemoteIpRequestMatcher([ '1.2.3.4' ])
-            ], null),
+            ]),
             middleRule,
             new BlacklistRequestRule([
                 new RemoteIpRequestMatcher([ '6.6.6.0' ])
-            ], null, null, null),
+            ]),
             lastRule
         ]
     )
