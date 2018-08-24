@@ -15,6 +15,7 @@ package org.sonatype.goodies.dropwizard.rules;
 import java.io.IOException;
 
 import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.core.Response.Status;
@@ -30,12 +31,16 @@ public final class RequestRuleResults
     // empty
   }
 
+  //
+  // send-error
+  //
+
   public static RequestRuleResult sendError(final int code, final String reason) {
     return new RequestRuleResult()
     {
       @Override
       public void apply(final HttpServletRequest request, final HttpServletResponse response, final FilterChain chain)
-          throws IOException
+          throws IOException, ServletException
       {
         response.sendError(code, reason);
       }
@@ -53,5 +58,25 @@ public final class RequestRuleResults
 
   public static RequestRuleResult sendError(final Status status) {
     return sendError(status.getStatusCode(), status.getReasonPhrase());
+  }
+
+  //
+  // continue-chain
+  //
+
+  public static RequestRuleResult continueChain() {
+    return new RequestRuleResult() {
+      @Override
+      public void apply(final HttpServletRequest request, final HttpServletResponse response, final FilterChain chain)
+          throws IOException, ServletException
+      {
+        chain.doFilter(request, response);
+      }
+
+      @Override
+      public String toString() {
+        return "continue-chain";
+      }
+    };
   }
 }
