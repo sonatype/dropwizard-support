@@ -53,9 +53,7 @@ public abstract class MatchRequestRule
   @Nullable
   private Meter meter;
 
-  public MatchRequestRule(final String type,
-                          final List<RequestMatcher> matchers)
-  {
+  public MatchRequestRule(final String type, final List<RequestMatcher> matchers) {
     this.type = checkNotNull(type);
     checkNotNull(matchers);
     checkState(!matchers.isEmpty(), "At least one matcher is required");
