@@ -46,13 +46,13 @@ class RequestRuleServiceImplTest
   private FilterChain chain
 
   @Mock
-  private RequestRule rule1
+  private RequestRule firstRule
 
   @Mock
-  private RequestRule rule2
+  private RequestRule middleRule
 
   @Mock
-  private RequestRule rule3
+  private RequestRule lastRule
 
   private RequestRuleServiceImpl underTest
 
@@ -60,15 +60,15 @@ class RequestRuleServiceImplTest
   void setUp() {
     def config = new RequestRuleConfiguration(
         rules: [
-            rule1,
+            firstRule,
             new WhitelistRequestRule([
                 new RemoteIpRequestMatcher([ '1.2.3.4' ])
             ]),
-            rule2,
+            middleRule,
             new BlacklistRequestRule([
                 new RemoteIpRequestMatcher([ '6.6.6.0' ])
             ], null, null),
-            rule3
+            lastRule
         ]
     )
     underTest = new RequestRuleServiceImpl(config)
@@ -90,9 +90,8 @@ class RequestRuleServiceImplTest
     result.apply(request, response, chain)
 
     verify(chain).doFilter(request, response)
-    verify(rule1).evaluate(request)
-    verifyZeroInteractions(rule2)
-    verifyZeroInteractions(rule3)
+    verify(firstRule).evaluate(request)
+    verifyZeroInteractions(middleRule, lastRule)
   }
 
   @Test
@@ -101,12 +100,13 @@ class RequestRuleServiceImplTest
 
     def result = underTest.evaluate(request)
     assert result != null
+
     result.apply(request, response, chain)
 
     verify(response).sendError(BlacklistRequestRule.DEFAULT_STATUS.statusCode, BlacklistRequestRule.DEFAULT_REASON)
-    verify(rule1).evaluate(request)
-    verify(rule2).evaluate(request)
-    verifyZeroInteractions(rule3)
+    verify(firstRule).evaluate(request)
+    verify(middleRule).evaluate(request)
+    verifyZeroInteractions(lastRule)
   }
 
   @Test
@@ -116,8 +116,8 @@ class RequestRuleServiceImplTest
     def result = underTest.evaluate(request)
     assert result == null
 
-    verify(rule1).evaluate(request)
-    verify(rule2).evaluate(request)
-    verify(rule3).evaluate(request)
+    verify(firstRule).evaluate(request)
+    verify(middleRule).evaluate(request)
+    verify(lastRule).evaluate(request)
   }
 }
