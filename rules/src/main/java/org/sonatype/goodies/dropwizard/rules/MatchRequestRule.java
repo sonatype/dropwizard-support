@@ -91,6 +91,7 @@ public abstract class MatchRequestRule
     for (int i=0; i<matchers.length; i++) {
       RequestMatcher matcher = matchers[i];
       log.debug("Matching matcher[{}]: {}", i, matcher);
+
       if (matcher.matches(request)) {
         return matched(request);
       }
