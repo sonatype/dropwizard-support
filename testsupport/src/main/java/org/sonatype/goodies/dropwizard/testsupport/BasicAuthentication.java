@@ -21,7 +21,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * Basic authentication helper.
  *
- * @since ???
+ * @since 1.0.2
  */
 public class BasicAuthentication
 {

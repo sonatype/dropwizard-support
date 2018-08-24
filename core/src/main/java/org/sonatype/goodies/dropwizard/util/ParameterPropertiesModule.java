@@ -25,7 +25,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
  *
  * Properties are used in {@link javax.inject.Named} annotations with {@code ${name:-default}} syntax.
  *
- * @since ???
+ * @since 1.0.2
  */
 public class ParameterPropertiesModule
     implements Module

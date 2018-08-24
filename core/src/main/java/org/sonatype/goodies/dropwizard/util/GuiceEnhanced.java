@@ -19,7 +19,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * Helper to cope with Guice AOP enhanced classes.
  *
- * @since ???
+ * @since 1.0.2
  */
 public final class GuiceEnhanced
 {

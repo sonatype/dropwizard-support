@@ -44,7 +44,7 @@ public class EndpointException
   /**
    * Helper to check if response carries given status.
    *
-   * @since ???
+   * @since 1.0.2
    */
   public boolean isStatus(final Status status) {
     checkNotNull(status);

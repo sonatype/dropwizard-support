@@ -62,7 +62,7 @@ public final class EndpointFactory
   }
 
   /**
-   * @since ???
+   * @since 1.0.2
    */
   @SuppressWarnings("unchecked")
   public static <T> T create(final Class<T> intf,
@@ -106,7 +106,7 @@ public final class EndpointFactory
   //
 
   /**
-   * @since ???
+   * @since 1.0.2
    */
   public static class Builder<T>
   {

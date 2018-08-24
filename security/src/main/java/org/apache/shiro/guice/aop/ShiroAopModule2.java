@@ -38,7 +38,7 @@ import org.slf4j.LoggerFactory;
  * Adds additional logic to cope with JAX-RS {@link Resource} implementations which have security AOP handled via
  * {@link ShiroAopFeature}.
  *
- * @since ???
+ * @since 1.0.2
  */
 public class ShiroAopModule2
     extends AbstractModule

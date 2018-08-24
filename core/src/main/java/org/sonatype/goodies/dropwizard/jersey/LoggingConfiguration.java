@@ -21,7 +21,7 @@ import org.glassfish.jersey.logging.LoggingFeature;
 /**
  * {@link LoggingFeature} Configuration.
  *
- * @since ???
+ * @since 1.0.2
  */
 public class LoggingConfiguration
 {

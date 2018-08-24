@@ -63,7 +63,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * Support rule for application tests.
  *
- * @since ???
+ * @since 1.0.2
  */
 public class ApplicationSupportRule<T extends ApplicationSupport<C>, C extends Configuration>
     extends ExternalResource

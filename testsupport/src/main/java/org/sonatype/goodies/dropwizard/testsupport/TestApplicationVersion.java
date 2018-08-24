@@ -17,7 +17,7 @@ import org.sonatype.goodies.dropwizard.ApplicationVersion;
 /**
  * Test {@link ApplicationVersion}.
  *
- * @since ???
+ * @since 1.0.2
  */
 public class TestApplicationVersion
     implements ApplicationVersion
