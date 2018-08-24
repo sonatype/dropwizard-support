@@ -36,7 +36,7 @@ public abstract class MatchRequestRule
 {
   private static final Logger log = LoggerFactory.getLogger(MatchRequestRule.class);
 
-  private final String type;
+  protected final String type;
 
   protected final RequestMatcher[] matchers;
 

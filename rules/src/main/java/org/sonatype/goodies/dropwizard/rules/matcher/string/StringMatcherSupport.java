@@ -24,7 +24,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 public abstract class StringMatcherSupport
     implements StringMatcher
 {
-  private final String name;
+  protected final String name;
 
   protected final String value;
 
