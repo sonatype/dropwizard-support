@@ -34,7 +34,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 public class StringMatcher2
     implements StringMatcher
 {
-  public static final String TYPE = "string";
+  public static final String TYPE = "string2";
 
   enum Function
   {
