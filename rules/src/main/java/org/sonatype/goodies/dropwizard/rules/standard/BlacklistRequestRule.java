@@ -61,6 +61,8 @@ public class BlacklistRequestRule
     log.debug("Reason: {}", reason);
   }
 
+  // TODO: add support for metrics to count matched
+
   @Nonnull
   @Override
   protected RequestRuleResult matched(final RequestMatcher matcher, final HttpServletRequest request) {

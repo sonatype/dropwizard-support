@@ -46,6 +46,8 @@ public class WhitelistRequestRule
     super(TYPE, matchers);
   }
 
+  // TODO: add support for metrics to count matched
+
   @Nonnull
   @Override
   protected RequestRuleResult matched(final RequestMatcher matcher, final HttpServletRequest request) {
