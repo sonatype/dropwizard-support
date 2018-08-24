@@ -27,7 +27,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * Match {@link HttpServletRequest#getMethod() method}.
+ * Match {@link HttpServletRequest#getMethod() request method}.
  *
  * @since ???
  */
