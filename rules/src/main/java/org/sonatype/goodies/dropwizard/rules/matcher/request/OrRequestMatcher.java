@@ -41,7 +41,7 @@ public class OrRequestMatcher
   @JsonCreator
   public OrRequestMatcher(@NotNull @JsonProperty("matchers") final List<RequestMatcher> matchers) {
     checkNotNull(matchers);
-    checkState(!matchers.isEmpty(), "At least one matcher is required");
+    checkState(matchers.size() > 1, "At least two matchers are required");
     this.matchers = matchers.toArray(new RequestMatcher[0]);
   }
 

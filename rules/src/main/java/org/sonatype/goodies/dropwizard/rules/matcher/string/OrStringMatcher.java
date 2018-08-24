@@ -38,7 +38,7 @@ public class OrStringMatcher
 
   public OrStringMatcher(@NotNull @JsonProperty("matchers") final List<StringMatcher> matchers) {
     checkNotNull(matchers);
-    checkState(!matchers.isEmpty(), "At least one matcher is required");
+    checkState(matchers.size() > 1, "At least two matchers are required");
     this.matchers = matchers.toArray(new StringMatcher[0]);
   }
 

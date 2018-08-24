@@ -15,7 +15,6 @@ package org.sonatype.goodies.dropwizard.rules.matcher.string
 import org.sonatype.goodies.testsupport.TestSupport
 
 import org.junit.Test
-import org.mockito.Mockito
 
 import static org.junit.Assert.fail
 import static org.mockito.Matchers.anyString
@@ -31,16 +30,26 @@ import static org.mockito.Mockito.when
 class OrStringMatcherTest
   extends TestSupport
 {
+  @SuppressWarnings("GroovyResultOfObjectAllocationIgnored")
   @Test
-  void 'at least one matcher required'() {
+  void 'at least 2 matchers required'() {
     try {
-      //noinspection GroovyResultOfObjectAllocationIgnored
       new OrStringMatcher([])
       fail()
     }
     catch (IllegalStateException expected) {
       log expected
     }
+
+    try {
+      new OrStringMatcher([ mock(StringMatcher.class) ])
+      fail()
+    }
+    catch (IllegalStateException expected) {
+      log expected
+    }
+
+    new OrStringMatcher([ mock(StringMatcher.class), mock(StringMatcher.class) ])
   }
 
   @Test

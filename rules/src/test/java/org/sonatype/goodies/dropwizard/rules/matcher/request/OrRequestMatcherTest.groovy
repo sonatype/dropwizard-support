@@ -33,16 +33,26 @@ import static org.mockito.Mockito.when
 class OrRequestMatcherTest
   extends TestSupport
 {
+  @SuppressWarnings("GroovyResultOfObjectAllocationIgnored")
   @Test
-  void 'at least one matcher required'() {
+  void 'at least 2 matchers required'() {
     try {
-      //noinspection GroovyResultOfObjectAllocationIgnored
-      new AndRequestMatcher([])
+      new OrRequestMatcher([])
       fail()
     }
     catch (IllegalStateException expected) {
       log expected
     }
+
+    try {
+      new OrRequestMatcher([ mock(RequestMatcher.class) ])
+      fail()
+    }
+    catch (IllegalStateException expected) {
+      log expected
+    }
+
+    new OrRequestMatcher([ mock(RequestMatcher.class), mock(RequestMatcher.class) ])
   }
 
   @Test

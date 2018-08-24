@@ -20,11 +20,6 @@ import org.sonatype.goodies.testsupport.TestSupport
 import org.junit.Test
 
 import static org.junit.Assert.fail
-import static org.mockito.Matchers.any
-import static org.mockito.Matchers.anyString
-import static org.mockito.Matchers.anyString
-import static org.mockito.Matchers.anyString
-import static org.mockito.Matchers.anyString
 import static org.mockito.Mockito.mock
 import static org.mockito.Mockito.times
 import static org.mockito.Mockito.verify
@@ -37,16 +32,26 @@ import static org.mockito.Mockito.when
 class AndRequestMatcherTest
   extends TestSupport
 {
+  @SuppressWarnings("GroovyResultOfObjectAllocationIgnored")
   @Test
-  void 'at least one matcher required'() {
+  void 'at least 2 matchers required'() {
     try {
-      //noinspection GroovyResultOfObjectAllocationIgnored
       new AndRequestMatcher([])
       fail()
     }
     catch (IllegalStateException expected) {
       log expected
     }
+
+    try {
+      new AndRequestMatcher([ mock(RequestMatcher.class) ])
+      fail()
+    }
+    catch (IllegalStateException expected) {
+      log expected
+    }
+
+    new AndRequestMatcher([ mock(RequestMatcher.class), mock(RequestMatcher.class) ])
   }
 
   @Test
