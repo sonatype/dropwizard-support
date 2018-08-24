@@ -42,6 +42,8 @@ public class RegexStringMatcher
 
   private int flags = 0;
 
+  private boolean invert;
+
   @JsonCreator
   public RegexStringMatcher(@NotNull @JsonProperty("pattern") final String pattern) {
     this.pattern = checkNotNull(pattern);
@@ -93,12 +95,18 @@ public class RegexStringMatcher
     flag(Pattern.UNIX_LINES, enable);
   }
 
+  @JsonProperty
+  public void setInvert(final boolean invert) {
+    this.invert = invert;
+  }
+
   @VisibleForTesting
   boolean doMatch(final String subject) {
     if (compiled == null) {
       compiled = Pattern.compile(pattern, flags);
     }
-    return compiled.matcher(subject).matches();
+    boolean match = compiled.matcher(subject).matches();
+    return invert != match;
   }
 
   @Override

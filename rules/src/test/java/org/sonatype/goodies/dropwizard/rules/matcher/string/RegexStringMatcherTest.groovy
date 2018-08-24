@@ -25,6 +25,7 @@ class RegexStringMatcherTest
   @Test
   void 'case-sensitive'() {
     def underTest = new RegexStringMatcher('.+bar.+')
+
     assert underTest.matches('foo bar baz')
     assert !underTest.matches('FOO BAR BAZ')
     assert underTest.matches('a b c foo bar baz')
@@ -34,14 +35,42 @@ class RegexStringMatcherTest
   }
 
   @Test
+  void 'case-sensitive inverted'() {
+    def underTest = new RegexStringMatcher('.+bar.+')
+    underTest.invert = true
+
+    assert !underTest.matches('foo bar baz')
+    assert underTest.matches('FOO BAR BAZ')
+    assert !underTest.matches('a b c foo bar baz')
+    assert underTest.matches('A B C FOO BAR BAZ')
+    assert underTest.matches('a b c')
+    assert underTest.matches('A B C')
+  }
+
+  @Test
   void 'ignore-case'() {
     def underTest = new RegexStringMatcher('.+bar.+')
     underTest.ignoreCase = true
+
     assert underTest.matches('foo bar baz')
     assert underTest.matches('FOO BAR BAZ')
     assert underTest.matches('a b c foo bar baz')
     assert underTest.matches('A B C FOO BAR BAZ')
     assert !underTest.matches('a b c')
     assert !underTest.matches('A B C')
+  }
+
+  @Test
+  void 'ignore-case inverted'() {
+    def underTest = new RegexStringMatcher('.+bar.+')
+    underTest.ignoreCase = true
+    underTest.invert = true
+
+    assert !underTest.matches('foo bar baz')
+    assert !underTest.matches('FOO BAR BAZ')
+    assert !underTest.matches('a b c foo bar baz')
+    assert !underTest.matches('A B C FOO BAR BAZ')
+    assert underTest.matches('a b c')
+    assert underTest.matches('A B C')
   }
 }
