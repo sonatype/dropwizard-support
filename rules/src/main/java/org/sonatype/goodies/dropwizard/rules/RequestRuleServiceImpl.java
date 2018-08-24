@@ -41,6 +41,7 @@ public class RequestRuleServiceImpl
 {
   private final RequestRuleConfiguration config;
 
+  @Nullable
   private RequestRule[] rules;
 
   @Inject
@@ -106,6 +107,10 @@ public class RequestRuleServiceImpl
     ensureStarted();
     checkNotNull(type);
 
+    if (rules == null) {
+      return Collections.emptyList();
+    }
+
     List<T> result = new ArrayList<>();
     for (RequestRule rule : rules) {
       if (type.isAssignableFrom(rule.getClass())) {
@@ -122,7 +127,7 @@ public class RequestRuleServiceImpl
     checkNotNull(request);
     ensureStarted();
 
-    if (rules.length != 0) {
+    if (rules != null && rules.length != 0) {
       final boolean trace = log.isTraceEnabled();
 
       if (trace) {

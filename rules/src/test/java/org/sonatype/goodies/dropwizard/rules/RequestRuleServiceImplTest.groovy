@@ -22,7 +22,6 @@ import org.sonatype.goodies.dropwizard.rules.standard.WhitelistRequestRule
 import org.sonatype.goodies.testsupport.TestSupport
 
 import org.junit.After
-import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
 
@@ -56,8 +55,19 @@ class RequestRuleServiceImplTest
 
   private RequestRuleServiceImpl underTest
 
-  @Before
-  void setUp() {
+  @After
+  void tearDown() {
+    underTest?.stop()
+  }
+
+  @Test
+  void 'missing rules'() {
+    underTest = new RequestRuleServiceImpl(new RequestRuleConfiguration())
+    underTest.start()
+    assert underTest.evaluate(request) == null
+  }
+
+  private void configureWhiteBlackList() {
     def config = new RequestRuleConfiguration(
         rules: [
             firstRule,
@@ -75,13 +85,10 @@ class RequestRuleServiceImplTest
     underTest.start()
   }
 
-  @After
-  void tearDown() {
-    underTest.stop()
-  }
-
   @Test
   void 'whitelisted request'() {
+    configureWhiteBlackList()
+
     when(request.getRemoteAddr()).thenReturn('1.2.3.4')
 
     def result = underTest.evaluate(request)
@@ -96,6 +103,8 @@ class RequestRuleServiceImplTest
 
   @Test
   void 'blacklisted request'() {
+    configureWhiteBlackList()
+
     when(request.getRemoteAddr()).thenReturn('6.6.6.0')
 
     def result = underTest.evaluate(request)
@@ -111,6 +120,8 @@ class RequestRuleServiceImplTest
 
   @Test
   void 'nothing matched'() {
+    configureWhiteBlackList()
+
     when(request.getRemoteAddr()).thenReturn('8.8.8.8')
 
     def result = underTest.evaluate(request)
