@@ -10,14 +10,20 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
-package org.sonatype.goodies.dropwizard.rules;
+package org.sonatype.goodies.dropwizard.rules.standard;
 
 import java.util.List;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.constraints.NotNull;
+import javax.ws.rs.core.Response.Status;
 
+import org.sonatype.goodies.dropwizard.rules.MatchRequestRule;
+import org.sonatype.goodies.dropwizard.rules.RequestRule;
+import org.sonatype.goodies.dropwizard.rules.RequestRuleResult;
+import org.sonatype.goodies.dropwizard.rules.RequestRuleResults;
 import org.sonatype.goodies.dropwizard.rules.matcher.request.RequestMatcher;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -25,26 +31,31 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * Whitelist {@link RequestRule}.
- *
- * When used together with {@link BlacklistRequestRule blacklist-rule} this should be configured first.
+ * Blacklist {@link RequestRule}.
  *
  * @since ???
  */
-@JsonTypeName(WhitelistRequestRule.TYPE)
-public class WhitelistRequestRule
+@JsonTypeName(BlacklistRequestRule.TYPE)
+public class BlacklistRequestRule
     extends MatchRequestRule
 {
-  public static final String TYPE = "whitelist";
+  public static final String TYPE = "blacklist";
+
+  public static final String DEFAULT_REASON = "Blacklisted";
+
+  private final String reason;
 
   @JsonCreator
-  public WhitelistRequestRule(@NotNull @JsonProperty("matchers") List<RequestMatcher> matchers) {
+  public BlacklistRequestRule(@NotNull @JsonProperty("matchers") List<RequestMatcher> matchers,
+                              @Nullable @JsonProperty("reason") String reason)
+  {
     super(TYPE, matchers);
+    this.reason = reason != null ? reason : DEFAULT_REASON;
   }
 
   @Nonnull
   @Override
   protected RequestRuleResult matched(final RequestMatcher matcher, final HttpServletRequest request) {
-    return RequestRuleResults.continueChain();
+    return RequestRuleResults.sendError(Status.FORBIDDEN, reason);
   }
 }

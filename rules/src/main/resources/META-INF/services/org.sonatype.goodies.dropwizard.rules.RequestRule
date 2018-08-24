@@ -1,2 +1,2 @@
-org.sonatype.goodies.dropwizard.rules.WhitelistRequestRule
-org.sonatype.goodies.dropwizard.rules.BlacklistRequestRule
+org.sonatype.goodies.dropwizard.rules.standard.WhitelistRequestRule
+org.sonatype.goodies.dropwizard.rules.standard.BlacklistRequestRule
