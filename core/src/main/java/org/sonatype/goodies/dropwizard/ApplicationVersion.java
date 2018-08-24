@@ -37,7 +37,7 @@ public interface ApplicationVersion
   /**
    * Returns application build-notes.
    *
-   * @since ???
+   * @since 1.0.2
    */
   String getBuildNotes();
 }

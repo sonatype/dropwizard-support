@@ -38,7 +38,7 @@ public final class ResponseAssert
   }
 
   /**
-   * @since ???
+   * @since 1.0.2
    */
   public static void assertStatus(final Response response, final int status) {
     assertThat(response.getStatus(), is(status));
@@ -49,7 +49,7 @@ public final class ResponseAssert
   }
 
   /**
-   * @since ???
+   * @since 1.0.2
    */
   public static <T> void assertEntity(final Response response, final Class<T> type, final Consumer<T> validator) {
     assertThat(response.hasEntity(), is(true));

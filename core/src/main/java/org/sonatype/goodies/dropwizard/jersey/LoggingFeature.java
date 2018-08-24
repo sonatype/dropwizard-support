@@ -28,7 +28,7 @@ import static com.google.common.base.Preconditions.checkState;
  *
  * Wrapper around {@link org.glassfish.jersey.logging.LoggingFeature} to limit configuration types exposed.
  *
- * @since ???
+ * @since 1.0.2
  */
 public class LoggingFeature
     implements Feature

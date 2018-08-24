@@ -20,7 +20,7 @@ import org.apache.shiro.subject.Subject;
 /**
  * {@link Subject} helper.
  *
- * @since ???
+ * @since 1.0.2
  */
 public final class SubjectHelper
 {

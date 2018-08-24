@@ -19,7 +19,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * String helpers.
  *
- * @since ???
+ * @since 1.0.2
  */
 public final class MoreStrings
 {

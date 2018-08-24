@@ -24,7 +24,7 @@ import org.apache.shiro.subject.Subject;
  *
  * Special handling for anonymous/guest subjects.
  *
- * @since ???
+ * @since 1.0.2
  */
 public final class SubjectCacheKey
 {

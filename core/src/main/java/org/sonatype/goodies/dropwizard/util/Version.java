@@ -60,7 +60,7 @@ public class Version
   }
 
   /**
-   * @since ???
+   * @since 1.0.2
    */
   public Version(@Nullable final URL resource) {
     this.resource = resource;
@@ -72,7 +72,7 @@ public class Version
   }
 
   /**
-   * @since ???
+   * @since 1.0.2
    */
   @VisibleForTesting
   protected Properties load() {
@@ -125,7 +125,7 @@ public class Version
   }
 
   /**
-   * @since ???
+   * @since 1.0.2
    */
   public String getNotes() {
     return property(NOTES);
