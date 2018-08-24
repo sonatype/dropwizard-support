@@ -23,6 +23,8 @@ import org.sonatype.goodies.dropwizard.util.MoreStrings;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.google.common.annotations.VisibleForTesting;
+import com.google.common.collect.ImmutableSet;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -45,6 +47,11 @@ public class MethodRequestMatcher
     for (String method : methods) {
       this.methods.add(MoreStrings.upper(method));
     }
+  }
+
+  @VisibleForTesting
+  public MethodRequestMatcher(final String... methods) {
+    this(ImmutableSet.copyOf(methods));
   }
 
   @Override

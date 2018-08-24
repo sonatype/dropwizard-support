@@ -36,7 +36,7 @@ class MethodRequestMatcherTest
     def request = mock(HttpServletRequest.class)
     when(request.getMethod()).thenReturn(HttpMethod.GET)
 
-    def underTest = new MethodRequestMatcher([ HttpMethod.GET ] as Set)
+    def underTest = new MethodRequestMatcher(HttpMethod.GET)
 
     assert underTest.matches(request)
 
@@ -49,7 +49,7 @@ class MethodRequestMatcherTest
     def request = mock(HttpServletRequest.class)
     when(request.getMethod()).thenReturn(HttpMethod.POST)
 
-    def underTest = new MethodRequestMatcher([ HttpMethod.GET, HttpMethod.POST ] as Set)
+    def underTest = new MethodRequestMatcher(HttpMethod.GET, HttpMethod.POST)
 
     assert underTest.matches(request)
 
@@ -62,7 +62,7 @@ class MethodRequestMatcherTest
     def request = mock(HttpServletRequest.class)
     when(request.getMethod()).thenReturn('gET')
 
-    def underTest = new MethodRequestMatcher([ 'Get' ] as Set)
+    def underTest = new MethodRequestMatcher('Get')
 
     assert underTest.matches(request)
 
