@@ -25,6 +25,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.checkState;
 
 /**
  * Support for {@link RequestRule} that applies a list of {@link RequestMatcher matchers}.
@@ -43,6 +44,7 @@ public abstract class MatchRequestRule
   public MatchRequestRule(final String type, final List<RequestMatcher> matchers) {
     this.type = checkNotNull(type);
     checkNotNull(matchers);
+    checkState(!matchers.isEmpty(), "At least one matcher is required");
     log.debug("Matchers: {}", matchers);
     this.matchers = matchers.toArray(new RequestMatcher[0]);
   }
