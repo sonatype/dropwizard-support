@@ -22,7 +22,7 @@ import com.google.common.annotations.Beta;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-// HACK: experimenting with other means to make matchers
+// HACK: experimenting with other means to make matchers; more concise impl but more verbose configuration :-\
 
 /**
  * ???
