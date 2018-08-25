@@ -48,11 +48,7 @@ public class HeaderRequestMatcher
 
   @Override
   public boolean matches(final HttpServletRequest request) {
-    String value = request.getHeader(name);
-    if (value != null) {
-      return matcher.matches(value);
-    }
-    return false;
+    return matcher.matches(request.getHeader(name));
   }
 
   @Override

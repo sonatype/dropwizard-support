@@ -58,4 +58,17 @@ class HeaderRequestMatcherTest
     verify(request, times(1)).getHeader(USER_AGENT)
     verifyNoMoreInteractions(request)
   }
+
+  @Test
+  void 'match miss when value null'() {
+    def request = mock(HttpServletRequest.class)
+    when(request.getHeader(USER_AGENT)).thenReturn(null)
+
+    def underTest = new HeaderRequestMatcher(USER_AGENT, new ContainsStringMatcher('foo', false))
+
+    assert !underTest.matches(request)
+
+    verify(request, times(1)).getHeader(USER_AGENT)
+    verifyNoMoreInteractions(request)
+  }
 }
