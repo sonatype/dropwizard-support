@@ -42,6 +42,7 @@ public class RequestRuleServiceImpl
 {
   private final RequestRuleConfiguration config;
 
+  @Nullable
   private final Injector injector;
 
   @Nullable
