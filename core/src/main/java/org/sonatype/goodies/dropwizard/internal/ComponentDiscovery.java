@@ -74,6 +74,7 @@ public class ComponentDiscovery
   /**
    * Locate components for given type with optional specific qualifier annotation.
    */
+  @SuppressWarnings("unchecked")
   private <Q extends Annotation, C> Iterable<BeanEntry<Q, C>> locate(final Class<C> type, @Nullable final Class<Q> annotation) {
     List<BeanEntry<Q, C>> result = new ArrayList<>();
 
@@ -86,7 +87,6 @@ public class ComponentDiscovery
     }
 
     for (BeanEntry entry : locator.locate(key)) {
-      //noinspection unchecked
       result.add(entry);
     }
 
