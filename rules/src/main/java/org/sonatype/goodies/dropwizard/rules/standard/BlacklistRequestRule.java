@@ -15,10 +15,10 @@ package org.sonatype.goodies.dropwizard.rules.standard;
 import java.util.List;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.constraints.NotNull;
 import javax.ws.rs.core.Response.Status;
+import javax.ws.rs.core.Response.StatusType;
 
 import org.sonatype.goodies.dropwizard.rules.MatchRequestRule;
 import org.sonatype.goodies.dropwizard.rules.RequestRule;
@@ -43,12 +43,12 @@ public class BlacklistRequestRule
 {
   public static final String TYPE = "blacklist";
 
-  public static final Status DEFAULT_STATUS = Status.FORBIDDEN;
+  public static final StatusType DEFAULT_STATUS = Status.FORBIDDEN;
 
   public static final String DEFAULT_REASON = "Blacklisted";
 
   @JsonProperty
-  private Status status = DEFAULT_STATUS;
+  private StatusType status = DEFAULT_STATUS;
 
   @JsonProperty
   private String reason = DEFAULT_REASON;
@@ -59,7 +59,7 @@ public class BlacklistRequestRule
     this.status = status != null ? status : DEFAULT_STATUS;
   }
 
-  public Status getStatus() {
+  public StatusType getStatus() {
     return status;
   }
 

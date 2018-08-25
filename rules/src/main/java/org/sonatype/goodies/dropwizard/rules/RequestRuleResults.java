@@ -20,7 +20,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.ws.rs.core.Response.Status;
+import javax.ws.rs.core.Response.StatusType;
 
 /**
  * Helper to create standard {@link RequestRuleResult request-rule results}.
@@ -61,14 +61,14 @@ public final class RequestRuleResults
   /**
    * @see #sendError(int, String)
    */
-  public static RequestRuleResult sendError(final Status status, final String reason) {
+  public static RequestRuleResult sendError(final StatusType status, final String reason) {
     return sendError(status.getStatusCode(), reason);
   }
 
   /**
    * @see #sendError(int, String)
    */
-  public static RequestRuleResult sendError(final Status status) {
+  public static RequestRuleResult sendError(final StatusType status) {
     return sendError(status.getStatusCode(), status.getReasonPhrase());
   }
 

@@ -14,7 +14,7 @@ package org.sonatype.goodies.dropwizard.client.endpoint;
 
 import javax.ws.rs.ClientErrorException;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.Status;
+import javax.ws.rs.core.Response.StatusType;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -46,7 +46,7 @@ public class EndpointException
    *
    * @since 1.0.2
    */
-  public boolean isStatus(final Status status) {
+  public boolean isStatus(final StatusType status) {
     checkNotNull(status);
     return getResponse().getStatus() == status.getStatusCode();
   }
