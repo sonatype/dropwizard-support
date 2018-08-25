@@ -139,7 +139,10 @@ public class RegexStringMatcher
   }
 
   @Override
-  public boolean matches(final String string) {
+  public boolean matches(@Nullable final String string) {
+    if (string == null) {
+      return false;
+    }
     return doMatch(string);
   }
 }

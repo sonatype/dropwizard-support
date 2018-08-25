@@ -14,6 +14,7 @@ package org.sonatype.goodies.dropwizard.rules.matcher.string;
 
 import java.util.List;
 
+import javax.annotation.Nullable;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -43,7 +44,7 @@ public class AndStringMatcher
   }
 
   @Override
-  public boolean matches(final String string) {
+  public boolean matches(@Nullable final String string) {
     for (StringMatcher matcher : matchers) {
       if (!matcher.matches(string)) {
         return false;

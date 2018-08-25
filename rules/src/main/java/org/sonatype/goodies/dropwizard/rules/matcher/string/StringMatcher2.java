@@ -12,6 +12,7 @@
  */
 package org.sonatype.goodies.dropwizard.rules.matcher.string;
 
+import javax.annotation.Nullable;
 import javax.validation.constraints.NotNull;
 
 import org.sonatype.goodies.dropwizard.util.MoreStrings;
@@ -82,7 +83,10 @@ public class StringMatcher2
    * If {@link #ignoreCase} then the given string is converted to lower-case before evaluating function.
    */
   @Override
-  public boolean matches(final String string) {
+  public boolean matches(@Nullable final String string) {
+    if (string == null) {
+      return false;
+    }
     if (ignoreCase) {
       return function.matches(value, MoreStrings.lower(string));
     }

@@ -12,6 +12,8 @@
  */
 package org.sonatype.goodies.dropwizard.rules.matcher.string;
 
+import javax.annotation.Nullable;
+
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 import io.dropwizard.jackson.Discoverable;
@@ -30,5 +32,5 @@ public interface StringMatcher
    *
    * @return {@code true} if string matches.
    */
-  boolean matches(String string);
+  boolean matches(@Nullable String string);
 }

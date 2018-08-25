@@ -12,6 +12,7 @@
  */
 package org.sonatype.goodies.dropwizard.rules.matcher.string;
 
+import javax.annotation.Nullable;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -37,7 +38,7 @@ public class NotStringMatcher
   }
 
   @Override
-  public boolean matches(final String string) {
+  public boolean matches(@Nullable final String string) {
     return !matcher.matches(string);
   }
 

@@ -12,6 +12,8 @@
  */
 package org.sonatype.goodies.dropwizard.rules.matcher.string;
 
+import javax.annotation.Nullable;
+
 import org.sonatype.goodies.dropwizard.util.MoreStrings;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -48,7 +50,10 @@ public abstract class StringMatcherSupport
    * If {@link #ignoreCase} then the given string is converted to lower-case before calling {@link #doMatch(String)}.
    */
   @Override
-  public boolean matches(final String string) {
+  public boolean matches(@Nullable final String string) {
+    if (string == null) {
+      return false;
+    }
     if (ignoreCase) {
       return doMatch(MoreStrings.lower(string));
     }
