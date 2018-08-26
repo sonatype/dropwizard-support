@@ -15,6 +15,7 @@ package org.sonatype.goodies.dropwizard.testsupport;
 import java.util.function.Consumer;
 
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.StatusType;
 
 import com.google.common.net.HttpHeaders;
 
@@ -42,6 +43,13 @@ public final class ResponseAssert
    */
   public static void assertStatus(final Response response, final int status) {
     assertThat(response.getStatus(), is(status));
+  }
+
+  /**
+   * @since ???
+   */
+  public static void assertStatus(final Response response, final StatusType status) {
+    assertThat(response.getStatus(), is(status.getStatusCode()));
   }
 
   public static void assertContentType(final Response response, final String mediaType) {
