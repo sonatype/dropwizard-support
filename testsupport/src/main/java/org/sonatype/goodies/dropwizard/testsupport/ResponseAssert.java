@@ -34,6 +34,9 @@ public final class ResponseAssert
     // empty
   }
 
+  /**
+   * @since ???
+   */
   public static void assertStatus(final Response response, final StatusType status) {
     assertThat(response.getStatus(), is(status.getStatusCode()));
   }
@@ -43,13 +46,6 @@ public final class ResponseAssert
    */
   public static void assertStatus(final Response response, final int status) {
     assertThat(response.getStatus(), is(status));
-  }
-
-  /**
-   * @since ???
-   */
-  public static void assertStatus(final Response response, final StatusType status) {
-    assertThat(response.getStatus(), is(status.getStatusCode()));
   }
 
   public static void assertContentType(final Response response, final String mediaType) {
