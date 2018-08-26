@@ -36,19 +36,19 @@ class MatchRequestRuleTest
   @Mock
   RequestRuleResult ruleResult
 
+  private static RequestMatcher createMatcher(final boolean matched) {
+    return new RequestMatcher() {
+      @Override
+      boolean matches(final HttpServletRequest request) {
+        return matched
+      }
+    }
+  }
+
   @Test
   void 'matched request ticks meter'() {
     def metrics = new MetricRegistry()
-    def matchers = [
-        new RequestMatcher() {
-          @Override
-          boolean matches(final HttpServletRequest request) {
-            return true
-          }
-        }
-    ]
-
-    MatchRequestRule underTest = new MatchRequestRule('test', matchers) {
+    MatchRequestRule underTest = new MatchRequestRule('test', [ createMatcher(true) ]) {
       @Override
       protected RequestRuleResult matched(final RequestMatcher matcher, final HttpServletRequest request) {
         return ruleResult
@@ -68,16 +68,7 @@ class MatchRequestRuleTest
   @Test
   void 'non-matched request does not tick meter'() {
     def metrics = new MetricRegistry()
-    def matchers = [
-        new RequestMatcher() {
-          @Override
-          boolean matches(final HttpServletRequest request) {
-            return false
-          }
-        }
-    ]
-
-    MatchRequestRule underTest = new MatchRequestRule('test', matchers) {
+    MatchRequestRule underTest = new MatchRequestRule('test', [ createMatcher(false) ]) {
       @Override
       protected RequestRuleResult matched(final RequestMatcher matcher, final HttpServletRequest request) {
         return null
