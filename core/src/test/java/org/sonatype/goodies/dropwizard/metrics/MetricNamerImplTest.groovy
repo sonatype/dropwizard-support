@@ -17,6 +17,11 @@ import org.sonatype.goodies.testsupport.TestSupport
 import org.junit.Before
 import org.junit.Test
 
+import static org.sonatype.goodies.dropwizard.metrics.MetricNamerImpl.CLASS
+import static org.sonatype.goodies.dropwizard.metrics.MetricNamerImpl.METHOD
+import static org.sonatype.goodies.dropwizard.metrics.MetricNamerImpl.NAME
+import static org.sonatype.goodies.dropwizard.metrics.MetricNamerImpl.SIMPLE_CLASS
+
 /**
  * {@link MetricNamerImpl} tests.
  */
@@ -50,15 +55,15 @@ class MetricNamerImplTest
     def method = Example1.class.getDeclaredMethod('test1')
     def type = method.declaringClass
 
-    underTest.applyFormat(method, '', type, 'test.#class.#method').with {
+    underTest.applyFormat(method, '', type, "test.${CLASS}.${METHOD}").with {
       assert it == "test.${type.name}.test1"
     }
 
-    underTest.applyFormat(method, '', type, 'test.#simpleClass.#method').with {
+    underTest.applyFormat(method, '', type, "test.${SIMPLE_CLASS}.${METHOD}").with {
       assert it == "test.${type.simpleName}.test1"
     }
 
-    underTest.applyFormat(method, 'foo', type, 'test.#simpleClass.#name').with {
+    underTest.applyFormat(method, 'foo', type, "test.${SIMPLE_CLASS}.${NAME}").with {
       assert it == "test.${type.simpleName}.foo"
     }
   }
