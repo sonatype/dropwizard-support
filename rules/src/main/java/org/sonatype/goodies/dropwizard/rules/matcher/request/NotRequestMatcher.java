@@ -39,6 +39,10 @@ public class NotRequestMatcher
     this.matcher = checkNotNull(matcher);
   }
 
+  public RequestMatcher getMatcher() {
+    return matcher;
+  }
+
   @Override
   public boolean matches(final HttpServletRequest request) {
     return !matcher.matches(request);

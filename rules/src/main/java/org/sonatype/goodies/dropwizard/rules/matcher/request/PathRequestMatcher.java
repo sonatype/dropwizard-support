@@ -41,6 +41,10 @@ public class PathRequestMatcher
     this.matcher = checkNotNull(matcher);
   }
 
+  public StringMatcher getMatcher() {
+    return matcher;
+  }
+
   @Override
   public boolean matches(final HttpServletRequest request) {
     return matcher.matches(request.getRequestURI());

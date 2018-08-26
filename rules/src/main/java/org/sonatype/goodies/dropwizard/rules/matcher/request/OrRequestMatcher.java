@@ -12,6 +12,7 @@
  */
 package org.sonatype.goodies.dropwizard.rules.matcher.request;
 
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -43,6 +44,10 @@ public class OrRequestMatcher
     checkNotNull(matchers);
     checkState(matchers.size() > 1, "At least two matchers are required");
     this.matchers = matchers.toArray(new RequestMatcher[0]);
+  }
+
+  public List<RequestMatcher> getMatchers() {
+    return Arrays.asList(matchers);
   }
 
   @Override
