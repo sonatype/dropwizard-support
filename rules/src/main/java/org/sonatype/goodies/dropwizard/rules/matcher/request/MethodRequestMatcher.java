@@ -54,6 +54,10 @@ public class MethodRequestMatcher
     this(ImmutableSet.copyOf(methods));
   }
 
+  public Set<String> getMethods() {
+    return ImmutableSet.copyOf(methods);
+  }
+
   @Override
   public boolean matches(final HttpServletRequest request) {
     return methods.contains(MoreStrings.upper(request.getMethod()));

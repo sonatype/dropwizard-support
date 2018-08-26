@@ -14,7 +14,10 @@ package org.sonatype.goodies.dropwizard.rules
 
 
 import javax.servlet.http.HttpServletRequest
+import javax.ws.rs.HttpMethod
 
+import org.sonatype.goodies.dropwizard.rules.matcher.request.MethodRequestMatcher
+import org.sonatype.goodies.dropwizard.rules.matcher.request.RemoteIpRequestMatcher
 import org.sonatype.goodies.dropwizard.rules.matcher.request.RequestMatcher
 import org.sonatype.goodies.testsupport.TestSupport
 
@@ -35,6 +38,58 @@ class MatchRequestRuleTest
 
   @Mock
   RequestRuleResult ruleResult
+
+  @Test
+  void 'get matcher by type'() {
+    def matchers = [
+        new MethodRequestMatcher(HttpMethod.GET),
+        new MethodRequestMatcher(HttpMethod.POST)
+    ]
+    def underTest = new MatchRequestRule('test', matchers) {
+      @Override
+      protected RequestRuleResult matched(final RequestMatcher matcher, final HttpServletRequest request) {
+        return null
+      }
+    }
+
+    underTest.getMatcher(RemoteIpRequestMatcher.class).with {
+      assert it == null
+    }
+
+    underTest.getMatcher(MethodRequestMatcher.class).with {
+      assert it != null
+      assert it.methods.contains(HttpMethod.GET)
+    }
+  }
+
+  @Test
+  void 'get matchers by type'() {
+    def matchers = [
+        new MethodRequestMatcher(HttpMethod.GET),
+        new MethodRequestMatcher(HttpMethod.POST)
+    ]
+    def underTest = new MatchRequestRule('test', matchers) {
+      @Override
+      protected RequestRuleResult matched(final RequestMatcher matcher, final HttpServletRequest request) {
+        return null
+      }
+    }
+
+    underTest.getMatchers(RemoteIpRequestMatcher.class).with {
+      assert it != null
+      assert it.isEmpty()
+    }
+
+    underTest.getMatchers(MethodRequestMatcher.class).with {
+      assert it != null
+      assert it.size() == 2
+    }
+
+    underTest.getMatchers().with {
+      assert it != null
+      assert it.size() == 2
+    }
+  }
 
   private static RequestMatcher createMatcher(final boolean matched) {
     return new RequestMatcher() {

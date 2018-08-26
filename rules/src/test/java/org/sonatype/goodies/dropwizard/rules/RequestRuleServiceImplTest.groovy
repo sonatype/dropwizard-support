@@ -67,6 +67,59 @@ class RequestRuleServiceImplTest
     assert underTest.evaluate(request) == null
   }
 
+  @Test
+  void 'get rule by type'() {
+    def config = new RequestRuleConfiguration(
+        rules: [
+            new WhitelistRequestRule([
+                new RemoteIpRequestMatcher([ '1.2.3.4' ])
+            ]),
+            new WhitelistRequestRule([
+                new RemoteIpRequestMatcher([ '5.6.7.8' ])
+            ]),
+        ]
+    )
+    underTest = new RequestRuleServiceImpl(config, null)
+    underTest.start()
+
+    underTest.getRule(BlacklistRequestRule.class) == null
+
+    def result = underTest.getRule(WhitelistRequestRule.class)
+    assert result != null
+    assert result.getMatcher(RemoteIpRequestMatcher.class).addresses.contains('1.2.3.4')
+  }
+
+  @Test
+  void 'get rules by type'() {
+    def config = new RequestRuleConfiguration(
+        rules: [
+            new WhitelistRequestRule([
+                new RemoteIpRequestMatcher([ '1.2.3.4' ])
+            ]),
+            new WhitelistRequestRule([
+                new RemoteIpRequestMatcher([ '5.6.7.8' ])
+            ]),
+        ]
+    )
+    underTest = new RequestRuleServiceImpl(config, null)
+    underTest.start()
+
+    underTest.getRules(BlacklistRequestRule.class).with {
+      assert it != null
+      assert it.isEmpty()
+    }
+
+    underTest.getRules(WhitelistRequestRule.class).with {
+      assert it != null
+      assert it.size() == 2
+    }
+
+    underTest.getRules().with {
+      assert it != null
+      assert it.size() == 2
+    }
+  }
+
   private void configureWhiteBlackList() {
     def config = new RequestRuleConfiguration(
         rules: [
