@@ -63,7 +63,7 @@ public class BlacklistRequestRule
     return status;
   }
 
-  public void setStatus(final Status status) {
+  public void setStatus(final StatusType status) {
     this.status = checkNotNull(status);
   }
 
