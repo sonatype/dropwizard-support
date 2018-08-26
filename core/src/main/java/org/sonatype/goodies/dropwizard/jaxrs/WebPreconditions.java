@@ -12,6 +12,8 @@
  */
 package org.sonatype.goodies.dropwizard.jaxrs;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Response.Status;
 
@@ -57,6 +59,17 @@ public final class WebPreconditions
     if (!expression) {
       throw new WebApplicationException(Status.NOT_FOUND);
     }
+  }
+
+  /**
+   * Throws {@link WebApplicationException} with {@link Status#NOT_FOUND} if value is null.
+   *
+   * @since ???
+   */
+  @Nonnull
+  public static <T> T checkFound(@Nullable final T value) {
+    checkFound(value != null);
+    return value;
   }
 
   //
