@@ -63,4 +63,11 @@ class IpAddressesTest
     underTest.setAddresses([' 1.2.3.4 '])
     assert underTest.match('1.2.3.4')
   }
+
+  @Test
+  void 'subnet match'() {
+    assert underTest.addAddress('1.2.3.0/24')
+    assert underTest.match('1.2.3.4')
+    assert !underTest.match('5.6.7.8')
+  }
 }
