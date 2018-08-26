@@ -12,6 +12,7 @@
  */
 package org.sonatype.goodies.dropwizard.rules.matcher.string;
 
+import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.Nullable;
@@ -41,6 +42,10 @@ public class OrStringMatcher
     checkNotNull(matchers);
     checkState(matchers.size() > 1, "At least two matchers are required");
     this.matchers = matchers.toArray(new StringMatcher[0]);
+  }
+
+  public List<StringMatcher> getMatchers() {
+    return Arrays.asList(matchers);
   }
 
   @Override

@@ -37,6 +37,10 @@ public class NotStringMatcher
     this.matcher = checkNotNull(matcher);
   }
 
+  public StringMatcher getMatcher() {
+    return matcher;
+  }
+
   @Override
   public boolean matches(@Nullable final String string) {
     return !matcher.matches(string);

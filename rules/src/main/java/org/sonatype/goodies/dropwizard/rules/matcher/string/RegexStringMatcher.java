@@ -49,6 +49,23 @@ public class RegexStringMatcher
     this.pattern = checkNotNull(pattern);
   }
 
+  public String getPattern() {
+    return pattern;
+  }
+
+  @Nullable
+  public Pattern getCompiled() {
+    return compiled;
+  }
+
+  public int getFlags() {
+    return flags;
+  }
+
+  public boolean isInvert() {
+    return invert;
+  }
+
   private void flag(final int flag, final boolean enable) {
     if (enable) {
       flags = flags | flag;

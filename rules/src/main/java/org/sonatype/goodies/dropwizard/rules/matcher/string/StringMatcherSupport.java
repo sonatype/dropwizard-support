@@ -39,6 +39,14 @@ public abstract class StringMatcherSupport
     this.ignoreCase = ignoreCase;
   }
 
+  public String getValue() {
+    return value;
+  }
+
+  public boolean isIgnoreCase() {
+    return ignoreCase;
+  }
+
   /**
    * Check if given string matches.
    */

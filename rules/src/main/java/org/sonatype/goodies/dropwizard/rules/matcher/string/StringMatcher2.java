@@ -77,6 +77,18 @@ public class StringMatcher2
     this.ignoreCase = ignoreCase;
   }
 
+  public Function getFunction() {
+    return function;
+  }
+
+  public String getValue() {
+    return value;
+  }
+
+  public boolean isIgnoreCase() {
+    return ignoreCase;
+  }
+
   /**
    * Matches given string.
    *
