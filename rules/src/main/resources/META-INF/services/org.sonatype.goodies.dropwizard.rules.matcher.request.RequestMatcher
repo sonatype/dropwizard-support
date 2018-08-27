@@ -1,0 +1,5 @@
+org.sonatype.goodies.dropwizard.rules.matcher.request.AndRequestMatcher
+org.sonatype.goodies.dropwizard.rules.matcher.request.OrRequestMatcher
+org.sonatype.goodies.dropwizard.rules.matcher.request.MethodRequestMatcher
+org.sonatype.goodies.dropwizard.rules.matcher.request.PathRequestMatcher
+org.sonatype.goodies.dropwizard.rules.matcher.request.RemoteIpRequestMatcher

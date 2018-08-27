@@ -77,6 +77,7 @@
     <module>client</module>
     <module>views</module>
     <module>security</module>
+    <module>rules</module>
     <module>datadog</module>
     <module>swagger</module>
     <module>testsupport</module>

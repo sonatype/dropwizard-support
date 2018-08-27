@@ -21,6 +21,7 @@ import com.codahale.metrics.annotation.ExceptionMetered;
 import com.codahale.metrics.annotation.Gauge;
 import com.codahale.metrics.annotation.Metered;
 import com.codahale.metrics.annotation.Timed;
+import com.google.common.annotations.VisibleForTesting;
 import com.palominolabs.metrics.guice.MetricNamer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,8 +31,8 @@ import static com.codahale.metrics.MetricRegistry.name;
 /**
  * Customized metric naming.
  *
- * @since 1.0.1
  * @see MetricNameFormat
+ * @since 1.0.1
  */
 public class MetricNamerImpl
     implements MetricNamer
@@ -41,38 +42,41 @@ public class MetricNamerImpl
   /**
    * Replaces with class-name.
    */
-  private static final String CLASS = "#class";
+  @VisibleForTesting
+  static final String CLASS = "#class";
 
   /**
    * Replaces with simple class-name.
    */
-  private static final String SIMPLE_CLASS = "#simpleClass";
+  @VisibleForTesting
+  static final String SIMPLE_CLASS = "#simpleClass";
 
   /**
    * Replaces with method-name.
    */
-  private static final String METHOD = "#method";
+  @VisibleForTesting
+  static final String METHOD = "#method";
 
   /**
    * Replaces with customized name, or if not present method-name.
    */
-  public static final String NAME = "#name";
+  @VisibleForTesting
+  static final String NAME = "#name";
 
   /**
    * Generate metric name.
+   *
+   * @since ???
    */
-  private String metricName(final Method method, final String name) {
+  @VisibleForTesting
+  String metricName(final Method method, final String name) {
     String result;
     Class<?> type = method.getDeclaringClass();
 
     // apply customized formatting if annotation is present
     MetricNameFormat format = type.getAnnotation(MetricNameFormat.class);
     if (format != null) {
-      result = format.value()
-          .replace(CLASS, type.getName())
-          .replace(SIMPLE_CLASS, type.getSimpleName())
-          .replace(METHOD, method.getName())
-          .replace(NAME, name.isEmpty() ? method.getName() : name);
+      result = applyFormat(method, name, type, format.value());
     }
     else if (name.isEmpty()) {
       result = name(type.getName(), method.getName());
@@ -86,6 +90,17 @@ public class MetricNamerImpl
     }
 
     return result;
+  }
+
+  /**
+   * @since ???
+   */
+  @VisibleForTesting
+  String applyFormat(final Method method, final String name, final Class<?> type, final String format) {
+    return format.replace(CLASS, type.getName())
+        .replace(SIMPLE_CLASS, type.getSimpleName())
+        .replace(METHOD, method.getName())
+        .replace(NAME, name.isEmpty() ? method.getName() : name);
   }
 
   @Nonnull
