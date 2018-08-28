@@ -14,6 +14,8 @@ package org.sonatype.goodies.dropwizard;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -21,8 +23,8 @@ import java.util.List;
 import org.sonatype.goodies.dropwizard.internal.ComponentDiscovery;
 import org.sonatype.goodies.dropwizard.internal.ConfigurationModule;
 import org.sonatype.goodies.dropwizard.internal.EnvironmentModule;
-import org.sonatype.goodies.dropwizard.metrics.MetricsAopModule;
 import org.sonatype.goodies.dropwizard.jersey.JerseyGuiceBridgeFeature;
+import org.sonatype.goodies.dropwizard.metrics.MetricsAopModule;
 
 import com.google.common.annotations.VisibleForTesting;
 import com.google.inject.Guice;
@@ -46,9 +48,9 @@ import static com.google.common.base.Preconditions.checkState;
 /**
  * Support for DropWizard Guice+Sisu applications.
  *
- * @since 1.0.0
  * @see ApplicationCustomizer
  * @see ComponentDiscovery
+ * @since 1.0.0
  */
 public abstract class ApplicationSupport<T extends Configuration>
     extends Application<T>
@@ -243,18 +245,13 @@ public abstract class ApplicationSupport<T extends Configuration>
     log.info("TMP: {}", resolvePath(System.getProperty("java.io.tmpdir")));
   }
 
-  private static String resolvePath(final String path) {
-    try {
-      return new File(path).getCanonicalPath();
-    }
-    catch (IOException e) {
-      throw new RuntimeException(e);
-    }
-  }
-
   @Override
   public final void run(final String... arguments) throws Exception {
     checkNotNull(arguments);
+
+    // early verification that temporary directory is valid
+    Path tmp = Files.createTempFile(getName(), ".tmp");
+    Files.delete(tmp);
 
     Runtime.getRuntime().addShutdownHook(new Thread(this::onShutdown));
     super.run(arguments);
@@ -275,5 +272,14 @@ public abstract class ApplicationSupport<T extends Configuration>
   protected void onFatalError() {
     log.error("Fatal error detected; shutting down");
     super.onFatalError();
+  }
+
+  private static String resolvePath(final String path) {
+    try {
+      return new File(path).getCanonicalPath();
+    }
+    catch (IOException e) {
+      throw new RuntimeException(e);
+    }
   }
 }
