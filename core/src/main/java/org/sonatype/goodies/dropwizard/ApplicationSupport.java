@@ -12,6 +12,8 @@
  */
 package org.sonatype.goodies.dropwizard;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -235,10 +237,19 @@ public abstract class ApplicationSupport<T extends Configuration>
     log.info("User: {}, {}, {}",
         System.getProperty("user.name"),
         System.getProperty("user.language"),
-        System.getProperty("user.home")
+        resolvePath(System.getProperty("user.home"))
     );
-    log.info("CWD: {}", System.getProperty("user.dir"));
-    log.info("TMP: {}", System.getProperty("java.io.tmpdir"));
+    log.info("CWD: {}", resolvePath(System.getProperty("user.dir")));
+    log.info("TMP: {}", resolvePath(System.getProperty("java.io.tmpdir")));
+  }
+
+  private static String resolvePath(final String path) {
+    try {
+      return new File(path).getCanonicalPath();
+    }
+    catch (IOException e) {
+      throw new RuntimeException(e);
+    }
   }
 
   @Override
