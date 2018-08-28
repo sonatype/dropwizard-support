@@ -23,6 +23,15 @@ class MoreStringsTest
   extends TestSupport
 {
   @Test
+  void 'blankToNull'() {
+    assert MoreStrings.blankToNull(null) == null
+    assert MoreStrings.blankToNull('') == null
+    assert MoreStrings.blankToNull('      ') == null
+    assert MoreStrings.blankToNull('foo') != null
+    assert MoreStrings.blankToNull('  bar  ') != null
+  }
+
+  @Test
   void 'lower'() {
     def value = 'FooBar'
     assert MoreStrings.lower(value) == 'foobar'

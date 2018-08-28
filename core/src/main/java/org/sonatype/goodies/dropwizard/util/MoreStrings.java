@@ -14,6 +14,10 @@ package org.sonatype.goodies.dropwizard.util;
 
 import java.util.Locale;
 
+import javax.annotation.Nullable;
+
+import com.google.common.base.Strings;
+
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
@@ -25,6 +29,19 @@ public final class MoreStrings
 {
   private MoreStrings() {
     // empty
+  }
+
+  /**
+   * Returns {@code true} if the given string is null or trimmed is the empty string.
+   *
+   * @since ???
+   */
+  @Nullable
+  public static String blankToNull(@Nullable final String value) {
+    if (value != null) {
+      return Strings.emptyToNull(value.trim());
+    }
+    return null;
   }
 
   /**
