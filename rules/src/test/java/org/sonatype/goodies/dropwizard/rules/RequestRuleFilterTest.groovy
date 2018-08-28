@@ -23,7 +23,6 @@ import org.junit.Test
 import org.mockito.Mock
 
 import static org.mockito.Mockito.mock
-import static org.mockito.Mockito.times
 import static org.mockito.Mockito.verify
 import static org.mockito.Mockito.verifyZeroInteractions
 import static org.mockito.Mockito.when
@@ -60,8 +59,8 @@ class RequestRuleFilterTest
 
     underTest.filter(request, response, chain)
 
-    verify(requestRuleService, times(1)).evaluate(request)
-    verify(result, times(1)).apply(request, response, chain)
+    verify(requestRuleService).evaluate(request)
+    verify(result).apply(request, response, chain)
     verifyZeroInteractions(chain)
   }
 
@@ -71,7 +70,7 @@ class RequestRuleFilterTest
 
     underTest.filter(request, response, chain)
 
-    verify(requestRuleService, times(1)).evaluate(request)
-    verify(chain, times(1)).doFilter(request, response)
+    verify(requestRuleService).evaluate(request)
+    verify(chain).doFilter(request, response)
   }
 }

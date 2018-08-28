@@ -13,7 +13,6 @@
 package org.sonatype.goodies.dropwizard.rules.matcher.request
 
 import javax.servlet.http.HttpServletRequest
-import javax.ws.rs.core.HttpHeaders
 
 import org.sonatype.goodies.dropwizard.rules.matcher.string.ContainsStringMatcher
 import org.sonatype.goodies.testsupport.TestSupport
@@ -22,7 +21,6 @@ import org.junit.Test
 
 import static javax.ws.rs.core.HttpHeaders.USER_AGENT
 import static org.mockito.Mockito.mock
-import static org.mockito.Mockito.times
 import static org.mockito.Mockito.verify
 import static org.mockito.Mockito.verifyNoMoreInteractions
 import static org.mockito.Mockito.when
@@ -42,7 +40,7 @@ class HeaderRequestMatcherTest
 
     assert underTest.matches(request)
 
-    verify(request, times(1)).getHeader(USER_AGENT)
+    verify(request).getHeader(USER_AGENT)
     verifyNoMoreInteractions(request)
   }
 
@@ -55,7 +53,7 @@ class HeaderRequestMatcherTest
 
     assert !underTest.matches(request)
 
-    verify(request, times(1)).getHeader(USER_AGENT)
+    verify(request).getHeader(USER_AGENT)
     verifyNoMoreInteractions(request)
   }
 
@@ -68,7 +66,7 @@ class HeaderRequestMatcherTest
 
     assert !underTest.matches(request)
 
-    verify(request, times(1)).getHeader(USER_AGENT)
+    verify(request).getHeader(USER_AGENT)
     verifyNoMoreInteractions(request)
   }
 }

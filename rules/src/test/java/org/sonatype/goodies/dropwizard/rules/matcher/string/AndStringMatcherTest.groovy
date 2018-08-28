@@ -19,7 +19,7 @@ import org.junit.Test
 import static org.junit.Assert.fail
 import static org.mockito.Matchers.anyString
 import static org.mockito.Mockito.mock
-import static org.mockito.Mockito.times
+import static org.mockito.Mockito.never
 import static org.mockito.Mockito.verify
 import static org.mockito.Mockito.verifyNoMoreInteractions
 import static org.mockito.Mockito.when
@@ -75,8 +75,8 @@ class AndStringMatcherTest
 
     assert underTest.matches('foo')
 
-    verify(matcher1, times(1)).matches('foo')
-    verify(matcher2, times(1)).matches('foo')
+    verify(matcher1).matches('foo')
+    verify(matcher2).matches('foo')
     verifyNoMoreInteractions(matcher1, matcher2)
   }
 
@@ -91,8 +91,8 @@ class AndStringMatcherTest
 
     assert !underTest.matches('foo')
 
-    verify(matcher1, times(1)).matches('foo')
-    verify(matcher2, times(0)).matches('foo')
+    verify(matcher1).matches('foo')
+    verify(matcher2, never()).matches('foo')
     verifyNoMoreInteractions(matcher1, matcher2)
   }
 }

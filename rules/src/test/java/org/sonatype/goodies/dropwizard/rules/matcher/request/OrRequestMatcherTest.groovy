@@ -22,6 +22,7 @@ import org.junit.Test
 import static org.junit.Assert.fail
 import static org.mockito.Matchers.any
 import static org.mockito.Mockito.mock
+import static org.mockito.Mockito.never
 import static org.mockito.Mockito.times
 import static org.mockito.Mockito.verify
 import static org.mockito.Mockito.verifyNoMoreInteractions
@@ -83,8 +84,8 @@ class OrRequestMatcherTest
 
     assert underTest.matches(request)
 
-    verify(matcher1, times(1)).matches(request)
-    verify(matcher2, times(1)).matches(request)
+    verify(matcher1).matches(request)
+    verify(matcher2).matches(request)
     verifyNoMoreInteractions(matcher1, matcher2)
   }
 
@@ -100,8 +101,8 @@ class OrRequestMatcherTest
 
     assert underTest.matches(request)
 
-    verify(matcher1, times(1)).matches(request)
-    verify(matcher2, times(0)).matches(any(HttpServletRequest.class))
+    verify(matcher1).matches(request)
+    verify(matcher2, never()).matches(any(HttpServletRequest.class))
     verifyNoMoreInteractions(matcher1, matcher2)
   }
 }

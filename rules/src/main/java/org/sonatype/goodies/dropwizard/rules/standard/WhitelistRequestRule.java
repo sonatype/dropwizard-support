@@ -15,7 +15,6 @@ package org.sonatype.goodies.dropwizard.rules.standard;
 import java.util.List;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.constraints.NotNull;
 

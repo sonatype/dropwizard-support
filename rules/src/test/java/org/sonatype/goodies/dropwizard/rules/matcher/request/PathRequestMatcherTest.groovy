@@ -20,7 +20,6 @@ import org.sonatype.goodies.testsupport.TestSupport
 import org.junit.Test
 
 import static org.mockito.Mockito.mock
-import static org.mockito.Mockito.times
 import static org.mockito.Mockito.verify
 import static org.mockito.Mockito.verifyNoMoreInteractions
 import static org.mockito.Mockito.when
@@ -40,7 +39,7 @@ class PathRequestMatcherTest
 
     assert underTest.matches(request)
 
-    verify(request, times(1)).getRequestURI()
+    verify(request).getRequestURI()
     verifyNoMoreInteractions(request)
   }
 
@@ -53,7 +52,7 @@ class PathRequestMatcherTest
 
     assert !underTest.matches(request)
 
-    verify(request, times(1)).getRequestURI()
+    verify(request).getRequestURI()
     verifyNoMoreInteractions(request)
   }
 }

@@ -21,13 +21,9 @@ import org.sonatype.goodies.testsupport.TestSupport
 
 import org.junit.Test
 
-import static javax.ws.rs.core.Response.Status.BAD_REQUEST
 import static org.mockito.Mockito.mock
 import static org.mockito.Mockito.verify
-import static org.mockito.Mockito.verifyNoMoreInteractions
 import static org.mockito.Mockito.when
-import static org.sonatype.goodies.dropwizard.rules.standard.BlacklistRequestRule.DEFAULT_REASON
-import static org.sonatype.goodies.dropwizard.rules.standard.BlacklistRequestRule.DEFAULT_STATUS
 
 /**
  * {@link WhitelistRequestRule} tests.
