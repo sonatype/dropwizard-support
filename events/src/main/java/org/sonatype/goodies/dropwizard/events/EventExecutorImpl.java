@@ -15,15 +15,16 @@ package org.sonatype.goodies.dropwizard.events;
 import java.util.concurrent.RejectedExecutionHandler;
 import java.util.concurrent.SynchronousQueue;
 import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
+import org.sonatype.goodies.dropwizard.events.EventConfiguration.EventExecutorConfiguration;
 import org.sonatype.goodies.dropwizard.service.ServiceSupport;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
+import io.dropwizard.util.Duration;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -42,36 +43,36 @@ public class EventExecutorImpl
 {
   private static final RejectedExecutionHandler CALLER_RUNS_FAILSAFE = (command, executor) -> command.run();
 
-  private final EventConfiguration configuration;
+  private final EventExecutorConfiguration configuration;
 
   private ThreadPoolExecutor threadPool;
 
   @Inject
   public EventExecutorImpl(final EventConfiguration configuration) {
-    this.configuration = checkNotNull(configuration);
+    checkNotNull(configuration);
+    this.configuration = configuration.getEventExecutorConfiguration();
+    log.debug("Configuration: {}", configuration);
   }
 
   @Override
   protected void doStart() throws Exception {
-    // TODO: expose configuration
-
+    Duration keepAlive = configuration.getKeepAlive();
     threadPool = new ThreadPoolExecutor(
-        0,
-        50,
-        60L,
-        TimeUnit.SECONDS,
-        new SynchronousQueue<>(false),
+        configuration.getCorePoolSize(),
+        configuration.getMaximumPoolSize(),
+        keepAlive.getQuantity(),
+        keepAlive.getUnit(),
+        new SynchronousQueue<>(configuration.isFairThreading()),
         new ThreadFactoryBuilder().setNameFormat("events-%d").build(),
         CALLER_RUNS_FAILSAFE
     );
-
-    // TODO: expose security/mdc handling
   }
 
   @Override
   protected void doStop() throws Exception {
     threadPool.shutdown();
-    threadPool.awaitTermination(5, TimeUnit.SECONDS);
+    Duration gracePeriod = configuration.getShutdownGracePeriod();
+    threadPool.awaitTermination(gracePeriod.getQuantity(), gracePeriod.getUnit());
     threadPool = null;
   }
 
@@ -79,6 +80,8 @@ public class EventExecutorImpl
   public void execute(final Runnable command) {
     checkNotNull(command);
     ensureStarted();
+
+    // TODO: expose security/mdc handling
 
     threadPool.execute(command);
   }
