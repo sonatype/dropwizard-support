@@ -250,8 +250,16 @@ public abstract class ApplicationSupport<T extends Configuration>
     checkNotNull(arguments);
 
     // early verification that temporary directory is valid
-    Path tmp = Files.createTempFile(getName(), ".tmp");
-    Files.delete(tmp);
+    File tmpdir = resolveFile(System.getProperty("java.io.tmpdir"));
+    try {
+      Path tmp = Files.createTempFile(getName(), ".tmp");
+      Files.delete(tmp);
+    }
+    catch (Throwable t) {
+      Error fatal = new Error("Unable to create temporary file", t);
+      System.err.printf("FATAL: %s; check that directory exists and is writable: %s%n", fatal.getMessage(), tmpdir);
+      throw fatal;
+    }
 
     Runtime.getRuntime().addShutdownHook(new Thread(this::onShutdown));
     super.run(arguments);
@@ -274,12 +282,16 @@ public abstract class ApplicationSupport<T extends Configuration>
     super.onFatalError();
   }
 
-  private static String resolvePath(final String path) {
+  private static File resolveFile(final String path) {
     try {
-      return new File(path).getCanonicalPath();
+      return new File(path).getCanonicalFile();
     }
     catch (IOException e) {
       throw new RuntimeException(e);
     }
+  }
+
+  private static String resolvePath(final String path) {
+    return resolveFile(path).getPath();
   }
 }
