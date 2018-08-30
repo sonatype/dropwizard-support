@@ -120,7 +120,7 @@ public class EventServiceImpl
     checkNotNull(event);
     ensureStarted();
 
-    log.debug("Posting: {}", event);
+    log.trace("Posting: {}", event);
     synchronous.post(event);
     asynchronous.post(event);
   }
