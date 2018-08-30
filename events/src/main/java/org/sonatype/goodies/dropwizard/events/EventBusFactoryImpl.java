@@ -24,6 +24,7 @@ import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.SubscriberExceptionHandler;
 import org.slf4j.LoggerFactory;
 
+import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.util.concurrent.MoreExecutors.directExecutor;
 
 // see: https://github.com/sonatype/nexus-public/blob/master/components/nexus-common/src/main/java/org/sonatype/nexus/common/event/EventBusFactory.java
@@ -38,17 +39,16 @@ import static com.google.common.util.concurrent.MoreExecutors.directExecutor;
 public class EventBusFactoryImpl
   implements EventBusFactory
 {
-  private EventBusFactoryImpl() {
-    // empty
-  }
-
   @Override
   public EventBus create(final String name) {
+    checkNotNull(name);
     return newEventBus(name, directExecutor());
   }
 
   @Override
   public EventBus create(final String name, final Executor executor) {
+    checkNotNull(name);
+    checkNotNull(executor);
     return newEventBus(name, executor);
   }
 
