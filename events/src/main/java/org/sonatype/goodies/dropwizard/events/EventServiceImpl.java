@@ -56,7 +56,9 @@ public class EventServiceImpl
     checkNotNull(eventBusFactory);
     checkNotNull(eventExecutor);
     this.synchronous = eventBusFactory.create("dropwizard");
+    log.debug("Synchronous: {}", synchronous);
     this.asynchronous = eventBusFactory.create("dropwizard-async", eventExecutor);
+    log.debug("Asynchronous: {}", asynchronous);
   }
 
   /**
