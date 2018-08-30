@@ -63,17 +63,17 @@ public class EventServiceImpl
   {
     @Override
     public void add(final BeanEntry<Named, EventAware> entry, final EventServiceImpl watcher) {
-      watcher._register(entry.getValue());
+      watcher.register(entry.getValue());
     }
 
     @Override
     public void remove(final BeanEntry<Named, EventAware> entry, final EventServiceImpl watcher) {
-      watcher._unregister(entry.getValue());
+      watcher.unregister(entry.getValue());
     }
   }
 
   @Override
-  protected void doStart() throws Exception {
+  protected void doStarted() throws Exception {
     beanLocator.watch(Key.get(EventAware.class, Named.class), new EventAwareMediator(), this);
   }
 
@@ -82,10 +82,6 @@ public class EventServiceImpl
     checkNotNull(handler);
     ensureStarted();
 
-    _register(handler);
-  }
-
-  private void _register(final Object handler) {
     boolean async = handler instanceof EventAware.Asynchronous;
     if (async) {
       asynchronous.register(handler);
@@ -102,10 +98,6 @@ public class EventServiceImpl
     checkNotNull(handler);
     ensureStarted();
 
-    _unregister(handler);
-  }
-
-  private void _unregister(final Object handler) {
     boolean async = handler instanceof EventAware.Asynchronous;
     if (async) {
       asynchronous.unregister(handler);

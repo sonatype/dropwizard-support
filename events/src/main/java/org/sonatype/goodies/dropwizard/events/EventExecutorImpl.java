@@ -66,6 +66,7 @@ public class EventExecutorImpl
         new ThreadFactoryBuilder().setNameFormat("events-%d").build(),
         CALLER_RUNS_FAILSAFE
     );
+    log.debug("Thread-pool: {}", threadPool);
   }
 
   @Override
