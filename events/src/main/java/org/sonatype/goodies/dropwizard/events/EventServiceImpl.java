@@ -54,8 +54,8 @@ public class EventServiceImpl
   {
     this.beanLocator = checkNotNull(beanLocator);
     checkNotNull(eventBusFactory);
-    this.synchronous = eventBusFactory.create("dropwizard");
     checkNotNull(eventExecutor);
+    this.synchronous = eventBusFactory.create("dropwizard");
     this.asynchronous = eventBusFactory.create("dropwizard-async", eventExecutor);
   }
 
