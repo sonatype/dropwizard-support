@@ -73,6 +73,7 @@ public class EventExecutorImpl
   protected void doStop() throws Exception {
     threadPool.shutdown();
     Duration gracePeriod = configuration.getShutdownGracePeriod();
+    log.debug("Awaiting termination: {}", gracePeriod);
     threadPool.awaitTermination(gracePeriod.getQuantity(), gracePeriod.getUnit());
     threadPool = null;
   }
@@ -84,6 +85,7 @@ public class EventExecutorImpl
 
     // TODO: expose security/mdc handling
 
+    log.trace("Execute: {}", command);
     threadPool.execute(command);
   }
 }
