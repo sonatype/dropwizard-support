@@ -19,12 +19,15 @@ import org.eclipse.sisu.inject.BeanLocator
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
-import org.mockito.InOrder
 import org.mockito.Mock
-import org.mockito.Mockito
 
 import static org.mockito.Matchers.anyString
-import static org.mockito.Mockito.*
+import static org.mockito.Matchers.eq
+import static org.mockito.Mockito.inOrder
+import static org.mockito.Mockito.verify
+import static org.mockito.Mockito.verifyNoMoreInteractions
+import static org.mockito.Mockito.verifyZeroInteractions
+import static org.mockito.Mockito.when
 
 /**
  * {@link EventServiceImpl} tests
