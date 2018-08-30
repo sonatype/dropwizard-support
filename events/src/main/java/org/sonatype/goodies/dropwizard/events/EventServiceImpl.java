@@ -48,11 +48,15 @@ public class EventServiceImpl
   private final EventBus asynchronous;
 
   @Inject
-  public EventServiceImpl(final BeanLocator beanLocator, final EventExecutor eventExecutor) {
+  public EventServiceImpl(final BeanLocator beanLocator,
+                          final EventBusFactory eventBusFactory,
+                          final EventExecutor eventExecutor)
+  {
     this.beanLocator = checkNotNull(beanLocator);
-    this.synchronous = EventBusFactory.create("dropwizard");
+    checkNotNull(eventBusFactory);
+    this.synchronous = eventBusFactory.create("dropwizard");
     checkNotNull(eventExecutor);
-    this.asynchronous = EventBusFactory.create("dropwizard-async", eventExecutor);
+    this.asynchronous = eventBusFactory.create("dropwizard-async", eventExecutor);
   }
 
   /**
