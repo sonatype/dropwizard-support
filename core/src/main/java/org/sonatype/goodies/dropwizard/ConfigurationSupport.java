@@ -12,6 +12,7 @@
  */
 package org.sonatype.goodies.dropwizard;
 
+import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
@@ -52,6 +53,7 @@ public class ConfigurationSupport
 
   // TODO: maybe pick a better name?
 
+  @Documented
   @Retention(RUNTIME)
   @Target({ElementType.FIELD, ElementType.METHOD})
   public @interface Bind
