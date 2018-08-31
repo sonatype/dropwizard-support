@@ -38,6 +38,9 @@ public final class HealthCheckHelper
     // empty
   }
 
+  /**
+   * Helper to return a {@link HealthCheck.Result} based on the status of an HTTP request.
+   */
   public static Result checkStatus(final WebTarget target, final Function<StatusType,Boolean> validator) {
     checkNotNull(target);
     checkNotNull(validator);
