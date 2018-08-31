@@ -27,6 +27,8 @@ public class ConfigurationModule
 {
   private final Configuration configuration;
 
+  // TODO: consider adding an annotation to adorn bits of configuration to automatically expose via injection
+
   public ConfigurationModule(final Configuration configuration) {
     this.configuration = checkNotNull(configuration);
   }

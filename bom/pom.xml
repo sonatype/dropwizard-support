@@ -495,6 +495,12 @@
 
       <dependency>
         <groupId>org.sonatype.goodies.dropwizard</groupId>
+        <artifactId>dropwizard-support-events</artifactId>
+        <version>1.0.3-SNAPSHOT</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.sonatype.goodies.dropwizard</groupId>
         <artifactId>dropwizard-support-rules</artifactId>
         <version>1.0.3-SNAPSHOT</version>
       </dependency>

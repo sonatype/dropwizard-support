@@ -47,6 +47,12 @@ public abstract class ServiceSupport
         doStart();
         started = true;
         log.debug("Started");
+        try {
+          doStarted();
+        }
+        catch (Exception e) {
+          log.warn("Started hook failed", e);
+        }
       }
     }
   }
@@ -59,6 +65,17 @@ public abstract class ServiceSupport
   }
 
   /**
+   * Custom service started logic.
+   *
+   * This is called after {@link #doStart()}, but after the started flag has been set.
+   *
+   * @since ???
+   */
+  protected void doStarted() throws Exception {
+    // empty
+  }
+
+  /**
    * Stop service if started.  Duplicate stop is ignored.
    */
   @Override
@@ -67,8 +84,14 @@ public abstract class ServiceSupport
       synchronized (this) {
         if (started) {
           doStop();
-          log.debug("Stopped");
           started = false;
+          log.debug("Stopped");
+          try {
+            doStopped();
+          }
+          catch (Exception e) {
+            log.warn("Stopped hook failed", e);
+          }
         }
       }
     }
@@ -78,6 +101,17 @@ public abstract class ServiceSupport
    * Custom service stop logic.
    */
   protected void doStop() throws Exception {
+    // empty
+  }
+
+  /**
+   * Custom service stopped logic.
+   *
+   * This is called after {@link #doStop()}, but after the started flag has been unset.
+   *
+   * @since ???
+   */
+  protected void doStopped() throws Exception {
     // empty
   }
 
