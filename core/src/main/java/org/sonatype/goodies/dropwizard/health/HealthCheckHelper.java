@@ -40,11 +40,11 @@ public final class HealthCheckHelper
 
   public static Result checkStatus(final WebTarget target, final Function<StatusType,Boolean> validator) {
     checkNotNull(target);
-    log.debug("Checking status: {}", target);
+    log.trace("Checking status: {}", target);
     Response response = target.request().get();
     try {
       StatusType status = response.getStatusInfo();
-      log.debug("Status: {}", status);
+      log.trace("Status: {}", status);
 
       Boolean healthy = validator.apply(status);
       if (healthy) {
