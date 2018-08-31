@@ -70,4 +70,14 @@ public final class HealthCheckHelper
       return Result.unhealthy(e);
     }
   }
+
+  /**
+   * Helper to return {@link Result} based on the status of an HTTP request.
+   *
+   * @see #checkStatus(WebTarget, Function)
+   */
+  public static Result checkStatus(final WebTarget target, final StatusType status) {
+    checkNotNull(status);
+    return checkStatus(target, input -> input != null && input.getStatusCode() == status.getStatusCode());
+  }
 }
