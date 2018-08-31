@@ -39,7 +39,7 @@ public final class HealthCheckHelper
   }
 
   /**
-   * Helper to return a {@link HealthCheck.Result} based on the status of an HTTP request.
+   * Helper to return a {@link Result} based on the status of an HTTP request.
    */
   public static Result checkStatus(final WebTarget target, final Function<StatusType,Boolean> validator) {
     checkNotNull(target);
@@ -54,16 +54,16 @@ public final class HealthCheckHelper
 
         Boolean healthy = validator.apply(status);
         if (healthy) {
-          return HealthCheck.Result.healthy();
+          return Result.healthy();
         }
-        return HealthCheck.Result.unhealthy("status: " + status);
+        return Result.unhealthy("status: " + status);
       }
       finally {
         response.close();
       }
     }
     catch (Exception e) {
-      return HealthCheck.Result.unhealthy(e);
+      return Result.unhealthy(e);
     }
   }
 }
