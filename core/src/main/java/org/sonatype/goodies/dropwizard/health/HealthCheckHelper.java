@@ -42,20 +42,25 @@ public final class HealthCheckHelper
     checkNotNull(target);
     checkNotNull(validator);
 
-    log.trace("Checking status: {}", target);
-    Response response = target.request().get();
     try {
-      StatusType status = response.getStatusInfo();
-      log.trace("Status: {}", status);
+      log.trace("Checking status: {}", target);
+      Response response = target.request().get();
+      try {
+        StatusType status = response.getStatusInfo();
+        log.trace("Status: {}", status);
 
-      Boolean healthy = validator.apply(status);
-      if (healthy) {
-        return HealthCheck.Result.healthy();
+        Boolean healthy = validator.apply(status);
+        if (healthy) {
+          return HealthCheck.Result.healthy();
+        }
+        return HealthCheck.Result.unhealthy("status: " + status);
       }
-      return HealthCheck.Result.unhealthy("status: " + status);
+      finally {
+        response.close();
+      }
     }
-    finally {
-      response.close();
+    catch (Exception e) {
+      return HealthCheck.Result.unhealthy(e);
     }
   }
 }
