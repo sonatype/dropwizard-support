@@ -12,6 +12,7 @@
  */
 package org.sonatype.goodies.dropwizard.events;
 
+import javax.annotation.Priority;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
@@ -35,6 +36,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
  */
 @Named
 @Singleton
+@Priority(100_000)
 public class EventServiceImpl
   extends ServiceSupport
   implements EventService

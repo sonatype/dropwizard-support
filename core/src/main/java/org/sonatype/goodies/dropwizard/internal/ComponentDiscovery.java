@@ -100,6 +100,9 @@ public class ComponentDiscovery
     return locate(type, null);
   }
 
+  // TODO: may need a better way to order managed dependencies which are started in order they are added
+  // TODO: ... atm must use @Priority to ensure order, which is a bit obnoxious
+
   /**
    * Detect {@link Managed} components.
    */
