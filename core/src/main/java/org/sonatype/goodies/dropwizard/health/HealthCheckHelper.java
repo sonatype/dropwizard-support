@@ -40,6 +40,10 @@ public final class HealthCheckHelper
 
   /**
    * Helper to return a {@link Result} based on the status of an HTTP request.
+   *
+   * @param target      HTTP target to make a GET request to.
+   * @param validator   Function to evaluate if status indicates healthy (returns {@code true}) or
+   *                    unhealthy (returns {@code false}).
    */
   public static Result checkStatus(final WebTarget target, final Function<StatusType,Boolean> validator) {
     checkNotNull(target);
@@ -53,7 +57,7 @@ public final class HealthCheckHelper
         log.trace("Status: {}", status);
 
         Boolean healthy = validator.apply(status);
-        if (healthy) {
+        if (healthy != null && healthy) {
           return Result.healthy();
         }
         return Result.unhealthy("status: " + status);
