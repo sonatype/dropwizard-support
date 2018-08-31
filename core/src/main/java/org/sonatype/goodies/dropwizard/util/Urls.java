@@ -14,9 +14,12 @@ package org.sonatype.goodies.dropwizard.util;
 
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
+import java.net.URI;
 import java.net.URL;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+
+import javax.ws.rs.core.UriBuilder;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -44,13 +47,38 @@ public final class Urls
   }
 
   /**
+   * Create a URL from URI.
+   *
+   * @since ???
+   */
+  public static URL create(final URI uri) {
+    try {
+      return uri.toURL();
+    }
+    catch (MalformedURLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  /**
+   * Create a URL from builder.
+   *
+   * @since ???
+   */
+  public static URL create(final UriBuilder builder) {
+    return create(builder.build());
+  }
+
+  private static final String UTF_8 = "UTF-8";
+
+  /**
    * URL-encode given value.
    */
   public static String encode(final String value) {
     checkNotNull(value);
 
     try {
-      return URLEncoder.encode(value, "UTF-8");
+      return URLEncoder.encode(value, UTF_8);
     }
     catch (UnsupportedEncodingException e) {
       throw new RuntimeException(e);
@@ -64,7 +92,7 @@ public final class Urls
     checkNotNull(value);
 
     try {
-      return URLDecoder.decode(value, "UTF-8");
+      return URLDecoder.decode(value, UTF_8);
     }
     catch (UnsupportedEncodingException e) {
       throw new RuntimeException(e);
