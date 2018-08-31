@@ -40,6 +40,8 @@ public final class HealthCheckHelper
 
   public static Result checkStatus(final WebTarget target, final Function<StatusType,Boolean> validator) {
     checkNotNull(target);
+    checkNotNull(validator);
+
     log.trace("Checking status: {}", target);
     Response response = target.request().get();
     try {
