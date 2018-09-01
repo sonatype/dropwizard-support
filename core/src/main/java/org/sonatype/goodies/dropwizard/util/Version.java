@@ -17,10 +17,8 @@ import java.net.URL;
 import java.util.Properties;
 
 import javax.annotation.Nullable;
-import javax.validation.constraints.Null;
 
 import com.google.common.annotations.VisibleForTesting;
-import com.sun.org.apache.regexp.internal.RE;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
