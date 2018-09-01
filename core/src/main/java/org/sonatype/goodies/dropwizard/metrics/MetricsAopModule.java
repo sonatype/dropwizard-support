@@ -16,7 +16,6 @@ import com.google.inject.AbstractModule;
 import com.palominolabs.metrics.guice.MetricsInstrumentationModule;
 import io.dropwizard.setup.Environment;
 
-import static com.codahale.metrics.MetricRegistry.name;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
