@@ -32,14 +32,14 @@ public final class MoreStrings
   }
 
   /**
-   * Returns {@code true} if the given string is null or trimmed is the empty string.
+   * Returns the given string if when trimmed it is not the empty string; {@code null} otherwise.
    *
    * @since ???
    */
   @Nullable
   public static String blankToNull(@Nullable final String value) {
     if (value != null) {
-      return Strings.emptyToNull(value.trim());
+      return Strings.emptyToNull(value.trim()) != null ? value : null;
     }
     return null;
   }

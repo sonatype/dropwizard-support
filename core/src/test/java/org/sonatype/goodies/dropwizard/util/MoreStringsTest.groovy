@@ -29,6 +29,11 @@ class MoreStringsTest
     assert MoreStrings.blankToNull('      ') == null
     assert MoreStrings.blankToNull('foo') != null
     assert MoreStrings.blankToNull('  bar  ') != null
+
+    // ensure that result is the same as given when its non-null or blank
+    '  bar  '.with {
+      assert MoreStrings.blankToNull(it) == it
+    }
   }
 
   @Test
