@@ -54,6 +54,9 @@ public class ViewSupport
     return uriInfo;
   }
 
+  /**
+   * @since ???
+   */
   protected Locale getLocale() {
     checkState(httpRequest != null);
     return httpRequest.getLocale();
