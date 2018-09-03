@@ -13,8 +13,10 @@
 package org.sonatype.goodies.dropwizard.views;
 
 import java.nio.charset.Charset;
+import java.util.Locale;
 
 import javax.annotation.Nullable;
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 
@@ -34,6 +36,9 @@ public class ViewSupport
     extends View
 {
   @Context
+  private HttpServletRequest httpRequest;
+
+  @Context
   private UriInfo uriInfo;
 
   public ViewSupport(final String templateName) {
@@ -47,6 +52,11 @@ public class ViewSupport
   protected UriInfo getUriInfo() {
     checkState(uriInfo != null);
     return uriInfo;
+  }
+
+  protected Locale getLocale() {
+    checkState(httpRequest != null);
+    return httpRequest.getLocale();
   }
 
   /**
