@@ -78,6 +78,7 @@
     <module>views</module>
     <module>security</module>
     <module>events</module>
+    <module>hibernate</module>
     <module>rules</module>
     <module>datadog</module>
     <module>swagger</module>
