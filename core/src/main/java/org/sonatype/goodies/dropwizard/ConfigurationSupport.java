@@ -22,6 +22,7 @@ import java.util.Map;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.common.annotations.Beta;
 import io.dropwizard.Configuration;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -55,7 +56,8 @@ public class ConfigurationSupport
 
   @Documented
   @Retention(RUNTIME)
-  @Target({ElementType.FIELD, ElementType.METHOD})
+  @Target({ElementType.TYPE, ElementType.FIELD, ElementType.METHOD})
+  @Beta
   public @interface Bind
   {
     Class<?> value() default Void.class;

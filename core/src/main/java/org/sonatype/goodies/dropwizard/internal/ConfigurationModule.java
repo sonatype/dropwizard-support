@@ -55,6 +55,8 @@ public class ConfigurationModule
   }
 
   private void autoBind(final Object owner) throws Exception {
+    log.debug("Auto-binding: {}", owner);
+
     Class<?> type = owner.getClass();
     for (Field field : type.getDeclaredFields()) {
       autoBind(field, owner);
@@ -66,6 +68,8 @@ public class ConfigurationModule
 
   @SuppressWarnings("unchecked")
   private void autoBind(final AccessibleObject member, final Object owner) throws Exception {
+    log.debug("Auto-binding; member: {}", member);
+
     member.setAccessible(true);
 
     Bind binding = member.getAnnotation(Bind.class);
@@ -79,15 +83,25 @@ public class ConfigurationModule
         value = field.get(owner);
       }
       else if (member instanceof Method) {
-        // TODO: sanity check method is a no-argument getter
         Method method = (Method)member;
-        type = method.getReturnType();
-        value = method.invoke(owner);
+        if (method.getParameterTypes().length != 0) {
+          log.warn("Ignoring auto-bind method with arguments: {}", method);
+          return;
+        }
+        else {
+          type = method.getReturnType();
+          if (type == Void.class) {
+            log.warn("Ignoring auto-bind method with void-return: {}", method);
+            return;
+          }
+          value = method.invoke(owner);
+        }
       }
       else {
-        throw new Error();
+        throw new Error("Invalid member: " + member);
       }
 
+      // optionally bind specific type if given
       if (binding.value() != Void.class) {
         type = binding.value();
       }
@@ -95,7 +109,12 @@ public class ConfigurationModule
       log.debug("Binding: {} -> {}", type, value);
       bind((Class)type).toInstance(value);
 
-      // TODO: apply auto-binding to value's members?
+      // maybe apply auto-binding to child value
+      if (value != null) {
+        if (value.getClass().getAnnotation(Bind.class) != null) {
+          autoBind(value);
+        }
+      }
     }
   }
 }
