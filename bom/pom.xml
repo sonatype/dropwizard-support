@@ -367,25 +367,6 @@
         <version>1.9.3</version>
       </dependency>
 
-      <!-- TODO: these webjars probably should not be here -->
-      <dependency>
-        <groupId>org.webjars</groupId>
-        <artifactId>jquery</artifactId>
-        <version>3.3.1-1</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.webjars</groupId>
-        <artifactId>bootstrap</artifactId>
-        <version>4.1.0</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.webjars</groupId>
-        <artifactId>font-awesome</artifactId>
-        <version>5.2.0</version>
-      </dependency>
-
       <dependency>
         <groupId>io.swagger</groupId>
         <artifactId>swagger-jersey2-jaxrs</artifactId>
