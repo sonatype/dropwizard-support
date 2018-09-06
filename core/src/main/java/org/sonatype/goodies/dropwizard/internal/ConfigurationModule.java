@@ -55,7 +55,7 @@ public class ConfigurationModule
   }
 
   private void autoBind(final Object owner) throws Exception {
-    log.debug("Auto-binding: {}", owner);
+    log.trace("Auto-binding: {}", owner);
 
     Class<?> type = owner.getClass();
     for (Field field : type.getDeclaredFields()) {
@@ -68,7 +68,7 @@ public class ConfigurationModule
 
   @SuppressWarnings("unchecked")
   private void autoBind(final AccessibleObject member, final Object owner) throws Exception {
-    log.debug("Auto-binding; member: {}", member);
+    log.trace("Auto-binding; member: {}", member);
 
     member.setAccessible(true);
 
@@ -106,7 +106,7 @@ public class ConfigurationModule
         type = binding.value();
       }
 
-      log.debug("Binding: {} -> {}", type, value);
+      log.trace("Binding: {} -> {}", type, value);
       bind((Class)type).toInstance(value);
 
       // maybe apply auto-binding to child value
