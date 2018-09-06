@@ -14,14 +14,14 @@
 
 -->
 <groups xmlns="http://www.isdc.ro/wro">
-    <group name="swagger-all">
-        <group-ref>swagger</group-ref>
-    </group>
+  <group name="swagger-all">
+    <group-ref>swagger</group-ref>
+  </group>
 
-    <group name="swagger">
-        <css>classpath:META-INF/resources/webjars/swagger-ui/3.13.4/swagger-ui.css</css>
-        <!-- FIXME: swagger version used, relies on modern javascript syntax which compressor doesn't seem to be able to cope with -->
-        <js minimize="false">classpath:META-INF/resources/webjars/swagger-ui/3.13.4/swagger-ui-bundle.js</js>
-        <js minimize="false">classpath:META-INF/resources/webjars/swagger-ui/3.13.4/swagger-ui-standalone-preset.js</js>
-    </group>
+  <group name="swagger">
+    <css>classpath:META-INF/resources/webjars/swagger-ui/@swagger-ui.version@/swagger-ui.css</css>
+    <!-- FIXME: swagger version used, relies on modern javascript syntax which compressor does not support -->
+    <js minimize="false">classpath:META-INF/resources/webjars/swagger-ui/@swagger-ui.version@/swagger-ui-bundle.js</js>
+    <js minimize="false">classpath:META-INF/resources/webjars/swagger-ui/@swagger-ui.version@/swagger-ui-standalone-preset.js</js>
+  </group>
 </groups>

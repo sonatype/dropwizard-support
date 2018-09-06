@@ -28,7 +28,9 @@ import io.dropwizard.setup.Environment;
 public class SwaggerBundle<T extends Configuration>
     implements ConfiguredBundle<T>
 {
-  private static final String SWAGGER_VERSION = "3.13.4";
+  // FIXME: adjust to avoid needing version here
+
+  private static final String SWAGGER_VERSION = "3.18.2";
 
   @Override
   public void initialize(final Bootstrap<?> bootstrap) {

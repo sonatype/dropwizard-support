@@ -27,6 +27,10 @@
   <name>${project.groupId}:${project.artifactId}</name>
   <packaging>jar</packaging>
 
+  <properties>
+    <swagger-ui.version>3.18.2</swagger-ui.version>
+  </properties>
+
   <dependencyManagement>
     <dependencies>
       <dependency>
@@ -53,6 +57,7 @@
     <dependency>
       <groupId>org.webjars</groupId>
       <artifactId>swagger-ui</artifactId>
+      <version>${swagger-ui.version}</version>
     </dependency>
 
     <dependency>
@@ -71,6 +76,22 @@
   <build>
     <plugins>
       <plugin>
+        <groupId>org.codehaus.gmaven</groupId>
+        <artifactId>groovy-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>execute</goal>
+            </goals>
+            <configuration>
+              <source>${project.basedir}/src/main/script/prepare_wro4j.groovy</source>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
         <groupId>ro.isdc.wro4j</groupId>
         <artifactId>wro4j-maven-plugin</artifactId>
         <executions>
@@ -83,8 +104,8 @@
               <wroManagerFactory>
                 ro.isdc.wro.maven.plugin.manager.factory.ConfigurableWroManagerFactory
               </wroManagerFactory>
-              <wroFile>${project.basedir}/src/main/config/wro.xml</wroFile>
-              <extraConfigFile>${project.basedir}/src/main/config/wro.properties</extraConfigFile>
+              <wroFile>${project.build.directory}/wro.xml</wroFile>
+              <extraConfigFile>${project.build.directory}/wro.properties</extraConfigFile>
               <targetGroups>swagger-all</targetGroups>
               <minimize>true</minimize>
               <destinationFolder>${project.build.outputDirectory}/assets</destinationFolder>
