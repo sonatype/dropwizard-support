@@ -46,7 +46,7 @@ public abstract class JsonType<T>
   /**
    * Create {@link JsonType} for {@link Class}.
    */
-  static <V> JsonType<V> create(final Class<V> type) {
+  public static <V> JsonType<V> create(final Class<V> type) {
     checkNotNull(type);
 
     return new JsonType<V>()
@@ -71,7 +71,7 @@ public abstract class JsonType<T>
   /**
    * Create {@link JsonType} for {@link TypeReference}.
    */
-  static <V> JsonType<V> create(final TypeReference<V> type) {
+  public static <V> JsonType<V> create(final TypeReference<V> type) {
     checkNotNull(type);
 
     return new JsonType<V>()
