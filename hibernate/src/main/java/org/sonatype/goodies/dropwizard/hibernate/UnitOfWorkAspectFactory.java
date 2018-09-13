@@ -12,50 +12,37 @@
  */
 package org.sonatype.goodies.dropwizard.hibernate;
 
-import java.util.concurrent.Callable;
+import javax.inject.Inject;
+import javax.inject.Named;
+import javax.inject.Singleton;
 
-import com.google.common.annotations.Beta;
-import io.dropwizard.hibernate.UnitOfWork;
+import io.dropwizard.hibernate.UnitOfWorkAspect;
+import io.dropwizard.hibernate.UnitOfWorkAwareProxyFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * {@link UnitOfWork}-aware helper.
+ * {@link UnitOfWorkAspect} factory.
  *
  * @since ???
+ * @see UnitOfWorkAwareProxyFactory#newAspect()
  */
-@Beta
-public class UnitOfWorkHelper
+@Named
+@Singleton
+public class UnitOfWorkAspectFactory
 {
-  private static final Logger log = LoggerFactory.getLogger(UnitOfWorkHelper.class);
+  private static final Logger log = LoggerFactory.getLogger(UnitOfWorkAspectFactory.class);
 
-  @UnitOfWork
-  public <V> V apply(final Callable<V> task) {
-    checkNotNull(task);
-    log.trace("Apply: {}", task);
-    try {
-      V result = task.call();
-      log.trace("Result: {}", result);
-      return result;
-    }
-    catch (Exception e) {
-      log.trace("Failed", e);
-      throw new RuntimeException(e);
-    }
+  private final UnitOfWorkAwareProxyFactory proxyFactory;
+
+  @Inject
+  public UnitOfWorkAspectFactory(final UnitOfWorkAwareProxyFactory proxyFactory) {
+    this.proxyFactory = checkNotNull(proxyFactory);
   }
 
-  @UnitOfWork
-  public void apply(final Runnable task) {
-    checkNotNull(task);
-    log.trace("Apply: {}", task);
-    try {
-      task.run();
-    }
-    catch (Exception e) {
-      log.trace("Failed", e);
-      throw new RuntimeException(e);
-    }
+  public UnitOfWorkAspect create() {
+    return proxyFactory.newAspect();
   }
 }
