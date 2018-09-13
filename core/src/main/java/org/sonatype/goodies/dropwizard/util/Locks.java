@@ -47,7 +47,7 @@ public class Locks
       }
     }
     catch (InterruptedException e) {
-      throw Throwables.propagate(e);
+      throw new RuntimeException(e);
     }
     return lock;
   }
@@ -69,6 +69,7 @@ public class Locks
       return task.call();
     }
     catch (Exception e) {
+      Throwables.throwIfUnchecked(e);
       throw new RuntimeException(e);
     }
     finally {
@@ -106,6 +107,7 @@ public class Locks
       return task.call();
     }
     catch (Exception e) {
+      Throwables.throwIfUnchecked(e);
       throw new RuntimeException(e);
     }
     finally {
