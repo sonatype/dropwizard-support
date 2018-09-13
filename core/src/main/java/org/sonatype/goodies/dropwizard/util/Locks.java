@@ -55,11 +55,12 @@ public class Locks
   /**
    * Returns locked read-lock.
    */
-  public static Lock read(final ReadWriteLock readWriteLock) {
-    checkNotNull(readWriteLock);
-    return lock(readWriteLock.readLock());
+  public static Lock read(final ReadWriteLock guard) {
+    checkNotNull(guard);
+    return lock(guard.readLock());
   }
 
+  @SuppressWarnings("Duplicates")
   public static <V> V readWith(final ReadWriteLock guard, final Callable<V> task) {
     checkNotNull(guard);
     checkNotNull(task);
@@ -93,11 +94,12 @@ public class Locks
   /**
    * Returns locked write-lock.
    */
-  public static Lock write(final ReadWriteLock readWriteLock) {
-    checkNotNull(readWriteLock);
-    return lock(readWriteLock.writeLock());
+  public static Lock write(final ReadWriteLock guard) {
+    checkNotNull(guard);
+    return lock(guard.writeLock());
   }
 
+  @SuppressWarnings("Duplicates")
   public static <V> V writeWith(final ReadWriteLock guard, final Callable<V> task) {
     checkNotNull(guard);
     checkNotNull(task);
