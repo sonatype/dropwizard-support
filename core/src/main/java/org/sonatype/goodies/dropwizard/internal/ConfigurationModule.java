@@ -106,11 +106,12 @@ public class ConfigurationModule
         type = binding.value();
       }
 
-      log.trace("Binding: {} -> {}", type, value);
-      bind((Class)type).toInstance(value);
-
-      // maybe apply auto-binding to child value
       if (value != null) {
+        // can only bind non-null value
+        log.trace("Binding: {} -> {}", type, value);
+        bind((Class)type).toInstance(value);
+
+        // maybe apply auto-binding to child value
         if (value.getClass().getAnnotation(Bind.class) != null) {
           autoBind(value);
         }
