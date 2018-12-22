@@ -414,6 +414,12 @@
       </dependency>
 
       <dependency>
+        <groupId>com.google.inject.extensions</groupId>
+        <artifactId>guice-assistedinject</artifactId>
+        <version>4.1.0</version>
+      </dependency>
+
+      <dependency>
         <groupId>org.eclipse.sisu</groupId>
         <artifactId>org.eclipse.sisu.inject</artifactId>
         <version>${eclipse-sisu.version}</version>
