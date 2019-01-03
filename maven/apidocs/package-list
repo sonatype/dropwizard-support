@@ -7,10 +7,17 @@ org.sonatype.goodies.dropwizard.assets
 org.sonatype.goodies.dropwizard.client
 org.sonatype.goodies.dropwizard.client.endpoint
 org.sonatype.goodies.dropwizard.datadog
+org.sonatype.goodies.dropwizard.events
+org.sonatype.goodies.dropwizard.health
+org.sonatype.goodies.dropwizard.hibernate
 org.sonatype.goodies.dropwizard.internal
 org.sonatype.goodies.dropwizard.jaxrs
 org.sonatype.goodies.dropwizard.jersey
 org.sonatype.goodies.dropwizard.metrics
+org.sonatype.goodies.dropwizard.rules
+org.sonatype.goodies.dropwizard.rules.matcher.request
+org.sonatype.goodies.dropwizard.rules.matcher.string
+org.sonatype.goodies.dropwizard.rules.standard
 org.sonatype.goodies.dropwizard.security
 org.sonatype.goodies.dropwizard.service
 org.sonatype.goodies.dropwizard.servlet
