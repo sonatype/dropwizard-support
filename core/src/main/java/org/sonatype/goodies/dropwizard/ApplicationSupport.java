@@ -13,18 +13,20 @@
 package org.sonatype.goodies.dropwizard;
 
 import java.io.File;
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 import org.sonatype.goodies.dropwizard.internal.ComponentDiscovery;
 import org.sonatype.goodies.dropwizard.internal.ConfigurationModule;
 import org.sonatype.goodies.dropwizard.internal.EnvironmentModule;
 import org.sonatype.goodies.dropwizard.jersey.JerseyGuiceBridgeFeature;
 import org.sonatype.goodies.dropwizard.metrics.MetricsAopModule;
+import org.sonatype.goodies.dropwizard.util.FileHelper;
 
 import com.google.common.annotations.VisibleForTesting;
 import com.google.inject.Guice;
@@ -59,6 +61,9 @@ public abstract class ApplicationSupport<T extends Configuration>
 
   private final List<ApplicationCustomizer> customizers = new ArrayList<>();
 
+  @Nullable
+  private EnvironmentReporter environmentReporter = new BasicEnvironmentReporter();
+
   private Injector injector;
 
   /**
@@ -77,6 +82,15 @@ public abstract class ApplicationSupport<T extends Configuration>
   public void addCustomizer(final List<ApplicationCustomizer> customizers) {
     checkNotNull(customizers);
     this.customizers.addAll(customizers);
+  }
+
+  /**
+   * Set environment reporter.
+   *
+   * @since ???
+   */
+  public void setEnvironmentReporter(@Nullable final EnvironmentReporter environmentReporter) {
+    this.environmentReporter = environmentReporter;
   }
 
   /**
@@ -192,7 +206,14 @@ public abstract class ApplicationSupport<T extends Configuration>
     checkNotNull(config);
     checkNotNull(environment);
 
-    displayEnvironment();
+    if (environmentReporter != null) {
+      try {
+        environmentReporter.report(LoggerFactory.getLogger(getClass()));
+      }
+      catch (Exception e) {
+        log.warn("Failed to display environment", e);
+      }
+    }
 
     injector = createInjector(config, environment);
     log.debug("Injection ready");
@@ -219,38 +240,12 @@ public abstract class ApplicationSupport<T extends Configuration>
     discovery.discover(environment);
   }
 
-  /**
-   * Display critical information details.
-   */
-  private void displayEnvironment() {
-    Logger log = LoggerFactory.getLogger(getClass());
-
-    log.info("Java: {}, {}, {}, {}",
-        System.getProperty("java.version"),
-        System.getProperty("java.vm.name"),
-        System.getProperty("java.vm.vendor"),
-        System.getProperty("java.vm.version")
-    );
-    log.info("OS: {}, {}, {}",
-        System.getProperty("os.name"),
-        System.getProperty("os.version"),
-        System.getProperty("os.arch")
-    );
-    log.info("User: {}, {}, {}",
-        System.getProperty("user.name"),
-        System.getProperty("user.language"),
-        resolvePath(System.getProperty("user.home"))
-    );
-    log.info("CWD: {}", resolvePath(System.getProperty("user.dir")));
-    log.info("TMP: {}", resolvePath(System.getProperty("java.io.tmpdir")));
-  }
-
   @Override
   public final void run(final String... arguments) throws Exception {
     checkNotNull(arguments);
 
     // early verification that temporary directory is valid
-    File tmpdir = resolveFile(System.getProperty("java.io.tmpdir"));
+    File tmpdir = FileHelper.resolveFile(System.getProperty("java.io.tmpdir"));
     try {
       Path tmp = Files.createTempFile(getName(), ".tmp");
       Files.delete(tmp);
@@ -280,18 +275,5 @@ public abstract class ApplicationSupport<T extends Configuration>
   protected void onFatalError() {
     log.error("Fatal error detected; shutting down");
     super.onFatalError();
-  }
-
-  private static File resolveFile(final String path) {
-    try {
-      return new File(path).getCanonicalFile();
-    }
-    catch (IOException e) {
-      throw new RuntimeException(e);
-    }
-  }
-
-  private static String resolvePath(final String path) {
-    return resolveFile(path).getPath();
   }
 }
