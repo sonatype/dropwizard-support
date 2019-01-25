@@ -10,17 +10,34 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
+package org.sonatype.goodies.dropwizard.ratelimit;
 
-def targetDir = new File(project.build.directory)
-ant.mkdir(dir: targetDir)
+import javax.inject.Inject;
+import javax.inject.Named;
+import javax.inject.Singleton;
 
-[ 'src/main/config/wro.properties', 'src/main/config/wro.xml' ].each { filename ->
-  def file = new File(basedir, filename)
-  ant.copy(file: file, todir: targetDir, filtering: true) {
-    filterset {
-      project.properties.each { key, value ->
-        filter(token: key, value: value)
-      }
-    }
+import static com.google.common.base.Preconditions.checkNotNull;
+
+/**
+ * {@link RatelimitService} whitelist task.
+ *
+ * @since ???
+ */
+@Named
+@Singleton
+public class RatelimitWhitelistTask
+    extends IpAddressesTaskSupport
+{
+  private final RatelimitService ratelimitService;
+
+  @Inject
+  public RatelimitWhitelistTask(final RatelimitService ratelimitService) {
+    super("ratelimit-whitelist");
+    this.ratelimitService = checkNotNull(ratelimitService);
+  }
+
+  @Override
+  protected IpAddresses getAddresses() {
+    return ratelimitService.getWhitelist();
   }
 }
