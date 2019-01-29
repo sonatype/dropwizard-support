@@ -34,6 +34,7 @@ import org.sonatype.goodies.dropwizard.ratelimit.RatelimitTracker.Identifier;
 import org.sonatype.goodies.dropwizard.security.RoleMatchingHelper;
 import org.sonatype.goodies.dropwizard.security.SubjectHelper;
 import org.sonatype.goodies.dropwizard.service.ServiceSupport;
+import org.sonatype.goodies.dropwizard.util.IpAddresses;
 
 import com.codahale.metrics.Gauge;
 import com.codahale.metrics.Meter;

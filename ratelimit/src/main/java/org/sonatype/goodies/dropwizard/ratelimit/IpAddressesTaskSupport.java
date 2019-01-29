@@ -15,6 +15,7 @@ package org.sonatype.goodies.dropwizard.ratelimit;
 import java.io.PrintWriter;
 
 import org.sonatype.goodies.dropwizard.task.TaskSupport;
+import org.sonatype.goodies.dropwizard.util.IpAddresses;
 
 // TODO: consider a more general module for this to live
 

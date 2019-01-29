@@ -16,6 +16,8 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
+import org.sonatype.goodies.dropwizard.util.IpAddresses;
+
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
