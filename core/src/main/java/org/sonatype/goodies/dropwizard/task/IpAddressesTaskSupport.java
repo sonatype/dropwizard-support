@@ -10,14 +10,11 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
-package org.sonatype.goodies.dropwizard.ratelimit;
+package org.sonatype.goodies.dropwizard.task;
 
 import java.io.PrintWriter;
 
-import org.sonatype.goodies.dropwizard.task.TaskSupport;
 import org.sonatype.goodies.dropwizard.util.IpAddresses;
-
-// TODO: consider a more general module for this to live
 
 /**
  * Support for tasks to manage {@link IpAddresses}.
