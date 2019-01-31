@@ -79,6 +79,7 @@
     <module>security</module>
     <module>events</module>
     <module>hibernate</module>
+    <module>jdbi</module>
     <module>ratelimit</module>
     <module>rules</module>
     <module>datadog</module>
