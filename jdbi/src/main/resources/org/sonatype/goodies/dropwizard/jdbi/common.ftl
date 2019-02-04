@@ -21,11 +21,14 @@ Optionally condenses to single-line.
 -->
 <#macro sql condense=true>
   <@compress single_line=condense>
-    <#-- extract method name from main template -->
-    <#assign method="${.main_template_name?remove_ending('.sql.ftl')?replace('/','.')}"/>
+    <#-- extract location from main template; following format of io.dropwizard.jdbi3.NamePrependingTemplateEngine -->
+    <#assign fqmn="${.main_template_name?remove_ending('.sql.ftl')?replace('/','.')}"/>
+    <#assign class_name="${fqmn?keep_before_last('.')}"/>
+    <#assign method_name="${fqmn?keep_after_last('.')}"/>
+    <#assign location="${class_name?keep_after_last('.')}.${method_name}"/>
     <#-- extract sql statement from nested -->
     <#assign sql><#nested></#assign>
-    /* ${method} */ ${sql}
+    /* ${location} */ ${sql}
     <#-- automatically add statement terminator if missing -->
     <#if !sql?trim?ends_with(';')>;</#if>
   </@compress>
