@@ -159,6 +159,9 @@
           <groupId>com.mycila</groupId>
           <artifactId>license-maven-plugin</artifactId>
           <configuration>
+            <includes combine.children="append">
+              <include>**/*.ftl</include>
+            </includes>
             <excludes combine.children="append">
               <exclude>src/site/hugo/**</exclude>
             </excludes>
