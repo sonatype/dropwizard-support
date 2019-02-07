@@ -37,6 +37,7 @@
     <apache-httpclient.version>4.5.5</apache-httpclient.version>
     <jackson.version>2.9.8</jackson.version>
     <jersey.version>2.25.1</jersey.version>
+    <jdbi3.version>3.2.1</jdbi3.version>
   </properties>
 
   <!--
@@ -461,6 +462,18 @@
         </exclusions>
       </dependency>
 
+      <dependency>
+        <groupId>org.jdbi</groupId>
+        <artifactId>jdbi3-stringtemplate4</artifactId>
+        <version>${jdbi3.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.jdbi</groupId>
+        <artifactId>jdbi3-freemarker</artifactId>
+        <version>${jdbi3.version}</version>
+      </dependency>
+
       <!-- INTERNAL -->
 
       <dependency>
@@ -496,6 +509,12 @@
       <dependency>
         <groupId>org.sonatype.goodies.dropwizard</groupId>
         <artifactId>dropwizard-support-hibernate</artifactId>
+        <version>1.0.4-SNAPSHOT</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.sonatype.goodies.dropwizard</groupId>
+        <artifactId>dropwizard-support-jdbi</artifactId>
         <version>1.0.4-SNAPSHOT</version>
       </dependency>
 

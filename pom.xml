@@ -79,6 +79,7 @@
     <module>security</module>
     <module>events</module>
     <module>hibernate</module>
+    <module>jdbi</module>
     <module>ratelimit</module>
     <module>rules</module>
     <module>datadog</module>
@@ -158,6 +159,9 @@
           <groupId>com.mycila</groupId>
           <artifactId>license-maven-plugin</artifactId>
           <configuration>
+            <includes combine.children="append">
+              <include>**/*.ftl</include>
+            </includes>
             <excludes combine.children="append">
               <exclude>src/site/hugo/**</exclude>
             </excludes>
