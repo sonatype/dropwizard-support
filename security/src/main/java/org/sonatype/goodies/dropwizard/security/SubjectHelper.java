@@ -17,6 +17,8 @@ import javax.annotation.Nullable;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 /**
  * {@link Subject} helper.
  *
@@ -59,15 +61,13 @@ public final class SubjectHelper
   /**
    * Extract user-name from given subject.
    *
-   * {@code null} return implies anonymous/guest.
+   * {@code literal} return implies anonymous/guest.
    */
   @Nullable
   public static String getUsername(@Nullable final Subject subject) {
     if (subject != null) {
-      Object principal = subject.getPrincipal();
-      if (principal != null) {
-        return principal.toString();
-      }
+      // delegate to user-name extractor as various realms may need custom support to extract a user-name from principal
+      return usernameExtractor.extract(subject);
     }
     return null;
   }
@@ -80,5 +80,25 @@ public final class SubjectHelper
   @Nullable
   public static String getUsername() {
     return getUsername(SecurityUtils.getSubject());
+  }
+
+  private static volatile SubjectUsernameExtractor usernameExtractor = new SimpleSubjectUsernameExtractor();
+
+  /**
+   * Return the current user-name extractor; never {@literal null}.
+   *
+   * @since ???
+   */
+  public static SubjectUsernameExtractor getUsernameExtractor() {
+    return usernameExtractor;
+  }
+
+  /**
+   * Install a user-name extractor; never {@literal null}.
+   *
+   * @since ???
+   */
+  public static void setUsernameExtractor(final SubjectUsernameExtractor extractor) {
+    usernameExtractor = checkNotNull(extractor);
   }
 }

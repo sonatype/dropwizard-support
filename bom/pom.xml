@@ -38,6 +38,7 @@
     <jackson.version>2.9.8</jackson.version>
     <jersey.version>2.25.1</jersey.version>
     <jdbi3.version>3.2.1</jdbi3.version>
+    <pac4j.version>3.5.0</pac4j.version>
   </properties>
 
   <!--
@@ -474,6 +475,48 @@
         <version>${jdbi3.version}</version>
       </dependency>
 
+      <dependency>
+        <groupId>org.pac4j</groupId>
+        <artifactId>pac4j-core</artifactId>
+        <version>${pac4j.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.pac4j</groupId>
+        <artifactId>pac4j-oauth</artifactId>
+        <version>${pac4j.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.pac4j</groupId>
+        <artifactId>pac4j-openid</artifactId>
+        <version>${pac4j.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.pac4j</groupId>
+        <artifactId>pac4j-oidc</artifactId>
+        <version>${pac4j.version}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+
+      <dependency>
+        <groupId>io.buji</groupId>
+        <artifactId>buji-pac4j</artifactId>
+        <version>4.1.0</version>
+      </dependency>
+
+      <!--<dependency>-->
+        <!--<groupId>org.keycloak</groupId>-->
+        <!--<artifactId>keycloak-core</artifactId>-->
+        <!--<version>4.5.0.Final</version>-->
+      <!--</dependency>-->
+
       <!-- INTERNAL -->
 
       <dependency>
@@ -515,6 +558,12 @@
       <dependency>
         <groupId>org.sonatype.goodies.dropwizard</groupId>
         <artifactId>dropwizard-support-jdbi</artifactId>
+        <version>1.0.4-SNAPSHOT</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.sonatype.goodies.dropwizard</groupId>
+        <artifactId>dropwizard-support-keycloak</artifactId>
         <version>1.0.4-SNAPSHOT</version>
       </dependency>
 
