@@ -110,6 +110,20 @@ public class FileHelper
   }
 
   /**
+   * Delete given files if non-null.
+   *
+   * @since 1.0.4
+   */
+  public static void delete(final File... files) {
+    checkNotNull(files);
+    for (File file : files) {
+      if (file != null) {
+        FileHelper.delete(file);
+      }
+    }
+  }
+
+  /**
    * Resolve file for given path.
    */
   public static File resolveFile(final String path) {
