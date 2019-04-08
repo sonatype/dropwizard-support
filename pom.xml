@@ -84,6 +84,7 @@
     <module>rules</module>
     <module>datadog</module>
     <module>swagger</module>
+    <module>aws</module>
     <module>testsupport</module>
   </modules>
 

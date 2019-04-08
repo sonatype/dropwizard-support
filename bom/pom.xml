@@ -39,6 +39,7 @@
     <jersey.version>2.25.1</jersey.version>
     <jdbi3.version>3.2.1</jdbi3.version>
     <pac4j.version>3.5.0</pac4j.version>
+    <aws-sdk.version>1.11.458</aws-sdk.version>
   </properties>
 
   <!--
@@ -517,6 +518,42 @@
         <!--<version>4.5.0.Final</version>-->
       <!--</dependency>-->
 
+      <dependency>
+        <groupId>com.amazonaws</groupId>
+        <artifactId>aws-java-sdk-core</artifactId>
+        <version>${aws-sdk.version}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+
+      <dependency>
+        <groupId>com.amazonaws</groupId>
+        <artifactId>aws-java-sdk-kms</artifactId>
+        <version>${aws-sdk.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.amazonaws</groupId>
+        <artifactId>aws-java-sdk-s3</artifactId>
+        <version>${aws-sdk.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.amazonaws</groupId>
+        <artifactId>aws-java-sdk-sqs</artifactId>
+        <version>${aws-sdk.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.amazonaws</groupId>
+        <artifactId>aws-java-sdk-sts</artifactId>
+        <version>${aws-sdk.version}</version>
+      </dependency>
+
       <!-- INTERNAL -->
 
       <dependency>
@@ -588,6 +625,12 @@
       <dependency>
         <groupId>org.sonatype.goodies.dropwizard</groupId>
         <artifactId>dropwizard-support-swagger</artifactId>
+        <version>1.0.4-SNAPSHOT</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.sonatype.goodies.dropwizard</groupId>
+        <artifactId>dropwizard-support-aws</artifactId>
         <version>1.0.4-SNAPSHOT</version>
       </dependency>
 
