@@ -67,7 +67,7 @@ public class S3Helper
     checkNotNull(bucket);
     checkNotNull(key);
 
-    log.info("GET {}/{}", bucket, key);
+    log.debug("GET {}, {}", bucket, key);
 
     return client.getObject(bucket, key);
   }
@@ -78,7 +78,7 @@ public class S3Helper
     checkNotNull(file);
     checkArgument(file.exists());
 
-    log.info("PUT {} -> {}/{}", file, bucket, key);
+    log.debug("PUT {} -> {}, {}", file, bucket, key);
 
     PutObjectRequest request = new PutObjectRequest(bucket, key, file);
     return client.putObject(request);
@@ -94,7 +94,7 @@ public class S3Helper
     checkNotNull(targetBucket);
     checkNotNull(targetKey);
 
-    log.info("COPY {}/{} -> {}/{}", sourceBucket, sourceKey, targetBucket, targetKey);
+    log.debug("COPY {}, {} -> {}, {}", sourceBucket, sourceKey, targetBucket, targetKey);
 
     CopyObjectRequest request = new CopyObjectRequest(sourceBucket, sourceKey, targetBucket, targetKey);
     return client.copyObject(request);
@@ -104,7 +104,7 @@ public class S3Helper
     checkNotNull(source);
     checkNotNull(target);
 
-    log.info("CP {} -> {}", source, target);
+    log.debug("CP {} -> {}", source, target);
 
     try (InputStream in = source.getObjectContent();
          OutputStream out = new BufferedOutputStream(new FileOutputStream(target))) {
