@@ -19,7 +19,10 @@ import java.lang.annotation.Target;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+
+import org.sonatype.goodies.dropwizard.health.HealthCheckConfiguration;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.annotations.Beta;
@@ -43,6 +46,15 @@ public class ConfigurationSupport
   @JsonProperty("properties")
   private Map<String,Object> properties = new HashMap<>();
 
+  /**
+   * Standard health-check configuration.
+   */
+  @NotNull
+  @Valid
+  @Bind
+  @JsonProperty("health-check")
+  private HealthCheckConfiguration healthCheckConfiguration = new HealthCheckConfiguration();
+
   @NotNull
   public Map<String, Object> getProperties() {
     return properties;
@@ -50,6 +62,14 @@ public class ConfigurationSupport
 
   public void setProperties(@NotNull final Map<String, Object> properties) {
     this.properties = checkNotNull(properties);
+  }
+
+  public HealthCheckConfiguration getHealthCheckConfiguration() {
+    return healthCheckConfiguration;
+  }
+
+  public void setHealthCheckConfiguration(final HealthCheckConfiguration healthCheckConfiguration) {
+    this.healthCheckConfiguration = checkNotNull(healthCheckConfiguration);
   }
 
   // TODO: maybe pick a better name?
