@@ -26,6 +26,7 @@ import org.sonatype.goodies.dropwizard.util.FileHelper;
 
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
+import com.amazonaws.services.s3.model.AmazonS3Exception;
 import com.amazonaws.services.s3.model.CopyObjectRequest;
 import com.amazonaws.services.s3.model.CopyObjectResult;
 import com.amazonaws.services.s3.model.PutObjectRequest;
@@ -48,6 +49,8 @@ public class S3Helper
 {
   private static final Logger log = LoggerFactory.getLogger(S3Helper.class);
 
+  public static final String NO_SUCH_KEY = "NoSuchKey";
+
   private final AmazonS3 client;
 
   @Inject
@@ -63,6 +66,9 @@ public class S3Helper
     return client;
   }
 
+  /**
+   * Get object.
+   */
   public S3Object get(final String bucket, final String key) {
     checkNotNull(bucket);
     checkNotNull(key);
@@ -72,6 +78,9 @@ public class S3Helper
     return client.getObject(bucket, key);
   }
 
+  /**
+   * Put object.
+   */
   public PutObjectResult put(final String bucket, final String key, final File file) {
     checkNotNull(bucket);
     checkNotNull(key);
@@ -84,6 +93,9 @@ public class S3Helper
     return client.putObject(request);
   }
 
+  /**
+   * Copy object to another bucket.
+   */
   public CopyObjectResult copy(final String sourceBucket,
                                final String sourceKey,
                                final String targetBucket,
@@ -100,6 +112,9 @@ public class S3Helper
     return client.copyObject(request);
   }
 
+  /**
+   * Copy object to local file.
+   */
   public void copyLocal(final S3Object source, final File target) throws IOException {
     checkNotNull(source);
     checkNotNull(target);
@@ -112,6 +127,9 @@ public class S3Helper
     }
   }
 
+  /**
+   * Copy object to local temporary file.
+   */
   public File copyTemp(final S3Object source, final String prefix, final String suffix) throws IOException {
     checkNotNull(source);
     checkNotNull(prefix);
@@ -131,5 +149,13 @@ public class S3Helper
       }
       throw e;
     }
+  }
+
+  /**
+   * Check if given exception represents a {@link #NO_SUCH_KEY} error.
+   */
+  public static boolean isNoSuchKeyError(final AmazonS3Exception cause) {
+    checkNotNull(cause);
+    return NO_SUCH_KEY.equals(cause.getErrorCode());
   }
 }
