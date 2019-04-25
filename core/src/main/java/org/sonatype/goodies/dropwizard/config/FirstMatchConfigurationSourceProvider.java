@@ -14,11 +14,14 @@ package org.sonatype.goodies.dropwizard.config;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import io.dropwizard.configuration.ConfigurationSourceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
@@ -35,12 +38,14 @@ public class FirstMatchConfigurationSourceProvider
 
   public FirstMatchConfigurationSourceProvider(final ConfigurationSourceProvider... providers) {
     this.providers = checkNotNull(providers);
+    checkArgument(providers.length != 0, "At least one provider must be given");
   }
 
   @Override
   public InputStream open(final String path) throws IOException {
     checkNotNull(path);
 
+    List<Throwable> errors = new ArrayList<>(providers.length);
     for (ConfigurationSourceProvider provider : providers) {
       log.debug("Trying provider: {}", provider);
       try {
@@ -48,8 +53,12 @@ public class FirstMatchConfigurationSourceProvider
       }
       catch (Exception e) {
         log.debug("Ignoring provider: {}", provider, e);
+        errors.add(e);
       }
     }
-    return null;
+
+    IOException error = new IOException("No provider produced configuration input");
+    errors.forEach(error::addSuppressed);
+    throw error;
   }
 }
