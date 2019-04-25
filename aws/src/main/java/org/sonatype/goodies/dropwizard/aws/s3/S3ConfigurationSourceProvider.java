@@ -15,6 +15,8 @@ package org.sonatype.goodies.dropwizard.aws.s3;
 import java.io.IOException;
 import java.io.InputStream;
 
+import javax.annotation.Nullable;
+
 import com.amazonaws.services.s3.model.S3Object;
 import io.dropwizard.configuration.ConfigurationSourceProvider;
 import org.slf4j.Logger;
@@ -32,14 +34,15 @@ public class S3ConfigurationSourceProvider
 {
   private static final Logger log = LoggerFactory.getLogger(S3ConfigurationSourceProvider.class);
 
-  private final S3Helper s3Helper;
+  @Nullable
+  private S3Helper s3Helper;
 
-  public S3ConfigurationSourceProvider(final S3Helper s3Helper) {
+  public S3ConfigurationSourceProvider(final @Nullable S3Helper s3Helper) {
     this.s3Helper = s3Helper;
   }
 
   public S3ConfigurationSourceProvider() {
-    this(new S3Helper());
+    this(null);
   }
 
   /**
@@ -51,6 +54,10 @@ public class S3ConfigurationSourceProvider
 
     S3Location location = S3Location.parse(path);
     log.info("S3 configuration: {}", location);
+
+    if (s3Helper == null) {
+      s3Helper = new S3Helper();
+    }
 
     S3Object object = s3Helper.get(location);
     return object.getObjectContent();
