@@ -79,6 +79,14 @@ public class S3Helper
   }
 
   /**
+   * Get object.
+   */
+  public S3Object get(final S3Location location) {
+    checkNotNull(location);
+    return get(location.getBucket(), location.getKey());
+  }
+
+  /**
    * Put object.
    */
   public PutObjectResult put(final String bucket, final String key, final File file) {
