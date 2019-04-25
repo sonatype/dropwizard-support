@@ -22,7 +22,7 @@ import org.slf4j.LoggerFactory;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * Return first configuration that is not null or exceptional from given providers.
+ * Return first configuration that is not exceptional from given providers.
  *
  * @since ???
  */
@@ -37,22 +37,17 @@ public class FirstMatchConfigurationSourceProvider
     this.providers = checkNotNull(providers);
   }
 
-  // FIXME: its not clear this interfarce has open() return value as nullable
-
   @Override
   public InputStream open(final String path) throws IOException {
     checkNotNull(path);
 
     for (ConfigurationSourceProvider provider : providers) {
-      log.debug("Provider: {}", provider);
+      log.debug("Trying provider: {}", provider);
       try {
-        InputStream input = provider.open(path);
-        if (input != null) {
-          return input;
-        }
+        return provider.open(path);
       }
       catch (Exception e) {
-        log.warn("Ignoring configuration-source-provider: {}", provider, e);
+        log.debug("Ignoring provider: {}", provider, e);
       }
     }
     return null;

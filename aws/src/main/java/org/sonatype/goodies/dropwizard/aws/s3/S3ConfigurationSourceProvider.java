@@ -23,7 +23,7 @@ import org.slf4j.LoggerFactory;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * Provide configuration from S3 location.
+ * Provide configuration from {@link S3Location}.
  *
  * @since ???
  */
@@ -32,6 +32,19 @@ public class S3ConfigurationSourceProvider
 {
   private static final Logger log = LoggerFactory.getLogger(S3ConfigurationSourceProvider.class);
 
+  private final S3Helper s3Helper;
+
+  public S3ConfigurationSourceProvider(final S3Helper s3Helper) {
+    this.s3Helper = s3Helper;
+  }
+
+  public S3ConfigurationSourceProvider() {
+    this(new S3Helper());
+  }
+
+  /**
+   * @see S3Location#parse(String)
+   */
   @Override
   public InputStream open(final String path) throws IOException {
     checkNotNull(path);
@@ -39,7 +52,7 @@ public class S3ConfigurationSourceProvider
     S3Location location = S3Location.parse(path);
     log.info("S3 configuration: {}", location);
 
-    S3Object object = new S3Helper().get(location);
+    S3Object object = s3Helper.get(location);
     return object.getObjectContent();
   }
 }
