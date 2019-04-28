@@ -15,8 +15,6 @@ package org.sonatype.goodies.dropwizard.rules.matcher.request
 import javax.servlet.http.HttpServletRequest
 import javax.ws.rs.HttpMethod
 
-import org.sonatype.goodies.testsupport.TestSupport
-
 import org.junit.Test
 
 import static org.mockito.Mockito.mock
@@ -28,7 +26,6 @@ import static org.mockito.Mockito.when
  * {@link MethodRequestMatcher} tests.
  */
 class MethodRequestMatcherTest
-  extends TestSupport
 {
   @Test
   void 'match hit'() {

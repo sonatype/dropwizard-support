@@ -15,7 +15,6 @@ package org.sonatype.goodies.dropwizard.rules.matcher.request
 import javax.servlet.http.HttpServletRequest
 
 import org.sonatype.goodies.dropwizard.rules.matcher.string.ContainsStringMatcher
-import org.sonatype.goodies.testsupport.TestSupport
 
 import org.junit.Test
 
@@ -28,7 +27,6 @@ import static org.mockito.Mockito.when
  * {@link NotRequestMatcher} tests.
  */
 class NotRequestMatcherTest
-  extends TestSupport
 {
   @Test
   void 'match hit'() {

@@ -14,15 +14,12 @@ package org.sonatype.goodies.dropwizard.jaxrs
 
 import javax.ws.rs.core.Response.Status.Family
 
-import org.sonatype.goodies.testsupport.TestSupport
-
 import org.junit.Test
 
 /**
  * {@link StatusTypeFactory} tests.
  */
 class StatusTypeFactoryTest
-  extends TestSupport
 {
   @Test
   void 'create'() {

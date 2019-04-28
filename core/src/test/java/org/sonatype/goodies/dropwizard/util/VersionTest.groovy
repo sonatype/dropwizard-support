@@ -12,8 +12,6 @@
  */
 package org.sonatype.goodies.dropwizard.util
 
-import org.sonatype.goodies.testsupport.TestSupport
-
 import com.google.common.io.Resources
 import org.junit.Test
 
@@ -21,7 +19,6 @@ import org.junit.Test
  * {@link Version} tests.
  */
 class VersionTest
-  extends TestSupport
 {
   @Test
   void 'properties from URL'() {

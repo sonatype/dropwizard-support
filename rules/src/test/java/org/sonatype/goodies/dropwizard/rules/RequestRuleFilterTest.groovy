@@ -16,11 +16,11 @@ import javax.servlet.FilterChain
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
-import org.sonatype.goodies.testsupport.TestSupport
-
 import org.junit.Before
 import org.junit.Test
+import org.junit.runner.RunWith
 import org.mockito.Mock
+import org.mockito.junit.MockitoJUnitRunner
 
 import static org.mockito.Mockito.mock
 import static org.mockito.Mockito.verify
@@ -30,8 +30,8 @@ import static org.mockito.Mockito.when
 /**
  * {@link RequestRuleFilter} tests.
  */
+@RunWith(MockitoJUnitRunner.class)
 class RequestRuleFilterTest
-  extends TestSupport
 {
   @Mock
   private RequestRuleService requestRuleService

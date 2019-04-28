@@ -17,7 +17,6 @@ import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
 import org.sonatype.goodies.dropwizard.rules.matcher.request.RemoteIpRequestMatcher
-import org.sonatype.goodies.testsupport.TestSupport
 
 import org.junit.Test
 
@@ -32,7 +31,6 @@ import static org.sonatype.goodies.dropwizard.rules.standard.BlacklistRequestRul
  * {@link BlacklistRequestRule} tests.
  */
 class BlacklistRequestRuleTest
-  extends TestSupport
 {
   @Test
   void 'custom reason'() {

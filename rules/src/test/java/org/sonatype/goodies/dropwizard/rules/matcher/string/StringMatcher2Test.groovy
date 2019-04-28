@@ -12,8 +12,6 @@
  */
 package org.sonatype.goodies.dropwizard.rules.matcher.string
 
-import org.sonatype.goodies.testsupport.TestSupport
-
 import org.junit.Test
 
 import static org.sonatype.goodies.dropwizard.rules.matcher.string.StringMatcher2.Function.contains
@@ -24,7 +22,6 @@ import static org.sonatype.goodies.dropwizard.rules.matcher.string.StringMatcher
  * {@link StringMatcher2} tests.
  */
 class StringMatcher2Test
-  extends TestSupport
 {
   //
   // contains
@@ -33,7 +30,7 @@ class StringMatcher2Test
   @Test
   void 'contains case-sensitive'() {
     def underTest = new StringMatcher2(contains,'bar', false)
-    log underTest
+    println underTest
     assert underTest.matches('foo bar baz')
     assert !underTest.matches('FOO BAR BAZ')
     assert underTest.matches('a b c foo bar baz')
@@ -45,7 +42,7 @@ class StringMatcher2Test
   @Test
   void 'contains ignore-case'() {
     def underTest = new StringMatcher2(contains,'bar', true)
-    log underTest
+    println underTest
     assert underTest.matches('foo bar baz')
     assert underTest.matches('FOO BAR BAZ')
     assert underTest.matches('a b c foo bar baz')

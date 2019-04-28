@@ -12,15 +12,12 @@
  */
 package org.sonatype.goodies.dropwizard.util
 
-import org.sonatype.goodies.testsupport.TestSupport
-
 import org.junit.Test
 
 /**
  * {@link MoreStrings} tests.
  */
 class MoreStringsTest
-  extends TestSupport
 {
   @Test
   void 'blankToNull'() {

@@ -12,18 +12,18 @@
  */
 package org.sonatype.goodies.dropwizard.security
 
-import org.sonatype.goodies.testsupport.TestSupport
-
 import org.apache.shiro.subject.Subject
 import org.junit.Test
+import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito
+import org.mockito.junit.MockitoJUnitRunner
 
 /**
  * {@link SubjectCacheKey} tests.
  */
+@RunWith(MockitoJUnitRunner.class)
 class SubjectCacheKeyTest
-  extends TestSupport
 {
   @Mock
   Subject subject

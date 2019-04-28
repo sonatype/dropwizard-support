@@ -12,15 +12,12 @@
  */
 package org.sonatype.goodies.dropwizard.rules.matcher.string
 
-import org.sonatype.goodies.testsupport.TestSupport
-
 import org.junit.Test
 
 /**
  * {@link SuffixStringMatcher} tests.
  */
 class SuffixStringMatcherTest
-  extends TestSupport
 {
   @Test
   void 'case-sensitive'() {

@@ -15,8 +15,6 @@ package org.sonatype.goodies.dropwizard.jaxrs
 import javax.ws.rs.WebApplicationException
 import javax.ws.rs.core.Response.Status
 
-import org.sonatype.goodies.testsupport.TestSupport
-
 import org.junit.Test
 
 import static org.junit.Assert.fail
@@ -25,7 +23,6 @@ import static org.junit.Assert.fail
  * {@link WebPreconditions} tests.
  */
 class WebPreconditionsTest
-  extends TestSupport
 {
   @Test
   void 'check-found with object'() {

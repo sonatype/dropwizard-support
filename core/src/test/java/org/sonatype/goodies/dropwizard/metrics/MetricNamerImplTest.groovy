@@ -12,8 +12,6 @@
  */
 package org.sonatype.goodies.dropwizard.metrics
 
-import org.sonatype.goodies.testsupport.TestSupport
-
 import org.junit.Before
 import org.junit.Test
 
@@ -26,7 +24,6 @@ import static org.sonatype.goodies.dropwizard.metrics.MetricNamerImpl.SIMPLE_CLA
  * {@link MetricNamerImpl} tests.
  */
 class MetricNamerImplTest
-  extends TestSupport
 {
   MetricNamerImpl underTest
 
