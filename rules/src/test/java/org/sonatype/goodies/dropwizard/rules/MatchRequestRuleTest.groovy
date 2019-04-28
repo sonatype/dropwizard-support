@@ -12,26 +12,26 @@
  */
 package org.sonatype.goodies.dropwizard.rules
 
-
 import javax.servlet.http.HttpServletRequest
 import javax.ws.rs.HttpMethod
 
 import org.sonatype.goodies.dropwizard.rules.matcher.request.MethodRequestMatcher
 import org.sonatype.goodies.dropwizard.rules.matcher.request.RemoteIpRequestMatcher
 import org.sonatype.goodies.dropwizard.rules.matcher.request.RequestMatcher
-import org.sonatype.goodies.testsupport.TestSupport
 
 import com.codahale.metrics.MetricRegistry
 import org.junit.Test
+import org.junit.runner.RunWith
 import org.mockito.Mock
+import org.mockito.junit.MockitoJUnitRunner
 
 import static org.mockito.Mockito.mock
 
 /**
  * {@link MatchRequestRule} tests.
  */
+@RunWith(MockitoJUnitRunner.class)
 class MatchRequestRuleTest
-  extends TestSupport
 {
   @Mock
   HttpServletRequest request

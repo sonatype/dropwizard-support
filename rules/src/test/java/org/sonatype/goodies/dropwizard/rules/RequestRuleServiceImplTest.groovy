@@ -19,11 +19,12 @@ import javax.servlet.http.HttpServletResponse
 import org.sonatype.goodies.dropwizard.rules.matcher.request.RemoteIpRequestMatcher
 import org.sonatype.goodies.dropwizard.rules.standard.BlacklistRequestRule
 import org.sonatype.goodies.dropwizard.rules.standard.WhitelistRequestRule
-import org.sonatype.goodies.testsupport.TestSupport
 
 import org.junit.After
 import org.junit.Test
+import org.junit.runner.RunWith
 import org.mockito.Mock
+import org.mockito.junit.MockitoJUnitRunner
 
 import static org.mockito.Mockito.verify
 import static org.mockito.Mockito.verifyZeroInteractions
@@ -32,8 +33,8 @@ import static org.mockito.Mockito.when
 /**
  * {@link RequestRuleServiceImpl} tests.
  */
+@RunWith(MockitoJUnitRunner.class)
 class RequestRuleServiceImplTest
-  extends TestSupport
 {
   @Mock
   private HttpServletRequest request

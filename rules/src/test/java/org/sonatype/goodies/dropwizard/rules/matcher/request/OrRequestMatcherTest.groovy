@@ -15,7 +15,6 @@ package org.sonatype.goodies.dropwizard.rules.matcher.request
 import javax.servlet.http.HttpServletRequest
 
 import org.sonatype.goodies.dropwizard.rules.matcher.string.ContainsStringMatcher
-import org.sonatype.goodies.testsupport.TestSupport
 
 import org.junit.Test
 
@@ -32,7 +31,6 @@ import static org.mockito.Mockito.when
  * {@link OrRequestMatcher} tests.
  */
 class OrRequestMatcherTest
-  extends TestSupport
 {
   @SuppressWarnings("GroovyResultOfObjectAllocationIgnored")
   @Test
@@ -42,7 +40,7 @@ class OrRequestMatcherTest
       fail()
     }
     catch (IllegalStateException expected) {
-      log expected
+      println expected
     }
 
     try {
@@ -50,7 +48,7 @@ class OrRequestMatcherTest
       fail()
     }
     catch (IllegalStateException expected) {
-      log expected
+      println expected
     }
 
     new OrRequestMatcher([ mock(RequestMatcher.class), mock(RequestMatcher.class) ])

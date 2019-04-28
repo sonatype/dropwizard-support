@@ -12,8 +12,6 @@
  */
 package org.sonatype.goodies.dropwizard.ratelimit
 
-import org.sonatype.goodies.testsupport.TestSupport
-
 import com.google.common.base.Ticker
 import io.dropwizard.util.Duration
 import org.junit.Ignore
@@ -24,7 +22,6 @@ import org.junit.Test
  */
 @Ignore
 class LeakyBucketTrial
-    extends TestSupport
 {
   private static final Ticker ticker = Ticker.systemTicker()
 

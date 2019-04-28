@@ -12,15 +12,12 @@
  */
 package org.sonatype.goodies.dropwizard.aws.s3
 
-import org.sonatype.goodies.testsupport.TestSupport
-
 import org.junit.Test
 
 /**
  * {@link S3Location} tests.
  */
 class S3LocationTest
-  extends TestSupport
 {
   @Test
   void 'to URI'() {

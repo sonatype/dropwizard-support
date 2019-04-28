@@ -12,19 +12,19 @@
  */
 package org.sonatype.goodies.dropwizard.security
 
-import org.sonatype.goodies.testsupport.TestSupport
-
 import org.apache.shiro.subject.Subject
 import org.junit.Test
+import org.junit.runner.RunWith
 import org.mockito.Mock
+import org.mockito.junit.MockitoJUnitRunner
 
 import static org.mockito.Mockito.when
 
 /**
  * {@link RoleMatchingHelper} tests.
  */
+@RunWith(MockitoJUnitRunner.class)
 class RoleMatchingHelperTest
-  extends TestSupport
 {
   @Mock
   Subject subject

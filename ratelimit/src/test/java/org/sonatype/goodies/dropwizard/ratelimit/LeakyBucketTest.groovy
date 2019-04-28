@@ -12,8 +12,6 @@
  */
 package org.sonatype.goodies.dropwizard.ratelimit
 
-import org.sonatype.goodies.testsupport.TestSupport
-
 import com.google.common.base.Ticker
 import io.dropwizard.util.Duration
 import org.junit.Before
@@ -23,7 +21,6 @@ import org.junit.Test
  * Tests for {@link LeakyBucket}.
  */
 class LeakyBucketTest
-  extends TestSupport
 {
   private class AdjustableTicker
     extends Ticker

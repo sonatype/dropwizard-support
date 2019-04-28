@@ -12,14 +12,14 @@
  */
 package org.sonatype.goodies.dropwizard.events
 
-import org.sonatype.goodies.testsupport.TestSupport
-
 import com.google.common.eventbus.EventBus
 import org.eclipse.sisu.inject.BeanLocator
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
+import org.junit.runner.RunWith
 import org.mockito.Mock
+import org.mockito.junit.MockitoJUnitRunner
 
 import static org.mockito.Matchers.anyString
 import static org.mockito.Matchers.eq
@@ -32,8 +32,8 @@ import static org.mockito.Mockito.when
 /**
  * {@link EventServiceImpl} tests
  */
+@RunWith(MockitoJUnitRunner.class)
 class EventServiceImplTest
-  extends TestSupport
 {
   @Mock
   BeanLocator beanLocator

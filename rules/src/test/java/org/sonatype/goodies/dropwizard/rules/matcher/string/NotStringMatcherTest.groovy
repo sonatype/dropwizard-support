@@ -12,15 +12,12 @@
  */
 package org.sonatype.goodies.dropwizard.rules.matcher.string
 
-import org.sonatype.goodies.testsupport.TestSupport
-
 import org.junit.Test
 
 /**
  * {@link NotStringMatcher} tests.
  */
 class NotStringMatcherTest
-  extends TestSupport
 {
   @Test
   void 'match hit'() {

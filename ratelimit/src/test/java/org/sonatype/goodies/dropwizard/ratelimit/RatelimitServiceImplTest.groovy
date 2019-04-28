@@ -14,8 +14,6 @@ package org.sonatype.goodies.dropwizard.ratelimit
 
 import javax.servlet.http.HttpServletRequest
 
-import org.sonatype.goodies.testsupport.TestSupport
-
 import com.codahale.metrics.MetricRegistry
 import org.junit.After
 import org.junit.Before
@@ -28,7 +26,6 @@ import static org.mockito.Mockito.when
  * Tests for {@link RatelimitServiceImpl}.
  */
 class RatelimitServiceImplTest
-  extends TestSupport
 {
   private RatelimitServiceImpl underTest
 
@@ -51,7 +48,7 @@ class RatelimitServiceImplTest
     when(request.getRemoteAddr()).thenReturn('1.2.3.4')
 
     def id = underTest.identify(request)
-    log id
+    println id
 
     assert id != null
     assert id.type == RatelimitTracker.Identifier.Type.USERNAME
@@ -64,7 +61,7 @@ class RatelimitServiceImplTest
     when(request.getRemoteAddr()).thenReturn('1.2.3.4')
 
     def id = underTest.identify(request)
-    log id
+    println id
 
     assert id != null
     assert id.type == RatelimitTracker.Identifier.Type.REMOTE_IP

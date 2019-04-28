@@ -12,15 +12,12 @@
  */
 package org.sonatype.goodies.dropwizard.util
 
-import org.sonatype.goodies.testsupport.TestSupport
-
 import org.junit.Test
 
 /**
  * Tests for {@link IpMatcher}.
  */
 class IpMatcherTest
-  extends TestSupport
 {
   @Test
   void 'match ipv4'() {

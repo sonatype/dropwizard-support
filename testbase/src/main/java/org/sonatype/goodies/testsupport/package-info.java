@@ -10,32 +10,9 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
-package org.sonatype.goodies.dropwizard.jaxrs
-
-import javax.ws.rs.WebApplicationException
-import javax.ws.rs.core.Response.Status
-
-import org.junit.Test
-
-import static org.junit.Assert.fail
 
 /**
- * {@link WebPreconditions} tests.
+ * @deprecated Provided for compatibility only.
  */
-class WebPreconditionsTest
-{
-  @Test
-  void 'check-found with object'() {
-    try {
-      WebPreconditions.checkFound(null)
-      fail()
-    }
-    catch (WebApplicationException expected) {
-      assert expected.response.status == Status.NOT_FOUND.statusCode
-    }
-
-    def value = 'foo'
-    def result = WebPreconditions.checkFound(value)
-    assert result == value
-  }
-}
+//@Deprecated
+package org.sonatype.goodies.testsupport;

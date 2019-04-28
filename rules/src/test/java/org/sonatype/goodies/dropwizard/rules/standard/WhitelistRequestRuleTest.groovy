@@ -17,7 +17,6 @@ import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
 import org.sonatype.goodies.dropwizard.rules.matcher.request.RemoteIpRequestMatcher
-import org.sonatype.goodies.testsupport.TestSupport
 
 import org.junit.Test
 
@@ -29,7 +28,6 @@ import static org.mockito.Mockito.when
  * {@link WhitelistRequestRule} tests.
  */
 class WhitelistRequestRuleTest
-  extends TestSupport
 {
   @Test
   void 'whitelist hit'() {

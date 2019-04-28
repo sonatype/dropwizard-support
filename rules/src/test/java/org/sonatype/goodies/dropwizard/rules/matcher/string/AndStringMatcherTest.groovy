@@ -12,8 +12,6 @@
  */
 package org.sonatype.goodies.dropwizard.rules.matcher.string
 
-import org.sonatype.goodies.testsupport.TestSupport
-
 import org.junit.Test
 
 import static org.junit.Assert.fail
@@ -28,7 +26,6 @@ import static org.mockito.Mockito.when
  * {@link AndStringMatcher} tests.
  */
 class AndStringMatcherTest
-  extends TestSupport
 {
   @SuppressWarnings("GroovyResultOfObjectAllocationIgnored")
   @Test
@@ -38,7 +35,7 @@ class AndStringMatcherTest
       fail()
     }
     catch (IllegalStateException expected) {
-      log expected
+      println expected
     }
 
     try {
@@ -46,7 +43,7 @@ class AndStringMatcherTest
       fail()
     }
     catch (IllegalStateException expected) {
-      log expected
+      println expected
     }
 
     new AndStringMatcher([ mock(StringMatcher.class), mock(StringMatcher.class) ])
