@@ -65,27 +65,9 @@
       <artifactId>aws-java-sdk-s3</artifactId>
     </dependency>
 
-    <!--<dependency>-->
-    <!--  <groupId>org.sonatype.goodies</groupId>-->
-    <!--  <artifactId>goodies-testsupport</artifactId>-->
-    <!--  <scope>test</scope>-->
-    <!--</dependency>-->
-
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <scope>test</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.hamcrest</groupId>
-      <artifactId>hamcrest-core</artifactId>
-      <scope>test</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.mockito</groupId>
-      <artifactId>mockito-core</artifactId>
+      <groupId>org.sonatype.goodies.dropwizard</groupId>
+      <artifactId>dropwizard-support-testbase</artifactId>
       <scope>test</scope>
     </dependency>
 

@@ -206,18 +206,6 @@
         <version>2.0.1</version>
       </dependency>
 
-      <!--<dependency>-->
-      <!--  <groupId>org.sonatype.goodies</groupId>-->
-      <!--  <artifactId>goodies-testsupport</artifactId>-->
-      <!--  <version>2.2.5</version>-->
-      <!--  <exclusions>-->
-      <!--    <exclusion>-->
-      <!--      <groupId>org.powermock</groupId>-->
-      <!--      <artifactId>powermock-classloading-xstream</artifactId>-->
-      <!--    </exclusion>-->
-      <!--  </exclusions>-->
-      <!--</dependency>-->
-
       <dependency>
         <groupId>org.codehaus.groovy</groupId>
         <artifactId>groovy-all</artifactId>
