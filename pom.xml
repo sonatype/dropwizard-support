@@ -92,17 +92,17 @@
   <build>
     <pluginManagement>
       <plugins>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-enforcer-plugin</artifactId>
-          <dependencies>
-            <dependency>
-              <groupId>org.owasp.maven.enforcer</groupId>
-              <artifactId>class-file-format-rule</artifactId>
-              <version>1.0.0</version>
-            </dependency>
-          </dependencies>
-        </plugin>
+        <!--<plugin>-->
+        <!--  <groupId>org.apache.maven.plugins</groupId>-->
+        <!--  <artifactId>maven-enforcer-plugin</artifactId>-->
+        <!--  <dependencies>-->
+        <!--    <dependency>-->
+        <!--      <groupId>org.owasp.maven.enforcer</groupId>-->
+        <!--      <artifactId>class-file-format-rule</artifactId>-->
+        <!--      <version>1.0.0</version>-->
+        <!--    </dependency>-->
+        <!--  </dependencies>-->
+        <!--</plugin>-->
 
         <plugin>
           <groupId>ro.isdc.wro4j</groupId>
@@ -192,7 +192,7 @@
             <configuration>
               <rules>
                 <requireMavenVersion>
-                  <version>[3.3,)</version>
+                  <version>[3.6,)</version>
                 </requireMavenVersion>
                 <requireJavaVersion>
                   <version>[1.8,)</version>
@@ -200,19 +200,19 @@
               </rules>
             </configuration>
           </execution>
-          <execution>
-            <id>enforce-classfileformat</id>
-            <goals>
-              <goal>enforce</goal>
-            </goals>
-            <configuration>
-              <rules>
-                <byteCodeRule implementation="org.owasp.maven.enforcer.rule.ClassFileFormatRule">
-                  <supportedClassFileFormat>52</supportedClassFileFormat>
-                </byteCodeRule>
-              </rules>
-            </configuration>
-          </execution>
+          <!--<execution>-->
+          <!--  <id>enforce-classfileformat</id>-->
+          <!--  <goals>-->
+          <!--    <goal>enforce</goal>-->
+          <!--  </goals>-->
+          <!--  <configuration>-->
+          <!--    <rules>-->
+          <!--      <byteCodeRule implementation="org.owasp.maven.enforcer.rule.ClassFileFormatRule">-->
+          <!--        <supportedClassFileFormat>52</supportedClassFileFormat>-->
+          <!--      </byteCodeRule>-->
+          <!--    </rules>-->
+          <!--  </configuration>-->
+          <!--</execution>-->
         </executions>
       </plugin>
 
