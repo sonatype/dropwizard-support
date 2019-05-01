@@ -146,7 +146,6 @@ public class S3Helper
     File file = null;
     try {
       file = File.createTempFile(prefix, suffix);
-      file.deleteOnExit();
       copyLocal(source, file);
       return file;
     }
