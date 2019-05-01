@@ -159,6 +159,7 @@ public final class TestUtil
       // No need to expose this as checked for test code to deal with, just barf it up
       throw new RuntimeException(e);
     }
+    // FIXME: this will leak file paths for the duration of the JVM and should be avoided
     file.deleteOnExit();
     return file;
   }
