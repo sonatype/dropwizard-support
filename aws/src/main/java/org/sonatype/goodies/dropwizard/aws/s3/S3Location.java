@@ -17,6 +17,7 @@ import java.net.URISyntaxException;
 import java.util.Objects;
 
 import com.amazonaws.services.s3.model.S3Object;
+import com.amazonaws.services.s3.model.S3ObjectId;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -36,6 +37,12 @@ public class S3Location
   public S3Location(final String bucket, final String key) {
     this.bucket = checkNotNull(bucket);
     this.key = checkNotNull(key);
+  }
+
+  public S3Location(final S3ObjectId objectId) {
+    checkNotNull(objectId);
+    this.bucket = objectId.getBucket();
+    this.key = objectId.getKey();
   }
 
   public S3Location(final S3Object object) {
