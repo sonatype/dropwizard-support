@@ -28,6 +28,7 @@
   <packaging>pom</packaging>
 
   <properties>
+    <dropwizard.version>1.3.10</dropwizard.version>
     <swagger.version>1.5.19</swagger.version>
     <apache-shiro.version>1.3.2</apache-shiro.version>
     <apache-httpclient.version>4.5.7</apache-httpclient.version>
@@ -40,9 +41,55 @@
       <dependency>
         <groupId>io.dropwizard</groupId>
         <artifactId>dropwizard-bom</artifactId>
-        <version>1.3.10</version>
+        <version>${dropwizard.version}</version>
         <type>pom</type>
         <scope>import</scope>
+      </dependency>
+
+      <!-- re-define some dropwizard DM to exclude duplicate/conflicting dependencies -->
+
+      <dependency>
+        <groupId>io.dropwizard</groupId>
+        <artifactId>dropwizard-jersey</artifactId>
+        <version>${dropwizard.version}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>org.glassfish.hk2.external</groupId>
+            <artifactId>javax.inject</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.glassfish.hk2.external</groupId>
+            <artifactId>aopalliance-repackaged</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+
+      <dependency>
+        <groupId>io.dropwizard</groupId>
+        <artifactId>dropwizard-client</artifactId>
+        <version>${dropwizard.version}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>org.glassfish.hk2.external</groupId>
+            <artifactId>javax.inject</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.glassfish.hk2.external</groupId>
+            <artifactId>aopalliance-repackaged</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+
+      <dependency>
+        <groupId>io.dropwizard</groupId>
+        <artifactId>dropwizard-testing</artifactId>
+        <version>${dropwizard.version}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>org.glassfish.hk2.external</groupId>
+            <artifactId>javax.inject</artifactId>
+          </exclusion>
+        </exclusions>
       </dependency>
 
       <dependency>
@@ -76,20 +123,21 @@
         <groupId>com.google.guava</groupId>
         <artifactId>guava</artifactId>
         <version>25.1-jre</version>
-        <!-- TODO: test compatiblity with latest version -->
+        <!-- TODO: test compatibility with latest version -->
       </dependency>
 
       <dependency>
         <groupId>com.google.code.gson</groupId>
         <artifactId>gson</artifactId>
         <version>2.8.5</version>
-        <!-- TODO: consider replacing usage with https://github.com/square/moshi -->
+        <!-- TODO: consider replacing usage with https://github.com/square/moshi; or maybe remove from DM unsure where this is used -->
       </dependency>
 
       <dependency>
         <groupId>javax.ws.rs</groupId>
         <artifactId>javax.ws.rs-api</artifactId>
         <version>2.0.1</version>
+        <!-- keep in sync with jersey -->
       </dependency>
 
       <dependency>
@@ -204,6 +252,20 @@
         <groupId>org.glassfish.hk2</groupId>
         <artifactId>guice-bridge</artifactId>
         <version>2.5.0-b63</version>
+        <exclusions>
+          <exclusion>
+            <groupId>org.glassfish.hk2.external</groupId>
+            <artifactId>jakarta.inject</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>jakarta.annotation</groupId>
+            <artifactId>jakarta.annotation-api</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.glassfish.hk2.external</groupId>
+            <artifactId>aopalliance-repackaged</artifactId>
+          </exclusion>
+        </exclusions>
       </dependency>
 
       <dependency>
