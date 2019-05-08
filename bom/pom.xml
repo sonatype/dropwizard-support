@@ -30,7 +30,7 @@
   <properties>
     <swagger.version>1.5.19</swagger.version>
     <apache-shiro.version>1.3.2</apache-shiro.version>
-    <apache-httpclient.version>4.5.5</apache-httpclient.version>
+    <apache-httpclient.version>4.5.7</apache-httpclient.version>
     <pac4j.version>3.5.0</pac4j.version>
     <aws-java-sdk.version>1.11.541</aws-java-sdk.version>
   </properties>
@@ -40,7 +40,7 @@
       <dependency>
         <groupId>io.dropwizard</groupId>
         <artifactId>dropwizard-bom</artifactId>
-        <version>1.3.9</version>
+        <version>1.3.10</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -76,12 +76,14 @@
         <groupId>com.google.guava</groupId>
         <artifactId>guava</artifactId>
         <version>25.1-jre</version>
+        <!-- TODO: test compatiblity with latest version -->
       </dependency>
 
       <dependency>
         <groupId>com.google.code.gson</groupId>
         <artifactId>gson</artifactId>
         <version>2.8.5</version>
+        <!-- TODO: consider replacing usage with https://github.com/square/moshi -->
       </dependency>
 
       <dependency>
@@ -94,6 +96,7 @@
         <groupId>org.codehaus.groovy</groupId>
         <artifactId>groovy-all</artifactId>
         <version>2.4.11</version>
+        <!-- TODO: resolve how to cross-compile with modern groovy and update -->
       </dependency>
 
       <dependency>
@@ -112,6 +115,7 @@
         <groupId>javax.validation</groupId>
         <artifactId>validation-api</artifactId>
         <version>1.1.0.Final</version>
+        <!-- keep in sync with hibernate-validator via dropwizard-validation -->
       </dependency>
 
       <dependency>
@@ -136,18 +140,21 @@
         <groupId>commons-beanutils</groupId>
         <artifactId>commons-beanutils</artifactId>
         <version>1.9.3</version>
+        <!-- TODO: document where used -->
       </dependency>
 
       <dependency>
         <groupId>commons-collections</groupId>
         <artifactId>commons-collections</artifactId>
         <version>3.2.2</version>
+        <!-- TODO: document where used -->
       </dependency>
 
       <dependency>
         <groupId>org.apache.commons</groupId>
         <artifactId>commons-compress</artifactId>
         <version>1.18</version>
+        <!-- TODO: document where used -->
       </dependency>
 
       <dependency>
@@ -190,18 +197,19 @@
         <groupId>com.palominolabs.metrics</groupId>
         <artifactId>metrics-guice</artifactId>
         <version>4.0.0</version>
+        <!-- Release only exists in jcenter *NOT* in central; https://bintray.com/marshallpierce/maven/com.palominolabs.metrics%3Ametrics-guice -->
       </dependency>
 
       <dependency>
         <groupId>org.glassfish.hk2</groupId>
         <artifactId>guice-bridge</artifactId>
-        <version>2.5.0-b32</version>
+        <version>2.5.0-b63</version>
       </dependency>
 
       <dependency>
         <groupId>org.apache.maven.resolver</groupId>
         <artifactId>maven-resolver-util</artifactId>
-        <version>1.1.1</version>
+        <version>1.3.3</version>
       </dependency>
 
       <dependency>
