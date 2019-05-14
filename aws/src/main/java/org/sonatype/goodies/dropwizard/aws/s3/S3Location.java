@@ -79,6 +79,7 @@ public class S3Location
 
   @Override
   public String toString() {
+    // TODO: ensure sane uri-encoding of bucket and key
     return String.format("%s://%s/%s", SCHEME, bucket, key);
   }
 
@@ -126,6 +127,6 @@ public class S3Location
     checkNotNull(entity);
     S3BucketEntity bucket = checkNotNull(entity.getBucket());
     S3ObjectEntity object = checkNotNull(entity.getObject());
-    return new S3Location(bucket.getName(), object.getKey());
+    return new S3Location(bucket.getName(), object.getUrlDecodedKey());
   }
 }
