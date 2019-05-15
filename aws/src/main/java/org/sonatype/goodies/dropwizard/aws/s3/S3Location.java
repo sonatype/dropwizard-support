@@ -79,9 +79,13 @@ public class S3Location
 
   @Override
   public String toString() {
-    // TODO: ensure sane uri-encoding of bucket and key
+    // TODO: ensure sane uri-encoding of bucket and key; see: https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html
     return String.format("%s://%s/%s", SCHEME, bucket, key);
   }
+
+  //
+  // Parsing
+  //
 
   public static S3Location parse(final String value) {
     checkNotNull(value);
