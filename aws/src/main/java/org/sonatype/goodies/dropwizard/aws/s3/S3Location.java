@@ -16,6 +16,9 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Objects;
 
+import com.amazonaws.services.s3.event.S3EventNotification.S3BucketEntity;
+import com.amazonaws.services.s3.event.S3EventNotification.S3Entity;
+import com.amazonaws.services.s3.event.S3EventNotification.S3ObjectEntity;
 import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.model.S3ObjectId;
 
@@ -37,18 +40,6 @@ public class S3Location
   public S3Location(final String bucket, final String key) {
     this.bucket = checkNotNull(bucket);
     this.key = checkNotNull(key);
-  }
-
-  public S3Location(final S3ObjectId objectId) {
-    checkNotNull(objectId);
-    this.bucket = objectId.getBucket();
-    this.key = objectId.getKey();
-  }
-
-  public S3Location(final S3Object object) {
-    checkNotNull(object);
-    this.bucket = object.getBucketName();
-    this.key = object.getKey();
   }
 
   public String getBucket() {
@@ -88,8 +79,13 @@ public class S3Location
 
   @Override
   public String toString() {
+    // TODO: ensure sane uri-encoding of bucket and key; see: https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html
     return String.format("%s://%s/%s", SCHEME, bucket, key);
   }
+
+  //
+  // Parsing
+  //
 
   public static S3Location parse(final String value) {
     checkNotNull(value);
@@ -115,5 +111,26 @@ public class S3Location
     String key = value.getPath().substring(1);
 
     return new S3Location(bucket, key);
+  }
+
+  //
+  // Factory
+  //
+
+  public static S3Location create(final S3ObjectId objectId) {
+    checkNotNull(objectId);
+    return new S3Location(objectId.getBucket(), objectId.getKey());
+  }
+
+  public static S3Location create(final S3Object object) {
+    checkNotNull(object);
+    return new S3Location(object.getBucketName(), object.getKey());
+  }
+
+  public static S3Location create(final S3Entity entity) {
+    checkNotNull(entity);
+    S3BucketEntity bucket = checkNotNull(entity.getBucket());
+    S3ObjectEntity object = checkNotNull(entity.getObject());
+    return new S3Location(bucket.getName(), object.getUrlDecodedKey());
   }
 }

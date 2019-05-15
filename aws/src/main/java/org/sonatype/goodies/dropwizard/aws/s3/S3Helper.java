@@ -121,6 +121,15 @@ public class S3Helper
   }
 
   /**
+   * Copy object to another bucket.
+   */
+  public CopyObjectResult copy(final S3Location source, final S3Location target) {
+    checkNotNull(source);
+    checkNotNull(target);
+    return copy(source.getBucket(), source.getKey(), target.getBucket(), target.getKey());
+  }
+
+  /**
    * Copy object to local file.
    */
   public void copyLocal(final S3Object source, final File target) throws IOException {
