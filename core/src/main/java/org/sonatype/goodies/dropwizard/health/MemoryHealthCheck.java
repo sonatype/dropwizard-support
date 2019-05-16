@@ -80,7 +80,7 @@ public class MemoryHealthCheck
   @Inject
   public MemoryHealthCheck(final Configuration config) {
     this.config = checkNotNull(config);
-    log.info("Config: {}", config);
+    log.info("{}", config);
   }
 
   @Override
