@@ -45,7 +45,7 @@ public class ComponentSelectionTypeListener
     checkNotNull(binder);
     this.binder = new QualifiedTypeBinder(binder);
     this.configuration = checkNotNull(configuration);
-    log.debug("{}", configuration);
+    log.info("{}", configuration);
   }
 
   @Override
