@@ -52,6 +52,9 @@ public class ConfigurationSupport
   @JsonProperty("properties")
   private Map<String, Object> properties = new HashMap<>();
 
+  /**
+   * Component selection configuration for Sisu component discovery.
+   */
   @NotNull
   @Valid
   @JsonProperty("component-selection")
