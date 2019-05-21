@@ -16,10 +16,8 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 import io.dropwizard.jackson.Discoverable;
 
-// TODO: how to expose attachment for auto-binding?
-
 /**
- * ???
+ * Allows for generic configuration attachment to standard configuration framework.
  *
  * @since ???
  */
@@ -27,5 +25,5 @@ import io.dropwizard.jackson.Discoverable;
 public interface ConfigurationAttachment
     extends Discoverable
 {
-  // TODO
+  // empty
 }
