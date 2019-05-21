@@ -26,6 +26,8 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import org.sonatype.goodies.dropwizard.health.HealthCheckConfiguration;
+import org.sonatype.goodies.dropwizard.selection.ComponentSelectionConfiguration;
+import org.sonatype.goodies.dropwizard.selection.ComponentSelectionConfigurationAware;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.annotations.Beta;
@@ -41,20 +43,19 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
  */
 public class ConfigurationSupport
     extends Configuration
+    implements ComponentSelectionConfigurationAware
 {
   /**
    * Additional properties for Sisu injection.
    */
   @NotNull
   @JsonProperty("properties")
-  private Map<String,Object> properties = new HashMap<>();
+  private Map<String, Object> properties = new HashMap<>();
 
-  /**
-   * Optional set of component groups to enable.
-   */
   @NotNull
-  @JsonProperty("groups")
-  private Set<String> groups = new HashSet<>();
+  @Valid
+  @JsonProperty("component-selection")
+  private ComponentSelectionConfiguration componentSelectionConfiguration = new ComponentSelectionConfiguration();
 
   /**
    * Standard health-check configuration.
@@ -75,12 +76,15 @@ public class ConfigurationSupport
   }
 
   @Nonnull
-  public Set<String> getGroups() {
-    return groups;
+  @Override
+  public ComponentSelectionConfiguration getComponentSelectionConfiguration() {
+    return componentSelectionConfiguration;
   }
 
-  public void setGroups(@Nonnull final Set<String> groups) {
-    this.groups = checkNotNull(groups);
+  public void setComponentSelectionConfiguration(
+      @Nonnull final ComponentSelectionConfiguration componentSelectionConfiguration)
+  {
+    this.componentSelectionConfiguration = checkNotNull(componentSelectionConfiguration);
   }
 
   @Nonnull

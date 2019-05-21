@@ -10,7 +10,7 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
-package org.sonatype.goodies.dropwizard;
+package org.sonatype.goodies.dropwizard.selection;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -22,7 +22,7 @@ import com.google.common.annotations.Beta;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
- * ???
+ * Component group.
  *
  * @since ???
  */
@@ -30,9 +30,9 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Retention(RUNTIME)
 @Target({ElementType.TYPE, ElementType.PACKAGE})
 @Beta
-public @interface Group
+public @interface ComponentGroup
 {
   String ALWAYS = "ALWAYS";
 
-  String value();
+  String[] value();
 }

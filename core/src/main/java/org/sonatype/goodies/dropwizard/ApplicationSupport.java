@@ -18,20 +18,20 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
 
 import javax.annotation.Nullable;
 
 import org.sonatype.goodies.dropwizard.internal.ComponentDiscovery;
 import org.sonatype.goodies.dropwizard.internal.ConfigurationModule;
 import org.sonatype.goodies.dropwizard.internal.EnvironmentModule;
-import org.sonatype.goodies.dropwizard.internal.GroupTypeListener;
+import org.sonatype.goodies.dropwizard.selection.ComponentSelectionConfiguration;
+import org.sonatype.goodies.dropwizard.selection.ComponentSelectionConfigurationAware;
+import org.sonatype.goodies.dropwizard.selection.ComponentSelectionTypeListener;
 import org.sonatype.goodies.dropwizard.jersey.JerseyGuiceBridgeFeature;
 import org.sonatype.goodies.dropwizard.metrics.MetricsAopModule;
 import org.sonatype.goodies.dropwizard.util.FileHelper;
 
 import com.google.common.annotations.VisibleForTesting;
-import com.google.inject.Binder;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Module;
@@ -43,8 +43,6 @@ import org.eclipse.sisu.space.BeanScanning;
 import org.eclipse.sisu.space.ClassSpace;
 import org.eclipse.sisu.space.QualifiedTypeVisitor;
 import org.eclipse.sisu.space.SpaceModule;
-import org.eclipse.sisu.space.SpaceModule.Strategy;
-import org.eclipse.sisu.space.SpaceVisitor;
 import org.eclipse.sisu.space.URLClassSpace;
 import org.eclipse.sisu.wire.WireModule;
 import org.slf4j.Logger;
@@ -201,9 +199,10 @@ public abstract class ApplicationSupport<T extends Configuration>
     ClassSpace space = new URLClassSpace(getClass().getClassLoader());
     SpaceModule spaceModule = new SpaceModule(space, scanning);
 
-    if (config instanceof ConfigurationSupport) {
-      Set<String> groups = ((ConfigurationSupport)config).getGroups();
-      SpaceModule.Strategy strategy = binder -> new QualifiedTypeVisitor(new GroupTypeListener(binder, groups));
+    // when configuration is ComponentSelectionConfiguration aware then apply selection
+    if (config instanceof ComponentSelectionConfigurationAware) {
+      ComponentSelectionConfiguration selectionConfiguration = ((ComponentSelectionConfigurationAware)config).getComponentSelectionConfiguration();
+      SpaceModule.Strategy strategy = binder -> new QualifiedTypeVisitor(new ComponentSelectionTypeListener(binder, selectionConfiguration));
       spaceModule.with(strategy);
     }
 
