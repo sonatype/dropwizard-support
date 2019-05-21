@@ -45,7 +45,7 @@ public class ComponentSelectionTypeListener
     checkNotNull(binder);
     this.binder = new QualifiedTypeBinder(binder);
     this.configuration = checkNotNull(configuration);
-    log.info("{}", configuration);
+    log.debug("{}", configuration);
   }
 
   @Override
@@ -61,13 +61,13 @@ public class ComponentSelectionTypeListener
   private boolean isEnabled(final Class<?> type) {
     // first check direct type name
     if (configuration.getTypes().contains(type.getCanonicalName())) {
-      log.info("Enabled by type-name: {}", type);
+      log.debug("Enabled by type-name: {}", type);
       return true;
     }
 
     // then type package name
     if (configuration.getPackages().contains(type.getPackage().getName())) {
-      log.info("Enabled by package-name: {}", type);
+      log.debug("Enabled by package-name: {}", type);
       return true;
     }
 
@@ -76,22 +76,26 @@ public class ComponentSelectionTypeListener
 
     // if no groups discovered, enable by default
     if (groups.isEmpty()) {
-      log.info("Enabled by default: {}", type);
+      log.debug("Enabled by default: {}", type);
       return true;
     }
 
     // else enable if a matching group is found
     for (String group : groups) {
+      if (ComponentGroup.NEVER.equals(group)) {
+        break;
+      }
       if (ComponentGroup.ALWAYS.equals(group)) {
-        log.info("Enabled ALWAYS: {}", type);
+        log.debug("Enabled ALWAYS: {}", type);
         return true;
       }
       if (configuration.getGroups().contains(group)) {
-        log.info("Enabled by group-name {}: {}", group, type);
+        log.debug("Enabled by group-name {}: {}", group, type);
         return true;
       }
     }
 
+    log.trace("Disabled: {}", type);
     return false;
   }
 

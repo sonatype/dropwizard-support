@@ -22,7 +22,7 @@ import com.google.common.annotations.Beta;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
- * Component group.
+ * Allows component to be given a set of group-names for component-selection.
  *
  * @since ???
  */
@@ -32,7 +32,22 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Beta
 public @interface ComponentGroup
 {
+  /**
+   * Special group-name to always enable component.
+   */
   String ALWAYS = "ALWAYS";
 
+  /**
+   * Special group-name to never enable component.
+   *
+   * This only applies if type or package based selection has not matched.
+   */
+  String NEVER = "NEVER";
+
+  /**
+   * A set or ordered component group-names.
+   *
+   * First matching group-name wins.
+   */
   String[] value();
 }
