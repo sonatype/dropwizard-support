@@ -31,21 +31,23 @@ import static com.google.common.base.Preconditions.checkNotNull;
 public class ComponentSelectionConfiguration
 {
   /**
-   * Optional set of component types to enable.
+   * Optional set of component type(class)-names to enable.
    */
   @NotNull
   @JsonProperty("types")
   private Set<String> types = new HashSet<>();
 
   /**
-   * Optional set of component packages to enable.
+   * Optional set of component package-names to enable.
    */
   @NotNull
   @JsonProperty("packages")
   private Set<String> packages = new HashSet<>();
 
   /**
-   * Optional set of component groups to enable.
+   * Optional set of component group-names to enable.
+   *
+   * @see ComponentGroup
    */
   @NotNull
   @JsonProperty("groups")
