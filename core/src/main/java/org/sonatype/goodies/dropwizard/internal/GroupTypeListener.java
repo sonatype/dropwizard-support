@@ -51,7 +51,7 @@ public class GroupTypeListener
   @Override
   public void hear(final Class<?> type, final Object source) {
     List<Group> groups = groupsOf(type);
-    log.info("Testing: {} -> {}", type, groups);
+    log.info("Hearing: {} -> {}", type, groups);
     boolean enable = false;
 
     // if no groups always enable
@@ -61,16 +61,15 @@ public class GroupTypeListener
     else {
       for (Group group : groups) {
         String name = group.value();
-        if (enabled.contains(name) || Group.ALWAYS.equals(name)) {
+        if (Group.ALWAYS.equals(name) || enabled.contains(name)) {
           enable = true;
-          log.info("Matched group: {} -> {}", name, type);
+          log.info("Enabled group: {} -> {}", name, type);
           break;
         }
       }
     }
 
     if (enable) {
-      log.info("Enabled: {}", type);
       binder.hear(type, source);
     }
   }
