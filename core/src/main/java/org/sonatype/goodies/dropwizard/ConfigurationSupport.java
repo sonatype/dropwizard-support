@@ -17,8 +17,11 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
+import javax.annotation.Nonnull;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
@@ -47,6 +50,13 @@ public class ConfigurationSupport
   private Map<String,Object> properties = new HashMap<>();
 
   /**
+   * Optional set of component groups to enable.
+   */
+  @NotNull
+  @JsonProperty("groups")
+  private Set<String> groups = new HashSet<>();
+
+  /**
    * Standard health-check configuration.
    */
   @NotNull
@@ -55,7 +65,7 @@ public class ConfigurationSupport
   @JsonProperty("health-check")
   private HealthCheckConfiguration healthCheckConfiguration = new HealthCheckConfiguration();
 
-  @NotNull
+  @Nonnull
   public Map<String, Object> getProperties() {
     return properties;
   }
@@ -64,11 +74,21 @@ public class ConfigurationSupport
     this.properties = checkNotNull(properties);
   }
 
+  @Nonnull
+  public Set<String> getGroups() {
+    return groups;
+  }
+
+  public void setGroups(@Nonnull final Set<String> groups) {
+    this.groups = checkNotNull(groups);
+  }
+
+  @Nonnull
   public HealthCheckConfiguration getHealthCheckConfiguration() {
     return healthCheckConfiguration;
   }
 
-  public void setHealthCheckConfiguration(final HealthCheckConfiguration healthCheckConfiguration) {
+  public void setHealthCheckConfiguration(@Nonnull final HealthCheckConfiguration healthCheckConfiguration) {
     this.healthCheckConfiguration = checkNotNull(healthCheckConfiguration);
   }
 
