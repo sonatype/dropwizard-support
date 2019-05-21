@@ -12,6 +12,9 @@
  */
 package org.sonatype.goodies.dropwizard.internal;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 
 import org.sonatype.goodies.dropwizard.Group;
@@ -47,13 +50,12 @@ public class GroupTypeListener
 
   @Override
   public void hear(final Class<?> type, final Object source) {
-    log.info("Testing: {}", type);
-
-    Group[] groups = type.getAnnotationsByType(Group.class);
+    List<Group> groups = groupsOf(type);
+    log.info("Testing: {} -> {}", type, groups);
     boolean enable = false;
 
-    // if no groups
-    if (groups == null || groups.length == 0) {
+    // if no groups always enable
+    if (groups.isEmpty()) {
       enable = true;
     }
     else {
@@ -71,5 +73,46 @@ public class GroupTypeListener
       log.info("Enabled: {}", type);
       binder.hear(type, source);
     }
+  }
+
+  /**
+   * Returns all groups for given type.
+   */
+  private List<Group> groupsOf(final Class<?> type) {
+    List<Group> result = new ArrayList<>();
+
+    // include all groups from type
+    Collections.addAll(result, type.getAnnotationsByType(Group.class));
+
+    // include all groups from packages
+    for (Package _package : packagesOf(type)) {
+      Collections.addAll(result, _package.getAnnotationsByType(Group.class));
+    }
+
+    return result;
+  }
+
+  /**
+   * Returns all packages (and parent-packages) of given type.
+   */
+  private static List<Package> packagesOf(final Class<?> type) {
+    List<Package> result = new ArrayList<>();
+
+    Package _package = type.getPackage();
+    while (_package != null) {
+      result.add(_package);
+
+      // lookup parent of package
+      String name = _package.getName();
+      int i = name.lastIndexOf('.');
+      if (i == -1) {
+        break;
+      }
+      else {
+        _package = Package.getPackage(name.substring(0, i));
+      }
+    }
+
+    return result;
   }
 }

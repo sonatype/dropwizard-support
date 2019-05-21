@@ -21,8 +21,6 @@ import com.google.common.annotations.Beta;
 
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
-// TODO: check how this works with @Provides methods?
-
 /**
  * ???
  *
@@ -30,7 +28,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
  */
 @Documented
 @Retention(RUNTIME)
-@Target({ElementType.TYPE, ElementType.METHOD})
+@Target({ElementType.TYPE, ElementType.PACKAGE})
 @Beta
 public @interface Group
 {
