@@ -38,8 +38,8 @@ public class ConfigurationSupport
    * Additional properties for Sisu injection.
    */
   @NotNull
-  @JsonProperty("properties")
   @Bind(name="configuration-properties")
+  @JsonProperty("properties")
   private Map<String,Object> properties = new HashMap<>();
 
   /**
@@ -47,8 +47,8 @@ public class ConfigurationSupport
    */
   @NotNull
   @Valid
-  @JsonProperty("attachments")
   @Bind(name="configuration-attachments")
+  @JsonProperty("attachments")
   private Map<String,ConfigurationAttachment> attachments = new HashMap<>();
 
   /**
