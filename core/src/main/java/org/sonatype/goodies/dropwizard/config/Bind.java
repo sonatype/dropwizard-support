@@ -32,11 +32,23 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Beta
 public @interface Bind
 {
+  /**
+   * Default {@link #type()} for bindings w/o explicit type.
+   */
   Class<?> DEFAULT_TYPE = Void.class;
 
-  Class<?> type() default Void.class;
-
+  /**
+   * Default {@link #name()} for bindings w/o explicit name.
+   */
   String DEFAULT_NAME = "__DEFAULT__";
 
+  /**
+   * Configure explicit binding type.
+   */
+  Class<?> type() default Void.class;
+
+  /**
+   * Configure explicit binding name.
+   */
   String name() default DEFAULT_NAME;
 }
