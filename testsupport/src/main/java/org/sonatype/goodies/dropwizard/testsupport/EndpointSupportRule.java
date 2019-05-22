@@ -17,7 +17,7 @@ import java.net.URI;
 import javax.annotation.Nullable;
 import javax.ws.rs.client.WebTarget;
 
-import org.sonatype.goodies.dropwizard.ApplicationSupport;
+import org.sonatype.goodies.dropwizard.app.ApplicationSupport;
 import org.sonatype.goodies.dropwizard.client.endpoint.EndpointFactory;
 
 import io.dropwizard.Configuration;

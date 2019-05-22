@@ -18,7 +18,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
-import org.sonatype.goodies.dropwizard.ApplicationVersion;
+import org.sonatype.goodies.dropwizard.app.ApplicationVersion;
 
 import com.google.common.annotations.VisibleForTesting;
 import io.dropwizard.setup.Environment;

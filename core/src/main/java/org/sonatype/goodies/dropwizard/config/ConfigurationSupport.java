@@ -10,26 +10,21 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
-package org.sonatype.goodies.dropwizard;
+package org.sonatype.goodies.dropwizard.config;
 
-import java.lang.annotation.Documented;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.Target;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.Nonnull;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import org.sonatype.goodies.dropwizard.health.HealthCheckConfiguration;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.common.annotations.Beta;
 import io.dropwizard.Configuration;
 
 import static com.google.common.base.Preconditions.checkNotNull;
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
  * Application {@link Configuration} support.
@@ -43,8 +38,18 @@ public class ConfigurationSupport
    * Additional properties for Sisu injection.
    */
   @NotNull
+  @Bind(name="configuration-properties")
   @JsonProperty("properties")
   private Map<String,Object> properties = new HashMap<>();
+
+  /**
+   * Optional configuration attachments.
+   */
+  @NotNull
+  @Valid
+  @Bind(name="configuration-attachments")
+  @JsonProperty("attachments")
+  private Map<String,ConfigurationAttachment> attachments = new HashMap<>();
 
   /**
    * Standard health-check configuration.
@@ -55,31 +60,30 @@ public class ConfigurationSupport
   @JsonProperty("health-check")
   private HealthCheckConfiguration healthCheckConfiguration = new HealthCheckConfiguration();
 
-  @NotNull
+  @Nonnull
   public Map<String, Object> getProperties() {
     return properties;
   }
 
-  public void setProperties(@NotNull final Map<String, Object> properties) {
+  public void setProperties(@Nonnull final Map<String, Object> properties) {
     this.properties = checkNotNull(properties);
   }
 
+  @Nonnull
+  public Map<String,ConfigurationAttachment> getAttachments() {
+    return attachments;
+  }
+
+  public void setAttachments(@Nonnull final Map<String,ConfigurationAttachment> attachments) {
+    this.attachments = checkNotNull(attachments);
+  }
+
+  @Nonnull
   public HealthCheckConfiguration getHealthCheckConfiguration() {
     return healthCheckConfiguration;
   }
 
-  public void setHealthCheckConfiguration(final HealthCheckConfiguration healthCheckConfiguration) {
+  public void setHealthCheckConfiguration(@Nonnull final HealthCheckConfiguration healthCheckConfiguration) {
     this.healthCheckConfiguration = checkNotNull(healthCheckConfiguration);
-  }
-
-  // TODO: maybe pick a better name?
-
-  @Documented
-  @Retention(RUNTIME)
-  @Target({ElementType.TYPE, ElementType.FIELD, ElementType.METHOD})
-  @Beta
-  public @interface Bind
-  {
-    Class<?> value() default Void.class;
   }
 }

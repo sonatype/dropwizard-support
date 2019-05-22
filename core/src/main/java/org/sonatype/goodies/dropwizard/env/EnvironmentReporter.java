@@ -10,19 +10,16 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
-package org.sonatype.goodies.dropwizard;
+package org.sonatype.goodies.dropwizard.env;
 
-import io.dropwizard.setup.Environment;
+import org.slf4j.Logger;
 
 /**
- * Allows customization of application {@link Environment}.
+ * Report environment.
  *
- * @since 1.0.0
+ * @since ???
  */
-public interface EnvironmentCustomizer
+public interface EnvironmentReporter
 {
-  /**
-   * Apply configuration to environment.
-   */
-  void customize(Environment environment);
+  void report(Logger logger) throws Exception;
 }
