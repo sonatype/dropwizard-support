@@ -12,7 +12,7 @@
  */
 package org.sonatype.goodies.dropwizard.testsupport;
 
-import org.sonatype.goodies.dropwizard.ApplicationVersion;
+import org.sonatype.goodies.dropwizard.app.ApplicationVersion;
 
 /**
  * Test {@link ApplicationVersion}.

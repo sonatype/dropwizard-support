@@ -14,8 +14,8 @@ package org.sonatype.goodies.dropwizard.swagger;
 
 import java.util.List;
 
-import org.sonatype.goodies.dropwizard.ApplicationCustomizer;
-import org.sonatype.goodies.dropwizard.ApplicationSupport;
+import org.sonatype.goodies.dropwizard.app.ApplicationCustomizer;
+import org.sonatype.goodies.dropwizard.app.ApplicationSupport;
 
 import com.google.common.collect.ImmutableList;
 import com.google.inject.Module;

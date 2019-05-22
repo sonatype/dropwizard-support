@@ -10,7 +10,7 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
-package org.sonatype.goodies.dropwizard;
+package org.sonatype.goodies.dropwizard.app;
 
 import java.io.File;
 import java.nio.file.Files;
@@ -21,14 +21,16 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import org.sonatype.goodies.dropwizard.env.BasicEnvironmentReporter;
+import org.sonatype.goodies.dropwizard.env.EnvironmentModule;
+import org.sonatype.goodies.dropwizard.env.EnvironmentReporter;
 import org.sonatype.goodies.dropwizard.internal.ComponentDiscovery;
 import org.sonatype.goodies.dropwizard.internal.ConfigurationModule;
-import org.sonatype.goodies.dropwizard.internal.EnvironmentModule;
+import org.sonatype.goodies.dropwizard.jersey.JerseyGuiceBridgeFeature;
+import org.sonatype.goodies.dropwizard.metrics.MetricsAopModule;
 import org.sonatype.goodies.dropwizard.selection.ComponentSelectionConfiguration;
 import org.sonatype.goodies.dropwizard.selection.ComponentSelectionConfigurationAware;
 import org.sonatype.goodies.dropwizard.selection.ComponentSelectionTypeListener;
-import org.sonatype.goodies.dropwizard.jersey.JerseyGuiceBridgeFeature;
-import org.sonatype.goodies.dropwizard.metrics.MetricsAopModule;
 import org.sonatype.goodies.dropwizard.util.FileHelper;
 
 import com.google.common.annotations.VisibleForTesting;

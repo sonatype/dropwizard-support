@@ -15,11 +15,18 @@ package org.sonatype.goodies.dropwizard.internal;
 import java.lang.reflect.AccessibleObject;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.Map;
 
-import org.sonatype.goodies.dropwizard.ConfigurationSupport.Bind;
+import javax.annotation.Nullable;
+
+import org.sonatype.goodies.dropwizard.config.Bind;
+import org.sonatype.goodies.dropwizard.config.ConfigurationAttachment;
+import org.sonatype.goodies.dropwizard.config.ConfigurationSupport;
 
 import com.google.inject.AbstractModule;
+import com.google.inject.name.Names;
 import io.dropwizard.Configuration;
+import org.apache.commons.lang3.reflect.FieldUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -41,80 +48,115 @@ public class ConfigurationModule
     this.configuration = checkNotNull(configuration);
   }
 
-  @SuppressWarnings("unchecked")
   @Override
   protected void configure() {
-    bind((Class) configuration.getClass()).toInstance(configuration);
+    // bind original configuration
+    bind(configuration.getClass(), null, configuration);
 
+    // expose configuration member bindings
     try {
-      autoBind(configuration);
+      expose(configuration);
     }
     catch (Exception e) {
-      log.warn("Failed to bind exposed configuration", e);
+      throw new RuntimeException(e);
     }
-  }
 
-  private void autoBind(final Object owner) throws Exception {
-    log.trace("Auto-binding: {}", owner);
-
-    Class<?> type = owner.getClass();
-    for (Field field : type.getDeclaredFields()) {
-      autoBind(field, owner);
-    }
-    for (Method method : type.getDeclaredMethods()) {
-      autoBind(method, owner);
+    // bind named attachments
+    if (configuration instanceof ConfigurationSupport) {
+      Map<String, ConfigurationAttachment> attachments = ((ConfigurationSupport)configuration).getAttachments();
+      for (Map.Entry<String,ConfigurationAttachment> entry : attachments.entrySet()) {
+        ConfigurationAttachment value = entry.getValue();
+        bind(value.getClass(), entry.getKey(), value);
+      }
     }
   }
 
   @SuppressWarnings("unchecked")
-  private void autoBind(final AccessibleObject member, final Object owner) throws Exception {
-    log.trace("Auto-binding; member: {}", member);
+  private void bind(final Class type, @Nullable final String name, final Object value) {
+    if (name != null && !Bind.DEFAULT_NAME.equals(name)) {
+      log.trace("Binding: {}({}) -> {}", type.getCanonicalName(), name, value);
+      bind(type).annotatedWith(Names.named(name)).toInstance(value);
+    }
+    else {
+      log.trace("Binding: {} -> {}", type.getCanonicalName(), value);
+      bind(type).toInstance(value);
+    }
+  }
 
+  //
+  // Component binding exposure
+  //
+
+  /**
+   * Attempt to expose bindings for given object.
+   */
+  private void expose(final Object owner) throws Exception {
+    log.trace("Exposing bindings: {}", owner);
+
+    Class<?> type = owner.getClass();
+
+    // attempt to expose all fields
+    for (Field field : FieldUtils.getAllFields(type)) {
+      expose(owner, field);
+    }
+
+    // attempt to expose all methods
+    for (Method method : type.getMethods()) {
+      expose(owner, method);
+    }
+  }
+
+  /**
+   * Attempt to expose bindings for given member.
+   */
+  private void expose(final Object owner, final AccessibleObject member) throws Exception {
     member.setAccessible(true);
+    Bind bind = member.getAnnotation(Bind.class);
 
-    Bind binding = member.getAnnotation(Bind.class);
-    if (binding != null) {
-      Class<?> type;
-      Object value;
+    // skip if no binding for member
+    if (bind == null) {
+      return;
+    }
 
-      if (member instanceof Field) {
-        Field field = (Field)member;
-        type = field.getType();
-        value = field.get(owner);
-      }
-      else if (member instanceof Method) {
-        Method method = (Method)member;
-        if (method.getParameterTypes().length != 0) {
-          log.warn("Ignoring auto-bind method with arguments: {}", method);
-          return;
-        }
-        else {
-          type = method.getReturnType();
-          if (type == Void.class) {
-            log.warn("Ignoring auto-bind method with void-return: {}", method);
-            return;
-          }
-          value = method.invoke(owner);
-        }
+    Class<?> type;
+    Object value;
+
+    if (member instanceof Field) {
+      Field field = (Field)member;
+      type = field.getType();
+      value = field.get(owner);
+    }
+    else if (member instanceof Method) {
+      Method method = (Method)member;
+      if (method.getParameterTypes().length != 0) {
+        log.warn("Ignoring exposed method with arguments: {}", method);
+        return;
       }
       else {
-        throw new Error("Invalid member: " + member);
-      }
-
-      // optionally bind specific type if given
-      if (binding.value() != Void.class) {
-        type = binding.value();
-      }
-
-      if (value != null) {
-        // can only bind non-null value
-        log.trace("Binding: {} -> {}", type, value);
-        bind((Class)type).toInstance(value);
-
-        // maybe apply auto-binding to child value
-        if (value.getClass().getAnnotation(Bind.class) != null) {
-          autoBind(value);
+        type = method.getReturnType();
+        if (type == Void.class) {
+          log.warn("Ignoring exposed method with void-return: {}", method);
+          return;
         }
+        value = method.invoke(owner);
+      }
+    }
+    else {
+      throw new Error("Invalid member: " + member);
+    }
+
+    // optionally bind specific type if given
+    if (bind.type() != Bind.DEFAULT_TYPE) {
+      type = bind.type();
+    }
+
+    // can only bind non-null value
+    if (value != null) {
+      bind(type, bind.name(), value);
+
+      // maybe apply auto-binding to child value
+      if (value.getClass().getAnnotation(Bind.class) != null) {
+        expose(value);
       }
     }
   }
