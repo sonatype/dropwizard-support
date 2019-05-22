@@ -10,7 +10,7 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
-package org.sonatype.goodies.dropwizard.internal;
+package org.sonatype.goodies.dropwizard.config;
 
 import java.lang.reflect.AccessibleObject;
 import java.lang.reflect.Field;
@@ -19,10 +19,7 @@ import java.util.Map;
 
 import javax.annotation.Nullable;
 
-import org.sonatype.goodies.dropwizard.config.Bind;
-import org.sonatype.goodies.dropwizard.config.ConfigurationAttachment;
-import org.sonatype.goodies.dropwizard.config.ConfigurationSupport;
-
+import com.google.common.base.Throwables;
 import com.google.inject.AbstractModule;
 import com.google.inject.name.Names;
 import io.dropwizard.Configuration;
@@ -54,19 +51,15 @@ public class ConfigurationModule
     bind(configuration.getClass(), null, configuration);
 
     // expose configuration member bindings
-    try {
-      expose(configuration);
-    }
-    catch (Exception e) {
-      throw new RuntimeException(e);
-    }
+    expose(configuration);
 
-    // bind named attachments
+    // bind named attachments; and expose any bindings
     if (configuration instanceof ConfigurationSupport) {
       Map<String, ConfigurationAttachment> attachments = ((ConfigurationSupport)configuration).getAttachments();
       for (Map.Entry<String,ConfigurationAttachment> entry : attachments.entrySet()) {
         ConfigurationAttachment value = entry.getValue();
         bind(value.getClass(), entry.getKey(), value);
+        expose(value);
       }
     }
   }
@@ -90,19 +83,25 @@ public class ConfigurationModule
   /**
    * Attempt to expose bindings for given object.
    */
-  private void expose(final Object owner) throws Exception {
+  private void expose(final Object owner) {
     log.trace("Exposing bindings: {}", owner);
 
     Class<?> type = owner.getClass();
 
-    // attempt to expose all fields
-    for (Field field : FieldUtils.getAllFields(type)) {
-      expose(owner, field);
-    }
+    try {
+      // attempt to expose all fields
+      for (Field field : FieldUtils.getAllFields(type)) {
+        expose(owner, field);
+      }
 
-    // attempt to expose all methods
-    for (Method method : type.getMethods()) {
-      expose(owner, method);
+      // attempt to expose all methods
+      for (Method method : type.getMethods()) {
+        expose(owner, method);
+      }
+    }
+    catch (Exception e) {
+      Throwables.throwIfUnchecked(e);
+      throw new RuntimeException(e);
     }
   }
 
