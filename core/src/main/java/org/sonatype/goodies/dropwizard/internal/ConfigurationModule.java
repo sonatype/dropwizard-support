@@ -19,9 +19,9 @@ import java.util.Map;
 
 import javax.annotation.Nullable;
 
-import org.sonatype.goodies.dropwizard.Bind;
-import org.sonatype.goodies.dropwizard.ConfigurationAttachment;
-import org.sonatype.goodies.dropwizard.ConfigurationSupport;
+import org.sonatype.goodies.dropwizard.config.Bind;
+import org.sonatype.goodies.dropwizard.config.ConfigurationAttachment;
+import org.sonatype.goodies.dropwizard.config.ConfigurationSupport;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.name.Names;

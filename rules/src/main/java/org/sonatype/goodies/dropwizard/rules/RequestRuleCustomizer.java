@@ -19,8 +19,8 @@ import javax.servlet.DispatcherType;
 import javax.servlet.Filter;
 import javax.servlet.FilterRegistration;
 
-import org.sonatype.goodies.dropwizard.ApplicationCustomizer;
-import org.sonatype.goodies.dropwizard.ApplicationSupport;
+import org.sonatype.goodies.dropwizard.app.ApplicationCustomizer;
+import org.sonatype.goodies.dropwizard.app.ApplicationSupport;
 
 import com.google.common.collect.ImmutableList;
 import com.google.inject.Module;

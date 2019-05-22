@@ -10,19 +10,33 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
-package org.sonatype.goodies.dropwizard;
+package org.sonatype.goodies.dropwizard.config;
 
-import io.dropwizard.setup.Environment;
+import java.lang.annotation.Documented;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.Target;
+
+import com.google.common.annotations.Beta;
+
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
- * Allows customization of application {@link Environment}.
+ * Marker for configuration to expose as Sisu binding.
  *
- * @since 1.0.0
+ * @since ???
  */
-public interface EnvironmentCustomizer
+@Documented
+@Retention(RUNTIME)
+@Target({ElementType.TYPE, ElementType.FIELD, ElementType.METHOD})
+@Beta
+public @interface Bind
 {
-  /**
-   * Apply configuration to environment.
-   */
-  void customize(Environment environment);
+  Class<?> DEFAULT_TYPE = Void.class;
+
+  Class<?> type() default Void.class;
+
+  String DEFAULT_NAME = "__DEFAULT__";
+
+  String name() default DEFAULT_NAME;
 }

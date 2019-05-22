@@ -30,8 +30,8 @@ import javax.annotation.Nullable;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.WebTarget;
 
-import org.sonatype.goodies.dropwizard.ApplicationCustomizer;
-import org.sonatype.goodies.dropwizard.ApplicationSupport;
+import org.sonatype.goodies.dropwizard.app.ApplicationCustomizer;
+import org.sonatype.goodies.dropwizard.app.ApplicationSupport;
 import org.sonatype.goodies.dropwizard.client.endpoint.EndpointFactory;
 import org.sonatype.goodies.dropwizard.client.endpoint.EndpointFactory.Builder;
 
