@@ -20,6 +20,8 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import org.sonatype.goodies.dropwizard.health.HealthCheckConfiguration;
+import org.sonatype.goodies.dropwizard.selection.ComponentSelectionConfiguration;
+import org.sonatype.goodies.dropwizard.selection.ComponentSelectionConfigurationAware;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.dropwizard.Configuration;
@@ -33,6 +35,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
  */
 public class ConfigurationSupport
     extends Configuration
+    implements ComponentSelectionConfigurationAware
 {
   /**
    * Additional properties for Sisu injection.
@@ -40,7 +43,16 @@ public class ConfigurationSupport
   @NotNull
   @Bind(name="configuration-properties")
   @JsonProperty("properties")
-  private Map<String,Object> properties = new HashMap<>();
+  private Map<String, Object> properties = new HashMap<>();
+
+  /**
+   * Component selection configuration for Sisu component discovery.
+   */
+  @NotNull
+  @Valid
+  @Bind
+  @JsonProperty("component-selection")
+  private ComponentSelectionConfiguration componentSelectionConfiguration = new ComponentSelectionConfiguration();
 
   /**
    * Optional configuration attachments.
@@ -67,6 +79,16 @@ public class ConfigurationSupport
 
   public void setProperties(@Nonnull final Map<String, Object> properties) {
     this.properties = checkNotNull(properties);
+  }
+
+  @Nonnull
+  @Override
+  public ComponentSelectionConfiguration getComponentSelectionConfiguration() {
+    return componentSelectionConfiguration;
+  }
+
+  public void setComponentSelectionConfiguration(@Nonnull final ComponentSelectionConfiguration config) {
+    this.componentSelectionConfiguration = checkNotNull(config);
   }
 
   @Nonnull

@@ -22,12 +22,15 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import org.sonatype.goodies.dropwizard.env.BasicEnvironmentReporter;
+import org.sonatype.goodies.dropwizard.env.EnvironmentModule;
 import org.sonatype.goodies.dropwizard.env.EnvironmentReporter;
 import org.sonatype.goodies.dropwizard.internal.ComponentDiscovery;
 import org.sonatype.goodies.dropwizard.internal.ConfigurationModule;
-import org.sonatype.goodies.dropwizard.env.EnvironmentModule;
 import org.sonatype.goodies.dropwizard.jersey.JerseyGuiceBridgeFeature;
 import org.sonatype.goodies.dropwizard.metrics.MetricsAopModule;
+import org.sonatype.goodies.dropwizard.selection.ComponentSelectionConfiguration;
+import org.sonatype.goodies.dropwizard.selection.ComponentSelectionConfigurationAware;
+import org.sonatype.goodies.dropwizard.selection.ComponentSelectionTypeListener;
 import org.sonatype.goodies.dropwizard.util.FileHelper;
 
 import com.google.common.annotations.VisibleForTesting;
@@ -40,6 +43,7 @@ import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import org.eclipse.sisu.space.BeanScanning;
 import org.eclipse.sisu.space.ClassSpace;
+import org.eclipse.sisu.space.QualifiedTypeVisitor;
 import org.eclipse.sisu.space.SpaceModule;
 import org.eclipse.sisu.space.URLClassSpace;
 import org.eclipse.sisu.wire.WireModule;
@@ -195,7 +199,16 @@ public abstract class ApplicationSupport<T extends Configuration>
     }
 
     ClassSpace space = new URLClassSpace(getClass().getClassLoader());
-    modules.add(new SpaceModule(space, scanning));
+    SpaceModule spaceModule = new SpaceModule(space, scanning);
+
+    // when configuration is ComponentSelectionConfiguration aware then apply selection
+    if (config instanceof ComponentSelectionConfigurationAware) {
+      ComponentSelectionConfiguration selectionConfiguration = ((ComponentSelectionConfigurationAware)config).getComponentSelectionConfiguration();
+      SpaceModule.Strategy strategy = binder -> new QualifiedTypeVisitor(new ComponentSelectionTypeListener(binder, selectionConfiguration));
+      spaceModule.with(strategy);
+    }
+
+    modules.add(spaceModule);
 
     return Guice.createInjector(new WireModule(modules));
   }
