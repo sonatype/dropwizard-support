@@ -201,7 +201,7 @@ public abstract class ApplicationSupport<T extends Configuration>
     }
 
     BeanScanning scanning = scanning(config);
-    log.info("Scanning: {}", scanning);
+    log.debug("Scanning: {}", scanning);
 
     ClassSpace space = new URLClassSpace(getClass().getClassLoader());
     SpaceModule spaceModule = new SpaceModule(space, scanning);
@@ -215,9 +215,11 @@ public abstract class ApplicationSupport<T extends Configuration>
 
     modules.add(spaceModule);
 
-    log.info("Modules:");
-    for (Module module : modules) {
-      log.info("  {}", module);
+    if (log.isDebugEnabled()) {
+      log.debug("Modules:");
+      for (Module module : modules) {
+        log.debug("  {}", module);
+      }
     }
 
     return Guice.createInjector(new WireModule(modules));
