@@ -21,11 +21,11 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import org.sonatype.goodies.dropwizard.config.ComponentDiscovery;
+import org.sonatype.goodies.dropwizard.config.ConfigurationModule;
 import org.sonatype.goodies.dropwizard.env.BasicEnvironmentReporter;
 import org.sonatype.goodies.dropwizard.env.EnvironmentModule;
 import org.sonatype.goodies.dropwizard.env.EnvironmentReporter;
-import org.sonatype.goodies.dropwizard.config.ComponentDiscovery;
-import org.sonatype.goodies.dropwizard.config.ConfigurationModule;
 import org.sonatype.goodies.dropwizard.jersey.JerseyGuiceBridgeFeature;
 import org.sonatype.goodies.dropwizard.metrics.MetricsAopModule;
 import org.sonatype.goodies.dropwizard.selection.ComponentSelectionConfiguration;
@@ -260,7 +260,7 @@ public abstract class ApplicationSupport<T extends Configuration>
     checkNotNull(arguments);
 
     // early verification that temporary directory is valid
-    File tmpdir = FileHelper.resolveFile(System.getProperty("java.io.tmpdir"));
+    File tmpdir = FileHelper.tmpdir();
     try {
       Path tmp = Files.createTempFile(getName(), ".tmp");
       Files.delete(tmp);
