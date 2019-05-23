@@ -31,6 +31,7 @@ import javax.ws.rs.core.Form;
 import javax.ws.rs.core.MultivaluedHashMap;
 import javax.ws.rs.core.MultivaluedMap;
 
+import com.google.common.base.Throwables;
 import org.glassfish.jersey.client.proxy.WebResourceFactory;
 import org.glassfish.jersey.internal.util.ReflectionHelper;
 import org.slf4j.Logger;
@@ -237,6 +238,7 @@ public final class EndpointFactory
       log.trace("Delegate: {}", delegate);
     }
     catch (Exception e) {
+      Throwables.throwIfUnchecked(e);
       throw new RuntimeException(e);
     }
 

@@ -37,6 +37,7 @@ import org.sonatype.goodies.dropwizard.client.endpoint.EndpointFactory.Builder;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Stopwatch;
+import com.google.common.base.Throwables;
 import com.google.common.collect.ImmutableList;
 import com.google.common.io.Resources;
 import com.google.inject.Injector;
@@ -111,6 +112,7 @@ public class ApplicationSupportRule<T extends ApplicationSupport<C>, C extends C
       configure();
     }
     catch (Exception e) {
+      Throwables.throwIfUnchecked(e);
       throw new RuntimeException(e);
     }
 
@@ -255,6 +257,7 @@ public class ApplicationSupportRule<T extends ApplicationSupport<C>, C extends C
           client = clientBuilder.call().build();
         }
         catch (Exception e) {
+          Throwables.throwIfUnchecked(e);
           throw new RuntimeException(e);
         }
       }

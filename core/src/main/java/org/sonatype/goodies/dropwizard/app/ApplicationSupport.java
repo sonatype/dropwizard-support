@@ -34,6 +34,7 @@ import org.sonatype.goodies.dropwizard.selection.ComponentSelectionTypeListener;
 import org.sonatype.goodies.dropwizard.util.FileHelper;
 
 import com.google.common.annotations.VisibleForTesting;
+import com.google.common.base.Throwables;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Module;
@@ -118,6 +119,7 @@ public abstract class ApplicationSupport<T extends Configuration>
       }
       catch (Exception e) {
         log.error("Customizer failed; aborting", e);
+        Throwables.throwIfUnchecked(e);
         throw new RuntimeException(e);
       }
     }
@@ -184,6 +186,7 @@ public abstract class ApplicationSupport<T extends Configuration>
       }
       catch (Exception e) {
         log.error("Customizer failed; aborting", e);
+        Throwables.throwIfUnchecked(e);
         throw new RuntimeException(e);
       }
     }
@@ -243,6 +246,7 @@ public abstract class ApplicationSupport<T extends Configuration>
       }
       catch (Exception e) {
         log.error("Customizer failed; aborting", e);
+        Throwables.throwIfUnchecked(e);
         throw new RuntimeException(e);
       }
     }

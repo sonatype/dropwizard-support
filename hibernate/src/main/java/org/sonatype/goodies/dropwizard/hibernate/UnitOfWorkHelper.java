@@ -15,6 +15,7 @@ package org.sonatype.goodies.dropwizard.hibernate;
 import java.util.concurrent.Callable;
 
 import com.google.common.annotations.Beta;
+import com.google.common.base.Throwables;
 import io.dropwizard.hibernate.UnitOfWork;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,6 +43,7 @@ public class UnitOfWorkHelper
     }
     catch (Exception e) {
       log.trace("Failed", e);
+      Throwables.throwIfUnchecked(e);
       throw new RuntimeException(e);
     }
   }
@@ -55,6 +57,7 @@ public class UnitOfWorkHelper
     }
     catch (Exception e) {
       log.trace("Failed", e);
+      Throwables.throwIfUnchecked(e);
       throw new RuntimeException(e);
     }
   }
