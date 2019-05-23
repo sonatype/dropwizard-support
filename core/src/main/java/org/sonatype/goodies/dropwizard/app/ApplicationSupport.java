@@ -18,22 +18,26 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Nullable;
 
+import org.sonatype.goodies.dropwizard.config.ComponentDiscovery;
+import org.sonatype.goodies.dropwizard.config.ConfigurationModule;
+import org.sonatype.goodies.dropwizard.config.ConfigurationSupport;
 import org.sonatype.goodies.dropwizard.env.BasicEnvironmentReporter;
 import org.sonatype.goodies.dropwizard.env.EnvironmentModule;
 import org.sonatype.goodies.dropwizard.env.EnvironmentReporter;
-import org.sonatype.goodies.dropwizard.config.ComponentDiscovery;
-import org.sonatype.goodies.dropwizard.config.ConfigurationModule;
 import org.sonatype.goodies.dropwizard.jersey.JerseyGuiceBridgeFeature;
 import org.sonatype.goodies.dropwizard.metrics.MetricsAopModule;
 import org.sonatype.goodies.dropwizard.selection.ComponentSelectionConfiguration;
 import org.sonatype.goodies.dropwizard.selection.ComponentSelectionConfigurationAware;
 import org.sonatype.goodies.dropwizard.selection.ComponentSelectionTypeListener;
 import org.sonatype.goodies.dropwizard.util.FileHelper;
+import org.sonatype.goodies.dropwizard.util.ParameterPropertiesModule;
 
 import com.google.common.annotations.VisibleForTesting;
+import com.google.common.base.Throwables;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Module;
@@ -118,6 +122,7 @@ public abstract class ApplicationSupport<T extends Configuration>
       }
       catch (Exception e) {
         log.error("Customizer failed; aborting", e);
+        Throwables.throwIfUnchecked(e);
         throw new RuntimeException(e);
       }
     }
@@ -166,6 +171,12 @@ public abstract class ApplicationSupport<T extends Configuration>
   private Injector createInjector(final T config, final Environment environment) {
     List<Module> modules = new ArrayList<>();
 
+    // maybe install Sisu parameter properties
+    if (config instanceof ConfigurationSupport) {
+      Map<String,Object> properties = ((ConfigurationSupport)config).getProperties();
+      modules.add(new ParameterPropertiesModule(properties));
+    }
+
     // add binding for application configuration
     modules.add(new ConfigurationModule(config));
 
@@ -184,19 +195,13 @@ public abstract class ApplicationSupport<T extends Configuration>
       }
       catch (Exception e) {
         log.error("Customizer failed; aborting", e);
+        Throwables.throwIfUnchecked(e);
         throw new RuntimeException(e);
       }
     }
 
     BeanScanning scanning = scanning(config);
-
-    if (log.isDebugEnabled()) {
-      log.debug("Scanning: {}", scanning);
-      log.debug("Modules:");
-      for (Module module : modules) {
-        log.debug("  {}", module);
-      }
-    }
+    log.debug("Scanning: {}", scanning);
 
     ClassSpace space = new URLClassSpace(getClass().getClassLoader());
     SpaceModule spaceModule = new SpaceModule(space, scanning);
@@ -209,6 +214,13 @@ public abstract class ApplicationSupport<T extends Configuration>
     }
 
     modules.add(spaceModule);
+
+    if (log.isDebugEnabled()) {
+      log.debug("Modules:");
+      for (Module module : modules) {
+        log.debug("  {}", module);
+      }
+    }
 
     return Guice.createInjector(new WireModule(modules));
   }
@@ -243,6 +255,7 @@ public abstract class ApplicationSupport<T extends Configuration>
       }
       catch (Exception e) {
         log.error("Customizer failed; aborting", e);
+        Throwables.throwIfUnchecked(e);
         throw new RuntimeException(e);
       }
     }
@@ -260,7 +273,7 @@ public abstract class ApplicationSupport<T extends Configuration>
     checkNotNull(arguments);
 
     // early verification that temporary directory is valid
-    File tmpdir = FileHelper.resolveFile(System.getProperty("java.io.tmpdir"));
+    File tmpdir = FileHelper.tmpdir();
     try {
       Path tmp = Files.createTempFile(getName(), ".tmp");
       Files.delete(tmp);

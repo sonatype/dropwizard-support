@@ -137,4 +137,13 @@ public class FileHelper
   public static String resolvePath(final String path) {
     return resolveFile(path).getPath();
   }
+
+  /**
+   * Return resolved temporary directory.
+   *
+   * @since ???
+   */
+  public static File tmpdir() {
+    return resolveFile(System.getProperty("java.io.tmpdir"));
+  }
 }

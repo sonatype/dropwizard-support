@@ -10,7 +10,7 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
-package org.sonatype.goodies.dropwizard.util;
+package org.sonatype.goodies.dropwizard.version;
 
 import java.io.InputStream;
 import java.net.URL;
@@ -27,13 +27,11 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * Helper to load version information from build via resource.
  *
- * @since 1.0.0
- * @deprecated Use {@link org.sonatype.goodies.dropwizard.version.VersionLoader} instead.
+ * @since ???
  */
-@Deprecated
-public class Version
+public class VersionLoader
 {
-  private static final Logger log = LoggerFactory.getLogger(Version.class);
+  private static final Logger log = LoggerFactory.getLogger(VersionLoader.class);
 
   public static final String RESOURCE = "version.properties";
 
@@ -54,26 +52,20 @@ public class Version
   @Nullable
   private final URL resource;
 
-  public Version(final Class owner) {
+  public VersionLoader(final Class owner) {
     checkNotNull(owner);
     this.resource = owner.getResource(RESOURCE);
   }
 
-  /**
-   * @since 1.0.2
-   */
-  public Version(@Nullable final URL resource) {
+  public VersionLoader(@Nullable final URL resource) {
     this.resource = resource;
   }
 
   @VisibleForTesting
-  Version() {
+  VersionLoader() {
     this.resource = null;
   }
 
-  /**
-   * @since 1.0.2
-   */
   @VisibleForTesting
   protected Properties load() {
     Properties result = new Properties();
@@ -124,9 +116,6 @@ public class Version
     return property(TAG);
   }
 
-  /**
-   * @since 1.0.2
-   */
   public String getNotes() {
     return property(NOTES);
   }
