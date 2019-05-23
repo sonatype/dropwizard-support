@@ -92,6 +92,16 @@
         </exclusions>
       </dependency>
 
+      <!-- HACk: temporary, current dropwizard release has not published with updated jackson version -->
+
+      <dependency>
+        <groupId>com.fasterxml.jackson</groupId>
+        <artifactId>jackson-bom</artifactId>
+        <version>2.9.9</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+
       <dependency>
         <groupId>com.amazonaws</groupId>
         <artifactId>aws-java-sdk-bom</artifactId>
