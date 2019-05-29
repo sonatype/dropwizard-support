@@ -76,6 +76,18 @@
     </dependency>
 
     <dependency>
+      <!-- include additional api for post-java-8 support -->
+      <groupId>javax.activation</groupId>
+      <artifactId>javax.activation-api</artifactId>
+    </dependency>
+
+    <dependency>
+      <!-- include additional api for post-java-8 support -->
+      <groupId>javax.xml.bind</groupId>
+      <artifactId>jaxb-api</artifactId>
+    </dependency>
+
+    <dependency>
       <groupId>io.swagger</groupId>
       <artifactId>swagger-annotations</artifactId>
       <optional>true</optional>
