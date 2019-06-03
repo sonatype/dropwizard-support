@@ -154,9 +154,7 @@ public class ConfigurationModule
       bind(type, bind.name(), value);
 
       // maybe apply auto-binding to child value
-      if (value.getClass().getAnnotation(Bind.class) != null) {
-        expose(value);
-      }
+      expose(value);
     }
   }
 }
