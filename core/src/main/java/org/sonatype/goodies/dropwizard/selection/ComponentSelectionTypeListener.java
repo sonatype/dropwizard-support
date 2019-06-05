@@ -65,14 +65,26 @@ public class ComponentSelectionTypeListener
       return true;
     }
 
-    // then type package name
+    // then explicit type package name
     if (configuration.getPackages().contains(type.getPackage().getName())) {
       log.debug("Enabled by package-name: {}", type);
       return true;
     }
 
+    // then wildcard type package
+    for (String name : configuration.getPackages()) {
+      if (name.endsWith(".*")) {
+        name = name.substring(0, name.length() - 2);
+        if (type.getPackage().getName().startsWith(name)) {
+          log.debug("Enabled by package-name wildcard: {}", type);
+          return true;
+        }
+      }
+    }
+
     // otherwise resolve group names from annotations
     Set<String> groups = groupsOf(type);
+    log.trace("{} groups: {}", type, groups);
 
     // if no groups discovered, enable by default
     if (groups.isEmpty()) {
@@ -107,12 +119,14 @@ public class ComponentSelectionTypeListener
 
     // include all groups from type
     for (ComponentGroup group : type.getAnnotationsByType(ComponentGroup.class)) {
+      log.trace("{} group: {}", type, group);
       Collections.addAll(result, group.value());
     }
 
     // include all groups from packages
     for (Package _package : packagesOf(type)) {
       for (ComponentGroup group : _package.getAnnotationsByType(ComponentGroup.class)) {
+        log.trace("{} group: {}", _package, group);
         Collections.addAll(result, group.value());
       }
     }
@@ -137,9 +151,13 @@ public class ComponentSelectionTypeListener
         break;
       }
       else {
-        _package = Package.getPackage(name.substring(0, i));
+        // FIXME: for some reason this may not resolve a package which exists and is detected otherwise
+        String parent = name.substring(0, i);
+        _package = Package.getPackage(parent);
       }
     }
+
+    log.trace("Packages of: {} -> {}", type, result);
 
     return result;
   }
