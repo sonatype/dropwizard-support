@@ -73,7 +73,7 @@ public class ComponentSelectionTypeListener
 
     // then wildcard type package
     for (String name : configuration.getPackages()) {
-      if (name.endsWith(".*")) {
+      if (name.length() > 2 && name.endsWith(".*")) {
         name = name.substring(0, name.length() - 2);
         if (type.getPackage().getName().startsWith(name)) {
           log.debug("Enabled by package-name wildcard: {}", type);
