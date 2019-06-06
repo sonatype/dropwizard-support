@@ -65,16 +65,16 @@ public class ComponentSelectionTypeListener
       return true;
     }
 
-    // then explicit type package name
+    // then explicit package name
     if (configuration.getPackages().contains(type.getPackage().getName())) {
       log.debug("Enabled by package-name: {}", type);
       return true;
     }
 
-    // then wildcard type package
+    // then wildcard package
     for (String name : configuration.getPackages()) {
-      if (name.length() > 2 && name.endsWith(".*")) {
-        name = name.substring(0, name.length() - 2);
+      if (name.length() > 1 && name.endsWith("*")) {
+        name = name.substring(0, name.length() - 1);
         if (type.getPackage().getName().startsWith(name)) {
           log.debug("Enabled by package-name wildcard: {}", type);
           return true;
@@ -123,41 +123,12 @@ public class ComponentSelectionTypeListener
       Collections.addAll(result, group.value());
     }
 
-    // include all groups from packages
-    for (Package _package : packagesOf(type)) {
-      for (ComponentGroup group : _package.getAnnotationsByType(ComponentGroup.class)) {
-        log.trace("{} group: {}", _package, group);
-        Collections.addAll(result, group.value());
-      }
-    }
-
-    return result;
-  }
-
-  /**
-   * Returns all packages (and parent-packages) of given type.
-   */
-  private static Set<Package> packagesOf(final Class<?> type) {
-    Set<Package> result = new HashSet<>();
-
+    // include all groups from package; only direct package not safe to look farther up due to how packages load
     Package _package = type.getPackage();
-    while (_package != null) {
-      result.add(_package);
-
-      // lookup parent of package
-      String name = _package.getName();
-      int i = name.lastIndexOf('.');
-      if (i == -1) {
-        break;
-      }
-      else {
-        // FIXME: for some reason this may not resolve a package which exists and is detected otherwise
-        String parent = name.substring(0, i);
-        _package = Package.getPackage(parent);
-      }
+    for (ComponentGroup group : type.getPackage().getAnnotationsByType(ComponentGroup.class)) {
+      log.trace("{} group: {}", _package, group);
+      Collections.addAll(result, group.value());
     }
-
-    log.trace("Packages of: {} -> {}", type, result);
 
     return result;
   }
