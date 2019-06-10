@@ -13,8 +13,10 @@
 package org.sonatype.goodies.dropwizard.selection;
 
 import java.util.Collections;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
+
+import javax.annotation.Nullable;
 
 import com.google.inject.Binder;
 import org.eclipse.sisu.space.QualifiedTypeBinder;
@@ -59,22 +61,22 @@ public class ComponentSelectionTypeListener
    * Check if given component type is enabled.
    */
   private boolean isEnabled(final Class<?> type) {
-    // first check direct type name
+    // first explicit type name
     if (configuration.getTypes().contains(type.getCanonicalName())) {
       log.debug("Enabled by type-name: {}", type);
       return true;
     }
 
-    // then explicit type package name
+    // then explicit package name
     if (configuration.getPackages().contains(type.getPackage().getName())) {
       log.debug("Enabled by package-name: {}", type);
       return true;
     }
 
-    // then wildcard type package
+    // then wildcard package name
     for (String name : configuration.getPackages()) {
-      if (name.length() > 2 && name.endsWith(".*")) {
-        name = name.substring(0, name.length() - 2);
+      if (name.length() > 1 && name.endsWith("*")) {
+        name = name.substring(0, name.length() - 1);
         if (type.getPackage().getName().startsWith(name)) {
           log.debug("Enabled by package-name wildcard: {}", type);
           return true;
@@ -115,16 +117,17 @@ public class ComponentSelectionTypeListener
    * Returns all group-names for given type.
    */
   private Set<String> groupsOf(final Class<?> type) {
-    Set<String> result = new HashSet<>();
+    Set<String> result = new LinkedHashSet<>();
 
-    // include all groups from type
+    // include groups from type
     for (ComponentGroup group : type.getAnnotationsByType(ComponentGroup.class)) {
       log.trace("{} group: {}", type, group);
       Collections.addAll(result, group.value());
     }
 
-    // include all groups from packages
-    for (Package _package : packagesOf(type)) {
+    // include groups from packages
+    ClassLoader cl = type.getClassLoader();
+    for (Package _package : packagesOf(type, cl)) {
       for (ComponentGroup group : _package.getAnnotationsByType(ComponentGroup.class)) {
         log.trace("{} group: {}", _package, group);
         Collections.addAll(result, group.value());
@@ -137,27 +140,43 @@ public class ComponentSelectionTypeListener
   /**
    * Returns all packages (and parent-packages) of given type.
    */
-  private static Set<Package> packagesOf(final Class<?> type) {
-    Set<Package> result = new HashSet<>();
+  private static Set<Package> packagesOf(final Class<?> type, final ClassLoader cl) {
+    Set<Package> result = new LinkedHashSet<>();
 
-    Package _package = type.getPackage();
-    while (_package != null) {
-      result.add(_package);
-
-      // lookup parent of package
-      String name = _package.getName();
+    String name = type.getPackage().getName();
+    while (name != null) {
+      Package _package = resolvePackage(name, cl);
+      if (_package != null) {
+        result.add(_package);
+      }
       int i = name.lastIndexOf('.');
       if (i == -1) {
         break;
       }
-      else {
-        // FIXME: for some reason this may not resolve a package which exists and is detected otherwise
-        String parent = name.substring(0, i);
-        _package = Package.getPackage(parent);
-      }
+      name = name.substring(0, i);
     }
 
     log.trace("Packages of: {} -> {}", type, result);
+
+    return result;
+  }
+
+  @Nullable
+  private static Package resolvePackage(final String name, final ClassLoader cl) {
+    Package result = Package.getPackage(name);
+
+    // if package was not already in context, attempt to load package-info to force it into context
+    if (result == null) {
+      String typename = name + ".package-info";
+      try {
+        Class type = Class.forName(typename, true, cl);
+        log.trace("Resolved package-info: {}", type);
+        result = type.getPackage();
+      }
+      catch (ClassNotFoundException e) {
+        log.trace("{}.package-info missing: {}", name, e.toString());
+      }
+    }
 
     return result;
   }
