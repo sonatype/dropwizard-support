@@ -30,9 +30,11 @@ import org.sonatype.goodies.dropwizard.jaxrs.Resource;
 
 import com.codahale.metrics.health.HealthCheck;
 import com.google.inject.Key;
+import io.dropwizard.lifecycle.JettyManaged;
 import io.dropwizard.lifecycle.Managed;
 import io.dropwizard.servlets.tasks.Task;
 import io.dropwizard.setup.Environment;
+import org.eclipse.jetty.util.component.LifeCycle;
 import org.eclipse.sisu.BeanEntry;
 import org.eclipse.sisu.inject.BeanLocator;
 import org.slf4j.Logger;
@@ -69,6 +71,18 @@ public class ComponentDiscovery
     detectTasks(environment);
     detectManaged(environment);
     detectCustomizers(environment);
+
+    // log order of life-cycle components
+    if (log.isDebugEnabled()) {
+      List<LifeCycle> components = environment.lifecycle().getManagedObjects();
+      log.debug("{} life-cycle components:", components.size());
+      for (LifeCycle component : components) {
+        if (component instanceof JettyManaged) {
+          Managed managed = ((JettyManaged) component).getManaged();
+          log.debug("  {}", managed);
+        }
+      }
+    }
   }
 
   /**
