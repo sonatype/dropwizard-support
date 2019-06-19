@@ -56,10 +56,6 @@ public abstract class BindModuleSupport
     }
   }
 
-  //
-  // Component binding exposure
-  //
-
   /**
    * Attempt to expose bindings for given object.
    */
