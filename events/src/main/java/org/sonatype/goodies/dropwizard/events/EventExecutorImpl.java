@@ -31,6 +31,8 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 // see: https://github.com/sonatype/nexus-public/blob/master/components/nexus-base/src/main/java/org/sonatype/nexus/internal/event/EventExecutor.java
 
+// TODO: Expose a better way to allow application to indicate ordering instead of a hard-coded @Priority value
+
 /**
  * Default {@link EventExecutor}.
  *

@@ -35,7 +35,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
  */
 public class ConfigurationSupport
     extends Configuration
-    implements ComponentSelectionConfigurationAware, ConfigurationAttachmentAware
+    implements ComponentSelectionConfigurationAware
 {
   /**
    * Additional properties for Sisu injection.
@@ -53,15 +53,6 @@ public class ConfigurationSupport
   @Bind
   @JsonProperty("component-selection")
   private ComponentSelectionConfiguration componentSelectionConfiguration = new ComponentSelectionConfiguration();
-
-  /**
-   * Optional configuration attachments.
-   */
-  @NotNull
-  @Valid
-  @Bind(name="configuration-attachments")
-  @JsonProperty("attachments")
-  private Map<String,ConfigurationAttachment> configurationAttachments = new HashMap<>();
 
   /**
    * Standard health-check configuration.
@@ -89,16 +80,6 @@ public class ConfigurationSupport
 
   public void setComponentSelectionConfiguration(@Nonnull final ComponentSelectionConfiguration config) {
     this.componentSelectionConfiguration = checkNotNull(config);
-  }
-
-  @Nonnull
-  @Override
-  public Map<String,ConfigurationAttachment> getConfigurationAttachments() {
-    return configurationAttachments;
-  }
-
-  public void setConfigurationAttachments(@Nonnull final Map<String,ConfigurationAttachment> attachments) {
-    this.configurationAttachments = checkNotNull(attachments);
   }
 
   @Nonnull

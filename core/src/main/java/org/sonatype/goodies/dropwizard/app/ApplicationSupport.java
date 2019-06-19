@@ -67,7 +67,7 @@ import static com.google.common.base.Preconditions.checkState;
 public abstract class ApplicationSupport<T extends Configuration>
     extends Application<T>
 {
-  private static final Logger log = LoggerFactory.getLogger(ApplicationSupport.class);
+  protected final Logger log = LoggerFactory.getLogger(getClass());
 
   private final List<ApplicationCustomizer> customizers = new ArrayList<>();
 
