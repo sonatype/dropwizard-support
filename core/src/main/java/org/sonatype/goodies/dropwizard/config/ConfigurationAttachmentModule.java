@@ -33,9 +33,12 @@ public class ConfigurationAttachmentModule
     // bind named attachments; and expose any bindings
     if (configuration instanceof ConfigurationAttachmentAware) {
       Map<String, ConfigurationAttachment> attachments = ((ConfigurationAttachmentAware)configuration).getConfigurationAttachments();
+      log.debug("{} attachments", attachments.size());
       for (Map.Entry<String,ConfigurationAttachment> entry : attachments.entrySet()) {
+        String name = entry.getKey();
         ConfigurationAttachment value = entry.getValue();
-        bind(value.getClass(), entry.getKey(), value);
+        log.debug("Attachment: {} -> {}", name, value);
+        bind(value.getClass(), name, value);
         expose(value);
       }
     }
