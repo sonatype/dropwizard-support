@@ -12,26 +12,32 @@
  */
 package org.sonatype.goodies.dropwizard.config;
 
+import java.util.Map;
+
 import io.dropwizard.Configuration;
 
 /**
- * Adds bindings for {@link Configuration}.
+ * Adds bindings for {@link ConfigurationAttachment configuration-attachements}.
  *
- * @since 1.0.0
+ * @since ???
  */
-public class ConfigurationModule
+public class ConfigurationAttachmentModule
     extends BindModuleSupport
 {
-  public ConfigurationModule(final Configuration configuration) {
+  public ConfigurationAttachmentModule(final Configuration configuration) {
     super(configuration);
   }
 
   @Override
   protected void configure() {
-    // bind original configuration
-    bind(configuration.getClass(), null, configuration);
-
-    // expose configuration member bindings
-    expose(configuration);
+    // bind named attachments; and expose any bindings
+    if (configuration instanceof ConfigurationAttachmentAware) {
+      Map<String, ConfigurationAttachment> attachments = ((ConfigurationAttachmentAware)configuration).getConfigurationAttachments();
+      for (Map.Entry<String,ConfigurationAttachment> entry : attachments.entrySet()) {
+        ConfigurationAttachment value = entry.getValue();
+        bind(value.getClass(), entry.getKey(), value);
+        expose(value);
+      }
+    }
   }
 }
