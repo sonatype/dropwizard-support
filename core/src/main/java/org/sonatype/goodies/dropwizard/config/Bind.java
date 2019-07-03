@@ -24,7 +24,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 /**
  * Marker for configuration to expose as Sisu binding.
  *
- * @since ???
+ * @since 1.2.0
  */
 @Documented
 @Retention(RUNTIME)

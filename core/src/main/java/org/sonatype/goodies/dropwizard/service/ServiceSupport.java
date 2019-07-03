@@ -69,7 +69,7 @@ public abstract class ServiceSupport
    *
    * This is called after {@link #doStart()}, but after the started flag has been set.
    *
-   * @since ???
+   * @since 1.2.0
    */
   protected void doStarted() throws Exception {
     // empty
@@ -109,7 +109,7 @@ public abstract class ServiceSupport
    *
    * This is called after {@link #doStop()}, but after the started flag has been unset.
    *
-   * @since ???
+   * @since 1.2.0
    */
   protected void doStopped() throws Exception {
     // empty

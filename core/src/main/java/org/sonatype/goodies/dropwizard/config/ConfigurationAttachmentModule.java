@@ -19,7 +19,7 @@ import io.dropwizard.Configuration;
 /**
  * Adds bindings for {@link ConfigurationAttachment configuration-attachements}.
  *
- * @since ???
+ * @since 1.2.0
  */
 public class ConfigurationAttachmentModule
     extends BindModuleSupport

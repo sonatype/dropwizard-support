@@ -29,7 +29,7 @@ import static com.google.common.base.Preconditions.checkState;
 /**
  * OR {@link RequestMatcher}.
  *
- * @since ???
+ * @since 1.2.0
  */
 @JsonTypeName(OrRequestMatcher.TYPE)
 public class OrRequestMatcher

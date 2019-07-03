@@ -26,7 +26,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * File helpers.
  *
- * @since ???
+ * @since 1.2.0
  */
 public class FileHelper
 {
@@ -141,7 +141,7 @@ public class FileHelper
   /**
    * Return resolved temporary directory.
    *
-   * @since ???
+   * @since 1.2.0
    */
   public static File tmpdir() {
     return resolveFile(System.getProperty("java.io.tmpdir"));

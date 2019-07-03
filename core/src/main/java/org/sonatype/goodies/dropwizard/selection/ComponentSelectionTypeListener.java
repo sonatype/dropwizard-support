@@ -31,7 +31,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
  *
  * Allows configuration-based selection to refine which components will be enabled on discovery.
  *
- * @since ???
+ * @since 1.2.0
  */
 public class ComponentSelectionTypeListener
     implements QualifiedTypeListener

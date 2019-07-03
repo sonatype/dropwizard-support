@@ -25,7 +25,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * {@link UnitOfWork}-aware helper.
  *
- * @since ???
+ * @since 1.2.0
  */
 @Beta
 public class UnitOfWorkHelper

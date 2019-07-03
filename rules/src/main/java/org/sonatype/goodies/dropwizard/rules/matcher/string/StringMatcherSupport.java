@@ -21,7 +21,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * Support for {@link StringMatcher} implementations.
  *
- * @since ???
+ * @since 1.2.0
  */
 public abstract class StringMatcherSupport
     implements StringMatcher

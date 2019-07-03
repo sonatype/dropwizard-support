@@ -17,7 +17,7 @@ import org.slf4j.Logger;
 /**
  * Report environment.
  *
- * @since ???
+ * @since 1.2.0
  */
 public interface EnvironmentReporter
 {

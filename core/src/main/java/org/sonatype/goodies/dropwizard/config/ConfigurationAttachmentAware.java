@@ -19,7 +19,7 @@ import javax.annotation.Nonnull;
 /**
  * Marker for {@link io.dropwizard.Configuration} which is {@link ConfigurationAttachment} aware.
  *
- * @since ???
+ * @since 1.2.0
  */
 public interface ConfigurationAttachmentAware
 {

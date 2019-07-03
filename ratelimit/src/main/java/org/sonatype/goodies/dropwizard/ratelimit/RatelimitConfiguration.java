@@ -31,7 +31,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * {@link RatelimitService} configuration.
  *
- * @since ???
+ * @since 1.2.0
  */
 public class RatelimitConfiguration
 {

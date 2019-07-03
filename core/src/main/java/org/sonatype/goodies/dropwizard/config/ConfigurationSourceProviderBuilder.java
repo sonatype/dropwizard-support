@@ -27,7 +27,7 @@ import static com.google.common.base.Preconditions.checkState;
 /**
  * {@link ConfigurationSourceProvider} builder.
  *
- * @since ???
+ * @since 1.2.0
  */
 public class ConfigurationSourceProviderBuilder
 {

@@ -22,7 +22,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * Helper to provide JDBI <em>on-demand</em> DAO instances.
  *
- * @since ???
+ * @since 1.2.0
  */
 public class OnDemandDaoProviderSupport<T>
     implements Provider<T>

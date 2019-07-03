@@ -28,7 +28,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * {@link HealthCheck} helpers.
  *
- * @since ???
+ * @since 1.2.0
  */
 public final class HealthCheckHelper
 {

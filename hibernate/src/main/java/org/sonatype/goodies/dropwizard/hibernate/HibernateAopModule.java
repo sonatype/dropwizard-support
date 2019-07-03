@@ -19,7 +19,7 @@ import io.dropwizard.hibernate.UnitOfWork;
 /**
  * Hibernate AOP module.
  *
- * @since ???
+ * @since 1.2.0
  */
 public class HibernateAopModule
     extends AbstractModule

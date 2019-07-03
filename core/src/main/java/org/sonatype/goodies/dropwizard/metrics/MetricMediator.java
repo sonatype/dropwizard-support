@@ -26,7 +26,7 @@ import org.slf4j.LoggerFactory;
 /**
  * Manages {@link Metric} registrations via component mediation.
  *
- * @since ???
+ * @since 1.2.0
  */
 @Named
 public class MetricMediator

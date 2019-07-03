@@ -17,7 +17,7 @@ import java.util.concurrent.Executor;
 /**
  * Event executor.
  *
- * @since ???
+ * @since 1.2.0
  */
 public interface EventExecutor
     extends Executor

@@ -24,7 +24,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * NOT {@link RequestMatcher}.
  *
- * @since ???
+ * @since 1.2.0
  */
 @JsonTypeName(NotRequestMatcher.TYPE)
 public class NotRequestMatcher

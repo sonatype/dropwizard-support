@@ -28,7 +28,7 @@ import static com.google.common.base.Preconditions.checkState;
 /**
  * AND {@link StringMatcher}.
  *
- * @since ???
+ * @since 1.2.0
  */
 @JsonTypeName(AndStringMatcher.TYPE)
 public class AndStringMatcher

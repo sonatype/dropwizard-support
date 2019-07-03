@@ -25,7 +25,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * View renderers configuration.
  *
- * @since ???
+ * @since 1.2.0
  * @see ViewConfigurable#getViewConfiguration(Configuration)
  */
 public class ViewRenderersConfiguration

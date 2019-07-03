@@ -21,7 +21,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * Helper to create {@link StatusType} instances.
  *
- * @since ???
+ * @since 1.2.0
  */
 public final class StatusTypeFactory
 {

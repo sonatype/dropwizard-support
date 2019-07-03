@@ -19,7 +19,7 @@ import org.apache.shiro.subject.Subject;
 /**
  * Extract user-name from {@link Subject}.
  *
- * @since ???
+ * @since 1.2.0
  *
  * @see SubjectHelper#setUsernameExtractor(SubjectUsernameExtractor)
  */

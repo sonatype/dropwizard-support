@@ -25,7 +25,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * Helper to match roles for subject.
  *
- * @since ???
+ * @since 1.2.0
  */
 public class RoleMatchingHelper
 {

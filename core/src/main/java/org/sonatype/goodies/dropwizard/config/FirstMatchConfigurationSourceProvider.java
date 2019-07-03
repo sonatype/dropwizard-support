@@ -27,7 +27,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * Return first configuration that is not exceptional from given providers.
  *
- * @since ???
+ * @since 1.2.0
  */
 public class FirstMatchConfigurationSourceProvider
     implements ConfigurationSourceProvider

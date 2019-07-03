@@ -35,7 +35,7 @@ public final class ResponseAssert
   }
 
   /**
-   * @since ???
+   * @since 1.2.0
    */
   public static void assertStatus(final Response response, final StatusType status) {
     assertThat(response.getStatus(), is(status.getStatusCode()));
@@ -49,7 +49,7 @@ public final class ResponseAssert
   }
 
   /**
-   * @since ???
+   * @since 1.2.0
    */
   public static void assertHeaderValue(final Response response, final String name, final String value) {
     assertThat(response.getHeaderString(name), is(value));

@@ -17,7 +17,7 @@ package org.sonatype.goodies.dropwizard.events;
 /**
  * Marker for components that are event aware.
  *
- * @since ???
+ * @since 1.2.0
  */
 public interface EventAware
 {

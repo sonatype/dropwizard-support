@@ -29,7 +29,7 @@ import io.dropwizard.jackson.LogbackModule;
 /**
  * {@link ConfigurationFactoryFactory} support.
  *
- * @since ???
+ * @since 1.2.0
  */
 public class ConfigurationFactoryFactorySupport<T extends Configuration>
     implements ConfigurationFactoryFactory<T>

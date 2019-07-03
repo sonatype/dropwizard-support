@@ -32,7 +32,7 @@ import static com.google.common.util.concurrent.MoreExecutors.directExecutor;
 /**
  * Default {@link EventBusFactory}.
  *
- * @since ???
+ * @since 1.2.0
  */
 @Named
 @Singleton

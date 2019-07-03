@@ -24,7 +24,7 @@ import org.slf4j.Logger;
 /**
  * Detailed {@link EnvironmentReporter}.
  *
- * @since ???
+ * @since 1.2.0
  */
 public class DetailedEnvironmentReporter
   extends BasicEnvironmentReporter

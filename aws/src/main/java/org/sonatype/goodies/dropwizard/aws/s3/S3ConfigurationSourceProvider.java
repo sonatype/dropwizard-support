@@ -27,7 +27,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * Provide configuration from {@link S3Location}.
  *
- * @since ???
+ * @since 1.2.0
  */
 public class S3ConfigurationSourceProvider
     implements ConfigurationSourceProvider

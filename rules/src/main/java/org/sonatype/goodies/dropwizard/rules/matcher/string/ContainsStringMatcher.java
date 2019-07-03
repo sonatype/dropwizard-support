@@ -21,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 /**
  * Match if string contains another.
  *
- * @since ???
+ * @since 1.2.0
  */
 @JsonTypeName(ContainsStringMatcher.TYPE)
 public class ContainsStringMatcher

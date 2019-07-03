@@ -21,7 +21,7 @@ import com.google.common.base.MoreObjects;
 /**
  * Version.
  *
- * @since ???
+ * @since 1.2.0
  */
 public class Version
     implements Serializable

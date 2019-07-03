@@ -29,7 +29,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * {@link RequestRuleService} filter.
  *
- * @since ???
+ * @since 1.2.0
  */
 @Named
 @Singleton

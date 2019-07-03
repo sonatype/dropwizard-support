@@ -26,7 +26,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * Match {@link HttpServletRequest#getHeader(String)} named header}.
  *
- * @since ???
+ * @since 1.2.0
  */
 @JsonTypeName(HeaderRequestMatcher.TYPE)
 public class HeaderRequestMatcher

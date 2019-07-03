@@ -21,7 +21,7 @@ import org.sonatype.goodies.dropwizard.util.IpAddresses;
 /**
  * Rate-limit service
  *
- * @since ???
+ * @since 1.2.0
  */
 public interface RatelimitService
 {

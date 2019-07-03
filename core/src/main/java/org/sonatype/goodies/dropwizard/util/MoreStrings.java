@@ -34,7 +34,7 @@ public final class MoreStrings
   /**
    * Returns the given string if when trimmed it is not the empty string; {@code null} otherwise.
    *
-   * @since ???
+   * @since 1.2.0
    */
   @Nullable
   public static String blankToNull(@Nullable final String value) {

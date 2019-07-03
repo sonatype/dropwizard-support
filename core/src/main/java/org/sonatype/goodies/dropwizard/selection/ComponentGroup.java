@@ -24,7 +24,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 /**
  * Allows component to be given a set of group-names for component-selection.
  *
- * @since ???
+ * @since 1.2.0
  */
 @Documented
 @Retention(RUNTIME)

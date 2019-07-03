@@ -87,7 +87,7 @@ public final class SubjectHelper
   /**
    * Return the current user-name extractor; never {@literal null}.
    *
-   * @since ???
+   * @since 1.2.0
    */
   public static SubjectUsernameExtractor getUsernameExtractor() {
     return usernameExtractor;
@@ -96,7 +96,7 @@ public final class SubjectHelper
   /**
    * Install a user-name extractor; never {@literal null}.
    *
-   * @since ???
+   * @since 1.2.0
    */
   public static void setUsernameExtractor(final SubjectUsernameExtractor extractor) {
     usernameExtractor = checkNotNull(extractor);

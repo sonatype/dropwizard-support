@@ -20,7 +20,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * First-match {@link StrLookup}.
  *
- * @since ???
+ * @since 1.2.0
  */
 public class FirstMatchStrLookup
     extends StrLookup

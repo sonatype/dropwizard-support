@@ -32,7 +32,7 @@ import org.slf4j.LoggerFactory;
 /**
  * {@link RequestRuleService} application customizer.
  *
- * @since ???
+ * @since 1.2.0
  * @see RequestRuleFilter
  */
 public abstract class RequestRuleCustomizer<T extends ApplicationSupport<C>, C extends Configuration>

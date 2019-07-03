@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * {@link RequestRule} service.
  *
- * @since ???
+ * @since 1.2.0
  */
 public interface RequestRuleService
 {

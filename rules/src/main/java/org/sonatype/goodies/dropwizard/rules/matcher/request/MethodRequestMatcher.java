@@ -31,7 +31,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * Match {@link HttpServletRequest#getMethod() request method}.
  *
- * @since ???
+ * @since 1.2.0
  */
 @JsonTypeName(MethodRequestMatcher.TYPE)
 public class MethodRequestMatcher

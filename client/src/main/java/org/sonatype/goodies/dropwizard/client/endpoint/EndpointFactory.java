@@ -96,7 +96,7 @@ public final class EndpointFactory
   }
 
   /**
-   * @since ??
+   * @since 1.2.0
    */
   public static <T> Builder<T> builder(final Class<T> intf, final WebTarget target) {
     return new Builder<>(intf, target);

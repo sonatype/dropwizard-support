@@ -26,7 +26,7 @@ import javax.ws.rs.core.Response.StatusType;
  * Helper to create standard {@link RequestRuleResult request-rule results}.
  *
  * @see RequestRuleResult
- * @since ???
+ * @since 1.2.0
  */
 public final class RequestRuleResults
 {

@@ -32,7 +32,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * Rate-limit filter.
  *
- * @since ???
+ * @since 1.2.0
  * @see RatelimitService
  */
 @Named

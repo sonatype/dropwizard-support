@@ -23,7 +23,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * NOT {@link StringMatcher}.
  *
- * @since ???
+ * @since 1.2.0
  */
 @JsonTypeName(NotStringMatcher.TYPE)
 public class NotStringMatcher

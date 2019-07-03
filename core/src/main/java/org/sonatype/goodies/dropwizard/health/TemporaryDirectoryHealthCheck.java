@@ -31,7 +31,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * Check health of temporary directory.
  *
- * @since ???
+ * @since 1.2.0
  */
 @Named("temporary-directory")
 @Singleton

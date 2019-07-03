@@ -66,7 +66,7 @@ public class MetricNamerImpl
   /**
    * Generate metric name.
    *
-   * @since ???
+   * @since 1.2.0
    */
   @VisibleForTesting
   String metricName(final Method method, final String name) {
@@ -93,7 +93,7 @@ public class MetricNamerImpl
   }
 
   /**
-   * @since ???
+   * @since 1.2.0
    */
   @VisibleForTesting
   String applyFormat(final Method method, final String name, final Class<?> type, final String format) {

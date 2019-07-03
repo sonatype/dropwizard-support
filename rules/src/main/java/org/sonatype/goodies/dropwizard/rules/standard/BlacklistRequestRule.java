@@ -35,7 +35,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * Blacklist {@link RequestRule}.
  *
- * @since ???
+ * @since 1.2.0
  */
 @JsonTypeName(BlacklistRequestRule.TYPE)
 public class BlacklistRequestRule

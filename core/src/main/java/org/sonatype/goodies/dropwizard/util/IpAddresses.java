@@ -28,7 +28,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * IP address/pattern list.
  *
- * @since ???
+ * @since 1.2.0
  * @see IpMatcher
  */
 public class IpAddresses

@@ -23,7 +23,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * Helper to deal with JSON types from {@link Class} or {@link TypeReference}.
  *
- * @since ???
+ * @since 1.2.0
  */
 @Beta
 public abstract class JsonType<T>

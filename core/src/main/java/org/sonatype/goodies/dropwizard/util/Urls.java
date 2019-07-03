@@ -49,7 +49,7 @@ public final class Urls
   /**
    * Create a URL from URI.
    *
-   * @since ???
+   * @since 1.2.0
    */
   public static URL create(final URI uri) {
     try {
@@ -63,7 +63,7 @@ public final class Urls
   /**
    * Create a URL from builder.
    *
-   * @since ???
+   * @since 1.2.0
    */
   public static URL create(final UriBuilder builder) {
     return create(builder.build());

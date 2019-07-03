@@ -26,7 +26,7 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 /**
  * {@link S3Location} Jackson module.
  *
- * @since ???
+ * @since 1.2.0
  */
 public class S3LocationModule
     extends SimpleModule

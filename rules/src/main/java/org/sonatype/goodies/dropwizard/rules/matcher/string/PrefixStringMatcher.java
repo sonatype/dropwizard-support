@@ -21,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 /**
  * Match if string starts with another.
  *
- * @since ???
+ * @since 1.2.0
  */
 @JsonTypeName(PrefixStringMatcher.TYPE)
 public class PrefixStringMatcher

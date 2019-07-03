@@ -56,7 +56,7 @@ import static org.sonatype.goodies.dropwizard.ratelimit.RatelimitConfiguration.A
 /**
  * Default {@link RatelimitService}.
  *
- * @since ???
+ * @since 1.2.0
  */
 @Named
 @Singleton

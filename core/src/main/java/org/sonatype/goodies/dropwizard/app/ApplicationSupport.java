@@ -97,7 +97,7 @@ public abstract class ApplicationSupport<T extends Configuration>
   /**
    * Set environment reporter.
    *
-   * @since ???
+   * @since 1.2.0
    */
   public void setEnvironmentReporter(@Nullable final EnvironmentReporter environmentReporter) {
     this.environmentReporter = environmentReporter;

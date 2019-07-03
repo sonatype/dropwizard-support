@@ -26,7 +26,7 @@ import static java.util.Objects.requireNonNull;
 /**
  * Traces test execution to a {@link Logger}.
  *
- * @since ???
+ * @since 1.2.0
  * @deprecated Provided for compatibility only.
  */
 @Deprecated

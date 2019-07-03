@@ -42,7 +42,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * AWS Simple Storage Service (S3) helper.
  *
- * @since ???
+ * @since 1.2.0
  */
 @Named
 public class S3Helper

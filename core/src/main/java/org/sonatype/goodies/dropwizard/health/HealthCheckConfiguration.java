@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * Health-check configuration.
  *
- * @since ???
+ * @since 1.2.0
  */
 public class HealthCheckConfiguration
 {

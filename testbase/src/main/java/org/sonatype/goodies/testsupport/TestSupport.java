@@ -22,7 +22,7 @@ import org.slf4j.Logger;
 /**
  * Support for tests.
  *
- * @since ???
+ * @since 1.2.0
  * @deprecated Provided for compatibility only.
  */
 @Deprecated

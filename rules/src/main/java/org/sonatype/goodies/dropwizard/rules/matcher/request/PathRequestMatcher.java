@@ -26,7 +26,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * Match {@link HttpServletRequest#getRequestURI() request path}.
  *
- * @since ???
+ * @since 1.2.0
  */
 @JsonTypeName(PathRequestMatcher.TYPE)
 public class PathRequestMatcher

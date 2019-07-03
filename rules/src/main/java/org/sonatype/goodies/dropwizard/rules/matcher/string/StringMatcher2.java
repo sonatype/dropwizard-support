@@ -28,7 +28,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * ???
  *
- * @since ???
+ * @since 1.2.0
  */
 @Beta
 @JsonTypeName(StringMatcher2.TYPE)

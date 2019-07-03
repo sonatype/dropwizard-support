@@ -33,7 +33,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  *
  * When used together with {@link BlacklistRequestRule blacklist-rule} this should be configured first.
  *
- * @since ???
+ * @since 1.2.0
  */
 @JsonTypeName(WhitelistRequestRule.TYPE)
 public class WhitelistRequestRule

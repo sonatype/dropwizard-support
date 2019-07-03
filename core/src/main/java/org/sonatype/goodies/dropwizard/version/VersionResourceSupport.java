@@ -30,7 +30,7 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 /**
  * Support for {@link Version} resources.
  *
- * @since ???
+ * @since 1.2.0
  */
 @Api(value = "Version")
 public abstract class VersionResourceSupport

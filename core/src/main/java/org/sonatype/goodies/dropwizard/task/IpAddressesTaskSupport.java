@@ -19,7 +19,7 @@ import org.sonatype.goodies.dropwizard.util.IpAddresses;
 /**
  * Support for tasks to manage {@link IpAddresses}.
  *
- * @since ???
+ * @since 1.2.0
  */
 public abstract class IpAddressesTaskSupport
     extends TaskSupport

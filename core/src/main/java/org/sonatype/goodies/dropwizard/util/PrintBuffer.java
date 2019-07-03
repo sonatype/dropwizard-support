@@ -20,7 +20,7 @@ import javax.annotation.Nonnull;
 /**
  * Helper to wrap a {@link PrintWriter} with a {@link StringWriter} back-end buffer.
  *
- * @since ???
+ * @since 1.2.0
  */
 public class PrintBuffer
     extends PrintWriter

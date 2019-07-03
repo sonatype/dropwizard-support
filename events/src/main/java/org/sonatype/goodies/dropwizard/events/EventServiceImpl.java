@@ -34,7 +34,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * Default {@link EventService}.
  *
- * @since ???
+ * @since 1.2.0
  */
 @Named
 @Singleton

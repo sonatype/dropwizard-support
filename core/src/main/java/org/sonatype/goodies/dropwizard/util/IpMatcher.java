@@ -46,7 +46,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * IP matcher.
  *
- * @since ???
+ * @since 1.2.0
  */
 public final class IpMatcher
 {

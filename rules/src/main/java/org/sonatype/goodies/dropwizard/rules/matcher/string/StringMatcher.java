@@ -21,7 +21,7 @@ import io.dropwizard.jackson.Discoverable;
 /**
  * String matcher.
  *
- * @since ???
+ * @since 1.2.0
  */
 @JsonTypeInfo(use = Id.NAME, property = "type")
 public interface StringMatcher

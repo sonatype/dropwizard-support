@@ -20,7 +20,7 @@ import static org.sonatype.goodies.dropwizard.util.FileHelper.resolvePath;
 /**
  * Basic {@link EnvironmentReporter}.
  *
- * @since ???
+ * @since 1.2.0
  */
 public class BasicEnvironmentReporter
   implements EnvironmentReporter

@@ -27,7 +27,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * S3 location, which is URI-like but needs additional normalization.
  *
- * @since ???
+ * @since 1.2.0
  */
 public class S3Location
 {

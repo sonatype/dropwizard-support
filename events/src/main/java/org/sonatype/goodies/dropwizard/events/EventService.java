@@ -15,7 +15,7 @@ package org.sonatype.goodies.dropwizard.events;
 /**
  * Event service.
  *
- * @since ???
+ * @since 1.2.0
  */
 public interface EventService
 {

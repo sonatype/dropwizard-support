@@ -31,7 +31,7 @@ import static com.google.common.base.Preconditions.checkState;
 /**
  * {@link UnitOfWork} method-interceptor.
  *
- * @since ???
+ * @since 1.2.0
  * @see UnitOfWorkAspectFactory
  */
 @Named

@@ -19,7 +19,7 @@ import com.google.common.eventbus.EventBus;
 /**
  * Factory to create {@link EventBus} instances.
  *
- * @since ???
+ * @since 1.2.0
  */
 public interface EventBusFactory
 {

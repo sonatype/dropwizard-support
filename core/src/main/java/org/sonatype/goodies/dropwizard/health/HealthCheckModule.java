@@ -20,7 +20,7 @@ import com.google.inject.Provides;
 /**
  * Health-check Guice module.
  *
- * @since ???
+ * @since 1.2.0
  */
 @Named
 public class HealthCheckModule

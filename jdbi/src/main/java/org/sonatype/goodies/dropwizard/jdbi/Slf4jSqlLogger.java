@@ -25,7 +25,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * Slf4j {@link SqlLogger} adapter.
  *
- * @since ???
+ * @since 1.2.0
  */
 public class Slf4jSqlLogger
     implements SqlLogger

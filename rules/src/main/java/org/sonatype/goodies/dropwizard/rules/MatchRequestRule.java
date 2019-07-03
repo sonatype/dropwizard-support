@@ -35,7 +35,7 @@ import static com.google.common.base.Preconditions.checkState;
 /**
  * Support for {@link RequestRule} that applies a list of {@link RequestMatcher matchers}.
  *
- * @since ???
+ * @since 1.2.0
  */
 public abstract class MatchRequestRule
   implements RequestRule

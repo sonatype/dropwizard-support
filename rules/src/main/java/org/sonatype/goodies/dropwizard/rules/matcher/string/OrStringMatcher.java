@@ -28,7 +28,7 @@ import static com.google.common.base.Preconditions.checkState;
 /**
  * OR {@link StringMatcher}.
  *
- * @since ???
+ * @since 1.2.0
  */
 @JsonTypeName(OrStringMatcher.TYPE)
 public class OrStringMatcher

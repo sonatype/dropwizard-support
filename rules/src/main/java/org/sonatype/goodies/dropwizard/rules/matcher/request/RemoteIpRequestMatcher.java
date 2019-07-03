@@ -31,7 +31,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * Match {@link HttpServletRequest#getRemoteAddr() remote IP address}.
  *
- * @since ???
+ * @since 1.2.0
  */
 @JsonTypeName(RemoteIpRequestMatcher.TYPE)
 public class RemoteIpRequestMatcher

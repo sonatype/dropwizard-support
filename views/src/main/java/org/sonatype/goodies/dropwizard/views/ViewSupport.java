@@ -55,7 +55,7 @@ public class ViewSupport
   }
 
   /**
-   * @since ???
+   * @since 1.2.0
    */
   protected Locale getLocale() {
     checkState(httpRequest != null);

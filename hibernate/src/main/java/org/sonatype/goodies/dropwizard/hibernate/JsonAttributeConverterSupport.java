@@ -25,7 +25,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * Support for JSON {@link AttributeConverter} implementations.
  *
- * @since ???
+ * @since 1.2.0
  */
 @Beta
 public class JsonAttributeConverterSupport<T>

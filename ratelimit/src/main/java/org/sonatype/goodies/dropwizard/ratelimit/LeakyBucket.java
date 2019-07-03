@@ -33,7 +33,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
  * If the bucket is ever filled with more drops than {@link #capacity} then the bucket is considered overflown.
  * Overflown drops are all discarded, even if a portion of drops could fit before overflowing with {@link #fill(long)}.
  *
- * @since ???
+ * @since 1.2.0
  */
 public class LeakyBucket
 {

@@ -22,7 +22,7 @@ import io.dropwizard.jackson.Discoverable;
 /**
  * Request rule.
  *
- * @since ???
+ * @since 1.2.0
  */
 @JsonTypeInfo(use = Id.NAME, property = "type")
 public interface RequestRule

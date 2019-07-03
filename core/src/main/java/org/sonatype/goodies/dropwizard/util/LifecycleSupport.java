@@ -21,7 +21,7 @@ import static com.google.common.base.Preconditions.checkState;
 /**
  * Support for lifecycle components.
  *
- * @since ???
+ * @since 1.2.0
  */
 @Beta
 public abstract class LifecycleSupport
@@ -68,7 +68,7 @@ public abstract class LifecycleSupport
    *
    * This is called after {@link #doStart()}, but after the started flag has been set.
    *
-   * @since ???
+   * @since 1.2.0
    */
   protected void doStarted() throws Exception {
     // empty
@@ -107,7 +107,7 @@ public abstract class LifecycleSupport
    *
    * This is called after {@link #doStop()}, but after the started flag has been unset.
    *
-   * @since ???
+   * @since 1.2.0
    */
   protected void doStopped() throws Exception {
     // empty

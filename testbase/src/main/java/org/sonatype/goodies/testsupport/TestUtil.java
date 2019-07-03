@@ -28,7 +28,7 @@ import static java.util.Objects.requireNonNull;
 /**
  * Test utilities.
  *
- * @since ???
+ * @since 1.2.0
  * @deprecated Provided for compatibility only.
  */
 @Deprecated
@@ -168,9 +168,6 @@ public final class TestUtil
     return createTempFile(getTmpDir(), prefix);
   }
 
-  /**
-   * @since litmus 1.1
-   */
   public File createTempFile() {
     return createTempFile(UUID.randomUUID().toString());
   }
@@ -186,9 +183,6 @@ public final class TestUtil
     return createTempDir(getTmpDir(), prefix);
   }
 
-  /**
-   * @since litmus 1.1
-   */
   public File createTempDir() {
     return createTempDir(UUID.randomUUID().toString());
   }

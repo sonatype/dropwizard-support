@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
  * {@link RequestRule} result.
  *
  * @see RequestRuleResults
- * @since ???
+ * @since 1.2.0
  */
 public interface RequestRuleResult
 {

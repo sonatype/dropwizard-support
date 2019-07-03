@@ -22,7 +22,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * Hibernate module.
  *
- * @since ???
+ * @since 1.2.0
  */
 public class HibernateModule
     extends AbstractModule

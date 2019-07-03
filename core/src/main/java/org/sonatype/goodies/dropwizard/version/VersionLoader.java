@@ -27,7 +27,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * Helper to load version information from build via resource.
  *
- * @since ???
+ * @since 1.2.0
  */
 public class VersionLoader
 {

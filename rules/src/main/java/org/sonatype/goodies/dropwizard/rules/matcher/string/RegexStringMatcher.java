@@ -27,7 +27,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * Match if string matches regular-expression.
  *
- * @since ???
+ * @since 1.2.0
  */
 @JsonTypeName(RegexStringMatcher.TYPE)
 public class RegexStringMatcher

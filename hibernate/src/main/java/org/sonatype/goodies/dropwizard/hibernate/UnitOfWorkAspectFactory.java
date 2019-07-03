@@ -26,7 +26,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * {@link UnitOfWorkAspect} factory.
  *
- * @since ???
+ * @since 1.2.0
  * @see UnitOfWorkAwareProxyFactory#newAspect()
  */
 @Named

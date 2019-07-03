@@ -31,7 +31,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * Support for {@link Bind} component processing.
  *
- * @since ???
+ * @since 1.2.0
  */
 public abstract class BindModuleSupport
     extends AbstractModule

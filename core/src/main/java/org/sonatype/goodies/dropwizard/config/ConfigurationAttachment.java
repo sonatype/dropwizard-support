@@ -19,7 +19,7 @@ import io.dropwizard.jackson.Discoverable;
 /**
  * Allows for generic configuration attachment to standard configuration framework.
  *
- * @since ???
+ * @since 1.2.0
  */
 @JsonTypeInfo(use = Id.NAME, property = "type")
 public interface ConfigurationAttachment

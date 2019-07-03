@@ -32,7 +32,7 @@ import org.slf4j.LoggerFactory;
 /**
  * {@link RatelimitService} application customizer.
  *
- * @since ???
+ * @since 1.2.0
  * @see RatelimitFilter
  */
 public abstract class RatelimitCustomizer<T extends ApplicationSupport<C>, C extends Configuration>

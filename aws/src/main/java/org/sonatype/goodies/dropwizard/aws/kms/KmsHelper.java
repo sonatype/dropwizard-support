@@ -30,7 +30,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * AWS Key Management Service (KMS) helper.
  *
- * @since ???
+ * @since 1.2.0
  */
 @Named
 public class KmsHelper
