@@ -111,8 +111,6 @@ public abstract class MatchRequestRule
     this.metric = metric;
   }
 
-  // FIXME: find a better name
-
   @Inject
   public void configure(final MetricRegistry metricRegistry) {
     checkNotNull(metricRegistry);

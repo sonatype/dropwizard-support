@@ -188,21 +188,14 @@
         <groupId>commons-beanutils</groupId>
         <artifactId>commons-beanutils</artifactId>
         <version>1.9.3</version>
-        <!-- TODO: document where used -->
+        <!-- used by shiro-core -->
       </dependency>
 
       <dependency>
         <groupId>commons-collections</groupId>
         <artifactId>commons-collections</artifactId>
         <version>3.2.2</version>
-        <!-- TODO: document where used -->
-      </dependency>
-
-      <dependency>
-        <groupId>org.apache.commons</groupId>
-        <artifactId>commons-compress</artifactId>
-        <version>1.18</version>
-        <!-- TODO: document where used -->
+        <!-- used by shiro-core -->
       </dependency>
 
       <dependency>

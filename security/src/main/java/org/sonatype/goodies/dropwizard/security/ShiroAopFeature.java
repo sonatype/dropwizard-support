@@ -112,8 +112,6 @@ public class ShiroAopFeature
   {
     private static final Logger log = LoggerFactory.getLogger(SecurityFilter.class);
 
-    // TODO: could optimize this down to an array of entries
-
     private final Multimap<AuthorizingAnnotationHandler,Annotation> handlers;
 
     public SecurityFilter(final Multimap<AuthorizingAnnotationHandler,Annotation> handlers) {
