@@ -26,7 +26,7 @@
 <a class="jxr_linenumber" name="L18" href="#L18">18</a>  <strong class="jxr_keyword">import</strong> javax.inject.Named;
 <a class="jxr_linenumber" name="L19" href="#L19">19</a>  <strong class="jxr_keyword">import</strong> javax.inject.Singleton;
 <a class="jxr_linenumber" name="L20" href="#L20">20</a>  
-<a class="jxr_linenumber" name="L21" href="#L21">21</a>  <strong class="jxr_keyword">import</strong> org.sonatype.goodies.dropwizard.ApplicationVersion;
+<a class="jxr_linenumber" name="L21" href="#L21">21</a>  <strong class="jxr_keyword">import</strong> org.sonatype.goodies.dropwizard.app.ApplicationVersion;
 <a class="jxr_linenumber" name="L22" href="#L22">22</a>  
 <a class="jxr_linenumber" name="L23" href="#L23">23</a>  <strong class="jxr_keyword">import</strong> com.google.common.annotations.VisibleForTesting;
 <a class="jxr_linenumber" name="L24" href="#L24">24</a>  <strong class="jxr_keyword">import</strong> io.dropwizard.setup.Environment;
@@ -51,7 +51,7 @@
 <a class="jxr_linenumber" name="L43" href="#L43">43</a>    <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> String value;
 <a class="jxr_linenumber" name="L44" href="#L44">44</a>  
 <a class="jxr_linenumber" name="L45" href="#L45">45</a>    @Inject
-<a class="jxr_linenumber" name="L46" href="#L46">46</a>    <strong class="jxr_keyword">public</strong> <a href="../../../../../org/sonatype/goodies/dropwizard/client/UserAgentSupplier.html">UserAgentSupplier</a>(<strong class="jxr_keyword">final</strong> Environment environment, <strong class="jxr_keyword">final</strong> <a href="../../../../../org/sonatype/goodies/dropwizard/ApplicationVersion.html">ApplicationVersion</a> version) {
+<a class="jxr_linenumber" name="L46" href="#L46">46</a>    <strong class="jxr_keyword">public</strong> <a href="../../../../../org/sonatype/goodies/dropwizard/client/UserAgentSupplier.html">UserAgentSupplier</a>(<strong class="jxr_keyword">final</strong> Environment environment, <strong class="jxr_keyword">final</strong> <a href="../../../../../org/sonatype/goodies/dropwizard/app/ApplicationVersion.html">ApplicationVersion</a> version) {
 <a class="jxr_linenumber" name="L47" href="#L47">47</a>      <strong class="jxr_keyword">this</strong>(environment.getName(), version.getVersion());
 <a class="jxr_linenumber" name="L48" href="#L48">48</a>    }
 <a class="jxr_linenumber" name="L49" href="#L49">49</a>  
