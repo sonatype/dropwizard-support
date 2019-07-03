@@ -20,7 +20,7 @@
   <parent>
     <groupId>org.sonatype.goodies.dropwizard</groupId>
     <artifactId>dropwizard-support</artifactId>
-    <version>1.0.4-SNAPSHOT</version>
+    <version>1.2.0</version>
   </parent>
 
   <artifactId>dropwizard-support-bom</artifactId>
@@ -362,49 +362,49 @@
       <dependency>
         <groupId>org.sonatype.goodies.dropwizard</groupId>
         <artifactId>dropwizard-support-testbase</artifactId>
-        <version>1.0.4-SNAPSHOT</version>
+        <version>1.2.0</version>
       </dependency>
 
       <dependency>
         <groupId>org.sonatype.goodies.dropwizard</groupId>
         <artifactId>dropwizard-support-core</artifactId>
-        <version>1.0.4-SNAPSHOT</version>
+        <version>1.2.0</version>
       </dependency>
 
       <dependency>
         <groupId>org.sonatype.goodies.dropwizard</groupId>
         <artifactId>dropwizard-support-client</artifactId>
-        <version>1.0.4-SNAPSHOT</version>
+        <version>1.2.0</version>
       </dependency>
 
       <dependency>
         <groupId>org.sonatype.goodies.dropwizard</groupId>
         <artifactId>dropwizard-support-views</artifactId>
-        <version>1.0.4-SNAPSHOT</version>
+        <version>1.2.0</version>
       </dependency>
 
       <dependency>
         <groupId>org.sonatype.goodies.dropwizard</groupId>
         <artifactId>dropwizard-support-security</artifactId>
-        <version>1.0.4-SNAPSHOT</version>
+        <version>1.2.0</version>
       </dependency>
 
       <dependency>
         <groupId>org.sonatype.goodies.dropwizard</groupId>
         <artifactId>dropwizard-support-events</artifactId>
-        <version>1.0.4-SNAPSHOT</version>
+        <version>1.2.0</version>
       </dependency>
 
       <dependency>
         <groupId>org.sonatype.goodies.dropwizard</groupId>
         <artifactId>dropwizard-support-hibernate</artifactId>
-        <version>1.0.4-SNAPSHOT</version>
+        <version>1.2.0</version>
       </dependency>
 
       <dependency>
         <groupId>org.sonatype.goodies.dropwizard</groupId>
         <artifactId>dropwizard-support-jdbi</artifactId>
-        <version>1.0.4-SNAPSHOT</version>
+        <version>1.2.0</version>
       </dependency>
 
       <dependency>
@@ -416,37 +416,37 @@
       <dependency>
         <groupId>org.sonatype.goodies.dropwizard</groupId>
         <artifactId>dropwizard-support-ratelimit</artifactId>
-        <version>1.0.4-SNAPSHOT</version>
+        <version>1.2.0</version>
       </dependency>
 
       <dependency>
         <groupId>org.sonatype.goodies.dropwizard</groupId>
         <artifactId>dropwizard-support-rules</artifactId>
-        <version>1.0.4-SNAPSHOT</version>
+        <version>1.2.0</version>
       </dependency>
 
       <dependency>
         <groupId>org.sonatype.goodies.dropwizard</groupId>
         <artifactId>dropwizard-support-datadog</artifactId>
-        <version>1.0.4-SNAPSHOT</version>
+        <version>1.2.0</version>
       </dependency>
 
       <dependency>
         <groupId>org.sonatype.goodies.dropwizard</groupId>
         <artifactId>dropwizard-support-swagger</artifactId>
-        <version>1.0.4-SNAPSHOT</version>
+        <version>1.2.0</version>
       </dependency>
 
       <dependency>
         <groupId>org.sonatype.goodies.dropwizard</groupId>
         <artifactId>dropwizard-support-aws</artifactId>
-        <version>1.0.4-SNAPSHOT</version>
+        <version>1.2.0</version>
       </dependency>
 
       <dependency>
         <groupId>org.sonatype.goodies.dropwizard</groupId>
         <artifactId>dropwizard-support-testsupport</artifactId>
-        <version>1.0.4-SNAPSHOT</version>
+        <version>1.2.0</version>
       </dependency>
 
     </dependencies>

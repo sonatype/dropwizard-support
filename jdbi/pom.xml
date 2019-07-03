@@ -20,7 +20,7 @@
   <parent>
     <groupId>org.sonatype.goodies.dropwizard</groupId>
     <artifactId>dropwizard-support</artifactId>
-    <version>1.0.4-SNAPSHOT</version>
+    <version>1.2.0</version>
   </parent>
 
   <artifactId>dropwizard-support-jdbi</artifactId>
@@ -32,7 +32,7 @@
       <dependency>
         <groupId>org.sonatype.goodies.dropwizard</groupId>
         <artifactId>dropwizard-support-bom</artifactId>
-        <version>1.0.4-SNAPSHOT</version>
+        <version>1.2.0</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
