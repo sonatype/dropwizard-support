@@ -245,7 +245,6 @@ public class RatelimitServiceImpl
       }
       else {
         // else re-schedule to expire again
-        // TODO: this is a bit lossy, could recalculate based on delta and period
         schedule(this);
       }
     }
