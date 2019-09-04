@@ -234,7 +234,7 @@ public class RatelimitServiceImpl
       long touched = tracker.getTimestamp();
       long delta = now - touched;
 
-      // tracker is expired of never touched (ie. 0) or delta from last touch and now exceeds idle-period
+      // tracker is expired, never touched (ie. 0) or delta from last touch and now exceeds idle-period
       boolean expired = touched == 0 || delta >= idlePeriodNanos;
 
       if (expired) {
