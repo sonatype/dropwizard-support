@@ -28,6 +28,9 @@ public class LoggingConfiguration
   @JsonProperty
   private boolean enabled = false;
 
+  /**
+   * Defaults to {@literal org.glassfish.jersey.logging.LoggingFeature}.
+   */
   @NotNull
   @JsonProperty
   private String logger = LoggingFeature.DEFAULT_LOGGER_NAME;
