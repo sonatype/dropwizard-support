@@ -29,14 +29,14 @@ Provides support for [Dropwizard](https://www.dropwizard.io/) Guice+Sisu enabled
 
 ### Build
 
-    ./mvnw clean install
+    ./build rebuild
 
 ## Site 
 
 ### Building
 
-    ./mvnw clean install dionysus:build
+    ./build site_build
     
 ### Publishing
 
-    ./mvnw dionysus:publish
+    ./build site_deploy
