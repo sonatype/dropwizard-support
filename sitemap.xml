@@ -15,6 +15,10 @@
   </url>
   
   <url>
+    <loc>https://sonatype.github.io/dropwizard-support/</loc>
+  </url>
+  
+  <url>
     <loc>https://sonatype.github.io/dropwizard-support/license/</loc>
   </url>
   
@@ -25,10 +29,6 @@
   
   <url>
     <loc>https://sonatype.github.io/dropwizard-support/tags/</loc>
-  </url>
-  
-  <url>
-    <loc>https://sonatype.github.io/dropwizard-support/</loc>
   </url>
   
 </urlset>
