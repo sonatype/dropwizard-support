@@ -1,7 +1,7 @@
 ---
 baseURL: https://sonatype.github.io/dropwizard-support/
 languageCode: en-us
-title: "Goodies: Dropwizard Support"
+title: Dropwizard Support
 theme: dionysus
 
 # Publish content to maven-standard-ish location for generated content
