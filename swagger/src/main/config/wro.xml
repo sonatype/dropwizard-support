@@ -20,7 +20,7 @@
 
   <group name="swagger">
     <css>classpath:META-INF/resources/webjars/swagger-ui/@swagger-ui.version@/swagger-ui.css</css>
-    <!-- FIXME: swagger version used, relies on modern javascript syntax which compressor does not support -->
+    <!-- HACK: swagger version used relies on modern javascript syntax which compressor does not support -->
     <js minimize="false">classpath:META-INF/resources/webjars/swagger-ui/@swagger-ui.version@/swagger-ui-bundle.js</js>
     <js minimize="false">classpath:META-INF/resources/webjars/swagger-ui/@swagger-ui.version@/swagger-ui-standalone-preset.js</js>
   </group>
