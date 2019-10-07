@@ -29,11 +29,11 @@
 
   <properties>
     <dropwizard.version>1.3.15</dropwizard.version>
-    <swagger.version>1.5.19</swagger.version>
+    <swagger.version>1.5.23</swagger.version>
     <apache-shiro.version>1.3.2</apache-shiro.version>
     <apache-httpclient.version>4.5.7</apache-httpclient.version>
     <pac4j.version>3.5.0</pac4j.version>
-    <aws-java-sdk.version>1.11.552</aws-java-sdk.version>
+    <aws-java-sdk.version>1.11.646</aws-java-sdk.version>
   </properties>
 
   <dependencyManagement>
@@ -122,15 +122,13 @@
       <dependency>
         <groupId>com.google.guava</groupId>
         <artifactId>guava</artifactId>
-        <version>25.1-jre</version>
-        <!-- TODO: test compatibility with latest version -->
+        <version>28.1-jre</version>
       </dependency>
 
       <dependency>
         <groupId>com.google.code.gson</groupId>
         <artifactId>gson</artifactId>
         <version>2.8.5</version>
-        <!-- TODO: consider replacing usage with https://github.com/square/moshi; or maybe remove from DM unsure where this is used -->
       </dependency>
 
       <dependency>
@@ -143,8 +141,7 @@
       <dependency>
         <groupId>org.codehaus.groovy</groupId>
         <artifactId>groovy-all</artifactId>
-        <version>2.4.11</version>
-        <!-- TODO: resolve how to cross-compile with modern groovy and update -->
+        <version>2.4.17</version>
       </dependency>
 
       <dependency>
@@ -187,7 +184,7 @@
       <dependency>
         <groupId>commons-beanutils</groupId>
         <artifactId>commons-beanutils</artifactId>
-        <version>1.9.3</version>
+        <version>1.9.4</version>
         <!-- used by shiro-core -->
       </dependency>
 
