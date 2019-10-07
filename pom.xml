@@ -54,7 +54,7 @@
 
   <ciManagement>
     <system>jenkins</system>
-    <url>https://jenkins.zion.aws.s/job/goodies/job/dropwizard-support</url>
+    <url>https://jenkins.ci.sonatype.dev/job/goodies/job/dropwizard-support</url>
   </ciManagement>
 
   <distributionManagement>
