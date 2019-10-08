@@ -28,7 +28,7 @@
   <name>${project.groupId}:${project.artifactId}</name>
   <packaging>pom</packaging>
 
-  <version>1.2.1-SNAPSHOT</version>
+  <version>1.2.1</version>
 
   <url>https://sonatype.github.io/dropwizard-support</url>
 
