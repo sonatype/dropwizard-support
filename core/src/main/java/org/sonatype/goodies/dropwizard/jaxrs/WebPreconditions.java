@@ -72,6 +72,28 @@ public final class WebPreconditions
     return value;
   }
 
+  /**
+   * Throws {@link WebApplicationException} with {@link Status#NOT_FOUND} if value is null.
+   *
+   * @since ???
+   */
+  @Nonnull
+  public static <T> T checkFound(@Nullable final T value, final String message) {
+    checkFound(value != null, message);
+    return value;
+  }
+
+  /**
+   * Throws {@link WebApplicationException} with {@link Status#NOT_FOUND} if value is null.
+   *
+   * @since ???
+   */
+  @Nonnull
+  public static <T> T checkFound(@Nullable final T value, final String message, final Object... params) {
+    checkFound(value != null, message, params);
+    return value;
+  }
+
   //
   // Status.BAD_REQUEST
   //
