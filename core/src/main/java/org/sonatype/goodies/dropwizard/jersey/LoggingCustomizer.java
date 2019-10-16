@@ -17,6 +17,8 @@ import org.sonatype.goodies.dropwizard.app.ApplicationSupport;
 
 import io.dropwizard.Configuration;
 import io.dropwizard.setup.Environment;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Logging {@link ApplicationCustomizer}.
@@ -26,14 +28,17 @@ import io.dropwizard.setup.Environment;
 public class LoggingCustomizer
     implements ApplicationCustomizer
 {
+  private static final Logger log = LoggerFactory.getLogger(LoggingCustomizer.class);
+
   @Override
   public void customize(final ApplicationSupport application, final Configuration config, final Environment environment)
       throws Exception
   {
     if (config instanceof LoggingConfigurationAware) {
       LoggingConfiguration lconfig = ((LoggingConfigurationAware)config).getLoggingConfiguration();
-      if (lconfig.isEnabled()) {
+      if (lconfig != null && lconfig.isEnabled()) {
         environment.jersey().register(new LoggingFeature(lconfig));
+        log.info("Enabled");
       }
     }
   }
