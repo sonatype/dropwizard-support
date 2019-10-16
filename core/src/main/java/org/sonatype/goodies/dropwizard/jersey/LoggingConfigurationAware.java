@@ -12,29 +12,12 @@
  */
 package org.sonatype.goodies.dropwizard.jersey;
 
-import org.sonatype.goodies.dropwizard.app.ApplicationCustomizer;
-import org.sonatype.goodies.dropwizard.app.ApplicationSupport;
-
-import io.dropwizard.Configuration;
-import io.dropwizard.setup.Environment;
-
 /**
- * Logging {@link ApplicationCustomizer}.
+ * {@link LoggingConfiguration} aware.
  *
  * @since ???
  */
-public class LoggingCustomizer
-    implements ApplicationCustomizer
+public interface LoggingConfigurationAware
 {
-  @Override
-  public void customize(final ApplicationSupport application, final Configuration config, final Environment environment)
-      throws Exception
-  {
-    if (config instanceof LoggingConfigurationAware) {
-      LoggingConfiguration lconfig = ((LoggingConfigurationAware)config).getLoggingConfiguration();
-      if (lconfig.isEnabled()) {
-        environment.jersey().register(new LoggingFeature(lconfig));
-      }
-    }
-  }
+  LoggingConfiguration getLoggingConfiguration();
 }
