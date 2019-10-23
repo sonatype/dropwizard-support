@@ -39,6 +39,9 @@ import org.slf4j.LoggerFactory;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
+// FIXME: this is going to (and alredy is sorta) a dumpster fire of random api
+// FIXME: consider alternatives to avoid this growing into a massive beast of api
+
 /**
  * AWS Simple Storage Service (S3) helper.
  *
