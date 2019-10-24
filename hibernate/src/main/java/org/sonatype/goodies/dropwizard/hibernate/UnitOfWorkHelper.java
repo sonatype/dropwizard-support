@@ -32,6 +32,8 @@ public class UnitOfWorkHelper
 {
   private static final Logger log = LoggerFactory.getLogger(UnitOfWorkHelper.class);
 
+  // TODO: consider not wrapping exceptions
+
   @UnitOfWork
   public <V> V apply(final Callable<V> task) {
     checkNotNull(task);
