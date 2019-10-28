@@ -39,6 +39,9 @@ import org.slf4j.LoggerFactory;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
+// FIXME: this is going to (and alredy is sorta) a dumpster fire of random api
+// FIXME: consider alternatives to avoid this growing into a massive beast of api
+
 /**
  * AWS Simple Storage Service (S3) helper.
  *
@@ -67,13 +70,22 @@ public class S3Helper
   }
 
   /**
+   * Check if bucket exists.
+   *
+   * @since ???
+   */
+  public boolean bucketExists(final String bucket) {
+    checkNotNull(bucket);
+    return client.doesBucketExistV2(bucket);
+  }
+
+  /**
    * Get object.
    */
   public S3Object get(final String bucket, final String key) {
     checkNotNull(bucket);
     checkNotNull(key);
-
-    log.debug("GET {}, {}", bucket, key);
+    log.trace("GET: {}, {}", bucket, key);
 
     return client.getObject(bucket, key);
   }
@@ -88,14 +100,25 @@ public class S3Helper
 
   /**
    * Put object.
+   *
+   * @since ???
+   */
+  public PutObjectResult put(final PutObjectRequest request) {
+    checkNotNull(request);
+    log.trace("PUT: {}", request);
+
+    return client.putObject(request);
+  }
+
+  /**
+   * Put object.
    */
   public PutObjectResult put(final String bucket, final String key, final File file) {
     checkNotNull(bucket);
     checkNotNull(key);
     checkNotNull(file);
     checkArgument(file.exists());
-
-    log.debug("PUT {} -> {}, {}", file, bucket, key);
+    log.trace("PUT: {} -> {}, {}", file, bucket, key);
 
     PutObjectRequest request = new PutObjectRequest(bucket, key, file);
     return client.putObject(request);
@@ -113,8 +136,7 @@ public class S3Helper
     checkNotNull(sourceKey);
     checkNotNull(targetBucket);
     checkNotNull(targetKey);
-
-    log.debug("COPY {}, {} -> {}, {}", sourceBucket, sourceKey, targetBucket, targetKey);
+    log.trace("COPY: {}, {} -> {}, {}", sourceBucket, sourceKey, targetBucket, targetKey);
 
     CopyObjectRequest request = new CopyObjectRequest(sourceBucket, sourceKey, targetBucket, targetKey);
     return client.copyObject(request);
@@ -135,8 +157,7 @@ public class S3Helper
   public void copyLocal(final S3Object source, final File target) throws IOException {
     checkNotNull(source);
     checkNotNull(target);
-
-    log.debug("CP {} -> {}", source, target);
+    log.trace("CP: {} -> {}", source, target);
 
     try (InputStream in = source.getObjectContent();
          OutputStream out = new BufferedOutputStream(new FileOutputStream(target))) {

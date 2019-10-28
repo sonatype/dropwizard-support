@@ -164,6 +164,13 @@
       </dependency>
 
       <dependency>
+        <groupId>org.hibernate</groupId>
+        <artifactId>hibernate-jpamodelgen</artifactId>
+        <version>5.2.18.Final</version>
+        <!-- keep in sync with hibernate-core via dropwizard-dependencies -->
+      </dependency>
+
+      <dependency>
         <groupId>org.apache.shiro</groupId>
         <artifactId>shiro-core</artifactId>
         <version>${apache-shiro.version}</version>
