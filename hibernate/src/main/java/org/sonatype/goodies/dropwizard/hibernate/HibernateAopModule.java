@@ -57,11 +57,15 @@ public class HibernateAopModule
    * Need to skip JAX-RS resource-methods, as {@link io.dropwizard.hibernate.UnitOfWorkApplicationListener}
    * already covers this AOP use-case; and presently can not be easily disabled
    * (would require rewriting {@link io.dropwizard.hibernate.HibernateBundle}.
+   *
+   * @since ???
    */
   private static class UowResourceMethodMatcher
       extends AbstractMatcher<AnnotatedElement>
       implements Serializable
   {
+    private static final long serialVersionUID = 1L;
+
     private static final Logger log = LoggerFactory.getLogger(UowResourceMethodMatcher.class);
 
     final Set<Class<? extends Annotation>> resourceAnnotationTypes = ImmutableSet.of(
@@ -94,6 +98,11 @@ public class HibernateAopModule
     private boolean hasAnnotation(final AnnotatedElement element, final Class<? extends Annotation> type) {
       Annotation present = element.getAnnotation(type);
       return present != null;
+    }
+
+    @Override
+    public String toString() {
+      return "UowResourceMethod";
     }
   }
 }
