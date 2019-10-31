@@ -15,6 +15,7 @@ package org.sonatype.goodies.dropwizard.hibernate;
 import java.io.Serializable;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.AnnotatedElement;
+import java.lang.reflect.Method;
 import java.util.Set;
 
 import javax.ws.rs.DELETE;
@@ -29,6 +30,7 @@ import com.google.inject.AbstractModule;
 import com.google.inject.matcher.AbstractMatcher;
 import com.google.inject.matcher.Matchers;
 import io.dropwizard.hibernate.UnitOfWork;
+import org.apache.commons.lang3.reflect.MethodUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -79,25 +81,28 @@ public class HibernateAopModule
 
     @Override
     public boolean matches(final AnnotatedElement element) {
-      boolean matched = !isResourceMethod(element) && hasAnnotation(element, UnitOfWork.class);
-      if (matched) {
-        log.trace("Matched: {}", element);
+      if (element instanceof Method) {
+        Method method = (Method)element;
+        boolean matched = !isResourceMethod(method) && hasAnnotation(method, UnitOfWork.class);
+        if (matched) {
+          log.trace("Matched: {}", element);
+        }
+        return matched;
       }
-      return matched;
+      return false;
     }
 
-    private boolean isResourceMethod(final AnnotatedElement element) {
+    private boolean isResourceMethod(final Method method) {
       for (Class<? extends Annotation> type : resourceAnnotationTypes) {
-        if (hasAnnotation(element, type)) {
+        if (hasAnnotation(method, type)) {
           return true;
         }
       }
       return false;
     }
 
-    private boolean hasAnnotation(final AnnotatedElement element, final Class<? extends Annotation> type) {
-      Annotation present = element.getAnnotation(type);
-      return present != null;
+    private boolean hasAnnotation(final Method method, final Class<? extends Annotation> type) {
+      return MethodUtils.getAnnotation(method, type, true, true) != null;
     }
 
     @Override
