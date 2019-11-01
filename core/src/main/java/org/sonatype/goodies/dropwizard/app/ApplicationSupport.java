@@ -34,7 +34,7 @@ import org.sonatype.goodies.dropwizard.selection.ComponentSelectionConfiguration
 import org.sonatype.goodies.dropwizard.selection.ComponentSelectionConfigurationAware;
 import org.sonatype.goodies.dropwizard.selection.ComponentSelectionTypeListener;
 import org.sonatype.goodies.dropwizard.util.FileHelper;
-import org.sonatype.goodies.dropwizard.util.ParameterPropertiesModule;
+import org.sonatype.goodies.dropwizard.guice.ParameterPropertiesModule;
 
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Throwables;
