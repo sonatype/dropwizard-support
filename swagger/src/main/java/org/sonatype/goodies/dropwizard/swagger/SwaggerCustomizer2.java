@@ -12,6 +12,7 @@
  */
 package org.sonatype.goodies.dropwizard.swagger;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.sonatype.goodies.dropwizard.app.ApplicationCustomizer;
@@ -22,18 +23,18 @@ import com.google.inject.Module;
 import io.dropwizard.Configuration;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Swagger application customizer.
  *
  * @since 1.0.0
- * @deprecated Prefer {@link SwaggerCustomizer2}.
  */
-@Deprecated
-public abstract class SwaggerCustomizer<T extends ApplicationSupport<C>, C extends Configuration>
+public class SwaggerCustomizer2<T extends ApplicationSupport<C>, C extends Configuration>
     implements ApplicationCustomizer<T, C>
 {
-  protected abstract SwaggerConfiguration getSwaggerConfiguration(final C config);
+  private static final Logger log = LoggerFactory.getLogger(SwaggerCustomizer2.class);
 
   @Override
   public void initialize(final Bootstrap<C> bootstrap) {
@@ -42,8 +43,14 @@ public abstract class SwaggerCustomizer<T extends ApplicationSupport<C>, C exten
 
   @Override
   public List<Module> modules(final C config, final Environment environment) {
-    return ImmutableList.of(
-        new SwaggerModule(getSwaggerConfiguration(config))
-    );
+    if (config instanceof SwaggerConfigurationAware) {
+      SwaggerConfiguration sconfig = ((SwaggerConfigurationAware)config).getSwaggerConfiguration();
+      return ImmutableList.of(
+          new SwaggerModule(sconfig)
+      );
+    }
+
+    log.warn("Configuration does not implement: {}", SwaggerConfigurationAware.class.getName());
+    return Collections.emptyList();
   }
 }
