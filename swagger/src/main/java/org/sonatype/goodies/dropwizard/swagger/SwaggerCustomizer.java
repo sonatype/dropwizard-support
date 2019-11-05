@@ -28,10 +28,15 @@ import io.dropwizard.setup.Environment;
  *
  * @since 1.0.0
  */
-public abstract class SwaggerCustomizer<T extends ApplicationSupport<C>, C extends Configuration>
+public class SwaggerCustomizer<T extends ApplicationSupport<C>, C extends Configuration>
     implements ApplicationCustomizer<T, C>
 {
-  protected abstract SwaggerConfiguration getSwaggerConfiguration(final C config);
+  protected SwaggerConfiguration getSwaggerConfiguration(final C config) {
+    if (config instanceof SwaggerConfigurationAware) {
+      return ((SwaggerConfigurationAware)config).getSwaggerConfiguration();
+    }
+    throw new RuntimeException("Configuration does not implement: " + SwaggerConfigurationAware.class.getName());
+  }
 
   @Override
   public void initialize(final Bootstrap<C> bootstrap) {
