@@ -86,6 +86,7 @@
     <module>datadog</module>
     <module>swagger</module>
     <module>aws</module>
+    <module>camel</module>
     <module>testsupport</module>
   </modules>
 
