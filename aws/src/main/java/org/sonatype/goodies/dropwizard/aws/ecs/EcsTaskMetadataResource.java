@@ -15,8 +15,6 @@ package org.sonatype.goodies.dropwizard.aws.ecs;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import javax.ws.rs.Path;
-
 import org.sonatype.goodies.dropwizard.jaxrs.ResourceSupport;
 import org.sonatype.goodies.dropwizard.jaxrs.WebPreconditions;
 
@@ -27,7 +25,6 @@ import org.sonatype.goodies.dropwizard.jaxrs.WebPreconditions;
  */
 //@Named
 //@Singleton
-@Path("/api/internal/ecs-task-metadata")
 public class EcsTaskMetadataResource
     extends ResourceSupport
     implements EcsTaskMetadataEndpoint
