@@ -14,10 +14,7 @@ package org.sonatype.goodies.dropwizard.camel.s3;
 
 import java.util.Map;
 
-import org.apache.camel.Exchange;
-import org.apache.camel.Predicate;
-
-import static com.google.common.base.Preconditions.checkNotNull;
+import org.sonatype.goodies.dropwizard.camel.sns.SnsNotificationSubjectPredicateSupport;
 
 /**
  * Matches {@link Map} body which appears to be an S3 notification message.
@@ -25,17 +22,13 @@ import static com.google.common.base.Preconditions.checkNotNull;
  * @since ???
  */
 public class SubjectS3NotificationPredicate
-    implements Predicate
+    extends SnsNotificationSubjectPredicateSupport
 {
+  public static final String S3_NOTIFICATION_SUBJECT = "Amazon S3 Notification";
+
   public static final SubjectS3NotificationPredicate INSTANCE = new SubjectS3NotificationPredicate();
 
-  @Override
-  public boolean matches(final Exchange exchange) {
-    checkNotNull(exchange);
-
-    Map body = exchange.getIn().getBody(Map.class);
-    return body != null &&
-        "Notification".equals(body.get("Type")) &&
-        "Amazon S3 Notification".equals(body.get("Subject"));
+  public SubjectS3NotificationPredicate() {
+    super(S3_NOTIFICATION_SUBJECT);
   }
 }
