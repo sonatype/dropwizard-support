@@ -33,7 +33,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * Swagger model.
  *
- * @see SwaggerConfiguration
  * @see SwaggerContributor
  * @since 1.0.0
  */
@@ -43,18 +42,14 @@ public class SwaggerModel
 {
   private static final Logger log = LoggerFactory.getLogger(SwaggerModel.class);
 
-  private final SwaggerConfiguration config;
-
   private final List<SwaggerContributor> contributors;
 
   private final Reader reader;
 
   @Inject
-  public SwaggerModel(final SwaggerConfiguration config,
-                      final List<SwaggerContributor> contributors,
+  public SwaggerModel(final List<SwaggerContributor> contributors,
                       final List<ModelConverter> converters)
   {
-    this.config = checkNotNull(config);
     this.contributors = checkNotNull(contributors);
 
     // register converters
@@ -75,11 +70,7 @@ public class SwaggerModel
     return reader.getSwagger();
   }
 
-  private Swagger createSwagger() {
-    return new Swagger().info(new Info()
-        .title(config.getTitle())
-        .version(config.getVersion())
-        .description(config.getDescription())
-    );
+  protected Swagger createSwagger() {
+    return new Swagger();
   }
 }

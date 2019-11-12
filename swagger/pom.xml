@@ -27,10 +27,6 @@
   <name>${project.groupId}:${project.artifactId}</name>
   <packaging>jar</packaging>
 
-  <properties>
-    <swagger-ui.version>3.23.8</swagger-ui.version>
-  </properties>
-
   <dependencyManagement>
     <dependencies>
       <dependency>
@@ -61,12 +57,6 @@
     </dependency>
 
     <dependency>
-      <groupId>org.webjars</groupId>
-      <artifactId>swagger-ui</artifactId>
-      <version>${swagger-ui.version}</version>
-    </dependency>
-
-    <dependency>
       <groupId>org.sonatype.goodies.dropwizard</groupId>
       <artifactId>dropwizard-support-testbase</artifactId>
       <scope>test</scope>
@@ -79,51 +69,4 @@
     </dependency>
   </dependencies>
 
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.codehaus.gmaven</groupId>
-        <artifactId>groovy-maven-plugin</artifactId>
-        <executions>
-          <execution>
-            <phase>process-resources</phase>
-            <goals>
-              <goal>execute</goal>
-            </goals>
-            <configuration>
-              <source>${project.basedir}/src/main/script/prepare_wro4j.groovy</source>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-
-      <plugin>
-        <groupId>ro.isdc.wro4j</groupId>
-        <artifactId>wro4j-maven-plugin</artifactId>
-        <executions>
-          <execution>
-            <phase>compile</phase>
-            <goals>
-              <goal>run</goal>
-            </goals>
-            <configuration>
-              <wroManagerFactory>
-                ro.isdc.wro.maven.plugin.manager.factory.ConfigurableWroManagerFactory
-              </wroManagerFactory>
-              <wroFile>${project.build.directory}/wro.xml</wroFile>
-              <extraConfigFile>${project.build.directory}/wro.properties</extraConfigFile>
-              <targetGroups>swagger-all</targetGroups>
-              <minimize>true</minimize>
-              <destinationFolder>${project.build.outputDirectory}/assets</destinationFolder>
-              <ignoreMissingResources>false</ignoreMissingResources>
-              <contextFolder>
-                ${project.basedir}/src/main/resources/assets,
-                ${project.build.outputDirectory}/assets
-              </contextFolder>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-  </build>
 </project>
