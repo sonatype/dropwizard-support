@@ -84,6 +84,7 @@ public class SecurityModule
     bind.to(WebSecurityManager.class);
 
     DefaultWebSecurityManager securityManager = createSecurityManager();
+    // requestInjection(securityManager);
     bind(WebSecurityManager.class).toInstance(securityManager);
     expose(WebSecurityManager.class);
 
@@ -101,6 +102,7 @@ public class SecurityModule
     bind.to(WebSessionManager.class);
 
     DefaultWebSessionManager sessionManager = createSessionManager();
+    // requestInjection(sessionManager);
     bind(WebSessionManager.class).toInstance(sessionManager);
     expose(WebSessionManager.class);
 
