@@ -88,7 +88,7 @@ public class SecurityModule
     // required for some reason to prevent bootstrap "no implementation" errors
     bind.to(WebSecurityManager.class);
 
-    WebSecurityManagerImpl securityManager = new WebSecurityManagerImpl();
+    WebSecurityManagerImpl securityManager = new WebSecurityManagerImpl(configuration);
     bind(WebSecurityManager.class).toInstance(securityManager);
     bind(WebSessionManagerImpl.class);
     expose(WebSecurityManager.class);

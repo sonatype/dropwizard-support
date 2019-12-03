@@ -12,6 +12,8 @@
  */
 package org.apache.shiro.dropwizard;
 
+import org.sonatype.goodies.dropwizard.security.SecurityConfiguration;
+
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.mgt.WebSecurityManager;
 import org.slf4j.Logger;
@@ -27,7 +29,7 @@ public class WebSecurityManagerImpl
 {
   private static final Logger log = LoggerFactory.getLogger(WebSecurityManagerImpl.class);
 
-  public WebSecurityManagerImpl() {
+  public WebSecurityManagerImpl(final SecurityConfiguration configuration) {
     setRememberMeManager(null);
 
     log.debug("Created");
