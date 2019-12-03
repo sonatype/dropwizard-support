@@ -31,6 +31,8 @@ import org.apache.shiro.guice.web.GuiceShiroFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+// HACK: this is far from ideal, but for now just to get something a bit more common in place
+
 /**
  * Security customizer.
  *
@@ -44,25 +46,15 @@ public class SecurityCustomizer<T extends ApplicationSupport<C>, C extends Confi
 
   @Override
   public List<Module> modules(final C config, final Environment environment) {
-    SecurityConfiguration sconfig = extract(config);
     return ImmutableList.of(
-        createSecurityModule(sconfig),
+        createSecurityModule(),
         // must come after SecurityModule
         new ShiroAopModule2()
     );
   }
 
-  private SecurityConfiguration extract(final C config) {
-    if (config instanceof SecurityConfigurationAware) {
-      return ((SecurityConfigurationAware)config).getSecurityConfiguration();
-    }
-    return new SecurityConfiguration();
-  }
-
-  // HACK: this is far from ideal, but for now just to get something a bit more common in place
-
-  protected SecurityModule createSecurityModule(final SecurityConfiguration configuration) {
-    return new SecurityModule(configuration);
+  protected SecurityModule createSecurityModule() {
+    return new SecurityModule();
   }
 
   @Override

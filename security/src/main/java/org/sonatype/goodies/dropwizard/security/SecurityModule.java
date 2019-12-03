@@ -15,16 +15,12 @@ package org.sonatype.goodies.dropwizard.security;
 import javax.inject.Singleton;
 import javax.servlet.Filter;
 
-import org.sonatype.goodies.dropwizard.security.realms.local.LocalRealm;
-
 import com.google.common.annotations.Beta;
 import com.google.inject.binder.AnnotatedBindingBuilder;
 import org.apache.shiro.authc.Authenticator;
 import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.cache.MemoryConstrainedCacheManager;
 import org.apache.shiro.dropwizard.FirstSuccessfulModularRealmAuthenticator;
-import org.apache.shiro.dropwizard.WebSecurityManagerImpl;
-import org.apache.shiro.dropwizard.WebSessionManagerImpl;
 import org.apache.shiro.guice.ShiroModule;
 import org.apache.shiro.mgt.RealmSecurityManager;
 import org.apache.shiro.mgt.SecurityManager;
@@ -35,10 +31,12 @@ import org.apache.shiro.web.filter.mgt.DefaultFilterChainManager;
 import org.apache.shiro.web.filter.mgt.FilterChainManager;
 import org.apache.shiro.web.filter.mgt.FilterChainResolver;
 import org.apache.shiro.web.filter.mgt.PathMatchingFilterChainResolver;
+import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.mgt.WebSecurityManager;
+import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.apache.shiro.web.session.mgt.WebSessionManager;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+// HACK: this is far from ideal, but for now just to get something a bit more common in place
 
 /**
  * Security module.
@@ -49,12 +47,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 public class SecurityModule
     extends ShiroModule
 {
-  private final SecurityConfiguration configuration;
-
-  public SecurityModule(final SecurityConfiguration configuration) {
-    this.configuration = checkNotNull(configuration);
-  }
-
   // NOTE: overly complex guice bindings here due to ShiroModule being private, and generally having poor integration with guice+sisu
 
   @Override
@@ -78,9 +70,12 @@ public class SecurityModule
     bind(Authenticator.class).to(FirstSuccessfulModularRealmAuthenticator.class).in(Singleton.class);
     bind(FirstSuccessfulModularRealmAuthenticator.class);
     expose(FirstSuccessfulModularRealmAuthenticator.class);
+  }
 
-    // realms
-    bindRealm().to(LocalRealm.class).in(Singleton.class);
+  protected DefaultWebSecurityManager createSecurityManager() {
+    DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
+    securityManager.setRememberMeManager(null);
+    return securityManager;
   }
 
   @Override
@@ -88,13 +83,16 @@ public class SecurityModule
     // required for some reason to prevent bootstrap "no implementation" errors
     bind.to(WebSecurityManager.class);
 
-    WebSecurityManagerImpl securityManager = new WebSecurityManagerImpl(configuration);
+    DefaultWebSecurityManager securityManager = createSecurityManager();
     bind(WebSecurityManager.class).toInstance(securityManager);
-    bind(WebSessionManagerImpl.class);
     expose(WebSecurityManager.class);
 
     bind(RealmSecurityManager.class).toInstance(securityManager);
     expose(RealmSecurityManager.class);
+  }
+
+  protected DefaultWebSessionManager createSessionManager() {
+    return new DefaultWebSessionManager();
   }
 
   @Override
@@ -102,9 +100,8 @@ public class SecurityModule
     // required for some reason to prevent bootstrap "no implementation" errors
     bind.to(WebSessionManager.class);
 
-    WebSessionManagerImpl sessionManager = new WebSessionManagerImpl(configuration);
+    DefaultWebSessionManager sessionManager = createSessionManager();
     bind(WebSessionManager.class).toInstance(sessionManager);
-    bind(WebSessionManagerImpl.class);
     expose(WebSessionManager.class);
 
     bind(SessionDAO.class).to(MemorySessionDAO.class).in(Singleton.class);
