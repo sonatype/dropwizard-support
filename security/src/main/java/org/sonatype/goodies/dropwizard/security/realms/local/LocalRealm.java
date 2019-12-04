@@ -13,8 +13,6 @@
 package org.sonatype.goodies.dropwizard.security.realms.local;
 
 import javax.inject.Inject;
-import javax.inject.Named;
-import javax.inject.Singleton;
 
 import org.apache.shiro.authc.SimpleAccount;
 import org.apache.shiro.authz.SimpleRole;
@@ -30,8 +28,6 @@ import static org.apache.shiro.util.PermissionUtils.resolvePermissions;
  *
  * @since ???
  */
-@Named(LocalRealm.NAME)
-@Singleton
 public class LocalRealm
     extends SimpleAccountRealm
 {
@@ -39,15 +35,18 @@ public class LocalRealm
 
   public static final String NAME = "local";
 
+  private final LocalRealmConfiguration configuration;
+
   @Inject
   public LocalRealm(final LocalRealmConfiguration configuration) {
+    this.configuration = checkNotNull(configuration);
     setName(NAME);
-
-    checkNotNull(configuration);
-    configure(configuration);
   }
 
-  private void configure(final LocalRealmConfiguration configuration) {
+  @Override
+  protected void onInit() {
+    super.onInit();
+
     for (LocalRole entry : configuration.getRoles()) {
       log.debug("Add role: {}", entry);
 
