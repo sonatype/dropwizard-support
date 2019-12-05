@@ -10,7 +10,7 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
-package org.sonatype.goodies.dropwizard.security;
+package org.sonatype.goodies.dropwizard.security.authz;
 
 import java.util.Arrays;
 import java.util.stream.StreamSupport;
@@ -33,28 +33,18 @@ import static com.google.common.base.Preconditions.checkNotNull;
 // copied from: https://github.com/sonatype/nexus-public/blob/master/components/nexus-security/src/main/java/org/sonatype/nexus/security/SecurityHelper.java
 
 /**
- * Security helper.
+ * Authorization helper.
  *
  * @since ???
  */
 @Named
 @Singleton
 @Beta
-public class SecurityHelper
+public class AuthorizationHelper
 {
-  private static final Logger log = LoggerFactory.getLogger(SecurityHelper.class);
+  private static final Logger log = LoggerFactory.getLogger(AuthorizationHelper.class);
 
-  /**
-   * Returns current security manager.
-   */
-  public SecurityManager getSecurityManager() {
-    return SecurityUtils.getSecurityManager();
-  }
-
-  /**
-   * Returns current subject.
-   */
-  public Subject subject() {
+  private Subject subject() {
     return SecurityUtils.getSubject();
   }
 
