@@ -18,6 +18,7 @@ import java.util.stream.StreamSupport;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
+import com.google.common.annotations.Beta;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.AuthorizationException;
 import org.apache.shiro.authz.Permission;
@@ -38,6 +39,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
  */
 @Named
 @Singleton
+@Beta
 public class SecurityHelper
 {
   private static final Logger log = LoggerFactory.getLogger(SecurityHelper.class);
