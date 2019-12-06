@@ -10,9 +10,7 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
-package org.sonatype.goodies.dropwizard.security
-
-import org.sonatype.goodies.dropwizard.security.authz.RoleMatchingHelper
+package org.sonatype.goodies.dropwizard.security.authz
 
 import org.apache.shiro.subject.Subject
 import org.junit.Test
