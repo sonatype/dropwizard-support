@@ -19,7 +19,7 @@ package org.sonatype.goodies.dropwizard.security.authz;
  */
 public class BreadActions
 {
-  private BreadActions() {
+  protected BreadActions() {
     // empty
   }
 
