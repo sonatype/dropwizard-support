@@ -31,7 +31,7 @@ import org.sonatype.goodies.dropwizard.ratelimit.RatelimitConfiguration.Bucket;
 import org.sonatype.goodies.dropwizard.ratelimit.RatelimitConfiguration.DrainRate;
 import org.sonatype.goodies.dropwizard.ratelimit.RatelimitConfiguration.RequestStrategy;
 import org.sonatype.goodies.dropwizard.ratelimit.RatelimitTracker.Identifier;
-import org.sonatype.goodies.dropwizard.security.RoleMatchingHelper;
+import org.sonatype.goodies.dropwizard.security.authz.RoleMatchingHelper;
 import org.sonatype.goodies.dropwizard.security.SubjectHelper;
 import org.sonatype.goodies.dropwizard.service.ServiceSupport;
 import org.sonatype.goodies.dropwizard.util.IpAddresses;
