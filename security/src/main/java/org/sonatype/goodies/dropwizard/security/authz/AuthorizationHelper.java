@@ -49,8 +49,6 @@ public class AuthorizationHelper
 
   /**
    * Ensure subject has given permissions.
-   *
-   * @throws AuthorizationException
    */
   public void ensurePermitted(final Subject subject, final Permission... permissions) {
     checkNotNull(subject);
@@ -58,15 +56,14 @@ public class AuthorizationHelper
     checkArgument(permissions.length != 0);
 
     if (log.isTraceEnabled()) {
-      log.trace("Ensuring subject '{}' has permissions: {}", subject.getPrincipal(), Arrays.toString(permissions));
+      log.trace("Ensuring subject '{}' has permissions: {}",
+          subject.getPrincipal(), Arrays.toString(permissions));
     }
     subject.checkPermissions(Arrays.asList(permissions));
   }
 
   /**
    * Ensure subject has any of the given permissions.
-   *
-   * @throws AuthorizationException
    */
   public void ensureAnyPermitted(final Subject subject, final Permission... permissions) {
     checkNotNull(subject);
@@ -74,7 +71,8 @@ public class AuthorizationHelper
     checkArgument(permissions.length != 0);
 
     if (log.isTraceEnabled()) {
-      log.trace("Ensuring subject '{}' has any of the following permissions: {}", subject.getPrincipal(), Arrays.toString(permissions));
+      log.trace("Ensuring subject '{}' has any of the following permissions: {}",
+          subject.getPrincipal(), Arrays.toString(permissions));
     }
 
     if (!anyPermitted(subject, permissions)) {
@@ -84,8 +82,6 @@ public class AuthorizationHelper
 
   /**
    * Ensure current subject has given permissions.
-   *
-   * @throws AuthorizationException
    */
   public void ensurePermitted(final Permission... permissions) {
     ensurePermitted(subject(), permissions);
@@ -187,8 +183,8 @@ public class AuthorizationHelper
     }
     boolean[] results = subject.isPermitted(Arrays.asList(permissions));
     if (trace) {
-      log.trace("Subject '{}' has permissions: [{}] results {}", subject.getPrincipal(), Arrays.toString(permissions),
-          results);
+      log.trace("Subject '{}' has permissions: [{}] results {}",
+          subject.getPrincipal(), Arrays.toString(permissions), results);
     }
     return results;
   }

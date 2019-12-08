@@ -18,6 +18,8 @@ import javax.servlet.Filter;
 import com.google.common.annotations.Beta;
 import com.google.inject.binder.AnnotatedBindingBuilder;
 import org.apache.shiro.authc.Authenticator;
+import org.apache.shiro.authz.Authorizer;
+import org.apache.shiro.authz.ModularRealmAuthorizer;
 import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.cache.MemoryConstrainedCacheManager;
 import org.apache.shiro.dropwizard.FirstSuccessfulModularRealmAuthenticator;
@@ -70,6 +72,11 @@ public class SecurityModule
     bind(Authenticator.class).to(FirstSuccessfulModularRealmAuthenticator.class).in(Singleton.class);
     bind(FirstSuccessfulModularRealmAuthenticator.class);
     expose(FirstSuccessfulModularRealmAuthenticator.class);
+
+    // realm-authorizer
+    bind(Authorizer.class).to(ModularRealmAuthorizer.class).in(Singleton.class);
+    bind(ModularRealmAuthorizer.class);
+    expose(ModularRealmAuthorizer.class);
   }
 
   protected DefaultWebSecurityManager createSecurityManager() {
