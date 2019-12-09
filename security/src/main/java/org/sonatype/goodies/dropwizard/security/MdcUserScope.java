@@ -14,6 +14,9 @@ package org.sonatype.goodies.dropwizard.security;
 
 import javax.annotation.Nullable;
 
+import org.sonatype.goodies.dropwizard.security.subject.SubjectHelper;
+import org.sonatype.goodies.dropwizard.security.subject.SystemSubject;
+
 import org.apache.shiro.subject.Subject;
 import org.slf4j.MDC;
 

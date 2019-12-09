@@ -10,31 +10,31 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
-package org.sonatype.goodies.dropwizard.security;
+package org.sonatype.goodies.dropwizard.security.subject;
 
-import java.util.concurrent.Callable;
+import org.sonatype.goodies.dropwizard.security.MdcUserScope;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * Adapter to execute given {@link Callable} as {@link SystemSubject}.
+ * Adapter to execute given {@link Runnable} as {@link SystemSubject}.
  *
  * @since 1.0.0
  */
-public class SystemCallable<V>
-  implements Callable<V>
+public class SystemRunnable
+  implements Runnable
 {
-  private final Callable<V> delegete;
+  private final Runnable delegete;
 
-  public SystemCallable(final Callable<V> delegete) {
+  public SystemRunnable(final Runnable delegete) {
     this.delegete = checkNotNull(delegete);
   }
 
   @Override
-  public V call() throws Exception {
+  public void run() {
     SystemSubject subject = SystemSubject.get();
     try (MdcUserScope scope = MdcUserScope.forSubject(subject)) {
-      return subject.execute(delegete);
+      subject.execute(delegete);
     }
   }
 }

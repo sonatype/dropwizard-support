@@ -10,11 +10,12 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
-package org.sonatype.goodies.dropwizard.security;
+package org.sonatype.goodies.dropwizard.security.subject;
 
 import javax.annotation.Nullable;
 
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.Subject;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -61,7 +62,7 @@ public final class SubjectHelper
   /**
    * Extract user-name from given subject.
    *
-   * {@code literal} return implies anonymous/guest.
+   * {@literal null} return implies anonymous/guest.
    */
   @Nullable
   public static String getUsername(@Nullable final Subject subject) {
@@ -82,14 +83,27 @@ public final class SubjectHelper
     return getUsername(SecurityUtils.getSubject());
   }
 
-  private static volatile SubjectUsernameExtractor usernameExtractor = new SimpleSubjectUsernameExtractor();
+  /**
+   * Extract user-name from given principals.
+   *
+   * {@literal null} return implies anonymous/guest.
+   */
+  @Nullable
+  public static String getUsername(@Nullable final PrincipalCollection principals) {
+    if (principals != null) {
+      return usernameExtractor.extract(principals);
+    }
+    return null;
+  }
+
+  private static volatile PrincipalUsernameExtractor usernameExtractor = new SimplePrincipalUsernameExtractor();
 
   /**
    * Return the current user-name extractor; never {@literal null}.
    *
    * @since 1.2.0
    */
-  public static SubjectUsernameExtractor getUsernameExtractor() {
+  public static PrincipalUsernameExtractor getUsernameExtractor() {
     return usernameExtractor;
   }
 
@@ -98,7 +112,7 @@ public final class SubjectHelper
    *
    * @since 1.2.0
    */
-  public static void setUsernameExtractor(final SubjectUsernameExtractor extractor) {
+  public static void setUsernameExtractor(final PrincipalUsernameExtractor extractor) {
     usernameExtractor = checkNotNull(extractor);
   }
 }

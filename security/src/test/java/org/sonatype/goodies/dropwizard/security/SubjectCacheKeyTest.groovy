@@ -12,6 +12,8 @@
  */
 package org.sonatype.goodies.dropwizard.security
 
+import org.sonatype.goodies.dropwizard.security.subject.SubjectCacheKey
+
 import org.apache.shiro.subject.Subject
 import org.junit.Test
 import org.junit.runner.RunWith
