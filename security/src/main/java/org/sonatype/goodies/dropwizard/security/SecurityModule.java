@@ -26,6 +26,7 @@ import org.apache.shiro.dropwizard.FirstSuccessfulModularRealmAuthenticator;
 import org.apache.shiro.guice.ShiroModule;
 import org.apache.shiro.mgt.RealmSecurityManager;
 import org.apache.shiro.mgt.SecurityManager;
+import org.apache.shiro.realm.Realm;
 import org.apache.shiro.session.mgt.SessionManager;
 import org.apache.shiro.session.mgt.eis.MemorySessionDAO;
 import org.apache.shiro.session.mgt.eis.SessionDAO;
@@ -125,6 +126,11 @@ public class SecurityModule
   //
   // Helpers
   //
+
+  protected void bindRealm(final Class<? extends Realm> type) {
+    bind(type).in(Singleton.class);
+    bindRealm().to(type);
+  }
 
   /**
    * Helper to construct and post-construct inject a filter instance.
