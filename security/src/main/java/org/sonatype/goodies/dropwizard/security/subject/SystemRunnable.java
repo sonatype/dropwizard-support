@@ -10,30 +10,31 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
-package org.sonatype.goodies.dropwizard.security;
+package org.sonatype.goodies.dropwizard.security.subject;
 
-import javax.annotation.Nullable;
-
-import org.apache.shiro.subject.Subject;
+import org.sonatype.goodies.dropwizard.security.MdcUserScope;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * Simple {@link SubjectUsernameExtractor}.
+ * Adapter to execute given {@link Runnable} as {@link SystemSubject}.
  *
- * @since 1.2.0
+ * @since 1.0.0
  */
-public class SimpleSubjectUsernameExtractor
-  implements SubjectUsernameExtractor
+public class SystemRunnable
+  implements Runnable
 {
-  @Nullable
+  private final Runnable delegete;
+
+  public SystemRunnable(final Runnable delegete) {
+    this.delegete = checkNotNull(delegete);
+  }
+
   @Override
-  public String extract(final Subject subject) {
-    checkNotNull(subject);
-    Object principal = subject.getPrincipal();
-    if (principal != null) {
-      return principal.toString();
+  public void run() {
+    SystemSubject subject = SystemSubject.get();
+    try (MdcUserScope scope = MdcUserScope.forSubject(subject)) {
+      subject.execute(delegete);
     }
-    return null;
   }
 }

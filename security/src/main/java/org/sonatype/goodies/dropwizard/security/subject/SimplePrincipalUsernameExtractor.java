@@ -10,43 +10,46 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
-package org.sonatype.goodies.dropwizard.security;
-
-import java.util.Collection;
-import java.util.List;
+package org.sonatype.goodies.dropwizard.security.subject;
 
 import javax.annotation.Nullable;
 
-import com.google.common.collect.ImmutableList;
+import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.Subject;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * Helper to match roles for subject.
+ * Simple {@link PrincipalUsernameExtractor}.
  *
  * @since 1.2.0
  */
-public class RoleMatchingHelper
+public class SimplePrincipalUsernameExtractor
+    implements PrincipalUsernameExtractor
 {
   /**
-   * Bulk request roles for subject, and pick first matching role.
-   *
-   * Implies that given roles collection is ordered.
+   * @since ???
    */
   @Nullable
-  public static String matchFirst(final Subject subject, final Collection<String> roles) {
+  @Override
+  public String extract(final PrincipalCollection principals) {
+    checkNotNull(principals);
+    Object principal = principals.getPrimaryPrincipal();
+    return extract(principal);
+  }
+
+  @Nullable
+  @Override
+  public String extract(final Subject subject) {
     checkNotNull(subject);
-    checkNotNull(roles);
+    Object principal = subject.getPrincipal();
+    return extract(principal);
+  }
 
-    List<String> names = ImmutableList.copyOf(roles);
-    boolean[] matches = subject.hasRoles(names);
-    for (int i=0; i<matches.length; i++) {
-      if (matches[i]) {
-        return names.get(i);
-      }
+  private String extract(@Nullable final Object principal) {
+    if (principal != null) {
+      return principal.toString();
     }
-
     return null;
   }
 }

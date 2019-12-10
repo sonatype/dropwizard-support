@@ -10,21 +10,28 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
-package org.sonatype.goodies.dropwizard.security;
+package org.sonatype.goodies.dropwizard.security.subject;
 
 import javax.annotation.Nullable;
 
+import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.Subject;
 
 /**
- * Extract user-name from {@link Subject}.
+ * Extract user-name from principal.
  *
  * @since 1.2.0
  *
- * @see SubjectHelper#setUsernameExtractor(SubjectUsernameExtractor)
+ * @see SubjectHelper#setUsernameExtractor(PrincipalUsernameExtractor)
  */
-public interface SubjectUsernameExtractor
+public interface PrincipalUsernameExtractor
 {
+  /**
+   * @since ???
+   */
+  @Nullable
+  String extract(PrincipalCollection principals);
+
   @Nullable
   String extract(Subject subject);
 }

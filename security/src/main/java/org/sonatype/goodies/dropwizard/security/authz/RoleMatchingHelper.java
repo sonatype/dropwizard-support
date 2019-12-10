@@ -10,50 +10,43 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
-package org.sonatype.goodies.dropwizard.security;
+package org.sonatype.goodies.dropwizard.security.authz;
+
+import java.util.Collection;
+import java.util.List;
 
 import javax.annotation.Nullable;
 
-import org.apache.shiro.SecurityUtils;
+import com.google.common.collect.ImmutableList;
 import org.apache.shiro.subject.Subject;
 
-/**
- * User-name helper.
- *
- * @since 1.0.0
- */
-@Deprecated
-public final class UsernameHelper
-{
-  private UsernameHelper() {
-    // empty
-  }
+import static com.google.common.base.Preconditions.checkNotNull;
 
+/**
+ * Helper to match roles for subject.
+ *
+ * @since 1.2.0
+ */
+public class RoleMatchingHelper
+{
   /**
-   * Extract user-name from given subject.
+   * Bulk request roles for subject, and pick first matching role.
    *
-   * @deprecated Use {@link SubjectHelper#getUsername(Subject)} instead.
+   * Implies that given roles collection is ordered.
    */
   @Nullable
-  @Deprecated
-  public static String get(@Nullable final Subject subject) {
-    if (subject != null) {
-      Object principal = subject.getPrincipal();
-      if (principal != null) {
-        return principal.toString();
+  public static String matchFirst(final Subject subject, final Collection<String> roles) {
+    checkNotNull(subject);
+    checkNotNull(roles);
+
+    List<String> names = ImmutableList.copyOf(roles);
+    boolean[] matches = subject.hasRoles(names);
+    for (int i=0; i<matches.length; i++) {
+      if (matches[i]) {
+        return names.get(i);
       }
     }
-    return null;
-  }
 
-  /**
-   * Extract user-name from current subject.
-   *
-   * @deprecated Use {@link SubjectHelper#getUsername()}
-   */
-  @Nullable
-  @Deprecated
-  public static String get() {
-    return get(SecurityUtils.getSubject());
+    return null;
   }
 }

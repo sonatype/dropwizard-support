@@ -10,29 +10,24 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
-package org.sonatype.goodies.dropwizard.security;
-
-import static com.google.common.base.Preconditions.checkNotNull;
+package org.sonatype.goodies.dropwizard.security.authz;
 
 /**
- * Adapter to execute given {@link Runnable} as {@link SystemSubject}.
+ * CRUD actions.
  *
- * @since 1.0.0
+ * @since ???
  */
-public class SystemRunnable
-  implements Runnable
+public class CrudActions
 {
-  private final Runnable delegete;
-
-  public SystemRunnable(final Runnable delegete) {
-    this.delegete = checkNotNull(delegete);
+  protected CrudActions() {
+    // empty
   }
 
-  @Override
-  public void run() {
-    SystemSubject subject = SystemSubject.get();
-    try (MdcUserScope scope = MdcUserScope.forSubject(subject)) {
-      subject.execute(delegete);
-    }
-  }
+  public static final String CREATE = "create";
+
+  public static final String READ = "read";
+
+  public static final String UPDATE = "update";
+
+  public static final String DELETE = "delete";
 }

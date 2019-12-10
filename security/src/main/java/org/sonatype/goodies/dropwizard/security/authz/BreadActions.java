@@ -10,31 +10,26 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
-package org.sonatype.goodies.dropwizard.security;
-
-import java.util.concurrent.Callable;
-
-import static com.google.common.base.Preconditions.checkNotNull;
+package org.sonatype.goodies.dropwizard.security.authz;
 
 /**
- * Adapter to execute given {@link Callable} as {@link SystemSubject}.
+ * BREAD actions.
  *
- * @since 1.0.0
+ * @since ???
  */
-public class SystemCallable<V>
-  implements Callable<V>
+public class BreadActions
 {
-  private final Callable<V> delegete;
-
-  public SystemCallable(final Callable<V> delegete) {
-    this.delegete = checkNotNull(delegete);
+  protected BreadActions() {
+    // empty
   }
 
-  @Override
-  public V call() throws Exception {
-    SystemSubject subject = SystemSubject.get();
-    try (MdcUserScope scope = MdcUserScope.forSubject(subject)) {
-      return subject.execute(delegete);
-    }
-  }
+  public static final String BROWSE = "browse";
+
+  public static final String READ = "read";
+
+  public static final String EDIT = "edit";
+
+  public static final String ADD = "add";
+
+  public static final String DELETE = "delete";
 }
