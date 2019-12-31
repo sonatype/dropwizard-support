@@ -16,6 +16,7 @@ import java.util.function.Function;
 
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status.Family;
 import javax.ws.rs.core.Response.StatusType;
 
 import com.codahale.metrics.health.HealthCheck;
@@ -41,11 +42,11 @@ public final class HealthCheckHelper
   /**
    * Helper to return a {@link Result} based on the status of an HTTP request.
    *
-   * @param target      HTTP target to make a GET request to.
-   * @param validator   Function to evaluate if status indicates healthy (returns {@code true}) or
-   *                    unhealthy (returns {@code false}).
+   * @param target    HTTP target to make a GET request to.
+   * @param validator Function to evaluate if status indicates healthy (returns {@code true}) or
+   *                  unhealthy (returns {@code false}).
    */
-  public static Result checkStatus(final WebTarget target, final Function<StatusType,Boolean> validator) {
+  public static Result checkStatus(final WebTarget target, final Function<StatusType, Boolean> validator) {
     checkNotNull(target);
     checkNotNull(validator);
 
@@ -79,5 +80,16 @@ public final class HealthCheckHelper
   public static Result checkStatus(final WebTarget target, final StatusType status) {
     checkNotNull(status);
     return checkStatus(target, input -> input != null && input.getStatusCode() == status.getStatusCode());
+  }
+
+  /**
+   * Helper to return {@link Result} based on the status family of an HTTP request.
+   *
+   * @see #checkStatus(WebTarget, Function)
+   * @since ???
+   */
+  public static Result checkStatus(final WebTarget target, final Family family) {
+    checkNotNull(family);
+    return checkStatus(target, input -> input != null && input.getFamily() == family);
   }
 }
