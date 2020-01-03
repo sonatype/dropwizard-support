@@ -64,6 +64,7 @@ public class SecurityServiceImpl
 
     Set<Realm> enabled = resolveRealms();
     checkState(!realms.isEmpty(), "No realms were enabled");
+    enabled.forEach(LifecycleUtils::init);
 
     securityManager.setRealms(enabled);
   }
@@ -74,8 +75,6 @@ public class SecurityServiceImpl
       Realm realm = realms.get(name);
       checkState(realm != null, "Invalid realm: %s", name);
       log.debug("Enable realm: {} -> {}", name, realm);
-
-      LifecycleUtils.init(realm);
       result.add(realm);
     }
 
