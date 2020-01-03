@@ -19,12 +19,9 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
-import com.codahale.metrics.health.HealthCheck;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.MoreObjects;
 import io.dropwizard.util.Size;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -36,10 +33,8 @@ import static com.google.common.base.Preconditions.checkNotNull;
 @Named("temporary-directory")
 @Singleton
 public class TemporaryDirectoryHealthCheck
-    extends HealthCheck
+    extends HealthCheckSupport
 {
-  private static final Logger log = LoggerFactory.getLogger(TemporaryDirectoryHealthCheck.class);
-
   public static class Configuration
   {
     @Nullable
