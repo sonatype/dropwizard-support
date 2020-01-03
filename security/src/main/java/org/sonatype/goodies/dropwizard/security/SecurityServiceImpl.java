@@ -62,20 +62,23 @@ public class SecurityServiceImpl
   protected void doStart() throws Exception {
     log.debug("Available realms: {}", realms);
 
-    Set<Realm> enabled = new LinkedHashSet<>();
+    Set<Realm> enabled = resolveRealms();
+    checkState(!realms.isEmpty(), "No realms were enabled");
+
+    securityManager.setRealms(enabled);
+  }
+
+  protected Set<Realm> resolveRealms() {
+    Set<Realm> result = new LinkedHashSet<>();
     for (String name : configuration.getRealms()) {
       Realm realm = realms.get(name);
       checkState(realm != null, "Invalid realm: %s", name);
       log.debug("Enable realm: {} -> {}", name, realm);
 
-      // TODO: resolve what else is needed to properly initialize/inject realm instances
       LifecycleUtils.init(realm);
-
-      enabled.add(realm);
+      result.add(realm);
     }
 
-    checkState(!realms.isEmpty(), "No realms were enabled");
-
-    securityManager.setRealms(enabled);
+    return result;
   }
 }
