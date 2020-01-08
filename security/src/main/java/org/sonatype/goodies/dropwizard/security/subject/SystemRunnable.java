@@ -12,7 +12,7 @@
  */
 package org.sonatype.goodies.dropwizard.security.subject;
 
-import org.sonatype.goodies.dropwizard.security.MdcUserScope;
+import org.sonatype.goodies.dropwizard.security.mdc.MdcUserScope;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 

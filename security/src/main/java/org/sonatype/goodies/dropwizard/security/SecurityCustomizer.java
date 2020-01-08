@@ -20,6 +20,7 @@ import javax.servlet.Filter;
 
 import org.sonatype.goodies.dropwizard.app.ApplicationCustomizer;
 import org.sonatype.goodies.dropwizard.app.ApplicationSupport;
+import org.sonatype.goodies.dropwizard.security.mdc.MdcUserScopeFilter;
 
 import com.google.common.annotations.Beta;
 import com.google.common.collect.ImmutableList;
