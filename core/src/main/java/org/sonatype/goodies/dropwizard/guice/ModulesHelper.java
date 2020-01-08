@@ -10,33 +10,36 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
-package org.sonatype.goodies.dropwizard.security.subject;
+package org.sonatype.goodies.dropwizard.guice;
 
-import java.util.concurrent.Callable;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
-import org.sonatype.goodies.dropwizard.security.mdc.MdcUserScope;
+import com.google.inject.Module;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * Adapter to execute given {@link Callable} as {@link SystemSubject}.
+ * {@link Module Modules} helpers.
  *
- * @since 1.0.0
+ * @since ???
  */
-public class SystemCallable<V>
-  implements Callable<V>
+public class ModulesHelper
 {
-  private final Callable<V> delegete;
-
-  public SystemCallable(final Callable<V> delegete) {
-    this.delegete = checkNotNull(delegete);
+  private ModulesHelper() {
+    // empty
   }
 
-  @Override
-  public V call() throws Exception {
-    SystemSubject subject = SystemSubject.get();
-    try (MdcUserScope scope = MdcUserScope.forSubject(subject)) {
-      return subject.execute(delegete);
-    }
+  public static List<Module> concat(final Iterable<Module> basis, final Module... modules) {
+    checkNotNull(basis);
+    checkNotNull(modules);
+
+    return Stream.concat(
+        StreamSupport.stream(basis.spliterator(), false),
+        Arrays.stream(modules)
+    ).collect(Collectors.toList());
   }
 }

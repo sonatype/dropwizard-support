@@ -20,6 +20,7 @@ import javax.servlet.Filter;
 
 import org.sonatype.goodies.dropwizard.app.ApplicationCustomizer;
 import org.sonatype.goodies.dropwizard.app.ApplicationSupport;
+import org.sonatype.goodies.dropwizard.security.mdc.MdcUserScopeFilter;
 
 import com.google.common.annotations.Beta;
 import com.google.common.collect.ImmutableList;
@@ -53,8 +54,8 @@ public class SecurityCustomizer<T extends ApplicationSupport<C>, C extends Confi
     );
   }
 
-  protected SecurityModule createSecurityModule() {
-    return new SecurityModule();
+  protected SecurityModuleSupport createSecurityModule() {
+    return new SecurityModuleSupport();
   }
 
   @Override
@@ -62,8 +63,8 @@ public class SecurityCustomizer<T extends ApplicationSupport<C>, C extends Confi
                         final C config,
                         final Environment environment)
   {
-    addFilter(application, environment, GuiceShiroFilter.class, false,"/*");
-    addFilter(application, environment, MdcUserScopeFilter.class, true,"/*");
+    addFilter(application, environment, GuiceShiroFilter.class, false, "/*");
+    addFilter(application, environment, MdcUserScopeFilter.class, true, "/*");
 
     environment.jersey().getResourceConfig().register(new ShiroAopFeature());
   }

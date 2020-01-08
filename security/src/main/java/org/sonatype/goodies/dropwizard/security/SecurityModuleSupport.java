@@ -42,12 +42,12 @@ import org.apache.shiro.web.session.mgt.WebSessionManager;
 // HACK: this is far from ideal, but for now just to get something a bit more common in place
 
 /**
- * Security module.
+ * Support for security modules.
  *
  * @since ???
  */
 @Beta
-public class SecurityModule
+public class SecurityModuleSupport
     extends ShiroModule
 {
   // NOTE: overly complex guice bindings here due to ShiroModule being private, and generally having poor integration with guice+sisu

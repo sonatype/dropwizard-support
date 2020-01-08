@@ -24,9 +24,11 @@ import org.apache.shiro.realm.Realm;
 public final class EmptyRealm
     implements Realm
 {
+  public static final String NAME = "empty";
+
   @Override
   public String getName() {
-    return getClass().getName();
+    return NAME;
   }
 
   @Override
