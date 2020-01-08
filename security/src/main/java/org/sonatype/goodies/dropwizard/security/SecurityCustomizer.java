@@ -62,8 +62,8 @@ public class SecurityCustomizer<T extends ApplicationSupport<C>, C extends Confi
                         final C config,
                         final Environment environment)
   {
-    addFilter(application, environment, GuiceShiroFilter.class, false,"/*");
-    addFilter(application, environment, MdcUserScopeFilter.class, true,"/*");
+    addFilter(application, environment, GuiceShiroFilter.class, false, "/*");
+    addFilter(application, environment, MdcUserScopeFilter.class, true, "/*");
 
     environment.jersey().getResourceConfig().register(new ShiroAopFeature());
   }
