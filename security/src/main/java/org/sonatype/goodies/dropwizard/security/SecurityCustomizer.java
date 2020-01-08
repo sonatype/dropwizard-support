@@ -53,8 +53,8 @@ public class SecurityCustomizer<T extends ApplicationSupport<C>, C extends Confi
     );
   }
 
-  protected SecurityModule createSecurityModule() {
-    return new SecurityModule();
+  protected SecurityModuleSupport createSecurityModule() {
+    return new SecurityModuleSupport();
   }
 
   @Override
