@@ -12,8 +12,12 @@
  */
 package org.sonatype.goodies.dropwizard.config;
 
+import java.util.Collections;
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
+import com.google.inject.Module;
 import io.dropwizard.jackson.Discoverable;
 
 /**
@@ -25,5 +29,12 @@ import io.dropwizard.jackson.Discoverable;
 public interface ConfigurationAttachment
     extends Discoverable
 {
-  // empty
+  /**
+   * Additional modules to install when attachment is configured.
+   * 
+   * @since ???
+   */
+  default List<Module> modules() {
+    return Collections.emptyList();
+  }
 }

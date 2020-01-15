@@ -38,6 +38,11 @@ public class ConfigurationAttachmentModule
         String name = entry.getKey();
         ConfigurationAttachment value = entry.getValue();
         log.debug("Attachment: {} -> {}", name, value);
+
+        // install any additional modules
+        value.modules().forEach(this::install);
+
+        // bind attachment and expose any nested bindings
         bind(value.getClass(), name, value);
         expose(value);
       }

@@ -45,24 +45,6 @@ public class ConfigurationSupport
   @JsonProperty("properties")
   private Map<String, Object> properties = new HashMap<>();
 
-  /**
-   * Component selection configuration for Sisu component discovery.
-   */
-  @NotNull
-  @Valid
-  @Bind
-  @JsonProperty("component-selection")
-  private ComponentSelectionConfiguration componentSelectionConfiguration = new ComponentSelectionConfiguration();
-
-  /**
-   * Standard health-check configuration.
-   */
-  @NotNull
-  @Valid
-  @Bind
-  @JsonProperty("health-check")
-  private HealthCheckConfiguration healthCheckConfiguration = new HealthCheckConfiguration();
-
   @Nonnull
   public Map<String, Object> getProperties() {
     return properties;
@@ -71,6 +53,15 @@ public class ConfigurationSupport
   public void setProperties(@Nonnull final Map<String, Object> properties) {
     this.properties = checkNotNull(properties);
   }
+
+  /**
+   * Component selection configuration for Sisu component discovery.
+   */
+  @NotNull
+  @Valid
+  @Bind
+  @JsonProperty("component-selection")
+  private ComponentSelectionConfiguration componentSelectionConfiguration = new ComponentSelectionConfiguration();
 
   @Nonnull
   @Override
@@ -81,6 +72,15 @@ public class ConfigurationSupport
   public void setComponentSelectionConfiguration(@Nonnull final ComponentSelectionConfiguration config) {
     this.componentSelectionConfiguration = checkNotNull(config);
   }
+
+  /**
+   * Standard health-check configuration.
+   */
+  @NotNull
+  @Valid
+  @Bind
+  @JsonProperty("health-check")
+  private HealthCheckConfiguration healthCheckConfiguration = new HealthCheckConfiguration();
 
   @Nonnull
   public HealthCheckConfiguration getHealthCheckConfiguration() {
