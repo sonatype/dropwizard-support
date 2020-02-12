@@ -202,6 +202,12 @@
       </dependency>
 
       <dependency>
+        <groupId>org.apache.shiro</groupId>
+        <artifactId>shiro-jaxrs</artifactId>
+        <version>${apache-shiro.version}</version>
+      </dependency>
+
+      <dependency>
         <groupId>commons-codec</groupId>
         <artifactId>commons-codec</artifactId>
         <version>1.13</version>
