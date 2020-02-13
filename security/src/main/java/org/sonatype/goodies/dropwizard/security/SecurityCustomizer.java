@@ -26,9 +26,11 @@ import com.google.common.annotations.Beta;
 import com.google.common.collect.ImmutableList;
 import com.google.inject.Module;
 import io.dropwizard.Configuration;
+import io.dropwizard.jersey.DropwizardResourceConfig;
 import io.dropwizard.setup.Environment;
 import org.apache.shiro.guice.aop.ShiroAopModule2;
 import org.apache.shiro.guice.web.GuiceShiroFilter;
+import org.apache.shiro.web.jaxrs.SubjectPrincipalRequestFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -66,7 +68,9 @@ public class SecurityCustomizer<T extends ApplicationSupport<C>, C extends Confi
     addFilter(application, environment, GuiceShiroFilter.class, false, "/*");
     addFilter(application, environment, MdcUserScopeFilter.class, true, "/*");
 
-    environment.jersey().getResourceConfig().register(new ShiroAopFeature());
+    DropwizardResourceConfig rconfig = environment.jersey().getResourceConfig();
+    rconfig.register(SubjectPrincipalRequestFilter.class);
+    rconfig.register(ShiroAopFeature.class);
   }
 
   private void addFilter(final T application,
