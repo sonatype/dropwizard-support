@@ -1,0 +1,1886 @@
+[INFO] Scanning for projects...
+[INFO] Inspecting build with total of 17 modules...
+[INFO] Installing Nexus Staging features:
+[INFO]   ... total of 17 executions of maven-deploy-plugin replaced with nexus-staging-maven-plugin
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO] 
+[INFO] org.sonatype.goodies.dropwizard:dropwizard-support                 [pom]
+[INFO] org.sonatype.goodies.dropwizard:dropwizard-support-bom             [pom]
+[INFO] org.sonatype.goodies.dropwizard:dropwizard-support-testbase        [jar]
+[INFO] org.sonatype.goodies.dropwizard:dropwizard-support-core            [jar]
+[INFO] org.sonatype.goodies.dropwizard:dropwizard-support-client          [jar]
+[INFO] org.sonatype.goodies.dropwizard:dropwizard-support-views           [jar]
+[INFO] org.sonatype.goodies.dropwizard:dropwizard-support-security        [jar]
+[INFO] org.sonatype.goodies.dropwizard:dropwizard-support-events          [jar]
+[INFO] org.sonatype.goodies.dropwizard:dropwizard-support-hibernate       [jar]
+[INFO] org.sonatype.goodies.dropwizard:dropwizard-support-jdbi            [jar]
+[INFO] org.sonatype.goodies.dropwizard:dropwizard-support-ratelimit       [jar]
+[INFO] org.sonatype.goodies.dropwizard:dropwizard-support-rules           [jar]
+[INFO] org.sonatype.goodies.dropwizard:dropwizard-support-datadog         [jar]
+[INFO] org.sonatype.goodies.dropwizard:dropwizard-support-swagger         [jar]
+[INFO] org.sonatype.goodies.dropwizard:dropwizard-support-aws             [jar]
+[INFO] org.sonatype.goodies.dropwizard:dropwizard-support-camel           [jar]
+[INFO] org.sonatype.goodies.dropwizard:dropwizard-support-testsupport     [jar]
+[INFO] 
+[INFO] ---------< org.sonatype.goodies.dropwizard:dropwizard-support >---------
+[INFO] Building org.sonatype.goodies.dropwizard:dropwizard-support 1.3.0-SNAPSHOT [1/17]
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] 
+[INFO] --- maven-dependency-plugin:2.10:list (default-cli) @ dropwizard-support ---
+[INFO] 
+[INFO] The following files have been resolved:
+[INFO]    none
+[INFO] 
+[INFO] 
+[INFO] -------< org.sonatype.goodies.dropwizard:dropwizard-support-bom >-------
+[INFO] Building org.sonatype.goodies.dropwizard:dropwizard-support-bom 1.3.0-SNAPSHOT [2/17]
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] 
+[INFO] --- maven-dependency-plugin:2.10:list (default-cli) @ dropwizard-support-bom ---
+[INFO] 
+[INFO] The following files have been resolved:
+[INFO]    none
+[INFO] 
+[INFO] 
+[INFO] ----< org.sonatype.goodies.dropwizard:dropwizard-support-testbase >-----
+[INFO] Building org.sonatype.goodies.dropwizard:dropwizard-support-testbase 1.3.0-SNAPSHOT [3/17]
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-dependency-plugin:2.10:list (default-cli) @ dropwizard-support-testbase ---
+[INFO] 
+[INFO] The following files have been resolved:
+[INFO]    ch.qos.logback:logback-classic:jar:1.2.3:compile
+[INFO]    ch.qos.logback:logback-core:jar:1.2.3:compile
+[INFO]    junit:junit:jar:4.12:compile
+[INFO]    net.bytebuddy:byte-buddy-agent:jar:1.9.7:compile
+[INFO]    net.bytebuddy:byte-buddy:jar:1.9.7:compile
+[INFO]    org.codehaus.groovy:groovy-all:jar:2.4.17:compile
+[INFO]    org.hamcrest:hamcrest-core:jar:1.3:compile
+[INFO]    org.hamcrest:hamcrest-library:jar:1.3:compile
+[INFO]    org.mockito:mockito-core:jar:2.24.0:compile
+[INFO]    org.objenesis:objenesis:jar:2.6:compile
+[INFO]    org.slf4j:slf4j-api:jar:1.7.26:compile
+[INFO] 
+[INFO] 
+[INFO] ------< org.sonatype.goodies.dropwizard:dropwizard-support-core >-------
+[INFO] Building org.sonatype.goodies.dropwizard:dropwizard-support-core 1.3.0-SNAPSHOT [4/17]
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-dependency-plugin:2.10:list (default-cli) @ dropwizard-support-core ---
+[INFO] 
+[INFO] The following files have been resolved:
+[INFO]    aopalliance:aopalliance:jar:1.0:compile
+[INFO]    ch.qos.logback:logback-access:jar:1.2.3:compile
+[INFO]    ch.qos.logback:logback-classic:jar:1.2.3:compile
+[INFO]    ch.qos.logback:logback-core:jar:1.2.3:compile
+[INFO]    com.fasterxml.jackson.core:jackson-annotations:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.core:jackson-core:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.core:jackson-databind:jar:2.9.10.2:compile
+[INFO]    com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.datatype:jackson-datatype-guava:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.datatype:jackson-datatype-jdk8:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.datatype:jackson-datatype-joda:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.datatype:jackson-datatype-jsr310:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.jaxrs:jackson-jaxrs-base:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.module:jackson-module-afterburner:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.module:jackson-module-jaxb-annotations:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.module:jackson-module-parameter-names:jar:2.9.10:compile
+[INFO]    com.fasterxml:classmate:jar:1.4.0:compile
+[INFO]    com.google.code.findbugs:jsr305:jar:3.0.2:compile
+[INFO]    com.google.errorprone:error_prone_annotations:jar:2.3.2:compile
+[INFO]    com.google.guava:failureaccess:jar:1.0.1:compile
+[INFO]    com.google.guava:guava:jar:28.1-jre:compile
+[INFO]    com.google.guava:listenablefuture:jar:9999.0-empty-to-avoid-conflict-with-guava:compile
+[INFO]    com.google.inject:guice:jar:4.1.0:compile
+[INFO]    com.google.j2objc:j2objc-annotations:jar:1.3:compile
+[INFO]    com.palominolabs.metrics:metrics-guice:jar:4.0.0:compile
+[INFO]    com.papertrail:profiler:jar:1.0.2:compile
+[INFO]    io.dropwizard.metrics:metrics-annotation:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-core:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-healthchecks:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-jersey2:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-jetty9:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-jmx:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-json:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-jvm:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-logback:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-servlets:jar:4.0.5:compile
+[INFO]    io.dropwizard:dropwizard-assets:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-configuration:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-core:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-jackson:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-jersey:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-jetty:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-lifecycle:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-logging:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-metrics:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-request-logging:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-servlets:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-testing:jar:1.3.18:test
+[INFO]    io.dropwizard:dropwizard-util:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-validation:jar:1.3.18:compile
+[INFO]    io.swagger:swagger-annotations:jar:1.5.23:compile
+[INFO]    javax.activation:javax.activation-api:jar:1.2.0:compile
+[INFO]    javax.annotation:javax.annotation-api:jar:1.3.1:compile
+[INFO]    javax.inject:javax.inject:jar:1:compile
+[INFO]    javax.servlet:javax.servlet-api:jar:3.1.0:compile
+[INFO]    javax.validation:validation-api:jar:1.1.0.Final:compile
+[INFO]    javax.ws.rs:javax.ws.rs-api:jar:2.0.1:compile
+[INFO]    javax.xml.bind:jaxb-api:jar:2.3.1:compile
+[INFO]    joda-time:joda-time:jar:2.10.1:compile
+[INFO]    junit:junit:jar:4.12:test
+[INFO]    net.bytebuddy:byte-buddy-agent:jar:1.9.7:test
+[INFO]    net.bytebuddy:byte-buddy:jar:1.9.7:test
+[INFO]    net.sourceforge.argparse4j:argparse4j:jar:0.8.1:compile
+[INFO]    org.apache.commons:commons-lang3:jar:3.8.1:compile
+[INFO]    org.apache.commons:commons-text:jar:1.2:compile
+[INFO]    org.assertj:assertj-core:jar:3.9.1:test
+[INFO]    org.checkerframework:checker-qual:jar:2.8.1:compile
+[INFO]    org.codehaus.groovy:groovy-all:jar:2.4.17:test
+[INFO]    org.codehaus.mojo:animal-sniffer-annotations:jar:1.18:compile
+[INFO]    org.eclipse.jetty.toolchain.setuid:jetty-setuid-java:jar:1.0.3:compile
+[INFO]    org.eclipse.jetty:jetty-continuation:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-http:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-io:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-security:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-server:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-servlet:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-servlets:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-util:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-webapp:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-xml:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.sisu:org.eclipse.sisu.inject:jar:0.3.3:compile
+[INFO]    org.glassfish.hk2:guice-bridge:jar:2.5.0-b63:compile
+[INFO]    org.glassfish.hk2:hk2-api:jar:2.5.0-b63:compile
+[INFO]    org.glassfish.hk2:hk2-locator:jar:2.5.0-b32:compile
+[INFO]    org.glassfish.hk2:hk2-utils:jar:2.5.0-b63:compile
+[INFO]    org.glassfish.hk2:osgi-resource-locator:jar:1.0.1:compile
+[INFO]    org.glassfish.jersey.bundles.repackaged:jersey-guava:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.containers:jersey-container-servlet-core:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.containers:jersey-container-servlet:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.core:jersey-client:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.core:jersey-common:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.core:jersey-server:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.ext:jersey-bean-validation:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.ext:jersey-metainf-services:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.media:jersey-media-jaxb:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.test-framework.providers:jersey-test-framework-provider-inmemory:jar:2.25.1:test
+[INFO]    org.glassfish.jersey.test-framework:jersey-test-framework-core:jar:2.25.1:test
+[INFO]    org.glassfish:javax.el:jar:3.0.0:compile
+[INFO]    org.hamcrest:hamcrest-core:jar:1.3:test
+[INFO]    org.hamcrest:hamcrest-library:jar:1.3:test
+[INFO]    org.hibernate:hibernate-validator:jar:5.4.3.Final:compile
+[INFO]    org.javassist:javassist:jar:3.24.1-GA:compile
+[INFO]    org.jboss.logging:jboss-logging:jar:3.3.0.Final:compile
+[INFO]    org.mockito:mockito-core:jar:2.24.0:test
+[INFO]    org.objenesis:objenesis:jar:2.6:test
+[INFO]    org.slf4j:jcl-over-slf4j:jar:1.7.26:compile
+[INFO]    org.slf4j:jul-to-slf4j:jar:1.7.26:compile
+[INFO]    org.slf4j:log4j-over-slf4j:jar:1.7.26:compile
+[INFO]    org.slf4j:slf4j-api:jar:1.7.26:compile
+[INFO]    org.sonatype.goodies.dropwizard:dropwizard-support-testbase:jar:1.3.0-SNAPSHOT:test
+[INFO]    org.yaml:snakeyaml:jar:1.23:compile
+[INFO] 
+[INFO] 
+[INFO] -----< org.sonatype.goodies.dropwizard:dropwizard-support-client >------
+[INFO] Building org.sonatype.goodies.dropwizard:dropwizard-support-client 1.3.0-SNAPSHOT [5/17]
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-dependency-plugin:2.10:list (default-cli) @ dropwizard-support-client ---
+[INFO] 
+[INFO] The following files have been resolved:
+[INFO]    aopalliance:aopalliance:jar:1.0:compile
+[INFO]    ch.qos.logback:logback-access:jar:1.2.3:compile
+[INFO]    ch.qos.logback:logback-classic:jar:1.2.3:compile
+[INFO]    ch.qos.logback:logback-core:jar:1.2.3:compile
+[INFO]    com.fasterxml.jackson.core:jackson-annotations:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.core:jackson-core:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.core:jackson-databind:jar:2.9.10.2:compile
+[INFO]    com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.datatype:jackson-datatype-guava:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.datatype:jackson-datatype-jdk8:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.datatype:jackson-datatype-joda:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.datatype:jackson-datatype-jsr310:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.jaxrs:jackson-jaxrs-base:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.module:jackson-module-afterburner:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.module:jackson-module-jaxb-annotations:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.module:jackson-module-parameter-names:jar:2.9.10:compile
+[INFO]    com.fasterxml:classmate:jar:1.4.0:compile
+[INFO]    com.google.code.findbugs:jsr305:jar:3.0.2:compile
+[INFO]    com.google.errorprone:error_prone_annotations:jar:2.3.2:compile
+[INFO]    com.google.guava:failureaccess:jar:1.0.1:compile
+[INFO]    com.google.guava:guava:jar:28.1-jre:compile
+[INFO]    com.google.guava:listenablefuture:jar:9999.0-empty-to-avoid-conflict-with-guava:compile
+[INFO]    com.google.inject:guice:jar:4.1.0:compile
+[INFO]    com.google.j2objc:j2objc-annotations:jar:1.3:compile
+[INFO]    com.palominolabs.metrics:metrics-guice:jar:4.0.0:compile
+[INFO]    com.papertrail:profiler:jar:1.0.2:compile
+[INFO]    commons-codec:commons-codec:jar:1.13:compile
+[INFO]    io.dropwizard.metrics:metrics-annotation:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-core:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-healthchecks:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-httpclient:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-jersey2:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-jetty9:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-jmx:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-json:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-jvm:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-logback:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-servlets:jar:4.0.5:compile
+[INFO]    io.dropwizard:dropwizard-assets:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-client:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-configuration:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-core:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-jackson:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-jersey:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-jetty:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-lifecycle:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-logging:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-metrics:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-request-logging:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-servlets:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-util:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-validation:jar:1.3.18:compile
+[INFO]    javax.activation:javax.activation-api:jar:1.2.0:compile
+[INFO]    javax.annotation:javax.annotation-api:jar:1.3.1:compile
+[INFO]    javax.inject:javax.inject:jar:1:compile
+[INFO]    javax.servlet:javax.servlet-api:jar:3.1.0:compile
+[INFO]    javax.validation:validation-api:jar:1.1.0.Final:compile
+[INFO]    javax.ws.rs:javax.ws.rs-api:jar:2.0.1:compile
+[INFO]    javax.xml.bind:jaxb-api:jar:2.3.1:compile
+[INFO]    joda-time:joda-time:jar:2.10.1:compile
+[INFO]    junit:junit:jar:4.12:test
+[INFO]    net.bytebuddy:byte-buddy-agent:jar:1.9.7:test
+[INFO]    net.bytebuddy:byte-buddy:jar:1.9.7:test
+[INFO]    net.sourceforge.argparse4j:argparse4j:jar:0.8.1:compile
+[INFO]    org.apache.commons:commons-lang3:jar:3.8.1:compile
+[INFO]    org.apache.commons:commons-text:jar:1.2:compile
+[INFO]    org.apache.httpcomponents:httpclient:jar:4.5.10:compile
+[INFO]    org.apache.httpcomponents:httpcore:jar:4.4.12:compile
+[INFO]    org.checkerframework:checker-qual:jar:2.8.1:compile
+[INFO]    org.codehaus.groovy:groovy-all:jar:2.4.17:test
+[INFO]    org.codehaus.mojo:animal-sniffer-annotations:jar:1.18:compile
+[INFO]    org.eclipse.jetty.toolchain.setuid:jetty-setuid-java:jar:1.0.3:compile
+[INFO]    org.eclipse.jetty:jetty-continuation:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-http:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-io:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-security:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-server:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-servlet:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-servlets:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-util:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-webapp:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-xml:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.sisu:org.eclipse.sisu.inject:jar:0.3.3:compile
+[INFO]    org.glassfish.hk2:guice-bridge:jar:2.5.0-b63:compile
+[INFO]    org.glassfish.hk2:hk2-api:jar:2.5.0-b63:compile
+[INFO]    org.glassfish.hk2:hk2-locator:jar:2.5.0-b32:compile
+[INFO]    org.glassfish.hk2:hk2-utils:jar:2.5.0-b63:compile
+[INFO]    org.glassfish.hk2:osgi-resource-locator:jar:1.0.1:compile
+[INFO]    org.glassfish.jersey.bundles.repackaged:jersey-guava:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.connectors:jersey-apache-connector:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.containers:jersey-container-servlet-core:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.containers:jersey-container-servlet:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.core:jersey-client:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.core:jersey-common:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.core:jersey-server:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.ext.rx:jersey-rx-client:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.ext:jersey-bean-validation:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.ext:jersey-metainf-services:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.ext:jersey-proxy-client:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.media:jersey-media-jaxb:jar:2.25.1:compile
+[INFO]    org.glassfish:javax.el:jar:3.0.0:compile
+[INFO]    org.hamcrest:hamcrest-core:jar:1.3:test
+[INFO]    org.hamcrest:hamcrest-library:jar:1.3:test
+[INFO]    org.hibernate:hibernate-validator:jar:5.4.3.Final:compile
+[INFO]    org.javassist:javassist:jar:3.24.1-GA:compile
+[INFO]    org.jboss.logging:jboss-logging:jar:3.3.0.Final:compile
+[INFO]    org.mockito:mockito-core:jar:2.24.0:test
+[INFO]    org.objenesis:objenesis:jar:2.6:test
+[INFO]    org.slf4j:jcl-over-slf4j:jar:1.7.26:compile
+[INFO]    org.slf4j:jul-to-slf4j:jar:1.7.26:compile
+[INFO]    org.slf4j:log4j-over-slf4j:jar:1.7.26:compile
+[INFO]    org.slf4j:slf4j-api:jar:1.7.26:compile
+[INFO]    org.sonatype.goodies.dropwizard:dropwizard-support-core:jar:1.3.0-SNAPSHOT:compile
+[INFO]    org.sonatype.goodies.dropwizard:dropwizard-support-testbase:jar:1.3.0-SNAPSHOT:test
+[INFO]    org.yaml:snakeyaml:jar:1.23:compile
+[INFO] 
+[INFO] 
+[INFO] ------< org.sonatype.goodies.dropwizard:dropwizard-support-views >------
+[INFO] Building org.sonatype.goodies.dropwizard:dropwizard-support-views 1.3.0-SNAPSHOT [6/17]
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-dependency-plugin:2.10:list (default-cli) @ dropwizard-support-views ---
+[INFO] 
+[INFO] The following files have been resolved:
+[INFO]    aopalliance:aopalliance:jar:1.0:compile
+[INFO]    ch.qos.logback:logback-access:jar:1.2.3:compile
+[INFO]    ch.qos.logback:logback-classic:jar:1.2.3:compile
+[INFO]    ch.qos.logback:logback-core:jar:1.2.3:compile
+[INFO]    com.fasterxml.jackson.core:jackson-annotations:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.core:jackson-core:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.core:jackson-databind:jar:2.9.10.2:compile
+[INFO]    com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.datatype:jackson-datatype-guava:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.datatype:jackson-datatype-jdk8:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.datatype:jackson-datatype-joda:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.datatype:jackson-datatype-jsr310:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.jaxrs:jackson-jaxrs-base:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.module:jackson-module-afterburner:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.module:jackson-module-jaxb-annotations:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.module:jackson-module-parameter-names:jar:2.9.10:compile
+[INFO]    com.fasterxml:classmate:jar:1.4.0:compile
+[INFO]    com.google.code.findbugs:jsr305:jar:3.0.2:compile
+[INFO]    com.google.errorprone:error_prone_annotations:jar:2.3.2:compile
+[INFO]    com.google.guava:failureaccess:jar:1.0.1:compile
+[INFO]    com.google.guava:guava:jar:28.1-jre:compile
+[INFO]    com.google.guava:listenablefuture:jar:9999.0-empty-to-avoid-conflict-with-guava:compile
+[INFO]    com.google.inject:guice:jar:4.1.0:compile
+[INFO]    com.google.j2objc:j2objc-annotations:jar:1.3:compile
+[INFO]    com.palominolabs.metrics:metrics-guice:jar:4.0.0:compile
+[INFO]    com.papertrail:profiler:jar:1.0.2:compile
+[INFO]    io.dropwizard.metrics:metrics-annotation:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-core:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-healthchecks:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-jersey2:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-jetty9:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-jmx:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-json:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-jvm:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-logback:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-servlets:jar:4.0.5:compile
+[INFO]    io.dropwizard:dropwizard-assets:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-configuration:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-core:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-jackson:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-jersey:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-jetty:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-lifecycle:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-logging:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-metrics:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-request-logging:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-servlets:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-util:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-validation:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-views:jar:1.3.18:compile
+[INFO]    javax.activation:javax.activation-api:jar:1.2.0:compile
+[INFO]    javax.annotation:javax.annotation-api:jar:1.3.1:compile
+[INFO]    javax.inject:javax.inject:jar:1:compile
+[INFO]    javax.servlet:javax.servlet-api:jar:3.1.0:compile
+[INFO]    javax.validation:validation-api:jar:1.1.0.Final:compile
+[INFO]    javax.ws.rs:javax.ws.rs-api:jar:2.0.1:compile
+[INFO]    javax.xml.bind:jaxb-api:jar:2.3.1:compile
+[INFO]    joda-time:joda-time:jar:2.10.1:compile
+[INFO]    junit:junit:jar:4.12:test
+[INFO]    net.bytebuddy:byte-buddy-agent:jar:1.9.7:test
+[INFO]    net.bytebuddy:byte-buddy:jar:1.9.7:test
+[INFO]    net.sourceforge.argparse4j:argparse4j:jar:0.8.1:compile
+[INFO]    org.apache.commons:commons-lang3:jar:3.8.1:compile
+[INFO]    org.apache.commons:commons-text:jar:1.2:compile
+[INFO]    org.checkerframework:checker-qual:jar:2.8.1:compile
+[INFO]    org.codehaus.groovy:groovy-all:jar:2.4.17:test
+[INFO]    org.codehaus.mojo:animal-sniffer-annotations:jar:1.18:compile
+[INFO]    org.eclipse.jetty.toolchain.setuid:jetty-setuid-java:jar:1.0.3:compile
+[INFO]    org.eclipse.jetty:jetty-continuation:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-http:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-io:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-security:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-server:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-servlet:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-servlets:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-util:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-webapp:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-xml:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.sisu:org.eclipse.sisu.inject:jar:0.3.3:compile
+[INFO]    org.glassfish.hk2:guice-bridge:jar:2.5.0-b63:compile
+[INFO]    org.glassfish.hk2:hk2-api:jar:2.5.0-b63:compile
+[INFO]    org.glassfish.hk2:hk2-locator:jar:2.5.0-b32:compile
+[INFO]    org.glassfish.hk2:hk2-utils:jar:2.5.0-b63:compile
+[INFO]    org.glassfish.hk2:osgi-resource-locator:jar:1.0.1:compile
+[INFO]    org.glassfish.jersey.bundles.repackaged:jersey-guava:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.containers:jersey-container-servlet-core:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.containers:jersey-container-servlet:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.core:jersey-client:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.core:jersey-common:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.core:jersey-server:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.ext:jersey-bean-validation:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.ext:jersey-metainf-services:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.media:jersey-media-jaxb:jar:2.25.1:compile
+[INFO]    org.glassfish:javax.el:jar:3.0.0:compile
+[INFO]    org.hamcrest:hamcrest-core:jar:1.3:test
+[INFO]    org.hamcrest:hamcrest-library:jar:1.3:test
+[INFO]    org.hibernate:hibernate-validator:jar:5.4.3.Final:compile
+[INFO]    org.javassist:javassist:jar:3.24.1-GA:compile
+[INFO]    org.jboss.logging:jboss-logging:jar:3.3.0.Final:compile
+[INFO]    org.mockito:mockito-core:jar:2.24.0:test
+[INFO]    org.objenesis:objenesis:jar:2.6:test
+[INFO]    org.slf4j:jcl-over-slf4j:jar:1.7.26:compile
+[INFO]    org.slf4j:jul-to-slf4j:jar:1.7.26:compile
+[INFO]    org.slf4j:log4j-over-slf4j:jar:1.7.26:compile
+[INFO]    org.slf4j:slf4j-api:jar:1.7.26:compile
+[INFO]    org.sonatype.goodies.dropwizard:dropwizard-support-core:jar:1.3.0-SNAPSHOT:compile
+[INFO]    org.sonatype.goodies.dropwizard:dropwizard-support-testbase:jar:1.3.0-SNAPSHOT:test
+[INFO]    org.yaml:snakeyaml:jar:1.23:compile
+[INFO] 
+[INFO] 
+[INFO] ----< org.sonatype.goodies.dropwizard:dropwizard-support-security >-----
+[INFO] Building org.sonatype.goodies.dropwizard:dropwizard-support-security 1.3.0-SNAPSHOT [7/17]
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-dependency-plugin:2.10:list (default-cli) @ dropwizard-support-security ---
+[INFO] 
+[INFO] The following files have been resolved:
+[INFO]    aopalliance:aopalliance:jar:1.0:compile
+[INFO]    ch.qos.logback:logback-access:jar:1.2.3:compile
+[INFO]    ch.qos.logback:logback-classic:jar:1.2.3:compile
+[INFO]    ch.qos.logback:logback-core:jar:1.2.3:compile
+[INFO]    com.fasterxml.jackson.core:jackson-annotations:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.core:jackson-core:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.core:jackson-databind:jar:2.9.10.2:compile
+[INFO]    com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.datatype:jackson-datatype-guava:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.datatype:jackson-datatype-jdk8:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.datatype:jackson-datatype-joda:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.datatype:jackson-datatype-jsr310:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.jaxrs:jackson-jaxrs-base:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.module:jackson-module-afterburner:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.module:jackson-module-jaxb-annotations:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.module:jackson-module-parameter-names:jar:2.9.10:compile
+[INFO]    com.fasterxml:classmate:jar:1.4.0:compile
+[INFO]    com.google.code.findbugs:jsr305:jar:3.0.2:compile
+[INFO]    com.google.errorprone:error_prone_annotations:jar:2.3.2:compile
+[INFO]    com.google.guava:failureaccess:jar:1.0.1:compile
+[INFO]    com.google.guava:guava:jar:28.1-jre:compile
+[INFO]    com.google.guava:listenablefuture:jar:9999.0-empty-to-avoid-conflict-with-guava:compile
+[INFO]    com.google.inject.extensions:guice-multibindings:jar:4.1.0:compile
+[INFO]    com.google.inject:guice:jar:4.1.0:compile
+[INFO]    com.google.j2objc:j2objc-annotations:jar:1.3:compile
+[INFO]    com.palominolabs.metrics:metrics-guice:jar:4.0.0:compile
+[INFO]    com.papertrail:profiler:jar:1.0.2:compile
+[INFO]    commons-beanutils:commons-beanutils:jar:1.9.4:compile
+[INFO]    commons-collections:commons-collections:jar:3.2.2:compile
+[INFO]    io.dropwizard.metrics:metrics-annotation:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-core:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-healthchecks:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-jersey2:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-jetty9:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-jmx:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-json:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-jvm:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-logback:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-servlets:jar:4.0.5:compile
+[INFO]    io.dropwizard:dropwizard-assets:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-configuration:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-core:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-jackson:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-jersey:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-jetty:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-lifecycle:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-logging:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-metrics:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-request-logging:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-servlets:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-util:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-validation:jar:1.3.18:compile
+[INFO]    javax.activation:javax.activation-api:jar:1.2.0:compile
+[INFO]    javax.annotation:javax.annotation-api:jar:1.3.1:compile
+[INFO]    javax.inject:javax.inject:jar:1:compile
+[INFO]    javax.servlet:javax.servlet-api:jar:3.1.0:compile
+[INFO]    javax.validation:validation-api:jar:1.1.0.Final:compile
+[INFO]    javax.ws.rs:javax.ws.rs-api:jar:2.0.1:compile
+[INFO]    javax.xml.bind:jaxb-api:jar:2.3.1:compile
+[INFO]    joda-time:joda-time:jar:2.10.1:compile
+[INFO]    junit:junit:jar:4.12:test
+[INFO]    net.bytebuddy:byte-buddy-agent:jar:1.9.7:test
+[INFO]    net.bytebuddy:byte-buddy:jar:1.9.7:test
+[INFO]    net.sourceforge.argparse4j:argparse4j:jar:0.8.1:compile
+[INFO]    org.apache.commons:commons-lang3:jar:3.8.1:compile
+[INFO]    org.apache.commons:commons-text:jar:1.2:compile
+[INFO]    org.apache.shiro:shiro-core:jar:1.5.0:compile
+[INFO]    org.apache.shiro:shiro-guice:jar:1.5.0:compile
+[INFO]    org.apache.shiro:shiro-jaxrs:jar:1.5.0:compile
+[INFO]    org.apache.shiro:shiro-web:jar:1.5.0:compile
+[INFO]    org.checkerframework:checker-qual:jar:2.8.1:compile
+[INFO]    org.codehaus.groovy:groovy-all:jar:2.4.17:test
+[INFO]    org.codehaus.mojo:animal-sniffer-annotations:jar:1.18:compile
+[INFO]    org.eclipse.jetty.toolchain.setuid:jetty-setuid-java:jar:1.0.3:compile
+[INFO]    org.eclipse.jetty:jetty-continuation:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-http:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-io:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-security:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-server:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-servlet:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-servlets:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-util:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-webapp:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-xml:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.sisu:org.eclipse.sisu.inject:jar:0.3.3:compile
+[INFO]    org.glassfish.hk2:guice-bridge:jar:2.5.0-b63:compile
+[INFO]    org.glassfish.hk2:hk2-api:jar:2.5.0-b63:compile
+[INFO]    org.glassfish.hk2:hk2-locator:jar:2.5.0-b32:compile
+[INFO]    org.glassfish.hk2:hk2-utils:jar:2.5.0-b63:compile
+[INFO]    org.glassfish.hk2:osgi-resource-locator:jar:1.0.1:compile
+[INFO]    org.glassfish.jersey.bundles.repackaged:jersey-guava:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.containers:jersey-container-servlet-core:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.containers:jersey-container-servlet:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.core:jersey-client:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.core:jersey-common:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.core:jersey-server:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.ext:jersey-bean-validation:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.ext:jersey-metainf-services:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.media:jersey-media-jaxb:jar:2.25.1:compile
+[INFO]    org.glassfish:javax.el:jar:3.0.0:compile
+[INFO]    org.hamcrest:hamcrest-core:jar:1.3:test
+[INFO]    org.hamcrest:hamcrest-library:jar:1.3:test
+[INFO]    org.hibernate:hibernate-validator:jar:5.4.3.Final:compile
+[INFO]    org.javassist:javassist:jar:3.24.1-GA:compile
+[INFO]    org.jboss.logging:jboss-logging:jar:3.3.0.Final:compile
+[INFO]    org.mockito:mockito-core:jar:2.24.0:test
+[INFO]    org.objenesis:objenesis:jar:2.6:test
+[INFO]    org.owasp.encoder:encoder:jar:1.2.2:compile
+[INFO]    org.slf4j:jcl-over-slf4j:jar:1.7.26:compile
+[INFO]    org.slf4j:jul-to-slf4j:jar:1.7.26:compile
+[INFO]    org.slf4j:log4j-over-slf4j:jar:1.7.26:compile
+[INFO]    org.slf4j:slf4j-api:jar:1.7.26:compile
+[INFO]    org.sonatype.goodies.dropwizard:dropwizard-support-core:jar:1.3.0-SNAPSHOT:compile
+[INFO]    org.sonatype.goodies.dropwizard:dropwizard-support-testbase:jar:1.3.0-SNAPSHOT:test
+[INFO]    org.yaml:snakeyaml:jar:1.23:compile
+[INFO] 
+[INFO] 
+[INFO] -----< org.sonatype.goodies.dropwizard:dropwizard-support-events >------
+[INFO] Building org.sonatype.goodies.dropwizard:dropwizard-support-events 1.3.0-SNAPSHOT [8/17]
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-dependency-plugin:2.10:list (default-cli) @ dropwizard-support-events ---
+[INFO] 
+[INFO] The following files have been resolved:
+[INFO]    aopalliance:aopalliance:jar:1.0:compile
+[INFO]    ch.qos.logback:logback-access:jar:1.2.3:compile
+[INFO]    ch.qos.logback:logback-classic:jar:1.2.3:compile
+[INFO]    ch.qos.logback:logback-core:jar:1.2.3:compile
+[INFO]    com.fasterxml.jackson.core:jackson-annotations:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.core:jackson-core:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.core:jackson-databind:jar:2.9.10.2:compile
+[INFO]    com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.datatype:jackson-datatype-guava:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.datatype:jackson-datatype-jdk8:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.datatype:jackson-datatype-joda:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.datatype:jackson-datatype-jsr310:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.jaxrs:jackson-jaxrs-base:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.module:jackson-module-afterburner:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.module:jackson-module-jaxb-annotations:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.module:jackson-module-parameter-names:jar:2.9.10:compile
+[INFO]    com.fasterxml:classmate:jar:1.4.0:compile
+[INFO]    com.google.code.findbugs:jsr305:jar:3.0.2:compile
+[INFO]    com.google.errorprone:error_prone_annotations:jar:2.3.2:compile
+[INFO]    com.google.guava:failureaccess:jar:1.0.1:compile
+[INFO]    com.google.guava:guava:jar:28.1-jre:compile
+[INFO]    com.google.guava:listenablefuture:jar:9999.0-empty-to-avoid-conflict-with-guava:compile
+[INFO]    com.google.inject:guice:jar:4.1.0:compile
+[INFO]    com.google.j2objc:j2objc-annotations:jar:1.3:compile
+[INFO]    com.palominolabs.metrics:metrics-guice:jar:4.0.0:compile
+[INFO]    com.papertrail:profiler:jar:1.0.2:compile
+[INFO]    io.dropwizard.metrics:metrics-annotation:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-core:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-healthchecks:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-jersey2:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-jetty9:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-jmx:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-json:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-jvm:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-logback:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-servlets:jar:4.0.5:compile
+[INFO]    io.dropwizard:dropwizard-assets:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-configuration:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-core:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-jackson:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-jersey:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-jetty:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-lifecycle:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-logging:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-metrics:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-request-logging:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-servlets:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-util:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-validation:jar:1.3.18:compile
+[INFO]    javax.activation:javax.activation-api:jar:1.2.0:compile
+[INFO]    javax.annotation:javax.annotation-api:jar:1.3.1:compile
+[INFO]    javax.inject:javax.inject:jar:1:compile
+[INFO]    javax.servlet:javax.servlet-api:jar:3.1.0:compile
+[INFO]    javax.validation:validation-api:jar:1.1.0.Final:compile
+[INFO]    javax.ws.rs:javax.ws.rs-api:jar:2.0.1:compile
+[INFO]    javax.xml.bind:jaxb-api:jar:2.3.1:compile
+[INFO]    joda-time:joda-time:jar:2.10.1:compile
+[INFO]    junit:junit:jar:4.12:test
+[INFO]    net.bytebuddy:byte-buddy-agent:jar:1.9.7:test
+[INFO]    net.bytebuddy:byte-buddy:jar:1.9.7:test
+[INFO]    net.sourceforge.argparse4j:argparse4j:jar:0.8.1:compile
+[INFO]    org.apache.commons:commons-lang3:jar:3.8.1:compile
+[INFO]    org.apache.commons:commons-text:jar:1.2:compile
+[INFO]    org.checkerframework:checker-qual:jar:2.8.1:compile
+[INFO]    org.codehaus.groovy:groovy-all:jar:2.4.17:test
+[INFO]    org.codehaus.mojo:animal-sniffer-annotations:jar:1.18:compile
+[INFO]    org.eclipse.jetty.toolchain.setuid:jetty-setuid-java:jar:1.0.3:compile
+[INFO]    org.eclipse.jetty:jetty-continuation:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-http:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-io:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-security:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-server:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-servlet:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-servlets:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-util:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-webapp:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-xml:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.sisu:org.eclipse.sisu.inject:jar:0.3.3:compile
+[INFO]    org.glassfish.hk2:guice-bridge:jar:2.5.0-b63:compile
+[INFO]    org.glassfish.hk2:hk2-api:jar:2.5.0-b63:compile
+[INFO]    org.glassfish.hk2:hk2-locator:jar:2.5.0-b32:compile
+[INFO]    org.glassfish.hk2:hk2-utils:jar:2.5.0-b63:compile
+[INFO]    org.glassfish.hk2:osgi-resource-locator:jar:1.0.1:compile
+[INFO]    org.glassfish.jersey.bundles.repackaged:jersey-guava:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.containers:jersey-container-servlet-core:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.containers:jersey-container-servlet:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.core:jersey-client:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.core:jersey-common:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.core:jersey-server:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.ext:jersey-bean-validation:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.ext:jersey-metainf-services:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.media:jersey-media-jaxb:jar:2.25.1:compile
+[INFO]    org.glassfish:javax.el:jar:3.0.0:compile
+[INFO]    org.hamcrest:hamcrest-core:jar:1.3:test
+[INFO]    org.hamcrest:hamcrest-library:jar:1.3:test
+[INFO]    org.hibernate:hibernate-validator:jar:5.4.3.Final:compile
+[INFO]    org.javassist:javassist:jar:3.24.1-GA:compile
+[INFO]    org.jboss.logging:jboss-logging:jar:3.3.0.Final:compile
+[INFO]    org.mockito:mockito-core:jar:2.24.0:test
+[INFO]    org.objenesis:objenesis:jar:2.6:test
+[INFO]    org.slf4j:jcl-over-slf4j:jar:1.7.26:compile
+[INFO]    org.slf4j:jul-to-slf4j:jar:1.7.26:compile
+[INFO]    org.slf4j:log4j-over-slf4j:jar:1.7.26:compile
+[INFO]    org.slf4j:slf4j-api:jar:1.7.26:compile
+[INFO]    org.sonatype.goodies.dropwizard:dropwizard-support-core:jar:1.3.0-SNAPSHOT:compile
+[INFO]    org.sonatype.goodies.dropwizard:dropwizard-support-testbase:jar:1.3.0-SNAPSHOT:test
+[INFO]    org.yaml:snakeyaml:jar:1.23:compile
+[INFO] 
+[INFO] 
+[INFO] ----< org.sonatype.goodies.dropwizard:dropwizard-support-hibernate >----
+[INFO] Building org.sonatype.goodies.dropwizard:dropwizard-support-hibernate 1.3.0-SNAPSHOT [9/17]
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-dependency-plugin:2.10:list (default-cli) @ dropwizard-support-hibernate ---
+[INFO] 
+[INFO] The following files have been resolved:
+[INFO]    antlr:antlr:jar:2.7.7:compile
+[INFO]    aopalliance:aopalliance:jar:1.0:compile
+[INFO]    ch.qos.logback:logback-access:jar:1.2.3:compile
+[INFO]    ch.qos.logback:logback-classic:jar:1.2.3:compile
+[INFO]    ch.qos.logback:logback-core:jar:1.2.3:compile
+[INFO]    com.fasterxml.jackson.core:jackson-annotations:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.core:jackson-core:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.core:jackson-databind:jar:2.9.10.2:compile
+[INFO]    com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.datatype:jackson-datatype-guava:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.datatype:jackson-datatype-hibernate5:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.datatype:jackson-datatype-jdk8:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.datatype:jackson-datatype-joda:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.datatype:jackson-datatype-jsr310:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.jaxrs:jackson-jaxrs-base:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.module:jackson-module-afterburner:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.module:jackson-module-jaxb-annotations:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.module:jackson-module-parameter-names:jar:2.9.10:compile
+[INFO]    com.fasterxml:classmate:jar:1.4.0:compile
+[INFO]    com.google.code.findbugs:jsr305:jar:3.0.2:compile
+[INFO]    com.google.errorprone:error_prone_annotations:jar:2.3.2:compile
+[INFO]    com.google.guava:failureaccess:jar:1.0.1:compile
+[INFO]    com.google.guava:guava:jar:28.1-jre:compile
+[INFO]    com.google.guava:listenablefuture:jar:9999.0-empty-to-avoid-conflict-with-guava:compile
+[INFO]    com.google.inject:guice:jar:4.1.0:compile
+[INFO]    com.google.j2objc:j2objc-annotations:jar:1.3:compile
+[INFO]    com.palominolabs.metrics:metrics-guice:jar:4.0.0:compile
+[INFO]    com.papertrail:profiler:jar:1.0.2:compile
+[INFO]    io.dropwizard.metrics:metrics-annotation:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-core:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-healthchecks:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-jersey2:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-jetty9:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-jmx:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-json:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-jvm:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-logback:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-servlets:jar:4.0.5:compile
+[INFO]    io.dropwizard:dropwizard-assets:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-configuration:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-core:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-db:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-hibernate:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-jackson:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-jersey:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-jetty:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-lifecycle:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-logging:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-metrics:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-request-logging:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-servlets:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-util:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-validation:jar:1.3.18:compile
+[INFO]    javax.activation:javax.activation-api:jar:1.2.0:compile
+[INFO]    javax.annotation:javax.annotation-api:jar:1.3.1:compile
+[INFO]    javax.inject:javax.inject:jar:1:compile
+[INFO]    javax.servlet:javax.servlet-api:jar:3.1.0:compile
+[INFO]    javax.validation:validation-api:jar:1.1.0.Final:compile
+[INFO]    javax.ws.rs:javax.ws.rs-api:jar:2.0.1:compile
+[INFO]    javax.xml.bind:jaxb-api:jar:2.3.1:compile
+[INFO]    joda-time:joda-time:jar:2.10.1:compile
+[INFO]    junit:junit:jar:4.12:test
+[INFO]    net.bytebuddy:byte-buddy-agent:jar:1.9.7:test
+[INFO]    net.bytebuddy:byte-buddy:jar:1.9.7:test
+[INFO]    net.sourceforge.argparse4j:argparse4j:jar:0.8.1:compile
+[INFO]    org.apache.commons:commons-lang3:jar:3.8.1:compile
+[INFO]    org.apache.commons:commons-text:jar:1.2:compile
+[INFO]    org.apache.tomcat:tomcat-jdbc:jar:9.0.16:compile
+[INFO]    org.apache.tomcat:tomcat-juli:jar:9.0.16:compile
+[INFO]    org.checkerframework:checker-qual:jar:2.8.1:compile
+[INFO]    org.codehaus.groovy:groovy-all:jar:2.4.17:test
+[INFO]    org.codehaus.mojo:animal-sniffer-annotations:jar:1.18:compile
+[INFO]    org.dom4j:dom4j:jar:2.1.1:compile
+[INFO]    org.eclipse.jetty.toolchain.setuid:jetty-setuid-java:jar:1.0.3:compile
+[INFO]    org.eclipse.jetty:jetty-continuation:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-http:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-io:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-security:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-server:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-servlet:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-servlets:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-util:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-webapp:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-xml:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.sisu:org.eclipse.sisu.inject:jar:0.3.3:compile
+[INFO]    org.glassfish.hk2:guice-bridge:jar:2.5.0-b63:compile
+[INFO]    org.glassfish.hk2:hk2-api:jar:2.5.0-b63:compile
+[INFO]    org.glassfish.hk2:hk2-locator:jar:2.5.0-b32:compile
+[INFO]    org.glassfish.hk2:hk2-utils:jar:2.5.0-b63:compile
+[INFO]    org.glassfish.hk2:osgi-resource-locator:jar:1.0.1:compile
+[INFO]    org.glassfish.jersey.bundles.repackaged:jersey-guava:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.containers:jersey-container-servlet-core:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.containers:jersey-container-servlet:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.core:jersey-client:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.core:jersey-common:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.core:jersey-server:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.ext:jersey-bean-validation:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.ext:jersey-metainf-services:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.media:jersey-media-jaxb:jar:2.25.1:compile
+[INFO]    org.glassfish:javax.el:jar:3.0.0:compile
+[INFO]    org.hamcrest:hamcrest-core:jar:1.3:test
+[INFO]    org.hamcrest:hamcrest-library:jar:1.3:test
+[INFO]    org.hibernate.common:hibernate-commons-annotations:jar:5.0.1.Final:compile
+[INFO]    org.hibernate.javax.persistence:hibernate-jpa-2.1-api:jar:1.0.0.Final:compile
+[INFO]    org.hibernate:hibernate-core:jar:5.2.18.Final:compile
+[INFO]    org.hibernate:hibernate-validator:jar:5.4.3.Final:compile
+[INFO]    org.jadira.usertype:usertype.core:jar:7.0.0.CR1:compile
+[INFO]    org.jadira.usertype:usertype.spi:jar:7.0.0.CR1:compile
+[INFO]    org.javassist:javassist:jar:3.24.1-GA:compile
+[INFO]    org.jboss.logging:jboss-logging:jar:3.3.0.Final:compile
+[INFO]    org.jboss.spec.javax.transaction:jboss-transaction-api_1.2_spec:jar:1.0.1.Final:compile
+[INFO]    org.jboss:jandex:jar:2.0.3.Final:compile
+[INFO]    org.mockito:mockito-core:jar:2.24.0:test
+[INFO]    org.objenesis:objenesis:jar:2.6:test
+[INFO]    org.slf4j:jcl-over-slf4j:jar:1.7.26:compile
+[INFO]    org.slf4j:jul-to-slf4j:jar:1.7.26:compile
+[INFO]    org.slf4j:log4j-over-slf4j:jar:1.7.26:compile
+[INFO]    org.slf4j:slf4j-api:jar:1.7.26:compile
+[INFO]    org.sonatype.goodies.dropwizard:dropwizard-support-core:jar:1.3.0-SNAPSHOT:compile
+[INFO]    org.sonatype.goodies.dropwizard:dropwizard-support-testbase:jar:1.3.0-SNAPSHOT:test
+[INFO]    org.yaml:snakeyaml:jar:1.23:compile
+[INFO] 
+[INFO] 
+[INFO] ------< org.sonatype.goodies.dropwizard:dropwizard-support-jdbi >-------
+[INFO] Building org.sonatype.goodies.dropwizard:dropwizard-support-jdbi 1.3.0-SNAPSHOT [10/17]
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-dependency-plugin:2.10:list (default-cli) @ dropwizard-support-jdbi ---
+[INFO] 
+[INFO] The following files have been resolved:
+[INFO]    antlr:antlr:jar:2.7.7:compile
+[INFO]    aopalliance:aopalliance:jar:1.0:compile
+[INFO]    ch.qos.logback:logback-access:jar:1.2.3:compile
+[INFO]    ch.qos.logback:logback-classic:jar:1.2.3:compile
+[INFO]    ch.qos.logback:logback-core:jar:1.2.3:compile
+[INFO]    com.fasterxml.jackson.core:jackson-annotations:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.core:jackson-core:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.core:jackson-databind:jar:2.9.10.2:compile
+[INFO]    com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.datatype:jackson-datatype-guava:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.datatype:jackson-datatype-jdk8:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.datatype:jackson-datatype-joda:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.datatype:jackson-datatype-jsr310:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.jaxrs:jackson-jaxrs-base:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.module:jackson-module-afterburner:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.module:jackson-module-jaxb-annotations:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.module:jackson-module-parameter-names:jar:2.9.10:compile
+[INFO]    com.fasterxml:classmate:jar:1.4.0:compile
+[INFO]    com.google.code.findbugs:jsr305:jar:3.0.2:compile
+[INFO]    com.google.errorprone:error_prone_annotations:jar:2.3.2:compile
+[INFO]    com.google.guava:failureaccess:jar:1.0.1:compile
+[INFO]    com.google.guava:guava:jar:28.1-jre:compile
+[INFO]    com.google.guava:listenablefuture:jar:9999.0-empty-to-avoid-conflict-with-guava:compile
+[INFO]    com.google.inject:guice:jar:4.1.0:compile
+[INFO]    com.google.j2objc:j2objc-annotations:jar:1.3:compile
+[INFO]    com.palominolabs.metrics:metrics-guice:jar:4.0.0:compile
+[INFO]    com.papertrail:profiler:jar:1.0.2:compile
+[INFO]    io.dropwizard.metrics:metrics-annotation:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-core:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-healthchecks:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-jdbi3:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-jersey2:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-jetty9:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-jmx:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-json:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-jvm:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-logback:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-servlets:jar:4.0.5:compile
+[INFO]    io.dropwizard:dropwizard-assets:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-configuration:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-core:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-db:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-jackson:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-jdbi3:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-jersey:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-jetty:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-lifecycle:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-logging:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-metrics:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-request-logging:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-servlets:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-util:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-validation:jar:1.3.18:compile
+[INFO]    javax.activation:javax.activation-api:jar:1.2.0:compile
+[INFO]    javax.annotation:javax.annotation-api:jar:1.3.1:compile
+[INFO]    javax.inject:javax.inject:jar:1:compile
+[INFO]    javax.servlet:javax.servlet-api:jar:3.1.0:compile
+[INFO]    javax.validation:validation-api:jar:1.1.0.Final:compile
+[INFO]    javax.ws.rs:javax.ws.rs-api:jar:2.0.1:compile
+[INFO]    javax.xml.bind:jaxb-api:jar:2.3.1:compile
+[INFO]    joda-time:joda-time:jar:2.10.1:compile
+[INFO]    junit:junit:jar:4.12:test
+[INFO]    net.bytebuddy:byte-buddy-agent:jar:1.9.7:test
+[INFO]    net.bytebuddy:byte-buddy:jar:1.9.7:test
+[INFO]    net.jodah:expiringmap:jar:0.5.6:compile
+[INFO]    net.sourceforge.argparse4j:argparse4j:jar:0.8.1:compile
+[INFO]    org.antlr:antlr-runtime:jar:3.4:compile
+[INFO]    org.antlr:stringtemplate:jar:4.0.2:compile
+[INFO]    org.apache.commons:commons-lang3:jar:3.8.1:compile
+[INFO]    org.apache.commons:commons-text:jar:1.2:compile
+[INFO]    org.apache.tomcat:tomcat-jdbc:jar:9.0.16:compile
+[INFO]    org.apache.tomcat:tomcat-juli:jar:9.0.16:compile
+[INFO]    org.checkerframework:checker-qual:jar:2.8.1:compile
+[INFO]    org.codehaus.groovy:groovy-all:jar:2.4.17:test
+[INFO]    org.codehaus.mojo:animal-sniffer-annotations:jar:1.18:compile
+[INFO]    org.eclipse.jetty.toolchain.setuid:jetty-setuid-java:jar:1.0.3:compile
+[INFO]    org.eclipse.jetty:jetty-continuation:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-http:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-io:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-security:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-server:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-servlet:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-servlets:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-util:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-webapp:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-xml:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.sisu:org.eclipse.sisu.inject:jar:0.3.3:compile
+[INFO]    org.freemarker:freemarker:jar:2.3.28:compile
+[INFO]    org.glassfish.hk2:guice-bridge:jar:2.5.0-b63:compile
+[INFO]    org.glassfish.hk2:hk2-api:jar:2.5.0-b63:compile
+[INFO]    org.glassfish.hk2:hk2-locator:jar:2.5.0-b32:compile
+[INFO]    org.glassfish.hk2:hk2-utils:jar:2.5.0-b63:compile
+[INFO]    org.glassfish.hk2:osgi-resource-locator:jar:1.0.1:compile
+[INFO]    org.glassfish.jersey.bundles.repackaged:jersey-guava:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.containers:jersey-container-servlet-core:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.containers:jersey-container-servlet:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.core:jersey-client:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.core:jersey-common:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.core:jersey-server:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.ext:jersey-bean-validation:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.ext:jersey-metainf-services:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.media:jersey-media-jaxb:jar:2.25.1:compile
+[INFO]    org.glassfish:javax.el:jar:3.0.0:compile
+[INFO]    org.hamcrest:hamcrest-core:jar:1.3:test
+[INFO]    org.hamcrest:hamcrest-library:jar:1.3:test
+[INFO]    org.hibernate:hibernate-validator:jar:5.4.3.Final:compile
+[INFO]    org.javassist:javassist:jar:3.24.1-GA:compile
+[INFO]    org.jboss.logging:jboss-logging:jar:3.3.0.Final:compile
+[INFO]    org.jdbi:jdbi3-core:jar:3.5.1:compile
+[INFO]    org.jdbi:jdbi3-freemarker:jar:3.5.1:compile
+[INFO]    org.jdbi:jdbi3-guava:jar:3.5.1:compile
+[INFO]    org.jdbi:jdbi3-jodatime2:jar:3.5.1:compile
+[INFO]    org.jdbi:jdbi3-sqlobject:jar:3.5.1:compile
+[INFO]    org.mockito:mockito-core:jar:2.24.0:test
+[INFO]    org.objenesis:objenesis:jar:2.6:test
+[INFO]    org.slf4j:jcl-over-slf4j:jar:1.7.26:compile
+[INFO]    org.slf4j:jul-to-slf4j:jar:1.7.26:compile
+[INFO]    org.slf4j:log4j-over-slf4j:jar:1.7.26:compile
+[INFO]    org.slf4j:slf4j-api:jar:1.7.26:compile
+[INFO]    org.sonatype.goodies.dropwizard:dropwizard-support-core:jar:1.3.0-SNAPSHOT:compile
+[INFO]    org.sonatype.goodies.dropwizard:dropwizard-support-testbase:jar:1.3.0-SNAPSHOT:test
+[INFO]    org.yaml:snakeyaml:jar:1.23:compile
+[INFO] 
+[INFO] 
+[INFO] ----< org.sonatype.goodies.dropwizard:dropwizard-support-ratelimit >----
+[INFO] Building org.sonatype.goodies.dropwizard:dropwizard-support-ratelimit 1.3.0-SNAPSHOT [11/17]
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-dependency-plugin:2.10:list (default-cli) @ dropwizard-support-ratelimit ---
+[INFO] 
+[INFO] The following files have been resolved:
+[INFO]    aopalliance:aopalliance:jar:1.0:compile
+[INFO]    ch.qos.logback:logback-access:jar:1.2.3:compile
+[INFO]    ch.qos.logback:logback-classic:jar:1.2.3:compile
+[INFO]    ch.qos.logback:logback-core:jar:1.2.3:compile
+[INFO]    com.fasterxml.jackson.core:jackson-annotations:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.core:jackson-core:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.core:jackson-databind:jar:2.9.10.2:compile
+[INFO]    com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.datatype:jackson-datatype-guava:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.datatype:jackson-datatype-jdk8:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.datatype:jackson-datatype-joda:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.datatype:jackson-datatype-jsr310:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.jaxrs:jackson-jaxrs-base:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.module:jackson-module-afterburner:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.module:jackson-module-jaxb-annotations:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.module:jackson-module-parameter-names:jar:2.9.10:compile
+[INFO]    com.fasterxml:classmate:jar:1.4.0:compile
+[INFO]    com.google.code.findbugs:jsr305:jar:3.0.2:compile
+[INFO]    com.google.errorprone:error_prone_annotations:jar:2.3.2:compile
+[INFO]    com.google.guava:failureaccess:jar:1.0.1:compile
+[INFO]    com.google.guava:guava:jar:28.1-jre:compile
+[INFO]    com.google.guava:listenablefuture:jar:9999.0-empty-to-avoid-conflict-with-guava:compile
+[INFO]    com.google.inject.extensions:guice-multibindings:jar:4.1.0:compile
+[INFO]    com.google.inject:guice:jar:4.1.0:compile
+[INFO]    com.google.j2objc:j2objc-annotations:jar:1.3:compile
+[INFO]    com.palominolabs.metrics:metrics-guice:jar:4.0.0:compile
+[INFO]    com.papertrail:profiler:jar:1.0.2:compile
+[INFO]    commons-beanutils:commons-beanutils:jar:1.9.4:compile
+[INFO]    commons-collections:commons-collections:jar:3.2.2:compile
+[INFO]    io.dropwizard.metrics:metrics-annotation:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-core:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-healthchecks:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-jersey2:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-jetty9:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-jmx:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-json:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-jvm:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-logback:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-servlets:jar:4.0.5:compile
+[INFO]    io.dropwizard:dropwizard-assets:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-configuration:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-core:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-jackson:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-jersey:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-jetty:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-lifecycle:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-logging:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-metrics:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-request-logging:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-servlets:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-util:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-validation:jar:1.3.18:compile
+[INFO]    javax.activation:javax.activation-api:jar:1.2.0:compile
+[INFO]    javax.annotation:javax.annotation-api:jar:1.3.1:compile
+[INFO]    javax.inject:javax.inject:jar:1:compile
+[INFO]    javax.servlet:javax.servlet-api:jar:3.1.0:compile
+[INFO]    javax.validation:validation-api:jar:1.1.0.Final:compile
+[INFO]    javax.ws.rs:javax.ws.rs-api:jar:2.0.1:compile
+[INFO]    javax.xml.bind:jaxb-api:jar:2.3.1:compile
+[INFO]    joda-time:joda-time:jar:2.10.1:compile
+[INFO]    junit:junit:jar:4.12:test
+[INFO]    net.bytebuddy:byte-buddy-agent:jar:1.9.7:test
+[INFO]    net.bytebuddy:byte-buddy:jar:1.9.7:test
+[INFO]    net.sourceforge.argparse4j:argparse4j:jar:0.8.1:compile
+[INFO]    org.apache.commons:commons-lang3:jar:3.8.1:compile
+[INFO]    org.apache.commons:commons-text:jar:1.2:compile
+[INFO]    org.apache.shiro:shiro-core:jar:1.5.0:compile
+[INFO]    org.apache.shiro:shiro-guice:jar:1.5.0:compile
+[INFO]    org.apache.shiro:shiro-jaxrs:jar:1.5.0:compile
+[INFO]    org.apache.shiro:shiro-web:jar:1.5.0:compile
+[INFO]    org.checkerframework:checker-qual:jar:2.8.1:compile
+[INFO]    org.codehaus.groovy:groovy-all:jar:2.4.17:test
+[INFO]    org.codehaus.mojo:animal-sniffer-annotations:jar:1.18:compile
+[INFO]    org.eclipse.jetty.toolchain.setuid:jetty-setuid-java:jar:1.0.3:compile
+[INFO]    org.eclipse.jetty:jetty-continuation:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-http:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-io:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-security:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-server:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-servlet:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-servlets:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-util:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-webapp:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-xml:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.sisu:org.eclipse.sisu.inject:jar:0.3.3:compile
+[INFO]    org.glassfish.hk2:guice-bridge:jar:2.5.0-b63:compile
+[INFO]    org.glassfish.hk2:hk2-api:jar:2.5.0-b63:compile
+[INFO]    org.glassfish.hk2:hk2-locator:jar:2.5.0-b32:compile
+[INFO]    org.glassfish.hk2:hk2-utils:jar:2.5.0-b63:compile
+[INFO]    org.glassfish.hk2:osgi-resource-locator:jar:1.0.1:compile
+[INFO]    org.glassfish.jersey.bundles.repackaged:jersey-guava:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.containers:jersey-container-servlet-core:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.containers:jersey-container-servlet:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.core:jersey-client:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.core:jersey-common:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.core:jersey-server:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.ext:jersey-bean-validation:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.ext:jersey-metainf-services:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.media:jersey-media-jaxb:jar:2.25.1:compile
+[INFO]    org.glassfish:javax.el:jar:3.0.0:compile
+[INFO]    org.hamcrest:hamcrest-core:jar:1.3:test
+[INFO]    org.hamcrest:hamcrest-library:jar:1.3:test
+[INFO]    org.hibernate:hibernate-validator:jar:5.4.3.Final:compile
+[INFO]    org.javassist:javassist:jar:3.24.1-GA:compile
+[INFO]    org.jboss.logging:jboss-logging:jar:3.3.0.Final:compile
+[INFO]    org.mockito:mockito-core:jar:2.24.0:test
+[INFO]    org.objenesis:objenesis:jar:2.6:test
+[INFO]    org.owasp.encoder:encoder:jar:1.2.2:compile
+[INFO]    org.slf4j:jcl-over-slf4j:jar:1.7.26:compile
+[INFO]    org.slf4j:jul-to-slf4j:jar:1.7.26:compile
+[INFO]    org.slf4j:log4j-over-slf4j:jar:1.7.26:compile
+[INFO]    org.slf4j:slf4j-api:jar:1.7.26:compile
+[INFO]    org.sonatype.goodies.dropwizard:dropwizard-support-core:jar:1.3.0-SNAPSHOT:compile
+[INFO]    org.sonatype.goodies.dropwizard:dropwizard-support-security:jar:1.3.0-SNAPSHOT:compile
+[INFO]    org.sonatype.goodies.dropwizard:dropwizard-support-testbase:jar:1.3.0-SNAPSHOT:test
+[INFO]    org.yaml:snakeyaml:jar:1.23:compile
+[INFO] 
+[INFO] 
+[INFO] ------< org.sonatype.goodies.dropwizard:dropwizard-support-rules >------
+[INFO] Building org.sonatype.goodies.dropwizard:dropwizard-support-rules 1.3.0-SNAPSHOT [12/17]
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-dependency-plugin:2.10:list (default-cli) @ dropwizard-support-rules ---
+[INFO] 
+[INFO] The following files have been resolved:
+[INFO]    aopalliance:aopalliance:jar:1.0:compile
+[INFO]    ch.qos.logback:logback-access:jar:1.2.3:compile
+[INFO]    ch.qos.logback:logback-classic:jar:1.2.3:compile
+[INFO]    ch.qos.logback:logback-core:jar:1.2.3:compile
+[INFO]    com.fasterxml.jackson.core:jackson-annotations:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.core:jackson-core:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.core:jackson-databind:jar:2.9.10.2:compile
+[INFO]    com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.datatype:jackson-datatype-guava:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.datatype:jackson-datatype-jdk8:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.datatype:jackson-datatype-joda:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.datatype:jackson-datatype-jsr310:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.jaxrs:jackson-jaxrs-base:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.module:jackson-module-afterburner:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.module:jackson-module-jaxb-annotations:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.module:jackson-module-parameter-names:jar:2.9.10:compile
+[INFO]    com.fasterxml:classmate:jar:1.4.0:compile
+[INFO]    com.google.code.findbugs:jsr305:jar:3.0.2:compile
+[INFO]    com.google.errorprone:error_prone_annotations:jar:2.3.2:compile
+[INFO]    com.google.guava:failureaccess:jar:1.0.1:compile
+[INFO]    com.google.guava:guava:jar:28.1-jre:compile
+[INFO]    com.google.guava:listenablefuture:jar:9999.0-empty-to-avoid-conflict-with-guava:compile
+[INFO]    com.google.inject:guice:jar:4.1.0:compile
+[INFO]    com.google.j2objc:j2objc-annotations:jar:1.3:compile
+[INFO]    com.palominolabs.metrics:metrics-guice:jar:4.0.0:compile
+[INFO]    com.papertrail:profiler:jar:1.0.2:compile
+[INFO]    io.dropwizard.metrics:metrics-annotation:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-core:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-healthchecks:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-jersey2:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-jetty9:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-jmx:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-json:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-jvm:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-logback:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-servlets:jar:4.0.5:compile
+[INFO]    io.dropwizard:dropwizard-assets:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-configuration:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-core:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-jackson:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-jersey:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-jetty:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-lifecycle:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-logging:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-metrics:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-request-logging:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-servlets:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-util:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-validation:jar:1.3.18:compile
+[INFO]    javax.activation:javax.activation-api:jar:1.2.0:compile
+[INFO]    javax.annotation:javax.annotation-api:jar:1.3.1:compile
+[INFO]    javax.inject:javax.inject:jar:1:compile
+[INFO]    javax.servlet:javax.servlet-api:jar:3.1.0:compile
+[INFO]    javax.validation:validation-api:jar:1.1.0.Final:compile
+[INFO]    javax.ws.rs:javax.ws.rs-api:jar:2.0.1:compile
+[INFO]    javax.xml.bind:jaxb-api:jar:2.3.1:compile
+[INFO]    joda-time:joda-time:jar:2.10.1:compile
+[INFO]    junit:junit:jar:4.12:test
+[INFO]    net.bytebuddy:byte-buddy-agent:jar:1.9.7:test
+[INFO]    net.bytebuddy:byte-buddy:jar:1.9.7:test
+[INFO]    net.sourceforge.argparse4j:argparse4j:jar:0.8.1:compile
+[INFO]    org.apache.commons:commons-lang3:jar:3.8.1:compile
+[INFO]    org.apache.commons:commons-text:jar:1.2:compile
+[INFO]    org.checkerframework:checker-qual:jar:2.8.1:compile
+[INFO]    org.codehaus.groovy:groovy-all:jar:2.4.17:test
+[INFO]    org.codehaus.mojo:animal-sniffer-annotations:jar:1.18:compile
+[INFO]    org.eclipse.jetty.toolchain.setuid:jetty-setuid-java:jar:1.0.3:compile
+[INFO]    org.eclipse.jetty:jetty-continuation:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-http:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-io:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-security:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-server:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-servlet:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-servlets:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-util:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-webapp:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-xml:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.sisu:org.eclipse.sisu.inject:jar:0.3.3:compile
+[INFO]    org.glassfish.hk2:guice-bridge:jar:2.5.0-b63:compile
+[INFO]    org.glassfish.hk2:hk2-api:jar:2.5.0-b63:compile
+[INFO]    org.glassfish.hk2:hk2-locator:jar:2.5.0-b32:compile
+[INFO]    org.glassfish.hk2:hk2-utils:jar:2.5.0-b63:compile
+[INFO]    org.glassfish.hk2:osgi-resource-locator:jar:1.0.1:compile
+[INFO]    org.glassfish.jersey.bundles.repackaged:jersey-guava:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.containers:jersey-container-servlet-core:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.containers:jersey-container-servlet:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.core:jersey-client:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.core:jersey-common:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.core:jersey-server:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.ext:jersey-bean-validation:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.ext:jersey-metainf-services:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.media:jersey-media-jaxb:jar:2.25.1:compile
+[INFO]    org.glassfish:javax.el:jar:3.0.0:compile
+[INFO]    org.hamcrest:hamcrest-core:jar:1.3:test
+[INFO]    org.hamcrest:hamcrest-library:jar:1.3:test
+[INFO]    org.hibernate:hibernate-validator:jar:5.4.3.Final:compile
+[INFO]    org.javassist:javassist:jar:3.24.1-GA:compile
+[INFO]    org.jboss.logging:jboss-logging:jar:3.3.0.Final:compile
+[INFO]    org.mockito:mockito-core:jar:2.24.0:test
+[INFO]    org.objenesis:objenesis:jar:2.6:test
+[INFO]    org.slf4j:jcl-over-slf4j:jar:1.7.26:compile
+[INFO]    org.slf4j:jul-to-slf4j:jar:1.7.26:compile
+[INFO]    org.slf4j:log4j-over-slf4j:jar:1.7.26:compile
+[INFO]    org.slf4j:slf4j-api:jar:1.7.26:compile
+[INFO]    org.sonatype.goodies.dropwizard:dropwizard-support-core:jar:1.3.0-SNAPSHOT:compile
+[INFO]    org.sonatype.goodies.dropwizard:dropwizard-support-testbase:jar:1.3.0-SNAPSHOT:test
+[INFO]    org.yaml:snakeyaml:jar:1.23:compile
+[INFO] 
+[INFO] 
+[INFO] -----< org.sonatype.goodies.dropwizard:dropwizard-support-datadog >-----
+[INFO] Building org.sonatype.goodies.dropwizard:dropwizard-support-datadog 1.3.0-SNAPSHOT [13/17]
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-dependency-plugin:2.10:list (default-cli) @ dropwizard-support-datadog ---
+[INFO] 
+[INFO] The following files have been resolved:
+[INFO]    aopalliance:aopalliance:jar:1.0:compile
+[INFO]    ch.qos.logback:logback-access:jar:1.2.3:compile
+[INFO]    ch.qos.logback:logback-classic:jar:1.2.3:compile
+[INFO]    ch.qos.logback:logback-core:jar:1.2.3:compile
+[INFO]    com.datadoghq:java-dogstatsd-client:jar:2.6.1:compile
+[INFO]    com.fasterxml.jackson.core:jackson-annotations:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.core:jackson-core:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.core:jackson-databind:jar:2.9.10.2:compile
+[INFO]    com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.datatype:jackson-datatype-guava:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.datatype:jackson-datatype-jdk8:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.datatype:jackson-datatype-joda:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.datatype:jackson-datatype-jsr310:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.jaxrs:jackson-jaxrs-base:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.module:jackson-module-afterburner:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.module:jackson-module-jaxb-annotations:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.module:jackson-module-parameter-names:jar:2.9.10:compile
+[INFO]    com.fasterxml:classmate:jar:1.4.0:compile
+[INFO]    com.github.jnr:jffi:jar:1.2.15:compile
+[INFO]    com.github.jnr:jffi:jar:native:1.2.15:runtime
+[INFO]    com.github.jnr:jnr-constants:jar:0.9.8:compile
+[INFO]    com.github.jnr:jnr-enxio:jar:0.16:compile
+[INFO]    com.github.jnr:jnr-ffi:jar:2.1.4:compile
+[INFO]    com.github.jnr:jnr-posix:jar:3.0.35:compile
+[INFO]    com.github.jnr:jnr-unixsocket:jar:0.18:compile
+[INFO]    com.github.jnr:jnr-x86asm:jar:1.0.2:compile
+[INFO]    com.google.code.findbugs:jsr305:jar:3.0.2:compile
+[INFO]    com.google.errorprone:error_prone_annotations:jar:2.3.2:compile
+[INFO]    com.google.guava:failureaccess:jar:1.0.1:compile
+[INFO]    com.google.guava:guava:jar:28.1-jre:compile
+[INFO]    com.google.guava:listenablefuture:jar:9999.0-empty-to-avoid-conflict-with-guava:compile
+[INFO]    com.google.inject:guice:jar:4.1.0:compile
+[INFO]    com.google.j2objc:j2objc-annotations:jar:1.3:compile
+[INFO]    com.palominolabs.metrics:metrics-guice:jar:4.0.0:compile
+[INFO]    com.papertrail:profiler:jar:1.0.2:compile
+[INFO]    commons-codec:commons-codec:jar:1.13:compile
+[INFO]    io.dropwizard.metrics:metrics-annotation:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-core:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-healthchecks:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-jersey2:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-jetty9:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-jmx:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-json:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-jvm:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-logback:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-servlets:jar:4.0.5:compile
+[INFO]    io.dropwizard:dropwizard-assets:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-configuration:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-core:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-jackson:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-jersey:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-jetty:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-lifecycle:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-logging:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-metrics:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-request-logging:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-servlets:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-util:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-validation:jar:1.3.18:compile
+[INFO]    javax.activation:javax.activation-api:jar:1.2.0:compile
+[INFO]    javax.annotation:javax.annotation-api:jar:1.3.1:compile
+[INFO]    javax.inject:javax.inject:jar:1:compile
+[INFO]    javax.servlet:javax.servlet-api:jar:3.1.0:compile
+[INFO]    javax.validation:validation-api:jar:1.1.0.Final:compile
+[INFO]    javax.ws.rs:javax.ws.rs-api:jar:2.0.1:compile
+[INFO]    javax.xml.bind:jaxb-api:jar:2.3.1:compile
+[INFO]    joda-time:joda-time:jar:2.10.1:compile
+[INFO]    junit:junit:jar:4.12:test
+[INFO]    net.bytebuddy:byte-buddy-agent:jar:1.9.7:test
+[INFO]    net.bytebuddy:byte-buddy:jar:1.9.7:test
+[INFO]    net.sourceforge.argparse4j:argparse4j:jar:0.8.1:compile
+[INFO]    org.apache.commons:commons-lang3:jar:3.8.1:compile
+[INFO]    org.apache.commons:commons-text:jar:1.2:compile
+[INFO]    org.apache.httpcomponents:fluent-hc:jar:4.5.10:compile
+[INFO]    org.apache.httpcomponents:httpclient:jar:4.5.10:compile
+[INFO]    org.apache.httpcomponents:httpcore:jar:4.4.12:compile
+[INFO]    org.checkerframework:checker-qual:jar:2.8.1:compile
+[INFO]    org.codehaus.groovy:groovy-all:jar:2.4.17:test
+[INFO]    org.codehaus.mojo:animal-sniffer-annotations:jar:1.18:compile
+[INFO]    org.coursera:dropwizard-metrics-datadog:jar:1.1.14:compile
+[INFO]    org.coursera:metrics-datadog:jar:1.1.14:compile
+[INFO]    org.eclipse.jetty.toolchain.setuid:jetty-setuid-java:jar:1.0.3:compile
+[INFO]    org.eclipse.jetty:jetty-continuation:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-http:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-io:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-security:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-server:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-servlet:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-servlets:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-util:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-webapp:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-xml:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.sisu:org.eclipse.sisu.inject:jar:0.3.3:compile
+[INFO]    org.glassfish.hk2:guice-bridge:jar:2.5.0-b63:compile
+[INFO]    org.glassfish.hk2:hk2-api:jar:2.5.0-b63:compile
+[INFO]    org.glassfish.hk2:hk2-locator:jar:2.5.0-b32:compile
+[INFO]    org.glassfish.hk2:hk2-utils:jar:2.5.0-b63:compile
+[INFO]    org.glassfish.hk2:osgi-resource-locator:jar:1.0.1:compile
+[INFO]    org.glassfish.jersey.bundles.repackaged:jersey-guava:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.containers:jersey-container-servlet-core:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.containers:jersey-container-servlet:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.core:jersey-client:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.core:jersey-common:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.core:jersey-server:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.ext:jersey-bean-validation:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.ext:jersey-metainf-services:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.media:jersey-media-jaxb:jar:2.25.1:compile
+[INFO]    org.glassfish:javax.el:jar:3.0.0:compile
+[INFO]    org.hamcrest:hamcrest-core:jar:1.3:test
+[INFO]    org.hamcrest:hamcrest-library:jar:1.3:test
+[INFO]    org.hibernate:hibernate-validator:jar:5.4.3.Final:compile
+[INFO]    org.javassist:javassist:jar:3.24.1-GA:compile
+[INFO]    org.jboss.logging:jboss-logging:jar:3.3.0.Final:compile
+[INFO]    org.mockito:mockito-core:jar:2.24.0:test
+[INFO]    org.objenesis:objenesis:jar:2.6:test
+[INFO]    org.ow2.asm:asm-analysis:jar:5.0.3:compile
+[INFO]    org.ow2.asm:asm-commons:jar:5.0.3:compile
+[INFO]    org.ow2.asm:asm-tree:jar:5.0.3:compile
+[INFO]    org.ow2.asm:asm-util:jar:5.0.3:compile
+[INFO]    org.ow2.asm:asm:jar:5.0.3:compile
+[INFO]    org.slf4j:jcl-over-slf4j:jar:1.7.26:compile
+[INFO]    org.slf4j:jul-to-slf4j:jar:1.7.26:compile
+[INFO]    org.slf4j:log4j-over-slf4j:jar:1.7.26:compile
+[INFO]    org.slf4j:slf4j-api:jar:1.7.26:compile
+[INFO]    org.sonatype.goodies.dropwizard:dropwizard-support-core:jar:1.3.0-SNAPSHOT:compile
+[INFO]    org.sonatype.goodies.dropwizard:dropwizard-support-testbase:jar:1.3.0-SNAPSHOT:test
+[INFO]    org.yaml:snakeyaml:jar:1.23:compile
+[INFO] 
+[INFO] 
+[INFO] -----< org.sonatype.goodies.dropwizard:dropwizard-support-swagger >-----
+[INFO] Building org.sonatype.goodies.dropwizard:dropwizard-support-swagger 1.3.0-SNAPSHOT [14/17]
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-dependency-plugin:2.10:list (default-cli) @ dropwizard-support-swagger ---
+[INFO] 
+[INFO] The following files have been resolved:
+[INFO]    aopalliance:aopalliance:jar:1.0:compile
+[INFO]    ch.qos.logback:logback-access:jar:1.2.3:compile
+[INFO]    ch.qos.logback:logback-classic:jar:1.2.3:compile
+[INFO]    ch.qos.logback:logback-core:jar:1.2.3:compile
+[INFO]    com.fasterxml.jackson.core:jackson-annotations:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.core:jackson-core:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.core:jackson-databind:jar:2.9.10.2:compile
+[INFO]    com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.datatype:jackson-datatype-guava:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.datatype:jackson-datatype-jdk8:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.datatype:jackson-datatype-joda:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.datatype:jackson-datatype-jsr310:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.jaxrs:jackson-jaxrs-base:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.module:jackson-module-afterburner:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.module:jackson-module-jaxb-annotations:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.module:jackson-module-parameter-names:jar:2.9.10:compile
+[INFO]    com.fasterxml:classmate:jar:1.4.0:compile
+[INFO]    com.google.code.findbugs:jsr305:jar:3.0.2:compile
+[INFO]    com.google.errorprone:error_prone_annotations:jar:2.3.2:compile
+[INFO]    com.google.guava:failureaccess:jar:1.0.1:compile
+[INFO]    com.google.guava:guava:jar:28.1-jre:compile
+[INFO]    com.google.guava:listenablefuture:jar:9999.0-empty-to-avoid-conflict-with-guava:compile
+[INFO]    com.google.inject:guice:jar:4.1.0:compile
+[INFO]    com.google.j2objc:j2objc-annotations:jar:1.3:compile
+[INFO]    com.palominolabs.metrics:metrics-guice:jar:4.0.0:compile
+[INFO]    com.papertrail:profiler:jar:1.0.2:compile
+[INFO]    io.dropwizard.metrics:metrics-annotation:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-core:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-healthchecks:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-jersey2:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-jetty9:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-jmx:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-json:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-jvm:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-logback:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-servlets:jar:4.0.5:compile
+[INFO]    io.dropwizard:dropwizard-assets:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-configuration:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-core:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-jackson:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-jersey:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-jetty:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-lifecycle:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-logging:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-metrics:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-request-logging:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-servlets:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-util:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-validation:jar:1.3.18:compile
+[INFO]    io.swagger:swagger-annotations:jar:1.5.23:compile
+[INFO]    io.swagger:swagger-core:jar:1.5.23:compile
+[INFO]    io.swagger:swagger-jaxrs:jar:1.5.23:compile
+[INFO]    io.swagger:swagger-jersey2-jaxrs:jar:1.5.23:compile
+[INFO]    io.swagger:swagger-models:jar:1.5.23:compile
+[INFO]    javax.activation:javax.activation-api:jar:1.2.0:compile
+[INFO]    javax.annotation:javax.annotation-api:jar:1.3.1:compile
+[INFO]    javax.inject:javax.inject:jar:1:compile
+[INFO]    javax.servlet:javax.servlet-api:jar:3.1.0:compile
+[INFO]    javax.validation:validation-api:jar:1.1.0.Final:compile
+[INFO]    javax.ws.rs:javax.ws.rs-api:jar:2.0.1:compile
+[INFO]    javax.xml.bind:jaxb-api:jar:2.3.1:compile
+[INFO]    joda-time:joda-time:jar:2.10.1:compile
+[INFO]    junit:junit:jar:4.12:test
+[INFO]    net.bytebuddy:byte-buddy-agent:jar:1.9.7:test
+[INFO]    net.bytebuddy:byte-buddy:jar:1.9.7:test
+[INFO]    net.sourceforge.argparse4j:argparse4j:jar:0.8.1:compile
+[INFO]    org.apache.commons:commons-lang3:jar:3.8.1:compile
+[INFO]    org.apache.commons:commons-text:jar:1.2:compile
+[INFO]    org.checkerframework:checker-qual:jar:2.8.1:compile
+[INFO]    org.codehaus.groovy:groovy-all:jar:2.4.17:test
+[INFO]    org.codehaus.mojo:animal-sniffer-annotations:jar:1.18:compile
+[INFO]    org.eclipse.jetty.toolchain.setuid:jetty-setuid-java:jar:1.0.3:compile
+[INFO]    org.eclipse.jetty:jetty-continuation:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-http:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-io:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-security:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-server:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-servlet:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-servlets:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-util:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-webapp:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-xml:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.sisu:org.eclipse.sisu.inject:jar:0.3.3:compile
+[INFO]    org.glassfish.hk2.external:aopalliance-repackaged:jar:2.5.0-b32:compile
+[INFO]    org.glassfish.hk2:guice-bridge:jar:2.5.0-b63:compile
+[INFO]    org.glassfish.hk2:hk2-api:jar:2.5.0-b63:compile
+[INFO]    org.glassfish.hk2:hk2-locator:jar:2.5.0-b32:compile
+[INFO]    org.glassfish.hk2:hk2-utils:jar:2.5.0-b63:compile
+[INFO]    org.glassfish.hk2:osgi-resource-locator:jar:1.0.1:compile
+[INFO]    org.glassfish.jersey.bundles.repackaged:jersey-guava:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.containers:jersey-container-servlet-core:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.containers:jersey-container-servlet:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.core:jersey-client:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.core:jersey-common:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.core:jersey-server:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.ext:jersey-bean-validation:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.ext:jersey-metainf-services:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.media:jersey-media-jaxb:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.media:jersey-media-multipart:jar:2.25.1:compile
+[INFO]    org.glassfish:javax.el:jar:3.0.0:compile
+[INFO]    org.hamcrest:hamcrest-core:jar:1.3:test
+[INFO]    org.hamcrest:hamcrest-library:jar:1.3:test
+[INFO]    org.hibernate:hibernate-validator:jar:5.4.3.Final:compile
+[INFO]    org.javassist:javassist:jar:3.24.1-GA:compile
+[INFO]    org.jboss.logging:jboss-logging:jar:3.3.0.Final:compile
+[INFO]    org.jvnet.mimepull:mimepull:jar:1.9.6:compile
+[INFO]    org.mockito:mockito-core:jar:2.24.0:test
+[INFO]    org.objenesis:objenesis:jar:2.6:test
+[INFO]    org.reflections:reflections:jar:0.9.11:compile
+[INFO]    org.slf4j:jcl-over-slf4j:jar:1.7.26:compile
+[INFO]    org.slf4j:jul-to-slf4j:jar:1.7.26:compile
+[INFO]    org.slf4j:log4j-over-slf4j:jar:1.7.26:compile
+[INFO]    org.slf4j:slf4j-api:jar:1.7.26:compile
+[INFO]    org.sonatype.goodies.dropwizard:dropwizard-support-core:jar:1.3.0-SNAPSHOT:compile
+[INFO]    org.sonatype.goodies.dropwizard:dropwizard-support-testbase:jar:1.3.0-SNAPSHOT:test
+[INFO]    org.yaml:snakeyaml:jar:1.23:compile
+[INFO] 
+[INFO] 
+[INFO] -------< org.sonatype.goodies.dropwizard:dropwizard-support-aws >-------
+[INFO] Building org.sonatype.goodies.dropwizard:dropwizard-support-aws 1.3.0-SNAPSHOT [15/17]
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-dependency-plugin:2.10:list (default-cli) @ dropwizard-support-aws ---
+[INFO] 
+[INFO] The following files have been resolved:
+[INFO]    aopalliance:aopalliance:jar:1.0:compile
+[INFO]    ch.qos.logback:logback-access:jar:1.2.3:compile
+[INFO]    ch.qos.logback:logback-classic:jar:1.2.3:compile
+[INFO]    ch.qos.logback:logback-core:jar:1.2.3:compile
+[INFO]    com.amazonaws:aws-java-sdk-core:jar:1.11.646:compile
+[INFO]    com.amazonaws:aws-java-sdk-kms:jar:1.11.646:compile
+[INFO]    com.amazonaws:aws-java-sdk-s3:jar:1.11.646:compile
+[INFO]    com.amazonaws:aws-java-sdk-sts:jar:1.11.646:compile
+[INFO]    com.amazonaws:jmespath-java:jar:1.11.646:compile
+[INFO]    com.fasterxml.jackson.core:jackson-annotations:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.core:jackson-core:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.core:jackson-databind:jar:2.9.10.2:compile
+[INFO]    com.fasterxml.jackson.dataformat:jackson-dataformat-cbor:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.datatype:jackson-datatype-guava:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.datatype:jackson-datatype-jdk8:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.datatype:jackson-datatype-joda:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.datatype:jackson-datatype-jsr310:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.jaxrs:jackson-jaxrs-base:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.module:jackson-module-afterburner:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.module:jackson-module-jaxb-annotations:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.module:jackson-module-parameter-names:jar:2.9.10:compile
+[INFO]    com.fasterxml:classmate:jar:1.4.0:compile
+[INFO]    com.google.code.findbugs:jsr305:jar:3.0.2:compile
+[INFO]    com.google.errorprone:error_prone_annotations:jar:2.3.2:compile
+[INFO]    com.google.guava:failureaccess:jar:1.0.1:compile
+[INFO]    com.google.guava:guava:jar:28.1-jre:compile
+[INFO]    com.google.guava:listenablefuture:jar:9999.0-empty-to-avoid-conflict-with-guava:compile
+[INFO]    com.google.inject:guice:jar:4.1.0:compile
+[INFO]    com.google.j2objc:j2objc-annotations:jar:1.3:compile
+[INFO]    com.palominolabs.metrics:metrics-guice:jar:4.0.0:compile
+[INFO]    com.papertrail:profiler:jar:1.0.2:compile
+[INFO]    commons-codec:commons-codec:jar:1.13:compile
+[INFO]    io.dropwizard.metrics:metrics-annotation:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-core:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-healthchecks:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-jersey2:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-jetty9:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-jmx:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-json:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-jvm:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-logback:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-servlets:jar:4.0.5:compile
+[INFO]    io.dropwizard:dropwizard-assets:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-configuration:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-core:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-jackson:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-jersey:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-jetty:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-lifecycle:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-logging:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-metrics:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-request-logging:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-servlets:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-util:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-validation:jar:1.3.18:compile
+[INFO]    javax.activation:javax.activation-api:jar:1.2.0:compile
+[INFO]    javax.annotation:javax.annotation-api:jar:1.3.1:compile
+[INFO]    javax.inject:javax.inject:jar:1:compile
+[INFO]    javax.servlet:javax.servlet-api:jar:3.1.0:compile
+[INFO]    javax.validation:validation-api:jar:1.1.0.Final:compile
+[INFO]    javax.ws.rs:javax.ws.rs-api:jar:2.0.1:compile
+[INFO]    javax.xml.bind:jaxb-api:jar:2.3.1:compile
+[INFO]    joda-time:joda-time:jar:2.10.1:compile
+[INFO]    junit:junit:jar:4.12:test
+[INFO]    net.bytebuddy:byte-buddy-agent:jar:1.9.7:test
+[INFO]    net.bytebuddy:byte-buddy:jar:1.9.7:test
+[INFO]    net.sourceforge.argparse4j:argparse4j:jar:0.8.1:compile
+[INFO]    org.apache.commons:commons-lang3:jar:3.8.1:compile
+[INFO]    org.apache.commons:commons-text:jar:1.2:compile
+[INFO]    org.apache.httpcomponents:httpclient:jar:4.5.10:compile
+[INFO]    org.apache.httpcomponents:httpcore:jar:4.4.12:compile
+[INFO]    org.checkerframework:checker-qual:jar:2.8.1:compile
+[INFO]    org.codehaus.groovy:groovy-all:jar:2.4.17:test
+[INFO]    org.codehaus.mojo:animal-sniffer-annotations:jar:1.18:compile
+[INFO]    org.eclipse.jetty.toolchain.setuid:jetty-setuid-java:jar:1.0.3:compile
+[INFO]    org.eclipse.jetty:jetty-continuation:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-http:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-io:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-security:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-server:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-servlet:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-servlets:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-util:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-webapp:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-xml:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.sisu:org.eclipse.sisu.inject:jar:0.3.3:compile
+[INFO]    org.glassfish.hk2:guice-bridge:jar:2.5.0-b63:compile
+[INFO]    org.glassfish.hk2:hk2-api:jar:2.5.0-b63:compile
+[INFO]    org.glassfish.hk2:hk2-locator:jar:2.5.0-b32:compile
+[INFO]    org.glassfish.hk2:hk2-utils:jar:2.5.0-b63:compile
+[INFO]    org.glassfish.hk2:osgi-resource-locator:jar:1.0.1:compile
+[INFO]    org.glassfish.jersey.bundles.repackaged:jersey-guava:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.containers:jersey-container-servlet-core:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.containers:jersey-container-servlet:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.core:jersey-client:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.core:jersey-common:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.core:jersey-server:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.ext:jersey-bean-validation:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.ext:jersey-metainf-services:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.media:jersey-media-jaxb:jar:2.25.1:compile
+[INFO]    org.glassfish:javax.el:jar:3.0.0:compile
+[INFO]    org.hamcrest:hamcrest-core:jar:1.3:test
+[INFO]    org.hamcrest:hamcrest-library:jar:1.3:test
+[INFO]    org.hibernate:hibernate-validator:jar:5.4.3.Final:compile
+[INFO]    org.javassist:javassist:jar:3.24.1-GA:compile
+[INFO]    org.jboss.logging:jboss-logging:jar:3.3.0.Final:compile
+[INFO]    org.mockito:mockito-core:jar:2.24.0:test
+[INFO]    org.objenesis:objenesis:jar:2.6:test
+[INFO]    org.slf4j:jcl-over-slf4j:jar:1.7.26:compile
+[INFO]    org.slf4j:jul-to-slf4j:jar:1.7.26:compile
+[INFO]    org.slf4j:log4j-over-slf4j:jar:1.7.26:compile
+[INFO]    org.slf4j:slf4j-api:jar:1.7.26:compile
+[INFO]    org.sonatype.goodies.dropwizard:dropwizard-support-core:jar:1.3.0-SNAPSHOT:compile
+[INFO]    org.sonatype.goodies.dropwizard:dropwizard-support-testbase:jar:1.3.0-SNAPSHOT:test
+[INFO]    org.yaml:snakeyaml:jar:1.23:compile
+[INFO]    software.amazon.ion:ion-java:jar:1.0.2:compile
+[INFO] 
+[INFO] 
+[INFO] ------< org.sonatype.goodies.dropwizard:dropwizard-support-camel >------
+[INFO] Building org.sonatype.goodies.dropwizard:dropwizard-support-camel 1.3.0-SNAPSHOT [16/17]
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-dependency-plugin:2.10:list (default-cli) @ dropwizard-support-camel ---
+[INFO] 
+[INFO] The following files have been resolved:
+[INFO]    aopalliance:aopalliance:jar:1.0:compile
+[INFO]    ch.qos.logback:logback-access:jar:1.2.3:compile
+[INFO]    ch.qos.logback:logback-classic:jar:1.2.3:compile
+[INFO]    ch.qos.logback:logback-core:jar:1.2.3:compile
+[INFO]    com.amazonaws:aws-java-sdk-core:jar:1.11.646:compile
+[INFO]    com.amazonaws:aws-java-sdk-sns:jar:1.11.646:compile
+[INFO]    com.amazonaws:aws-java-sdk-sqs:jar:1.11.646:compile
+[INFO]    com.amazonaws:jmespath-java:jar:1.11.646:compile
+[INFO]    com.fasterxml.jackson.core:jackson-annotations:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.core:jackson-core:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.core:jackson-databind:jar:2.9.10.2:compile
+[INFO]    com.fasterxml.jackson.dataformat:jackson-dataformat-cbor:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.datatype:jackson-datatype-guava:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.datatype:jackson-datatype-jdk8:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.datatype:jackson-datatype-joda:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.datatype:jackson-datatype-jsr310:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.jaxrs:jackson-jaxrs-base:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.module:jackson-module-afterburner:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.module:jackson-module-jaxb-annotations:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.module:jackson-module-parameter-names:jar:2.9.10:compile
+[INFO]    com.fasterxml:classmate:jar:1.4.0:compile
+[INFO]    com.github.ben-manes.caffeine:caffeine:jar:2.8.0:compile
+[INFO]    com.google.code.findbugs:jsr305:jar:3.0.2:compile
+[INFO]    com.google.errorprone:error_prone_annotations:jar:2.3.2:compile
+[INFO]    com.google.guava:failureaccess:jar:1.0.1:compile
+[INFO]    com.google.guava:guava:jar:28.1-jre:compile
+[INFO]    com.google.guava:listenablefuture:jar:9999.0-empty-to-avoid-conflict-with-guava:compile
+[INFO]    com.google.inject:guice:jar:4.1.0:compile
+[INFO]    com.google.j2objc:j2objc-annotations:jar:1.3:compile
+[INFO]    com.palominolabs.metrics:metrics-guice:jar:4.0.0:compile
+[INFO]    com.papertrail:profiler:jar:1.0.2:compile
+[INFO]    commons-codec:commons-codec:jar:1.13:compile
+[INFO]    io.dropwizard.metrics:metrics-annotation:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-core:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-healthchecks:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-jersey2:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-jetty9:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-jmx:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-json:jar:3.2.6:compile
+[INFO]    io.dropwizard.metrics:metrics-jvm:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-logback:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-servlets:jar:4.0.5:compile
+[INFO]    io.dropwizard:dropwizard-assets:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-configuration:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-core:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-jackson:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-jersey:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-jetty:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-lifecycle:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-logging:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-metrics:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-request-logging:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-servlets:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-util:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-validation:jar:1.3.18:compile
+[INFO]    javax.activation:javax.activation-api:jar:1.2.0:compile
+[INFO]    javax.annotation:javax.annotation-api:jar:1.3.1:compile
+[INFO]    javax.inject:javax.inject:jar:1:compile
+[INFO]    javax.servlet:javax.servlet-api:jar:3.1.0:compile
+[INFO]    javax.validation:validation-api:jar:1.1.0.Final:compile
+[INFO]    javax.ws.rs:javax.ws.rs-api:jar:2.0.1:compile
+[INFO]    javax.xml.bind:jaxb-api:jar:2.3.1:compile
+[INFO]    joda-time:joda-time:jar:2.10.1:compile
+[INFO]    junit:junit:jar:4.12:test
+[INFO]    net.bytebuddy:byte-buddy-agent:jar:1.9.7:test
+[INFO]    net.bytebuddy:byte-buddy:jar:1.9.7:test
+[INFO]    net.sourceforge.argparse4j:argparse4j:jar:0.8.1:compile
+[INFO]    org.apache.camel:camel-api:jar:3.0.0-RC3:compile
+[INFO]    org.apache.camel:camel-aws-sns:jar:3.0.0-RC3:compile
+[INFO]    org.apache.camel:camel-aws-sqs:jar:3.0.0-RC3:compile
+[INFO]    org.apache.camel:camel-base:jar:3.0.0-RC3:compile
+[INFO]    org.apache.camel:camel-bean:jar:3.0.0-RC3:compile
+[INFO]    org.apache.camel:camel-browse:jar:3.0.0-RC3:compile
+[INFO]    org.apache.camel:camel-caffeine-lrucache:jar:3.0.0-RC3:compile
+[INFO]    org.apache.camel:camel-controlbus:jar:3.0.0-RC3:compile
+[INFO]    org.apache.camel:camel-core-engine:jar:3.0.0-RC3:compile
+[INFO]    org.apache.camel:camel-core:jar:3.0.0-RC3:compile
+[INFO]    org.apache.camel:camel-dataformat:jar:3.0.0-RC3:compile
+[INFO]    org.apache.camel:camel-dataset:jar:3.0.0-RC3:compile
+[INFO]    org.apache.camel:camel-direct:jar:3.0.0-RC3:compile
+[INFO]    org.apache.camel:camel-directvm:jar:3.0.0-RC3:compile
+[INFO]    org.apache.camel:camel-file:jar:3.0.0-RC3:compile
+[INFO]    org.apache.camel:camel-jackson:jar:3.0.0-RC3:compile
+[INFO]    org.apache.camel:camel-jaxp:jar:3.0.0-RC3:compile
+[INFO]    org.apache.camel:camel-language:jar:3.0.0-RC3:compile
+[INFO]    org.apache.camel:camel-log:jar:3.0.0-RC3:compile
+[INFO]    org.apache.camel:camel-management-api:jar:3.0.0-RC3:compile
+[INFO]    org.apache.camel:camel-metrics:jar:3.0.0-RC3:compile
+[INFO]    org.apache.camel:camel-mock:jar:3.0.0-RC3:compile
+[INFO]    org.apache.camel:camel-ref:jar:3.0.0-RC3:compile
+[INFO]    org.apache.camel:camel-rest:jar:3.0.0-RC3:compile
+[INFO]    org.apache.camel:camel-saga:jar:3.0.0-RC3:compile
+[INFO]    org.apache.camel:camel-scheduler:jar:3.0.0-RC3:compile
+[INFO]    org.apache.camel:camel-seda:jar:3.0.0-RC3:compile
+[INFO]    org.apache.camel:camel-stub:jar:3.0.0-RC3:compile
+[INFO]    org.apache.camel:camel-support:jar:3.0.0-RC3:compile
+[INFO]    org.apache.camel:camel-timer:jar:3.0.0-RC3:compile
+[INFO]    org.apache.camel:camel-util-json:jar:3.0.0-RC3:compile
+[INFO]    org.apache.camel:camel-util:jar:3.0.0-RC3:compile
+[INFO]    org.apache.camel:camel-validator:jar:3.0.0-RC3:compile
+[INFO]    org.apache.camel:camel-vm:jar:3.0.0-RC3:compile
+[INFO]    org.apache.camel:camel-xpath:jar:3.0.0-RC3:compile
+[INFO]    org.apache.camel:camel-xslt:jar:3.0.0-RC3:compile
+[INFO]    org.apache.camel:spi-annotations:jar:3.0.0-RC3:compile
+[INFO]    org.apache.commons:commons-lang3:jar:3.8.1:compile
+[INFO]    org.apache.commons:commons-text:jar:1.2:compile
+[INFO]    org.apache.httpcomponents:httpclient:jar:4.5.10:compile
+[INFO]    org.apache.httpcomponents:httpcore:jar:4.4.12:compile
+[INFO]    org.checkerframework:checker-qual:jar:2.8.1:compile
+[INFO]    org.codehaus.groovy:groovy-all:jar:2.4.17:test
+[INFO]    org.codehaus.mojo:animal-sniffer-annotations:jar:1.18:compile
+[INFO]    org.eclipse.jetty.toolchain.setuid:jetty-setuid-java:jar:1.0.3:compile
+[INFO]    org.eclipse.jetty:jetty-continuation:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-http:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-io:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-security:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-server:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-servlet:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-servlets:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-util:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-webapp:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-xml:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.sisu:org.eclipse.sisu.inject:jar:0.3.3:compile
+[INFO]    org.glassfish.hk2:guice-bridge:jar:2.5.0-b63:compile
+[INFO]    org.glassfish.hk2:hk2-api:jar:2.5.0-b63:compile
+[INFO]    org.glassfish.hk2:hk2-locator:jar:2.5.0-b32:compile
+[INFO]    org.glassfish.hk2:hk2-utils:jar:2.5.0-b63:compile
+[INFO]    org.glassfish.hk2:osgi-resource-locator:jar:1.0.1:compile
+[INFO]    org.glassfish.jersey.bundles.repackaged:jersey-guava:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.containers:jersey-container-servlet-core:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.containers:jersey-container-servlet:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.core:jersey-client:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.core:jersey-common:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.core:jersey-server:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.ext:jersey-bean-validation:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.ext:jersey-metainf-services:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.media:jersey-media-jaxb:jar:2.25.1:compile
+[INFO]    org.glassfish:javax.el:jar:3.0.0:compile
+[INFO]    org.hamcrest:hamcrest-core:jar:1.3:test
+[INFO]    org.hamcrest:hamcrest-library:jar:1.3:test
+[INFO]    org.hibernate:hibernate-validator:jar:5.4.3.Final:compile
+[INFO]    org.javassist:javassist:jar:3.24.1-GA:compile
+[INFO]    org.jboss.logging:jboss-logging:jar:3.3.0.Final:compile
+[INFO]    org.mockito:mockito-core:jar:2.24.0:test
+[INFO]    org.objenesis:objenesis:jar:2.6:test
+[INFO]    org.slf4j:jcl-over-slf4j:jar:1.7.26:compile
+[INFO]    org.slf4j:jul-to-slf4j:jar:1.7.26:compile
+[INFO]    org.slf4j:log4j-over-slf4j:jar:1.7.26:compile
+[INFO]    org.slf4j:slf4j-api:jar:1.7.26:compile
+[INFO]    org.sonatype.goodies.dropwizard:dropwizard-support-core:jar:1.3.0-SNAPSHOT:compile
+[INFO]    org.sonatype.goodies.dropwizard:dropwizard-support-testbase:jar:1.3.0-SNAPSHOT:test
+[INFO]    org.yaml:snakeyaml:jar:1.23:compile
+[INFO]    software.amazon.ion:ion-java:jar:1.0.2:compile
+[INFO] 
+[INFO] 
+[INFO] ---< org.sonatype.goodies.dropwizard:dropwizard-support-testsupport >---
+[INFO] Building org.sonatype.goodies.dropwizard:dropwizard-support-testsupport 1.3.0-SNAPSHOT [17/17]
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-dependency-plugin:2.10:list (default-cli) @ dropwizard-support-testsupport ---
+[INFO] 
+[INFO] The following files have been resolved:
+[INFO]    aopalliance:aopalliance:jar:1.0:compile
+[INFO]    ch.qos.logback:logback-access:jar:1.2.3:compile
+[INFO]    ch.qos.logback:logback-classic:jar:1.2.3:compile
+[INFO]    ch.qos.logback:logback-core:jar:1.2.3:compile
+[INFO]    com.fasterxml.jackson.core:jackson-annotations:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.core:jackson-core:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.core:jackson-databind:jar:2.9.10.2:compile
+[INFO]    com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.datatype:jackson-datatype-guava:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.datatype:jackson-datatype-jdk8:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.datatype:jackson-datatype-joda:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.datatype:jackson-datatype-jsr310:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.jaxrs:jackson-jaxrs-base:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.module:jackson-module-afterburner:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.module:jackson-module-jaxb-annotations:jar:2.9.10:compile
+[INFO]    com.fasterxml.jackson.module:jackson-module-parameter-names:jar:2.9.10:compile
+[INFO]    com.fasterxml:classmate:jar:1.4.0:compile
+[INFO]    com.google.code.findbugs:jsr305:jar:3.0.2:compile
+[INFO]    com.google.errorprone:error_prone_annotations:jar:2.3.2:compile
+[INFO]    com.google.guava:failureaccess:jar:1.0.1:compile
+[INFO]    com.google.guava:guava:jar:28.1-jre:compile
+[INFO]    com.google.guava:listenablefuture:jar:9999.0-empty-to-avoid-conflict-with-guava:compile
+[INFO]    com.google.inject:guice:jar:4.1.0:compile
+[INFO]    com.google.j2objc:j2objc-annotations:jar:1.3:compile
+[INFO]    com.palominolabs.metrics:metrics-guice:jar:4.0.0:compile
+[INFO]    com.papertrail:profiler:jar:1.0.2:compile
+[INFO]    commons-codec:commons-codec:jar:1.13:compile
+[INFO]    io.dropwizard.metrics:metrics-annotation:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-core:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-healthchecks:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-httpclient:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-jersey2:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-jetty9:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-jmx:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-json:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-jvm:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-logback:jar:4.0.5:compile
+[INFO]    io.dropwizard.metrics:metrics-servlets:jar:4.0.5:compile
+[INFO]    io.dropwizard:dropwizard-assets:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-client:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-configuration:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-core:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-jackson:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-jersey:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-jetty:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-lifecycle:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-logging:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-metrics:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-request-logging:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-servlets:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-testing:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-util:jar:1.3.18:compile
+[INFO]    io.dropwizard:dropwizard-validation:jar:1.3.18:compile
+[INFO]    javax.activation:javax.activation-api:jar:1.2.0:compile
+[INFO]    javax.annotation:javax.annotation-api:jar:1.3.1:compile
+[INFO]    javax.inject:javax.inject:jar:1:compile
+[INFO]    javax.servlet:javax.servlet-api:jar:3.1.0:compile
+[INFO]    javax.validation:validation-api:jar:1.1.0.Final:compile
+[INFO]    javax.ws.rs:javax.ws.rs-api:jar:2.0.1:compile
+[INFO]    javax.xml.bind:jaxb-api:jar:2.3.1:compile
+[INFO]    joda-time:joda-time:jar:2.10.1:compile
+[INFO]    junit:junit:jar:4.12:compile
+[INFO]    net.bytebuddy:byte-buddy-agent:jar:1.9.7:compile
+[INFO]    net.bytebuddy:byte-buddy:jar:1.9.7:compile
+[INFO]    net.sourceforge.argparse4j:argparse4j:jar:0.8.1:compile
+[INFO]    org.apache.commons:commons-lang3:jar:3.8.1:compile
+[INFO]    org.apache.commons:commons-text:jar:1.2:compile
+[INFO]    org.apache.httpcomponents:httpclient:jar:4.5.10:compile
+[INFO]    org.apache.httpcomponents:httpcore:jar:4.4.12:compile
+[INFO]    org.assertj:assertj-core:jar:3.9.1:test
+[INFO]    org.checkerframework:checker-qual:jar:2.8.1:compile
+[INFO]    org.codehaus.groovy:groovy-all:jar:2.4.17:compile
+[INFO]    org.codehaus.mojo:animal-sniffer-annotations:jar:1.18:compile
+[INFO]    org.eclipse.jetty.toolchain.setuid:jetty-setuid-java:jar:1.0.3:compile
+[INFO]    org.eclipse.jetty:jetty-continuation:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-http:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-io:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-security:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-server:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-servlet:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-servlets:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-util:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-webapp:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.jetty:jetty-xml:jar:9.4.18.v20190429:compile
+[INFO]    org.eclipse.sisu:org.eclipse.sisu.inject:jar:0.3.3:compile
+[INFO]    org.glassfish.hk2:guice-bridge:jar:2.5.0-b63:compile
+[INFO]    org.glassfish.hk2:hk2-api:jar:2.5.0-b63:compile
+[INFO]    org.glassfish.hk2:hk2-locator:jar:2.5.0-b32:compile
+[INFO]    org.glassfish.hk2:hk2-utils:jar:2.5.0-b63:compile
+[INFO]    org.glassfish.hk2:osgi-resource-locator:jar:1.0.1:compile
+[INFO]    org.glassfish.jersey.bundles.repackaged:jersey-guava:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.connectors:jersey-apache-connector:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.containers:jersey-container-servlet-core:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.containers:jersey-container-servlet:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.core:jersey-client:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.core:jersey-common:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.core:jersey-server:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.ext.rx:jersey-rx-client:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.ext:jersey-bean-validation:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.ext:jersey-metainf-services:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.ext:jersey-proxy-client:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.media:jersey-media-jaxb:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.test-framework.providers:jersey-test-framework-provider-inmemory:jar:2.25.1:compile
+[INFO]    org.glassfish.jersey.test-framework:jersey-test-framework-core:jar:2.25.1:compile
+[INFO]    org.glassfish:javax.el:jar:3.0.0:compile
+[INFO]    org.hamcrest:hamcrest-core:jar:1.3:compile
+[INFO]    org.hamcrest:hamcrest-library:jar:1.3:compile
+[INFO]    org.hibernate:hibernate-validator:jar:5.4.3.Final:compile
+[INFO]    org.javassist:javassist:jar:3.24.1-GA:compile
+[INFO]    org.jboss.logging:jboss-logging:jar:3.3.0.Final:compile
+[INFO]    org.mockito:mockito-core:jar:2.24.0:compile
+[INFO]    org.objenesis:objenesis:jar:2.6:compile
+[INFO]    org.slf4j:jcl-over-slf4j:jar:1.7.26:compile
+[INFO]    org.slf4j:jul-to-slf4j:jar:1.7.26:compile
+[INFO]    org.slf4j:log4j-over-slf4j:jar:1.7.26:compile
+[INFO]    org.slf4j:slf4j-api:jar:1.7.26:compile
+[INFO]    org.sonatype.goodies.dropwizard:dropwizard-support-client:jar:1.3.0-SNAPSHOT:compile
+[INFO]    org.sonatype.goodies.dropwizard:dropwizard-support-core:jar:1.3.0-SNAPSHOT:compile
+[INFO]    org.sonatype.goodies.dropwizard:dropwizard-support-testbase:jar:1.3.0-SNAPSHOT:compile
+[INFO]    org.yaml:snakeyaml:jar:1.23:compile
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary for org.sonatype.goodies.dropwizard:dropwizard-support 1.3.0-SNAPSHOT:
+[INFO] 
+[INFO] org.sonatype.goodies.dropwizard:dropwizard-support . SUCCESS [  0.394 s]
+[INFO] org.sonatype.goodies.dropwizard:dropwizard-support-bom SUCCESS [  0.006 s]
+[INFO] org.sonatype.goodies.dropwizard:dropwizard-support-testbase SUCCESS [  0.040 s]
+[INFO] org.sonatype.goodies.dropwizard:dropwizard-support-core SUCCESS [  0.228 s]
+[INFO] org.sonatype.goodies.dropwizard:dropwizard-support-client SUCCESS [  0.078 s]
+[INFO] org.sonatype.goodies.dropwizard:dropwizard-support-views SUCCESS [  0.046 s]
+[INFO] org.sonatype.goodies.dropwizard:dropwizard-support-security SUCCESS [  0.079 s]
+[INFO] org.sonatype.goodies.dropwizard:dropwizard-support-events SUCCESS [  0.054 s]
+[INFO] org.sonatype.goodies.dropwizard:dropwizard-support-hibernate SUCCESS [  0.061 s]
+[INFO] org.sonatype.goodies.dropwizard:dropwizard-support-jdbi SUCCESS [  0.057 s]
+[INFO] org.sonatype.goodies.dropwizard:dropwizard-support-ratelimit SUCCESS [  0.042 s]
+[INFO] org.sonatype.goodies.dropwizard:dropwizard-support-rules SUCCESS [  0.036 s]
+[INFO] org.sonatype.goodies.dropwizard:dropwizard-support-datadog SUCCESS [  0.049 s]
+[INFO] org.sonatype.goodies.dropwizard:dropwizard-support-swagger SUCCESS [  0.043 s]
+[INFO] org.sonatype.goodies.dropwizard:dropwizard-support-aws SUCCESS [  0.042 s]
+[INFO] org.sonatype.goodies.dropwizard:dropwizard-support-camel SUCCESS [  0.162 s]
+[INFO] org.sonatype.goodies.dropwizard:dropwizard-support-testsupport SUCCESS [  0.048 s]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  2.107 s
+[INFO] Finished at: 2020-04-14T15:13:15-04:00
+[INFO] ------------------------------------------------------------------------
