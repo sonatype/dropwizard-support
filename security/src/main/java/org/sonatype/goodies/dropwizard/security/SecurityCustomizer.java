@@ -39,7 +39,7 @@ import org.slf4j.LoggerFactory;
 /**
  * Security customizer.
  *
- * @since ???
+ * @since 1.3.0
  */
 @Beta
 public class SecurityCustomizer<T extends ApplicationSupport<C>, C extends Configuration>

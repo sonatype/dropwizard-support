@@ -40,7 +40,7 @@ import org.slf4j.LoggerFactory;
 /**
  * Provides support for injecting select Jersey components into Guice components.
  *
- * @since ???
+ * @since 1.3.0
  */
 public class JerseyGuiceCustomizer
     implements ApplicationCustomizer

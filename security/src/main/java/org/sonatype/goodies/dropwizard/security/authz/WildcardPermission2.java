@@ -28,7 +28,7 @@ import static com.google.common.collect.ImmutableSet.toImmutableSet;
 /**
  * {@link WildcardPermission} which caches {@link #hashCode} for improved performance.
  *
- * @since ???
+ * @since 1.3.0
  */
 public class WildcardPermission2
     extends WildcardPermission

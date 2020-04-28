@@ -28,7 +28,7 @@ public class SimplePrincipalUsernameExtractor
     implements PrincipalUsernameExtractor
 {
   /**
-   * @since ???
+   * @since 1.3.0
    */
   @Nullable
   @Override

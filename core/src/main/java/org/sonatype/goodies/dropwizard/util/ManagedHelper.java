@@ -19,7 +19,7 @@ import io.dropwizard.lifecycle.Managed;
 /**
  * {@link Managed} helpers.
  *
- * @since ???
+ * @since 1.3.0
  */
 public class ManagedHelper
 {

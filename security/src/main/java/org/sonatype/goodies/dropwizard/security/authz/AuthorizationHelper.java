@@ -34,7 +34,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * Authorization helper.
  *
- * @since ???
+ * @since 1.3.0
  */
 @Named
 @Singleton

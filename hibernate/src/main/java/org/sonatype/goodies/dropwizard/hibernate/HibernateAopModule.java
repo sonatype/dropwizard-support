@@ -60,7 +60,7 @@ public class HibernateAopModule
    * already covers this AOP use-case; and presently can not be easily disabled
    * (would require rewriting {@link io.dropwizard.hibernate.HibernateBundle}.
    *
-   * @since ???
+   * @since 1.3.0
    */
   private static class UowResourceMethodMatcher
       extends AbstractMatcher<AnnotatedElement>

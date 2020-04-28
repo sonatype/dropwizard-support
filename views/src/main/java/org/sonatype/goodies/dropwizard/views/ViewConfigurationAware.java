@@ -15,7 +15,7 @@ package org.sonatype.goodies.dropwizard.views;
 /**
  * {@link ViewConfiguration} aware.
  *
- * @since ???
+ * @since 1.3.0
  */
 public interface ViewConfigurationAware
 {

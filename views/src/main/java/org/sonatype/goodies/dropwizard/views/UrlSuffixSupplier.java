@@ -26,7 +26,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * Helper to generate URL suffix for assets.
  *
- * @since ???
+ * @since 1.3.0
  */
 @Named
 @Singleton

@@ -23,7 +23,7 @@ import io.dropwizard.setup.Bootstrap;
 /**
  * View {@link ApplicationCustomizer}.
  *
- * @since ???
+ * @since 1.3.0
  */
 public class ViewCustomizer
     implements ApplicationCustomizer

@@ -15,7 +15,7 @@ package org.sonatype.goodies.dropwizard.jersey;
 /**
  * {@link LoggingConfiguration} aware.
  *
- * @since ???
+ * @since 1.3.0
  */
 public interface LoggingConfigurationAware
 {

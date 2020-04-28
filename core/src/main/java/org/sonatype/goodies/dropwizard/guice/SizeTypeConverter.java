@@ -20,7 +20,7 @@ import io.dropwizard.util.Size;
 /**
  * {@link Size} {@link TypeConverter}.
  *
- * @since ???
+ * @since 1.3.0
  */
 @Named
 public class SizeTypeConverter

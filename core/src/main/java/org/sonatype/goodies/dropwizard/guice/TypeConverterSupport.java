@@ -19,7 +19,7 @@ import org.eclipse.sisu.wire.AbstractTypeConverter;
 /**
  * {@link TypeConverter} support.
  *
- * @since ???
+ * @since 1.3.0
  */
 public abstract class TypeConverterSupport<T>
     extends AbstractTypeConverter<T>

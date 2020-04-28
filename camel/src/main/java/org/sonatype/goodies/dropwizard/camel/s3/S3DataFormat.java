@@ -21,7 +21,7 @@ import org.apache.camel.spi.DataFormat;
 /**
  * AWS S3 {@link DataFormat}.
  *
- * @since ???
+ * @since 1.3.0
  */
 public class S3DataFormat
     extends JacksonDataFormat

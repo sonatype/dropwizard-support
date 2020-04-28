@@ -75,7 +75,7 @@ public final class WebPreconditions
   /**
    * Throws {@link WebApplicationException} with {@link Status#NOT_FOUND} if value is null.
    *
-   * @since ???
+   * @since 1.3.0
    */
   @Nonnull
   public static <T> T checkFound(@Nullable final T value, final String message) {
@@ -86,7 +86,7 @@ public final class WebPreconditions
   /**
    * Throws {@link WebApplicationException} with {@link Status#NOT_FOUND} if value is null.
    *
-   * @since ???
+   * @since 1.3.0
    */
   @Nonnull
   public static <T> T checkFound(@Nullable final T value, final String message, final Object... params) {

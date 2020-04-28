@@ -26,7 +26,7 @@ import static org.apache.shiro.util.PermissionUtils.resolvePermissions;
 /**
  * Local {@link SimpleAccountRealm realm}.
  *
- * @since ???
+ * @since 1.3.0
  */
 public class LocalRealm
     extends SimpleAccountRealm

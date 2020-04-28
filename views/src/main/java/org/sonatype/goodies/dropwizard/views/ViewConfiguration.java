@@ -25,7 +25,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * View configuration.
  *
- * @since ???
+ * @since 1.3.0
  */
 public class ViewConfiguration
 {

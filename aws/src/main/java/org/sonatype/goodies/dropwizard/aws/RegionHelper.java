@@ -22,7 +22,7 @@ import org.slf4j.LoggerFactory;
 /**
  * AWS region helpers.
  *
- * @since ???
+ * @since 1.3.0
  */
 public class RegionHelper
 {

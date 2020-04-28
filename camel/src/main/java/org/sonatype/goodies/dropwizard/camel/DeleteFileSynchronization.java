@@ -26,7 +26,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * Delete file on {@link Exchange} completion.
  *
- * @since ???
+ * @since 1.3.0
  */
 public class DeleteFileSynchronization
     implements Synchronization

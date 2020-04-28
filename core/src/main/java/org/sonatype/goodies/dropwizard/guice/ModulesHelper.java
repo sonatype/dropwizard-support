@@ -25,7 +25,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * {@link Module Modules} helpers.
  *
- * @since ???
+ * @since 1.3.0
  */
 public class ModulesHelper
 {

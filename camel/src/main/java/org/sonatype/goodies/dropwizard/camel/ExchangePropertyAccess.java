@@ -26,7 +26,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * Helper to access a named/typed {@link Exchange} property.
  *
- * @since ???
+ * @since 1.3.0
  */
 public class ExchangePropertyAccess<T>
 {

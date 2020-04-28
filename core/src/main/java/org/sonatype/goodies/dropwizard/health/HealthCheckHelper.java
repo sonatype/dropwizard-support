@@ -86,7 +86,7 @@ public final class HealthCheckHelper
    * Helper to return {@link Result} based on the status family of an HTTP request.
    *
    * @see #checkStatus(WebTarget, Function)
-   * @since ???
+   * @since 1.3.0
    */
   public static Result checkStatus(final WebTarget target, final Family family) {
     checkNotNull(family);
