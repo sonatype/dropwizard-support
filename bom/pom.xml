@@ -34,6 +34,7 @@
     <swagger.version>1.5.23</swagger.version>
     <apache-shiro.version>1.5.0</apache-shiro.version>
     <aws-java-sdk.version>1.11.646</aws-java-sdk.version>
+    <spock.version>2.0-M3-groovy-3.0</spock.version>
   </properties>
 
   <dependencyManagement>
@@ -361,13 +362,13 @@
       <dependency>
         <groupId>org.spockframework</groupId>
         <artifactId>spock-core</artifactId>
-        <version>2.0-M3-groovy-3.0</version>
+        <version>${spock.version}</version>
       </dependency>
 
       <dependency>
         <groupId>org.spockframework</groupId>
         <artifactId>spock-junit4</artifactId>
-        <version>2.0-M3-groovy-3.0</version>
+        <version>${spock.version}</version>
       </dependency>
 
       <!-- INTERNAL -->
