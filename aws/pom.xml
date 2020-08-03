@@ -27,6 +27,10 @@
   <name>${project.groupId}:${project.artifactId}</name>
   <packaging>jar</packaging>
 
+  <properties>
+    <aws-java-sdk.version>1.11.832</aws-java-sdk.version>
+  </properties>
+
   <dependencyManagement>
     <dependencies>
       <dependency>
@@ -35,6 +39,27 @@
         <version>1.3.1-SNAPSHOT</version>
         <type>pom</type>
         <scope>import</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>com.amazonaws</groupId>
+        <artifactId>aws-java-sdk-bom</artifactId>
+        <version>${aws-java-sdk.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+
+      <!-- override DM from import to exclude commons-logging -->
+      <dependency>
+        <groupId>com.amazonaws</groupId>
+        <artifactId>aws-java-sdk-core</artifactId>
+        <version>${aws-java-sdk.version}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+          </exclusion>
+        </exclusions>
       </dependency>
     </dependencies>
   </dependencyManagement>
