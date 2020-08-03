@@ -21,6 +21,7 @@
     <groupId>org.sonatype.buildsupport</groupId>
     <artifactId>public-parent</artifactId>
     <version>20</version>
+    <relativePath/>
   </parent>
 
   <groupId>org.sonatype.goodies.dropwizard</groupId>
@@ -264,6 +265,7 @@
           </dependency>
         </dependencies>
         <configuration>
+          <!-- see: https://github.com/groovy/groovy-eclipse/wiki/Groovy-Eclipse-Maven-plugin -->
           <compilerId>groovy-eclipse-compiler</compilerId>
 <!--          <compilerArguments>-->
 <!--            <indy/>-->
