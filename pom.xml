@@ -265,9 +265,9 @@
         </dependencies>
         <configuration>
           <compilerId>groovy-eclipse-compiler</compilerId>
-          <compilerArguments>
-            <indy/>
-          </compilerArguments>
+<!--          <compilerArguments>-->
+<!--            <indy/>-->
+<!--          </compilerArguments>-->
         </configuration>
       </plugin>
 
