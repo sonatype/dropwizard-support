@@ -33,7 +33,6 @@
     <groovy.version>3.0.5</groovy.version>
     <swagger.version>1.5.23</swagger.version>
     <apache-shiro.version>1.5.0</apache-shiro.version>
-    <aws-java-sdk.version>1.11.646</aws-java-sdk.version>
     <spock.version>2.0-M3-groovy-3.0</spock.version>
   </properties>
 
@@ -89,27 +88,6 @@
           <exclusion>
             <groupId>org.glassfish.hk2.external</groupId>
             <artifactId>javax.inject</artifactId>
-          </exclusion>
-        </exclusions>
-      </dependency>
-
-      <dependency>
-        <groupId>com.amazonaws</groupId>
-        <artifactId>aws-java-sdk-bom</artifactId>
-        <version>${aws-java-sdk.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-
-      <!-- override DM from import to exclude commons-logging -->
-      <dependency>
-        <groupId>com.amazonaws</groupId>
-        <artifactId>aws-java-sdk-core</artifactId>
-        <version>${aws-java-sdk.version}</version>
-        <exclusions>
-          <exclusion>
-            <groupId>commons-logging</groupId>
-            <artifactId>commons-logging</artifactId>
           </exclusion>
         </exclusions>
       </dependency>
