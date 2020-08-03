@@ -20,7 +20,8 @@
   <parent>
     <groupId>org.sonatype.buildsupport</groupId>
     <artifactId>public-parent</artifactId>
-    <version>15</version>
+    <version>20</version>
+    <relativePath/>
   </parent>
 
   <groupId>org.sonatype.goodies.dropwizard</groupId>
@@ -255,21 +256,20 @@
           <dependency>
             <groupId>org.codehaus.groovy</groupId>
             <artifactId>groovy-eclipse-compiler</artifactId>
-            <version>3.4.0-01</version>
+            <version>3.6.0-03</version>
           </dependency>
           <dependency>
             <groupId>org.codehaus.groovy</groupId>
             <artifactId>groovy-eclipse-batch</artifactId>
-            <version>2.4.17-01</version>
+            <version>3.0.5-01</version>
           </dependency>
         </dependencies>
         <configuration>
+          <!-- see: https://github.com/groovy/groovy-eclipse/wiki/Groovy-Eclipse-Maven-plugin -->
           <compilerId>groovy-eclipse-compiler</compilerId>
-          <!--
-          <compilerArguments>
-            <indy/>
-          </compilerArguments>
-          -->
+<!--          <compilerArguments>-->
+<!--            <indy/>-->
+<!--          </compilerArguments>-->
         </configuration>
       </plugin>
 
