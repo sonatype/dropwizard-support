@@ -25,7 +25,7 @@ import com.codahale.metrics.health.HealthCheck;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * AWS SQS queue {@link HealthCheck}.
+ * AWS SQS queue exists {@link HealthCheck}.
  *
  * @since ???
  */

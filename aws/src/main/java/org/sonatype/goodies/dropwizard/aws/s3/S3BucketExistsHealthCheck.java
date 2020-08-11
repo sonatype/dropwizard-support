@@ -19,7 +19,7 @@ import com.codahale.metrics.health.HealthCheck;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * AWS S3 bucket {@link HealthCheck}.
+ * AWS S3 bucket exists {@link HealthCheck}.
  *
  * @since ???
  */
