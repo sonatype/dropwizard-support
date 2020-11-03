@@ -32,7 +32,7 @@
     <apache-httpclient.version>4.5.10</apache-httpclient.version>
     <groovy.version>3.0.6</groovy.version>
     <swagger.version>1.5.23</swagger.version>
-    <apache-shiro.version>1.5.0</apache-shiro.version>
+    <apache-shiro.version>1.5.3</apache-shiro.version>
   </properties>
 
   <dependencyManagement>
