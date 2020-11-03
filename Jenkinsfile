@@ -2,7 +2,7 @@
 
 mavenSnapshotPipeline(
   mavenVersion: 'Maven 3.6.x',
-  javaVersion: 'Java 8',
+  javaVersion: 'Java 11',
   mavenOptions: '-Dit -Dbuild.notes="b:${BRANCH_NAME}, j:${JOB_NAME}, n:#${BUILD_NUMBER}"',
   usePublicSettingsXmlFile: true,
   useEventSpy: false,
