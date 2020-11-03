@@ -40,16 +40,7 @@
       <dependency>
         <groupId>org.apache.camel</groupId>
         <artifactId>camel-bom</artifactId>
-        <version>3.4.2</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-
-      <!-- HACK: latest camel depends on newer metrics; force the same version used by Dropwizard -->
-      <dependency>
-        <groupId>io.dropwizard.metrics</groupId>
-        <artifactId>metrics-bom</artifactId>
-        <version>4.0.5</version>
+        <version>3.6.0</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
