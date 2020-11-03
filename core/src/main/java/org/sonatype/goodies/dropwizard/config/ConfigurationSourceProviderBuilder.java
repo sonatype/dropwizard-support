@@ -17,9 +17,10 @@ import java.util.List;
 
 import io.dropwizard.configuration.ConfigurationSourceProvider;
 import io.dropwizard.configuration.SubstitutingSourceProvider;
-import org.apache.commons.text.StrLookup;
-import org.apache.commons.text.StrMatcher;
-import org.apache.commons.text.StrSubstitutor;
+import org.apache.commons.text.StringSubstitutor;
+import org.apache.commons.text.lookup.StringLookup;
+import org.apache.commons.text.matcher.StringMatcher;
+import org.apache.commons.text.matcher.StringMatcherFactory;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkState;
@@ -31,15 +32,15 @@ import static com.google.common.base.Preconditions.checkState;
  */
 public class ConfigurationSourceProviderBuilder
 {
-  private char escapeChar = StrSubstitutor.DEFAULT_ESCAPE;
+  private char escapeChar = StringSubstitutor.DEFAULT_ESCAPE;
 
-  private StrMatcher prefixMatcher = StrSubstitutor.DEFAULT_PREFIX;
+  private StringMatcher prefixMatcher = StringSubstitutor.DEFAULT_PREFIX;
 
-  private StrMatcher suffixMatcher = StrSubstitutor.DEFAULT_SUFFIX;
+  private StringMatcher suffixMatcher = StringSubstitutor.DEFAULT_SUFFIX;
 
-  private StrMatcher valueDelimiterMatcher = StrSubstitutor.DEFAULT_VALUE_DELIMITER;
+  private StringMatcher valueDelimiterMatcher = StringSubstitutor.DEFAULT_VALUE_DELIMITER;
 
-  private final List<StrLookup<?>> lookups = new ArrayList<>();
+  private final List<StringLookup> lookups = new ArrayList<>();
 
   private final List<ConfigurationSourceProvider> providers = new ArrayList<>();
 
@@ -48,34 +49,34 @@ public class ConfigurationSourceProviderBuilder
     return this;
   }
 
-  public ConfigurationSourceProviderBuilder prefixMatcher(final StrMatcher matcher) {
+  public ConfigurationSourceProviderBuilder prefixMatcher(final StringMatcher matcher) {
     this.prefixMatcher = checkNotNull(matcher);
     return this;
   }
 
   public ConfigurationSourceProviderBuilder prefixMatcher(final String token) {
     checkNotNull(token);
-    return prefixMatcher(StrMatcher.stringMatcher(token));
+    return prefixMatcher(StringMatcherFactory.INSTANCE.stringMatcher(token));
   }
 
-  public ConfigurationSourceProviderBuilder suffixMatcher(final StrMatcher matcher) {
+  public ConfigurationSourceProviderBuilder suffixMatcher(final StringMatcher matcher) {
     this.suffixMatcher = checkNotNull(matcher);
     return this;
   }
 
   public ConfigurationSourceProviderBuilder suffixMatcher(final String token) {
     checkNotNull(token);
-    return suffixMatcher(StrMatcher.stringMatcher(token));
+    return suffixMatcher(StringMatcherFactory.INSTANCE.stringMatcher(token));
   }
 
-  public ConfigurationSourceProviderBuilder valueDelimiterMatcher(final StrMatcher matcher) {
+  public ConfigurationSourceProviderBuilder valueDelimiterMatcher(final StringMatcher matcher) {
     this.valueDelimiterMatcher = checkNotNull(matcher);
     return this;
   }
 
   public ConfigurationSourceProviderBuilder valueDelimiterMatcher(final String token) {
     checkNotNull(token);
-    return valueDelimiterMatcher(StrMatcher.stringMatcher(token));
+    return valueDelimiterMatcher(StringMatcherFactory.INSTANCE.stringMatcher(token));
   }
 
   public ConfigurationSourceProviderBuilder simpleStyle(final char token) {
@@ -87,7 +88,7 @@ public class ConfigurationSourceProviderBuilder
     return this;
   }
 
-  public ConfigurationSourceProviderBuilder lookup(final StrLookup<?> lookup) {
+  public ConfigurationSourceProviderBuilder lookup(final StringLookup lookup) {
     checkNotNull(lookup);
     lookups.add(lookup);
     return this;
@@ -103,12 +104,12 @@ public class ConfigurationSourceProviderBuilder
     checkState(!lookups.isEmpty(), "At least one lookup must be specified");
     checkState(!providers.isEmpty(), "At least one provider must be specified");
 
-    StrLookup lookup;
+    StringLookup lookup;
     if (lookups.size() == 1) {
       lookup = lookups.get(0);
     }
     else {
-      lookup = new FirstMatchStrLookup(lookups.toArray(new StrLookup[0]));
+      lookup = new FirstMatchStringLookup(lookups.toArray(new StringLookup[0]));
     }
 
     ConfigurationSourceProvider provider;
@@ -119,7 +120,7 @@ public class ConfigurationSourceProviderBuilder
       provider = new FirstMatchConfigurationSourceProvider(providers.toArray(new ConfigurationSourceProvider[0]));
     }
 
-    StrSubstitutor substitutor = new StrSubstitutor(lookup, prefixMatcher, suffixMatcher, escapeChar, valueDelimiterMatcher);
+    StringSubstitutor substitutor = new StringSubstitutor(lookup, prefixMatcher, suffixMatcher, escapeChar, valueDelimiterMatcher);
     return new SubstitutingSourceProvider(provider, substitutor);
   }
 }
