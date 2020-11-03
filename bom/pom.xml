@@ -28,18 +28,22 @@
   <packaging>pom</packaging>
 
   <properties>
+    <groovy.version>3.0.6</groovy.version>
+
     <dropwizard.version>2.0.15</dropwizard.version>
+    <guice.version>4.2.3</guice.version>
     <hk2.version>2.6.1</hk2.version>
+
+    <hibernate-core.version>5.4.23.Final</hibernate-core.version>
+    <hibernate-validator.version>6.1.6.Final</hibernate-validator.version>
 
     <apache-httpclient.version>4.5.10</apache-httpclient.version>
     <swagger.version>1.5.23</swagger.version>
-    <apache-shiro.version>1.5.3</apache-shiro.version>
 
     <junit4.version>4.13.1</junit4.version>
     <junit5.version>5.7.0</junit5.version>
     <hamcrest.version>2.2</hamcrest.version>
     <mockito.version>3.6.0</mockito.version>
-    <groovy.version>3.0.6</groovy.version>
   </properties>
 
   <dependencyManagement>
@@ -180,68 +184,23 @@
         <version>${apache-httpclient.version}</version>
       </dependency>
 
-      <dependency>
-        <groupId>javax.validation</groupId>
-        <artifactId>validation-api</artifactId>
-        <version>1.1.0.Final</version>
-        <!-- keep in sync with hibernate-validator via dropwizard-validation -->
-      </dependency>
+<!--      <dependency>-->
+<!--        <groupId>javax.validation</groupId>-->
+<!--        <artifactId>validation-api</artifactId>-->
+<!--        <version>1.1.0.Final</version>-->
+<!--        &lt;!&ndash; keep in sync with hibernate-validator via dropwizard-validation &ndash;&gt;-->
+<!--      </dependency>-->
 
       <dependency>
         <groupId>org.hibernate</groupId>
         <artifactId>hibernate-jpamodelgen</artifactId>
-        <version>5.2.18.Final</version>
-        <!-- keep in sync with hibernate-core via dropwizard-dependencies -->
-      </dependency>
-
-      <dependency>
-        <groupId>org.apache.shiro</groupId>
-        <artifactId>shiro-core</artifactId>
-        <version>${apache-shiro.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.apache.shiro</groupId>
-        <artifactId>shiro-web</artifactId>
-        <version>${apache-shiro.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.apache.shiro</groupId>
-        <artifactId>shiro-guice</artifactId>
-        <version>${apache-shiro.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.apache.shiro</groupId>
-        <artifactId>shiro-jaxrs</artifactId>
-        <version>${apache-shiro.version}</version>
+        <version>${hibernate-core.version}</version>
       </dependency>
 
       <dependency>
         <groupId>commons-codec</groupId>
         <artifactId>commons-codec</artifactId>
         <version>1.13</version>
-      </dependency>
-
-      <dependency>
-        <!-- used by shiro -->
-        <groupId>commons-beanutils</groupId>
-        <artifactId>commons-beanutils</artifactId>
-        <version>1.9.4</version>
-        <exclusions>
-          <exclusion>
-            <groupId>commons-logging</groupId>
-            <artifactId>commons-logging</artifactId>
-          </exclusion>
-        </exclusions>
-      </dependency>
-
-      <dependency>
-        <!-- used by shiro -->
-        <groupId>commons-collections</groupId>
-        <artifactId>commons-collections</artifactId>
-        <version>3.2.2</version>
       </dependency>
 
       <dependency>
@@ -259,25 +218,25 @@
       <dependency>
         <groupId>com.google.inject</groupId>
         <artifactId>guice</artifactId>
-        <version>4.1.0</version>
+        <version>${guice.version}</version>
       </dependency>
 
       <dependency>
         <groupId>com.google.inject.extensions</groupId>
         <artifactId>guice-multibindings</artifactId>
-        <version>4.1.0</version>
+        <version>${guice.version}</version>
       </dependency>
 
       <dependency>
         <groupId>com.google.inject.extensions</groupId>
         <artifactId>guice-assistedinject</artifactId>
-        <version>4.1.0</version>
+        <version>${guice.version}</version>
       </dependency>
 
       <dependency>
         <groupId>org.eclipse.sisu</groupId>
         <artifactId>org.eclipse.sisu.inject</artifactId>
-        <version>0.3.3</version>
+        <version>0.3.4</version>
       </dependency>
 
       <dependency>
