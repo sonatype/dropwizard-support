@@ -30,10 +30,16 @@
   <properties>
     <dropwizard.version>2.0.15</dropwizard.version>
     <hk2.version>2.6.1</hk2.version>
+
     <apache-httpclient.version>4.5.10</apache-httpclient.version>
-    <groovy.version>3.0.6</groovy.version>
     <swagger.version>1.5.23</swagger.version>
     <apache-shiro.version>1.5.3</apache-shiro.version>
+
+    <junit4.version>4.13.1</junit4.version>
+    <junit5.version>5.7.0</junit5.version>
+    <hamcrest.version>2.2</hamcrest.version>
+    <mockito.version>3.6.0</mockito.version>
+    <groovy.version>3.0.6</groovy.version>
   </properties>
 
   <dependencyManagement>
@@ -328,25 +334,43 @@
       <dependency>
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
-        <version>4.13.1</version>
+        <version>${junit4.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-api</artifactId>
+        <version>${junit5.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-engine</artifactId>
+        <version>${junit5.version}</version>
       </dependency>
 
       <dependency>
         <groupId>org.hamcrest</groupId>
         <artifactId>hamcrest-core</artifactId>
-        <version>2.2</version>
+        <version>${hamcrest.version}</version>
       </dependency>
 
       <dependency>
         <groupId>org.hamcrest</groupId>
         <artifactId>hamcrest-library</artifactId>
-        <version>2.2</version>
+        <version>${hamcrest.version}</version>
       </dependency>
 
       <dependency>
         <groupId>org.mockito</groupId>
         <artifactId>mockito-core</artifactId>
-        <version>2.24.0</version>
+        <version>${mockito.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.mockito</groupId>
+        <artifactId>mockito-junit-jupiter</artifactId>
+        <version>${mockito.version}</version>
       </dependency>
 
       <dependency>
