@@ -17,7 +17,8 @@ import javax.ws.rs.core.FeatureContext;
 
 import com.google.inject.Injector;
 import org.glassfish.hk2.api.ServiceLocator;
-import org.glassfish.jersey.ServiceLocatorProvider;
+import org.glassfish.jersey.InjectionManagerProvider;
+import org.glassfish.jersey.internal.inject.InjectionManager;
 import org.jvnet.hk2.guice.bridge.api.GuiceBridge;
 import org.jvnet.hk2.guice.bridge.api.GuiceIntoHK2Bridge;
 
@@ -39,7 +40,8 @@ public class JerseyGuiceBridgeFeature
 
   @Override
   public boolean configure(final FeatureContext context) {
-    ServiceLocator locator = ServiceLocatorProvider.getServiceLocator(context);
+    InjectionManager injection = InjectionManagerProvider.getInjectionManager(context);
+    ServiceLocator locator = injection.getInstance(ServiceLocator.class);
     GuiceBridge.getGuiceBridge().initializeGuiceBridge(locator);
     GuiceIntoHK2Bridge bridge = locator.getService(GuiceIntoHK2Bridge.class);
     bridge.bridgeGuiceInjector(injector);

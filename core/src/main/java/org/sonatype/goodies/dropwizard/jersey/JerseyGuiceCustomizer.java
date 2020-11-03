@@ -30,7 +30,8 @@ import com.google.inject.Provides;
 import io.dropwizard.Configuration;
 import io.dropwizard.setup.Environment;
 import org.glassfish.hk2.api.ServiceLocator;
-import org.glassfish.jersey.ServiceLocatorProvider;
+import org.glassfish.jersey.InjectionManagerProvider;
+import org.glassfish.jersey.internal.inject.InjectionManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -67,6 +68,8 @@ public class JerseyGuiceCustomizer
     log.trace("Lookup: {} -> {}", type, result);
     return result;
   }
+
+  // FIXME: rename or adjust for top-level JerseyModule
 
   private class JerseyModule
     implements Module
@@ -115,7 +118,8 @@ public class JerseyGuiceCustomizer
       throws Exception
   {
     environment.jersey().register((Feature) context -> {
-      ServiceLocator locator = ServiceLocatorProvider.getServiceLocator(context);
+      InjectionManager injection = InjectionManagerProvider.getInjectionManager(context);
+      ServiceLocator locator = injection.getInstance(ServiceLocator.class);
       log.debug("Service-locator: {}", locator);
       locatorHandle.set(locator);
       return locator != null;
