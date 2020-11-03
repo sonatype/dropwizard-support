@@ -12,7 +12,7 @@
  */
 package org.sonatype.goodies.dropwizard.aws.s3
 
-import org.junit.Test
+import org.junit.jupiter.api.Test
 
 /**
  * {@link S3Location} tests.
