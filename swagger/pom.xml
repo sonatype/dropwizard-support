@@ -48,12 +48,12 @@
     <dependency>
       <groupId>io.swagger</groupId>
       <artifactId>swagger-jersey2-jaxrs</artifactId>
-      <exclusions>
-        <exclusion>
-          <groupId>org.glassfish.hk2.external</groupId>
-          <artifactId>javax.inject</artifactId>
-        </exclusion>
-      </exclusions>
+<!--      <exclusions>-->
+<!--        <exclusion>-->
+<!--          <groupId>org.glassfish.hk2.external</groupId>-->
+<!--          <artifactId>javax.inject</artifactId>-->
+<!--        </exclusion>-->
+<!--      </exclusions>-->
     </dependency>
 
     <dependency>
