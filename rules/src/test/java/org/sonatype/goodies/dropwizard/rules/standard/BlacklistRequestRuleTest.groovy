@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse
 
 import org.sonatype.goodies.dropwizard.rules.matcher.request.RemoteIpRequestMatcher
 
-import org.junit.Test
+import org.junit.jupiter.api.Test
 
 import static javax.ws.rs.core.Response.Status.BAD_REQUEST
 import static org.mockito.Mockito.mock

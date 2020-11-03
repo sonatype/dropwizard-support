@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest
 
 import org.sonatype.goodies.dropwizard.rules.matcher.string.ContainsStringMatcher
 
-import org.junit.Test
+import org.junit.jupiter.api.Test
 
 import static javax.ws.rs.core.HttpHeaders.USER_AGENT
 import static org.mockito.Mockito.mock

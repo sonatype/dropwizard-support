@@ -20,20 +20,20 @@ import org.sonatype.goodies.dropwizard.rules.matcher.request.RemoteIpRequestMatc
 import org.sonatype.goodies.dropwizard.rules.standard.BlacklistRequestRule
 import org.sonatype.goodies.dropwizard.rules.standard.WhitelistRequestRule
 
-import org.junit.After
-import org.junit.Test
-import org.junit.runner.RunWith
+import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.Mock
-import org.mockito.junit.MockitoJUnitRunner
+import org.mockito.junit.jupiter.MockitoExtension
 
 import static org.mockito.Mockito.verify
-import static org.mockito.Mockito.verifyZeroInteractions
+import static org.mockito.Mockito.verifyNoInteractions
 import static org.mockito.Mockito.when
 
 /**
  * {@link RequestRuleServiceImpl} tests.
  */
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
 class RequestRuleServiceImplTest
 {
   @Mock
@@ -56,7 +56,7 @@ class RequestRuleServiceImplTest
 
   private RequestRuleServiceImpl underTest
 
-  @After
+  @AfterEach
   void tearDown() {
     underTest?.stop()
   }
@@ -152,7 +152,7 @@ class RequestRuleServiceImplTest
 
     verify(chain).doFilter(request, response)
     verify(firstRule).evaluate(request)
-    verifyZeroInteractions(middleRule, lastRule)
+    verifyNoInteractions(middleRule, lastRule)
   }
 
   @Test
@@ -169,7 +169,7 @@ class RequestRuleServiceImplTest
     verify(response).sendError(BlacklistRequestRule.DEFAULT_STATUS.statusCode, BlacklistRequestRule.DEFAULT_REASON)
     verify(firstRule).evaluate(request)
     verify(middleRule).evaluate(request)
-    verifyZeroInteractions(lastRule)
+    verifyNoInteractions(lastRule)
   }
 
   @Test

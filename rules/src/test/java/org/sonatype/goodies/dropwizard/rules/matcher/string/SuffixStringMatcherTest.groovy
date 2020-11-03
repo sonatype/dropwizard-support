@@ -12,7 +12,7 @@
  */
 package org.sonatype.goodies.dropwizard.rules.matcher.string
 
-import org.junit.Test
+import org.junit.jupiter.api.Test
 
 /**
  * {@link SuffixStringMatcher} tests.
