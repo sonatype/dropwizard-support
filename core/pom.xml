@@ -61,13 +61,13 @@
     </dependency>
 
     <dependency>
-      <groupId>com.palominolabs.metrics</groupId>
-      <artifactId>metrics-guice</artifactId>
+      <groupId>org.glassfish.hk2</groupId>
+      <artifactId>guice-bridge</artifactId>
     </dependency>
 
     <dependency>
-      <groupId>org.glassfish.hk2</groupId>
-      <artifactId>guice-bridge</artifactId>
+      <groupId>com.palominolabs.metrics</groupId>
+      <artifactId>metrics-guice</artifactId>
     </dependency>
 
     <dependency>
@@ -75,17 +75,17 @@
       <artifactId>guava</artifactId>
     </dependency>
 
-    <dependency>
-      <!-- include additional api for post-java-8 support -->
-      <groupId>javax.activation</groupId>
-      <artifactId>javax.activation-api</artifactId>
-    </dependency>
+<!--    <dependency>-->
+<!--      &lt;!&ndash; include additional api for post-java-8 support &ndash;&gt;-->
+<!--      <groupId>javax.activation</groupId>-->
+<!--      <artifactId>javax.activation-api</artifactId>-->
+<!--    </dependency>-->
 
-    <dependency>
-      <!-- include additional api for post-java-8 support -->
-      <groupId>javax.xml.bind</groupId>
-      <artifactId>jaxb-api</artifactId>
-    </dependency>
+<!--    <dependency>-->
+<!--      &lt;!&ndash; include additional api for post-java-8 support &ndash;&gt;-->
+<!--      <groupId>javax.xml.bind</groupId>-->
+<!--      <artifactId>jaxb-api</artifactId>-->
+<!--    </dependency>-->
 
     <dependency>
       <groupId>io.swagger</groupId>
