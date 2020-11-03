@@ -14,13 +14,11 @@ package org.sonatype.goodies.dropwizard.ratelimit
 
 import com.google.common.base.Ticker
 import io.dropwizard.util.Duration
-import org.junit.Ignore
-import org.junit.Test
+import org.junit.jupiter.api.Test
 
 /**
  * Leaky-bucket trials.
  */
-@Ignore
 class LeakyBucketTrial
 {
   private static final Ticker ticker = Ticker.systemTicker()

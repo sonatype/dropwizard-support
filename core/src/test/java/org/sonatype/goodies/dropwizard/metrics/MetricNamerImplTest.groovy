@@ -12,8 +12,8 @@
  */
 package org.sonatype.goodies.dropwizard.metrics
 
-import org.junit.Before
-import org.junit.Test
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
 
 import static org.sonatype.goodies.dropwizard.metrics.MetricNamerImpl.CLASS
 import static org.sonatype.goodies.dropwizard.metrics.MetricNamerImpl.METHOD
@@ -27,7 +27,7 @@ class MetricNamerImplTest
 {
   MetricNamerImpl underTest
 
-  @Before
+  @BeforeEach
   void setUp() {
     underTest = new MetricNamerImpl()
   }

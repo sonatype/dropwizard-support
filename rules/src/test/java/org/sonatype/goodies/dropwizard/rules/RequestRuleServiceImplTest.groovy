@@ -20,11 +20,11 @@ import org.sonatype.goodies.dropwizard.rules.matcher.request.RemoteIpRequestMatc
 import org.sonatype.goodies.dropwizard.rules.standard.BlacklistRequestRule
 import org.sonatype.goodies.dropwizard.rules.standard.WhitelistRequestRule
 
-import org.junit.After
-import org.junit.Test
-import org.junit.runner.RunWith
+import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.Mock
-import org.mockito.junit.MockitoJUnitRunner
+import org.mockito.junit.jupiter.MockitoExtension
 
 import static org.mockito.Mockito.verify
 import static org.mockito.Mockito.verifyZeroInteractions
@@ -33,7 +33,7 @@ import static org.mockito.Mockito.when
 /**
  * {@link RequestRuleServiceImpl} tests.
  */
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
 class RequestRuleServiceImplTest
 {
   @Mock
@@ -56,7 +56,7 @@ class RequestRuleServiceImplTest
 
   private RequestRuleServiceImpl underTest
 
-  @After
+  @AfterEach
   void tearDown() {
     underTest?.stop()
   }

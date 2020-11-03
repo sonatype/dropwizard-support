@@ -14,12 +14,12 @@ package org.sonatype.goodies.dropwizard.events
 
 import com.google.common.eventbus.EventBus
 import org.eclipse.sisu.inject.BeanLocator
-import org.junit.After
-import org.junit.Before
-import org.junit.Test
-import org.junit.runner.RunWith
+import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.Mock
-import org.mockito.junit.MockitoJUnitRunner
+import org.mockito.junit.jupiter.MockitoExtension
 
 import static org.mockito.Matchers.anyString
 import static org.mockito.Matchers.eq
@@ -32,7 +32,7 @@ import static org.mockito.Mockito.when
 /**
  * {@link EventServiceImpl} tests
  */
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
 class EventServiceImplTest
 {
   @Mock
@@ -52,7 +52,7 @@ class EventServiceImplTest
 
   EventServiceImpl underTest
 
-  @Before
+  @BeforeEach
   void setUp() {
     when(eventBusFactory.create(anyString())).thenReturn(synchronous)
     when(eventBusFactory.create(anyString(), eq(eventExecutor))).thenReturn(asynchronous)
@@ -60,7 +60,7 @@ class EventServiceImplTest
     underTest.start()
   }
 
-  @After
+  @AfterEach
   void tearDown() {
     underTest?.stop()
     underTest = null
