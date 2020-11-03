@@ -20,7 +20,7 @@
   <parent>
     <groupId>org.sonatype.buildsupport</groupId>
     <artifactId>public-parent</artifactId>
-    <version>21</version>
+    <version>22</version>
     <relativePath/>
   </parent>
 
@@ -128,7 +128,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-jxr-plugin</artifactId>
-          <version>2.5</version>
+          <version>3.0.0</version>
         </plugin>
 
         <plugin>
@@ -169,7 +169,7 @@
         <plugin>
           <groupId>org.codehaus.gmaven</groupId>
           <artifactId>groovy-maven-plugin</artifactId>
-          <version>2.1</version>
+          <version>2.1.1</version>
         </plugin>
       </plugins>
     </pluginManagement>
@@ -261,15 +261,12 @@
           <dependency>
             <groupId>org.codehaus.groovy</groupId>
             <artifactId>groovy-eclipse-batch</artifactId>
-            <version>3.0.5-01</version>
+            <version>3.0.6-01</version>
           </dependency>
         </dependencies>
         <configuration>
           <!-- see: https://github.com/groovy/groovy-eclipse/wiki/Groovy-Eclipse-Maven-plugin -->
           <compilerId>groovy-eclipse-compiler</compilerId>
-<!--          <compilerArguments>-->
-<!--            <indy/>-->
-<!--          </compilerArguments>-->
         </configuration>
       </plugin>
 
