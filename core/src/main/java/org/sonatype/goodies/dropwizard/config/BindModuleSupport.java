@@ -81,6 +81,9 @@ public abstract class BindModuleSupport
     }
   }
 
+  // FIXME: need to resolve how this works with java9+ module and access
+  // FIXME: java11 reports warnings when attempting to detect bindings via reflection
+
   /**
    * Attempt to expose bindings for given member.
    */
