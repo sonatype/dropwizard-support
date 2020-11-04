@@ -12,8 +12,6 @@
  */
 package org.sonatype.goodies.dropwizard.env;
 
-import io.dropwizard.Application;
-import io.dropwizard.util.JarLocation;
 import org.slf4j.Logger;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -50,11 +48,5 @@ public class BasicEnvironmentReporter
 
     logger.info("CWD: {}", resolvePath(System.getProperty("user.dir")));
     logger.info("TMP: {}", resolvePath(System.getProperty("java.io.tmpdir")));
-
-    logger.info("Dropwizard: {}", implVersion(Application.class));
-  }
-
-  private static String implVersion(final Class type) {
-    return new JarLocation(type).getVersion().orElse("unknown-version");
   }
 }
