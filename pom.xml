@@ -76,6 +76,7 @@
     <module>bom</module>
     <module>testbase</module>
     <module>core</module>
+    <module>assets</module>
     <module>client</module>
     <module>views</module>
     <module>security</module>
