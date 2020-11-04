@@ -39,7 +39,6 @@ import org.sonatype.goodies.dropwizard.guice.ParameterPropertiesModule;
 
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Throwables;
-import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Module;
@@ -178,14 +177,6 @@ public abstract class ApplicationSupport<T extends Configuration>
       Map<String,Object> properties = ((ConfigurationSupport)config).getProperties();
       modules.add(new ParameterPropertiesModule(properties));
     }
-
-    modules.add(new AbstractModule() {
-      @Override
-      protected void configure() {
-        // HACK: expose application name
-        bind(ApplicationName.class).toInstance(() -> getName());
-      }
-    });
 
     // add binding for application configuration
     modules.add(new ConfigurationModule(config));

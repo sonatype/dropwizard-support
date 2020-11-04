@@ -16,7 +16,7 @@ import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Produces;
 
-import org.sonatype.goodies.dropwizard.app.ApplicationVersion;
+import org.sonatype.goodies.dropwizard.app.ApplicationMetadata;
 import org.sonatype.goodies.dropwizard.jaxrs.ResourceSupport;
 
 import io.swagger.annotations.Api;
@@ -36,11 +36,11 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 public abstract class VersionResourceSupport
     extends ResourceSupport
 {
-  private final ApplicationVersion version;
+  private final ApplicationMetadata applicationMetadata;
 
   @Inject
-  public VersionResourceSupport(final ApplicationVersion version) {
-    this.version = checkNotNull(version);
+  public VersionResourceSupport(final ApplicationMetadata applicationMetadata) {
+    this.applicationMetadata = checkNotNull(applicationMetadata);
   }
 
   @GET
@@ -51,10 +51,10 @@ public abstract class VersionResourceSupport
   })
   public Version get() {
     return new Version(
-        version.getVersion(),
-        version.getBuildTimestamp(),
-        version.getBuildTag(),
-        version.getBuildNotes()
+        applicationMetadata.getVersion(),
+        applicationMetadata.getBuildTimestamp(),
+        applicationMetadata.getBuildTag(),
+        applicationMetadata.getBuildNotes()
     );
   }
 }

@@ -18,10 +18,9 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
-import org.sonatype.goodies.dropwizard.app.ApplicationVersion;
+import org.sonatype.goodies.dropwizard.app.ApplicationMetadata;
 
 import com.google.common.annotations.VisibleForTesting;
-import io.dropwizard.setup.Environment;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -43,8 +42,8 @@ public class UserAgentSupplier
   private final String value;
 
   @Inject
-  public UserAgentSupplier(final Environment environment, final ApplicationVersion version) {
-    this(environment.getName(), version.getVersion());
+  public UserAgentSupplier(final ApplicationMetadata applicationMetadata) {
+    this(applicationMetadata.getName(), applicationMetadata.getVersion());
   }
 
   @VisibleForTesting

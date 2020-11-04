@@ -18,7 +18,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
-import org.sonatype.goodies.dropwizard.app.ApplicationVersion;
+import org.sonatype.goodies.dropwizard.app.ApplicationMetadata;
 import org.sonatype.goodies.dropwizard.version.VersionLoader;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -33,19 +33,19 @@ import static com.google.common.base.Preconditions.checkNotNull;
 public class UrlSuffixSupplier
     implements Supplier<String>
 {
-  private final ApplicationVersion version;
+  private final ApplicationMetadata applicationMetadata;
 
   private volatile String suffix;
 
   @Inject
-  public UrlSuffixSupplier(final ApplicationVersion version) {
-    this.version = checkNotNull(version);
+  public UrlSuffixSupplier(final ApplicationMetadata applicationMetadata) {
+    this.applicationMetadata = checkNotNull(applicationMetadata);
   }
 
   @Override
   public String get() {
     if (suffix == null) {
-      String v = version.getVersion();
+      String v = applicationMetadata.getVersion();
       if (v.contains("SNAPSHOT") || VersionLoader.UNKNOWN.equals(v)) {
         v = String.valueOf(System.currentTimeMillis());
       }

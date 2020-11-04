@@ -16,10 +16,14 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
+import org.sonatype.goodies.dropwizard.version.VersionLoader;
+
+import io.dropwizard.setup.Environment;
+
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * Provides application metadata.
+ * Default {@link ApplicationMetadata}.
  *
  * @since ???
  */
@@ -28,25 +32,49 @@ import static com.google.common.base.Preconditions.checkNotNull;
 public class ApplicationMetadataImpl
   implements ApplicationMetadata
 {
-  private final ApplicationName name;
+  private final String name;
 
-  private final ApplicationVersion version;
+  private final VersionLoader versionLoader;
 
   @Inject
-  public ApplicationMetadataImpl(final ApplicationName name,
-                                 final ApplicationVersion version)
-  {
-    this.name = checkNotNull(name);
-    this.version = checkNotNull(version);
+  public ApplicationMetadataImpl(final Environment environment, final VersionLoader loader) {
+    checkNotNull(environment);
+    this.name = environment.getName();
+    this.versionLoader = checkNotNull(loader);
   }
 
   @Override
   public String getName() {
-    return name.get();
+    return name;
   }
 
   @Override
-  public ApplicationVersion getVersion() {
-    return version;
+  public String getVersion() {
+    return versionLoader.getVersion();
+  }
+
+  @Override
+  public String getBuildTimestamp() {
+    return versionLoader.getTimestamp();
+  }
+
+  @Override
+  public String getBuildTag() {
+    return versionLoader.getTag();
+  }
+
+  @Override
+  public String getBuildNotes() {
+    return versionLoader.getNotes();
+  }
+
+  @Override
+  public String toString() {
+    return String.format("%s %s (%s; %s)",
+        getName(),
+        getVersion(),
+        getBuildTimestamp(),
+        getBuildTag()
+    );
   }
 }

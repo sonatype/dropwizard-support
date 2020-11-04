@@ -13,7 +13,7 @@
 package org.sonatype.goodies.dropwizard.app;
 
 /**
- * Provides application metadata.
+ * Application metadata.
  *
  * @since ???
  */
@@ -21,5 +21,23 @@ public interface ApplicationMetadata
 {
   String getName();
 
-  ApplicationVersion getVersion();
+  /**
+   * Returns the application version.
+   */
+  String getVersion();
+
+  /**
+   * Returns the application build-timestamp.
+   */
+  String getBuildTimestamp();
+
+  /**
+   * Returns the application build-tag.
+   */
+  String getBuildTag();
+
+  /**
+   * Returns application build-notes.
+   */
+  String getBuildNotes();
 }
