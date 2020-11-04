@@ -36,6 +36,7 @@ import org.sonatype.goodies.dropwizard.selection.ComponentSelectionConfiguration
 import org.sonatype.goodies.dropwizard.selection.ComponentSelectionTypeListener;
 import org.sonatype.goodies.dropwizard.util.FileHelper;
 import org.sonatype.goodies.dropwizard.guice.ParameterPropertiesModule;
+import org.sonatype.goodies.dropwizard.version.VersionModule;
 
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Throwables;
@@ -177,6 +178,9 @@ public abstract class ApplicationSupport<T extends Configuration>
       Map<String,Object> properties = ((ConfigurationSupport)config).getProperties();
       modules.add(new ParameterPropertiesModule(properties));
     }
+
+    // add support for version loading
+    modules.add(new VersionModule(this));
 
     // add binding for application configuration
     modules.add(new ConfigurationModule(config));

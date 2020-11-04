@@ -25,6 +25,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.checkState;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
 /**
@@ -36,10 +37,10 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 public abstract class VersionResourceSupport
     extends ResourceSupport
 {
-  private final ApplicationMetadata applicationMetadata;
+  private ApplicationMetadata applicationMetadata;
 
   @Inject
-  public VersionResourceSupport(final ApplicationMetadata applicationMetadata) {
+  public void configure(final ApplicationMetadata applicationMetadata) {
     this.applicationMetadata = checkNotNull(applicationMetadata);
   }
 
@@ -50,6 +51,7 @@ public abstract class VersionResourceSupport
       @ApiResponse(code = 200, message = "Version information")
   })
   public Version get() {
+    checkState(applicationMetadata != null, "Not configured");
     return new Version(
         applicationMetadata.getVersion(),
         applicationMetadata.getBuildTimestamp(),
