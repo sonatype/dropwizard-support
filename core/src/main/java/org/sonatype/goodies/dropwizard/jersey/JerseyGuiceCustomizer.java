@@ -18,6 +18,7 @@ import java.util.concurrent.atomic.AtomicReference;
 import javax.annotation.Nullable;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.core.Feature;
+import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.UriInfo;
 
 import org.sonatype.goodies.dropwizard.app.ApplicationCustomizer;
@@ -95,6 +96,12 @@ public class JerseyGuiceCustomizer
     @Nullable
     HttpServletRequest getHttpServletRequest() {
       return lookup(HttpServletRequest.class);
+    }
+
+    @Provides
+    @Nullable
+    HttpHeaders getHttpHeaders() {
+      return lookup(HttpHeaders.class);
     }
   }
 

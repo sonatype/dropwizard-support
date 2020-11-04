@@ -24,6 +24,8 @@ import org.jvnet.hk2.guice.bridge.api.GuiceIntoHK2Bridge;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+// SEE: https://github.com/eclipse-ee4j/glassfish-hk2/tree/master/guice-bridge
+
 /**
  * Configures Jersey with {@link GuiceIntoHK2Bridge}.
  *
