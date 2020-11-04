@@ -39,6 +39,7 @@ import org.sonatype.goodies.dropwizard.guice.ParameterPropertiesModule;
 
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Throwables;
+import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Module;
@@ -178,6 +179,14 @@ public abstract class ApplicationSupport<T extends Configuration>
       modules.add(new ParameterPropertiesModule(properties));
     }
 
+    modules.add(new AbstractModule() {
+      @Override
+      protected void configure() {
+        // HACK: expose application name
+        bind(ApplicationName.class).toInstance(() -> getName());
+      }
+    });
+
     // add binding for application configuration
     modules.add(new ConfigurationModule(config));
 
@@ -295,17 +304,13 @@ public abstract class ApplicationSupport<T extends Configuration>
   /**
    * Invoked on application shutdown.
    */
-  @SuppressWarnings("WeakerAccess")
   protected void onShutdown() {
     log.info("Shutting down");
   }
 
-  /**
-   * Invoked on fatal error before shutdown.
-   */
   @Override
-  protected void onFatalError() {
-    log.error("Fatal error detected; shutting down");
-    super.onFatalError();
+  protected void onFatalError(final Throwable t) {
+    log.error("Fatal error detected; shutting down", t);
+    System.exit(1);
   }
 }

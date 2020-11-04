@@ -31,8 +31,6 @@ public class BasicEnvironmentReporter
   public void report(final Logger logger) throws Exception {
     checkNotNull(logger);
 
-    logger.info("Dropwizard: {}", new JarLocation(Application.class).getVersion().orElse("unknown"));
-
     logger.info("Java: {}, {}, {}, {}",
         System.getProperty("java.version"),
         System.getProperty("java.vm.name"),
@@ -52,5 +50,11 @@ public class BasicEnvironmentReporter
 
     logger.info("CWD: {}", resolvePath(System.getProperty("user.dir")));
     logger.info("TMP: {}", resolvePath(System.getProperty("java.io.tmpdir")));
+
+    logger.info("Dropwizard: {}", implVersion(Application.class));
+  }
+
+  private static String implVersion(final Class type) {
+    return new JarLocation(type).getVersion().orElse("unknown-version");
   }
 }

@@ -12,33 +12,41 @@
  */
 package org.sonatype.goodies.dropwizard.app;
 
+import javax.inject.Inject;
+import javax.inject.Named;
+import javax.inject.Singleton;
+
+import static com.google.common.base.Preconditions.checkNotNull;
+
 /**
- * Provides application version information.
+ * Provides application metadata.
  *
- * @since 1.0.0
- * @see ApplicationMetadata
+ * @since ???
  */
-public interface ApplicationVersion
+@Named
+@Singleton
+public class ApplicationMetadataImpl
+  implements ApplicationMetadata
 {
-  /**
-   * Returns the application version.
-   */
-  String getVersion();
+  private final ApplicationName name;
 
-  /**
-   * Returns the application build-timestamp.
-   */
-  String getBuildTimestamp();
+  private final ApplicationVersion version;
 
-  /**
-   * Returns the application build-tag.
-   */
-  String getBuildTag();
+  @Inject
+  public ApplicationMetadataImpl(final ApplicationName name,
+                                 final ApplicationVersion version)
+  {
+    this.name = checkNotNull(name);
+    this.version = checkNotNull(version);
+  }
 
-  /**
-   * Returns application build-notes.
-   *
-   * @since 1.0.2
-   */
-  String getBuildNotes();
+  @Override
+  public String getName() {
+    return name.get();
+  }
+
+  @Override
+  public ApplicationVersion getVersion() {
+    return version;
+  }
 }
