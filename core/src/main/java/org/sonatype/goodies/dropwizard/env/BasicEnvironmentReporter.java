@@ -12,6 +12,8 @@
  */
 package org.sonatype.goodies.dropwizard.env;
 
+import io.dropwizard.Application;
+import io.dropwizard.util.JarLocation;
 import org.slf4j.Logger;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -28,6 +30,8 @@ public class BasicEnvironmentReporter
   @Override
   public void report(final Logger logger) throws Exception {
     checkNotNull(logger);
+
+    logger.info("Dropwizard: {}", new JarLocation(Application.class).getVersion().orElse("unknown"));
 
     logger.info("Java: {}, {}, {}, {}",
         System.getProperty("java.version"),

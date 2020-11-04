@@ -38,6 +38,14 @@
       </dependency>
 
       <dependency>
+        <groupId>org.sonatype.goodies.dropwizard</groupId>
+        <artifactId>dropwizard-support-aws</artifactId>
+        <version>2.0.0-SNAPSHOT</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+
+      <dependency>
         <groupId>org.apache.camel</groupId>
         <artifactId>camel-bom</artifactId>
         <version>3.6.0</version>

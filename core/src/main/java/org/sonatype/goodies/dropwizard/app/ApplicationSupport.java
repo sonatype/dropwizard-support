@@ -29,6 +29,7 @@ import org.sonatype.goodies.dropwizard.env.BasicEnvironmentReporter;
 import org.sonatype.goodies.dropwizard.env.EnvironmentModule;
 import org.sonatype.goodies.dropwizard.env.EnvironmentReporter;
 import org.sonatype.goodies.dropwizard.jersey.JerseyGuiceBridgeFeature;
+import org.sonatype.goodies.dropwizard.jersey.JerseyModule;
 import org.sonatype.goodies.dropwizard.metrics.MetricsAopModule;
 import org.sonatype.goodies.dropwizard.selection.ComponentSelectionConfiguration;
 import org.sonatype.goodies.dropwizard.selection.ComponentSelectionConfigurationAware;
@@ -185,6 +186,9 @@ public abstract class ApplicationSupport<T extends Configuration>
 
     // configure support for Guice-AOP metrics
     modules.add(new MetricsAopModule(environment));
+
+    // configure support for Jersey-Guice integration
+    modules.add(new JerseyModule(environment));
 
     // allow customizer to contribute modules
     for (ApplicationCustomizer customizer : customizers) {
