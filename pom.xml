@@ -89,6 +89,7 @@
     <module>swagger</module>
     <module>aws</module>
     <module>camel</module>
+    <module>worker</module>
     <module>testsupport</module>
   </modules>
 
