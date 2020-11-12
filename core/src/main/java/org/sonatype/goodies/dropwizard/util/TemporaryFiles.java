@@ -53,7 +53,7 @@ public class TemporaryFiles
       String location = System.getProperty("java.io.tmpdir", "tmp");
 
       Path dir = new File(location).getCanonicalFile().toPath();
-      FilesHelper.createDirectories(dir);
+      FileHelper.createDirectories(dir);
 
       // ensure we can create temporary files in this directory
       Path file = Files.createTempFile(dir, "tmpprobe-", ".tmp");
@@ -70,7 +70,7 @@ public class TemporaryFiles
     checkNotNull(name);
     checkState(!name.startsWith("/"), "Invalid temporary directory name: %s", name);
     Path dir = directory().resolve(name);
-    FilesHelper.createDirectories(dir);
+    FileHelper.createDirectories(dir);
     return dir;
   }
 
