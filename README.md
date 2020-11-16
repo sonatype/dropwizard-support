@@ -24,8 +24,8 @@ Provides support for [Dropwizard](https://www.dropwizard.io/) Guice+Sisu enabled
 
 ### Requirements
 
-* [Apache Maven](https://maven.apache.org/) 3.3+ (prefer to use included `mvnw`)
-* JDK 8+ (10 is **NOT** supported)
+* [Apache Maven](https://maven.apache.org/) 3.6+ (prefer to use included `mvnw`)
+* JDK 11+
 
 ### Build
 

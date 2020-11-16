@@ -87,7 +87,7 @@ public class ConfigurationSupport
     return healthCheckConfiguration;
   }
 
-  public void setHealthCheckConfiguration(@Nonnull final HealthCheckConfiguration healthCheckConfiguration) {
-    this.healthCheckConfiguration = checkNotNull(healthCheckConfiguration);
+  public void setHealthCheckConfiguration(@Nonnull final HealthCheckConfiguration config) {
+    this.healthCheckConfiguration = checkNotNull(config);
   }
 }

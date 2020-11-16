@@ -20,17 +20,17 @@ import org.sonatype.goodies.dropwizard.rules.matcher.request.RemoteIpRequestMatc
 import org.sonatype.goodies.dropwizard.rules.matcher.request.RequestMatcher
 
 import com.codahale.metrics.MetricRegistry
-import org.junit.Test
-import org.junit.runner.RunWith
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.Mock
-import org.mockito.junit.MockitoJUnitRunner
+import org.mockito.junit.jupiter.MockitoExtension
 
 import static org.mockito.Mockito.mock
 
 /**
  * {@link MatchRequestRule} tests.
  */
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
 class MatchRequestRuleTest
 {
   @Mock

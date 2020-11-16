@@ -13,7 +13,7 @@
 package org.sonatype.goodies.dropwizard.version
 
 import com.google.common.io.Resources
-import org.junit.Test
+import org.junit.jupiter.api.Test
 
 /**
  * {@link VersionLoader} tests.

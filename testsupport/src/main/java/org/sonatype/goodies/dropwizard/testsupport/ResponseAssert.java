@@ -21,7 +21,7 @@ import com.google.common.net.HttpHeaders;
 
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * JAX-RS {@link Response} assert helpers.

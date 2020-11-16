@@ -12,7 +12,7 @@
  */
 package org.sonatype.goodies.dropwizard.rules.matcher.string
 
-import org.junit.Test
+import org.junit.jupiter.api.Test
 
 import static org.sonatype.goodies.dropwizard.rules.matcher.string.StringMatcher2.Function.contains
 import static org.sonatype.goodies.dropwizard.rules.matcher.string.StringMatcher2.Function.prefix

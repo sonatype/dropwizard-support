@@ -16,7 +16,7 @@ import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Produces;
 
-import org.sonatype.goodies.dropwizard.app.ApplicationVersion;
+import org.sonatype.goodies.dropwizard.app.ApplicationMetadata;
 import org.sonatype.goodies.dropwizard.jaxrs.ResourceSupport;
 
 import io.swagger.annotations.Api;
@@ -25,6 +25,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.checkState;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
 /**
@@ -36,11 +37,11 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 public abstract class VersionResourceSupport
     extends ResourceSupport
 {
-  private final ApplicationVersion version;
+  private ApplicationMetadata applicationMetadata;
 
   @Inject
-  public VersionResourceSupport(final ApplicationVersion version) {
-    this.version = checkNotNull(version);
+  public void configure(final ApplicationMetadata applicationMetadata) {
+    this.applicationMetadata = checkNotNull(applicationMetadata);
   }
 
   @GET
@@ -50,11 +51,12 @@ public abstract class VersionResourceSupport
       @ApiResponse(code = 200, message = "Version information")
   })
   public Version get() {
+    checkState(applicationMetadata != null, "Not configured");
     return new Version(
-        version.getVersion(),
-        version.getBuildTimestamp(),
-        version.getBuildTag(),
-        version.getBuildNotes()
+        applicationMetadata.getVersion(),
+        applicationMetadata.getBuildTimestamp(),
+        applicationMetadata.getBuildTag(),
+        applicationMetadata.getBuildNotes()
     );
   }
 }

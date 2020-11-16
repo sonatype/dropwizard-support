@@ -12,39 +12,39 @@
  */
 package org.sonatype.goodies.dropwizard.config;
 
-import org.apache.commons.text.StrLookup;
+import org.apache.commons.text.lookup.StringLookup;
 
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * First-match {@link StrLookup}.
+ * First-match {@link org.apache.commons.text.lookup.StringLookup}.
  *
  * @since 1.2.0
  */
-public class FirstMatchStrLookup
-    extends StrLookup
+public class FirstMatchStringLookup
+    implements StringLookup
 {
-  private final StrLookup<?>[] candidates;
+  private final StringLookup[] candidates;
 
   /**
    * When {@literal true} if unable to resolve non-null value for key will throw exception.
    */
   private final boolean strict;
 
-  public FirstMatchStrLookup(final boolean strict, final StrLookup<?>... candidates) {
+  public FirstMatchStringLookup(final boolean strict, final StringLookup... candidates) {
     this.strict = strict;
     checkArgument(candidates.length > 0, "At least one candidate required");
     this.candidates = checkNotNull(candidates);
   }
 
-  public FirstMatchStrLookup(final StrLookup<?>... candidates) {
+  public FirstMatchStringLookup(final StringLookup... candidates) {
     this(true, candidates);
   }
 
   @Override
   public String lookup(final String key) {
-    for (StrLookup candidate : candidates) {
+    for (StringLookup candidate : candidates) {
       String value = candidate.lookup(key);
       if (value != null) {
         return value;

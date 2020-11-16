@@ -10,34 +10,31 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
-package org.sonatype.goodies.dropwizard.app;
+package org.sonatype.goodies.dropwizard.version;
+
+import org.sonatype.goodies.dropwizard.app.ApplicationSupport;
+
+import com.google.inject.AbstractModule;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * Provides application version information.
+ * Support application version integration.
  *
- * @since 1.0.0
+ * @since ???
+ * @see VersionLoader
  */
-public interface ApplicationVersion
+public class VersionModule
+    extends AbstractModule
 {
-  /**
-   * Returns the application version.
-   */
-  String getVersion();
+  private final ApplicationSupport<?> application;
 
-  /**
-   * Returns the application build-timestamp.
-   */
-  String getBuildTimestamp();
+  public VersionModule(final ApplicationSupport<?> application) {
+    this.application = checkNotNull(application);
+  }
 
-  /**
-   * Returns the application build-tag.
-   */
-  String getBuildTag();
-
-  /**
-   * Returns application build-notes.
-   *
-   * @since 1.0.2
-   */
-  String getBuildNotes();
+  @Override
+  protected void configure() {
+    bind(VersionLoader.class).toInstance(new VersionLoader(application.getClass()));
+  }
 }

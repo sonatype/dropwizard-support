@@ -16,21 +16,21 @@ import javax.servlet.FilterChain
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
-import org.junit.Before
-import org.junit.Test
-import org.junit.runner.RunWith
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.Mock
-import org.mockito.junit.MockitoJUnitRunner
+import org.mockito.junit.jupiter.MockitoExtension
 
 import static org.mockito.Mockito.mock
 import static org.mockito.Mockito.verify
-import static org.mockito.Mockito.verifyZeroInteractions
+import static org.mockito.Mockito.verifyNoInteractions
 import static org.mockito.Mockito.when
 
 /**
  * {@link RequestRuleFilter} tests.
  */
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
 class RequestRuleFilterTest
 {
   @Mock
@@ -47,7 +47,7 @@ class RequestRuleFilterTest
 
   private RequestRuleFilter underTest
 
-  @Before
+  @BeforeEach
   void setUp() {
     underTest = new RequestRuleFilter(requestRuleService)
   }
@@ -61,7 +61,7 @@ class RequestRuleFilterTest
 
     verify(requestRuleService).evaluate(request)
     verify(result).apply(request, response, chain)
-    verifyZeroInteractions(chain)
+    verifyNoInteractions(chain)
   }
 
   @Test

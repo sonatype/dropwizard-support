@@ -29,12 +29,14 @@ import org.sonatype.goodies.dropwizard.env.BasicEnvironmentReporter;
 import org.sonatype.goodies.dropwizard.env.EnvironmentModule;
 import org.sonatype.goodies.dropwizard.env.EnvironmentReporter;
 import org.sonatype.goodies.dropwizard.jersey.JerseyGuiceBridgeFeature;
+import org.sonatype.goodies.dropwizard.jersey.JerseyModule;
 import org.sonatype.goodies.dropwizard.metrics.MetricsAopModule;
 import org.sonatype.goodies.dropwizard.selection.ComponentSelectionConfiguration;
 import org.sonatype.goodies.dropwizard.selection.ComponentSelectionConfigurationAware;
 import org.sonatype.goodies.dropwizard.selection.ComponentSelectionTypeListener;
 import org.sonatype.goodies.dropwizard.util.FileHelper;
 import org.sonatype.goodies.dropwizard.guice.ParameterPropertiesModule;
+import org.sonatype.goodies.dropwizard.version.VersionModule;
 
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Throwables;
@@ -177,6 +179,9 @@ public abstract class ApplicationSupport<T extends Configuration>
       modules.add(new ParameterPropertiesModule(properties));
     }
 
+    // add support for version loading
+    modules.add(new VersionModule(this));
+
     // add binding for application configuration
     modules.add(new ConfigurationModule(config));
 
@@ -185,6 +190,9 @@ public abstract class ApplicationSupport<T extends Configuration>
 
     // configure support for Guice-AOP metrics
     modules.add(new MetricsAopModule(environment));
+
+    // configure support for Jersey-Guice integration
+    modules.add(new JerseyModule(environment));
 
     // allow customizer to contribute modules
     for (ApplicationCustomizer customizer : customizers) {
@@ -291,17 +299,13 @@ public abstract class ApplicationSupport<T extends Configuration>
   /**
    * Invoked on application shutdown.
    */
-  @SuppressWarnings("WeakerAccess")
   protected void onShutdown() {
     log.info("Shutting down");
   }
 
-  /**
-   * Invoked on fatal error before shutdown.
-   */
   @Override
-  protected void onFatalError() {
-    log.error("Fatal error detected; shutting down");
-    super.onFatalError();
+  protected void onFatalError(final Throwable t) {
+    log.error("Fatal error detected; shutting down", t);
+    System.exit(1);
   }
 }

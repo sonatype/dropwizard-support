@@ -10,24 +10,34 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
-package org.glassfish.jersey.test.inmemory;
-
-import java.net.URI;
-
-import org.sonatype.goodies.dropwizard.testsupport.jersey.BindableTestContainer;
-
-import org.glassfish.jersey.server.ApplicationHandler;
+package org.sonatype.goodies.dropwizard.app;
 
 /**
- * Custom {@link InMemoryConnector} provider that is exposed for out-of-package usage.
+ * Application metadata.
  *
- * @see BindableTestContainer
- * @since 1.0.0
+ * @since ???
  */
-public class ExposedInMemoryConnectorProvider
-    extends InMemoryConnector.Provider
+public interface ApplicationMetadata
 {
-  public ExposedInMemoryConnectorProvider(final URI baseUri, final ApplicationHandler appHandler) {
-    super(baseUri, appHandler);
-  }
+  String getName();
+
+  /**
+   * Returns the application version.
+   */
+  String getVersion();
+
+  /**
+   * Returns the application build-timestamp.
+   */
+  String getBuildTimestamp();
+
+  /**
+   * Returns the application build-tag.
+   */
+  String getBuildTag();
+
+  /**
+   * Returns application build-notes.
+   */
+  String getBuildNotes();
 }

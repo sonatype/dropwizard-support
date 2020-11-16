@@ -18,47 +18,63 @@ import javax.inject.Singleton;
 
 import org.sonatype.goodies.dropwizard.version.VersionLoader;
 
+import io.dropwizard.setup.Environment;
+
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * Default {@link ApplicationVersion}.
+ * Default {@link ApplicationMetadata}.
  *
- * @since 1.2.0
+ * @since ???
  */
 @Named
 @Singleton
-public class ApplicationVersionImpl
-    implements ApplicationVersion
+public class ApplicationMetadataImpl
+  implements ApplicationMetadata
 {
-  private final VersionLoader loader;
+  private final String name;
+
+  private final VersionLoader versionLoader;
 
   @Inject
-  public ApplicationVersionImpl(final VersionLoader loader) {
-    this.loader = checkNotNull(loader);
+  public ApplicationMetadataImpl(final Environment environment, final VersionLoader loader) {
+    checkNotNull(environment);
+    this.name = environment.getName();
+    this.versionLoader = checkNotNull(loader);
+  }
+
+  @Override
+  public String getName() {
+    return name;
   }
 
   @Override
   public String getVersion() {
-    return loader.getVersion();
+    return versionLoader.getVersion();
   }
 
   @Override
   public String getBuildTimestamp() {
-    return loader.getTimestamp();
+    return versionLoader.getTimestamp();
   }
 
   @Override
   public String getBuildTag() {
-    return loader.getTag();
+    return versionLoader.getTag();
   }
 
   @Override
   public String getBuildNotes() {
-    return loader.getNotes();
+    return versionLoader.getNotes();
   }
 
   @Override
   public String toString() {
-    return loader.toString();
+    return String.format("%s %s (%s; %s)",
+        getName(),
+        getVersion(),
+        getBuildTimestamp(),
+        getBuildTag()
+    );
   }
 }
