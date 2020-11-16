@@ -15,13 +15,16 @@ package org.sonatype.goodies.dropwizard.util;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.Comparator;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.checkState;
 
 /**
  * File helpers.
@@ -124,6 +127,37 @@ public class FileHelper
   }
 
   /**
+   * Attempt to delete given file.
+   *
+   * @since ???
+   */
+  public static void delete(final Path file) {
+    checkNotNull(file);
+    try {
+      Files.deleteIfExists(file);
+    }
+    catch (IOException e) {
+      log.warn("Failed to delete file: {}", file, e);
+      // gobble exception
+    }
+  }
+
+  /**
+   * Delete given files if non-null.
+   *
+   * @since ???
+   */
+  public static void delete(final Path... files) {
+    checkNotNull(files);
+    for (Path file : files) {
+      if (file != null) {
+        FileHelper.delete(file);
+      }
+    }
+  }
+
+
+  /**
    * Resolve file for given path.
    */
   public static File resolveFile(final String path) {
@@ -145,5 +179,52 @@ public class FileHelper
    */
   public static File tmpdir() {
     return resolveFile(System.getProperty("java.io.tmpdir"));
+  }
+
+  /**
+   * Delete a directory.
+   *
+   * @since ???
+   */
+  public static void deleteDirectory(final Path dir) throws IOException {
+    checkNotNull(dir);
+    log.trace("Delete directory: {}", dir);
+
+    // skip if directory does not exist
+    if (!Files.exists(dir)) {
+      return;
+    }
+
+    checkState(Files.isDirectory(dir), "Not a directory: %s", dir);
+
+    Files.walk(dir)
+        .sorted(Comparator.reverseOrder())
+        .forEach(file -> {
+          try {
+            Files.deleteIfExists(file);
+          }
+          catch (IOException e) {
+            log.warn("Failed to delete file: {}", file, e);
+          }
+        });
+  }
+
+  /**
+   * Create directories.
+   *
+   * @since ???
+   */
+  public static void createDirectories(final Path dir) throws IOException {
+    checkNotNull(dir);
+    log.trace("Create directories: {}", dir);
+
+    if (!Files.exists(dir)) {
+      Files.createDirectories(dir);
+      log.trace("Created: {}", dir);
+    }
+    else {
+      checkState(Files.isDirectory(dir), "Not directory: %s", dir);
+      checkState(Files.isWritable(dir), "Directory not writable: %s", dir);
+    }
   }
 }
