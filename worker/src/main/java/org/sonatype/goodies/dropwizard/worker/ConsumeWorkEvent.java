@@ -13,7 +13,6 @@
 package org.sonatype.goodies.dropwizard.worker;
 
 import com.google.common.base.MoreObjects;
-
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
