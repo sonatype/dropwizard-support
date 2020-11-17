@@ -13,13 +13,13 @@
 package org.sonatype.goodies.dropwizard.worker.internal;
 
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.MoreObjects;
 import io.dropwizard.util.Duration;
 import io.dropwizard.validation.MinDuration;
-import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * {@link SqsEventConsumerSupport} configuration.

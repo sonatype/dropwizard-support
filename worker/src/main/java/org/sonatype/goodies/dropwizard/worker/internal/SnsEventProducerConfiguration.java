@@ -13,9 +13,9 @@
 package org.sonatype.goodies.dropwizard.worker.internal;
 
 import javax.annotation.Nonnull;
+import javax.validation.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.hibernate.validator.constraints.NotEmpty;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
