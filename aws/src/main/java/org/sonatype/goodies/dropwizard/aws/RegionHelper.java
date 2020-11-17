@@ -14,8 +14,8 @@ package org.sonatype.goodies.dropwizard.aws;
 
 import javax.annotation.Nullable;
 
+import com.amazonaws.regions.DefaultAwsRegionProviderChain;
 import com.amazonaws.regions.Regions;
-import com.amazonaws.util.EC2MetadataUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,7 +35,7 @@ public class RegionHelper
   @Nullable
   public static Regions getCurrent() {
     Regions region = null;
-    String name = EC2MetadataUtils.getEC2InstanceRegion();
+    String name = new DefaultAwsRegionProviderChain().getRegion();
     if (name != null) {
       region = Regions.fromName(name);
     }
