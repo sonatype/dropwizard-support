@@ -16,6 +16,7 @@ import javax.annotation.Nonnull;
 import javax.validation.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.common.base.MoreObjects;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -42,5 +43,12 @@ public class SnsEventProducerConfiguration
 
   public void setTopic(@Nonnull final String topic) {
     this.topic = checkNotNull(topic);
+  }
+
+  @Override
+  public String toString() {
+    return MoreObjects.toStringHelper(this)
+        .add("topic", topic)
+        .toString();
   }
 }
