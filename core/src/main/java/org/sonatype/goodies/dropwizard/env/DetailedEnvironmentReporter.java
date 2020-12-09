@@ -42,30 +42,41 @@ public class DetailedEnvironmentReporter
     );
 
     for (FileStore fileStore : FileSystems.getDefault().getFileStores()) {
-      logger.info("File-store; name={}, type={}, total={}, usable={}, unallocated={}, read-only={}",
-          fileStore.name(),
-          fileStore.type(),
-          fileStore.getTotalSpace(),
-          fileStore.getUsableSpace(),
-          fileStore.getUnallocatedSpace(),
-          fileStore.isReadOnly()
-      );
+      try {
+        logger.info("File-store; name={}, type={}, total={}, usable={}, unallocated={}, read-only={}",
+            fileStore.name(),
+            fileStore.type(),
+            fileStore.getTotalSpace(),
+            fileStore.getUsableSpace(),
+            fileStore.getUnallocatedSpace(),
+            fileStore.isReadOnly()
+        );
+      }
+      catch (Exception e) {
+        logger.warn("Failed to query file-store: name={}, type={}", fileStore.name(), fileStore.type(), e);
+      }
     }
 
     for (NetworkInterface intf : Collections.list(NetworkInterface.getNetworkInterfaces())) {
-      logger.info("Network-interface: name={}, display-name={}, up={}, virtual={}, multicast={}, loopback={}, ptp={}, mtu={}, addresses={}",
-          intf.getName(),
-          intf.getDisplayName(),
-          intf.isUp(),
-          intf.isVirtual(),
-          intf.supportsMulticast(),
-          intf.isLoopback(),
-          intf.isPointToPoint(),
-          intf.getMTU(),
-          Collections.list(intf.getInetAddresses()).stream()
-              .map(InetAddress::toString)
-              .collect(Collectors.joining(", "))
-      );
+      try {
+        logger.info(
+            "Network-interface: name={}, display-name={}, up={}, virtual={}, multicast={}, loopback={}, ptp={}, mtu={}, addresses={}",
+            intf.getName(),
+            intf.getDisplayName(),
+            intf.isUp(),
+            intf.isVirtual(),
+            intf.supportsMulticast(),
+            intf.isLoopback(),
+            intf.isPointToPoint(),
+            intf.getMTU(),
+            Collections.list(intf.getInetAddresses()).stream()
+                .map(InetAddress::toString)
+                .collect(Collectors.joining(", "))
+        );
+      }
+      catch (Exception e) {
+        logger.warn("Failed to query network-interface: name={}", intf.getName(), e);
+      }
     }
   }
 }
