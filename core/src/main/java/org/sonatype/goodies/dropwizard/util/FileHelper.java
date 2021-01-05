@@ -227,4 +227,23 @@ public class FileHelper
       checkState(Files.isWritable(dir), "Directory not writable: %s", dir);
     }
   }
+
+  /**
+   * Create a new file reference; checking for directory traversal.
+   *
+   * Caller should ensure that basedir has already been made canonical.
+   *
+   * @since ???
+   */
+  public static File newFile(final File basedir, final String path) {
+    checkNotNull(basedir);
+    checkNotNull(path);
+    log.trace("New file: {}/{}", basedir, path);
+
+    File file = new File(basedir, path).toPath().normalize().toFile();
+    checkState(file.getPath().startsWith(basedir.getPath()),
+        "Directory traversal detected in path: %s", path
+    );
+    return file;
+  }
 }
