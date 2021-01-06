@@ -20,6 +20,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.Comparator;
 
+import com.google.common.annotations.Beta;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -229,12 +230,23 @@ public class FileHelper
   }
 
   /**
+   * Create directories.
+   *
+   * @since ???
+   */
+  public static void createDirectories(final File dir) throws IOException {
+    checkNotNull(dir);
+    createDirectories(dir.toPath());
+  }
+
+  /**
    * Create a new file reference; checking for directory traversal.
    *
    * Caller should ensure that basedir has already been made canonical.
    *
    * @since ???
    */
+  @Beta
   public static File newFile(final File basedir, final String path) {
     checkNotNull(basedir);
     checkNotNull(path);
