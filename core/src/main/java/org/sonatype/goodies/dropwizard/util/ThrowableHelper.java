@@ -35,7 +35,7 @@ public final class ThrowableHelper
   public static String explain(final Throwable throwable) {
     checkNotNull(throwable);
 
-    StringBuilder buff = new StringBuilder();
+    StringBuilder buff = new StringBuilder(128);
     explain(buff, throwable);
 
     Throwable cause = throwable;
