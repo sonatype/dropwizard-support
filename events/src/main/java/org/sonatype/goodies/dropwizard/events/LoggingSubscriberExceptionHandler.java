@@ -12,6 +12,8 @@
  */
 package org.sonatype.goodies.dropwizard.events;
 
+import org.sonatype.goodies.dropwizard.util.ThrowableHelper;
+
 import com.google.common.eventbus.SubscriberExceptionContext;
 import com.google.common.eventbus.SubscriberExceptionHandler;
 import org.slf4j.Logger;
@@ -35,8 +37,13 @@ public class LoggingSubscriberExceptionHandler
   }
 
   @Override
-  public void handleException(final Throwable exception, final SubscriberExceptionContext context) {
-    logger.error("Could not dispatch event {} to subscriber {} method [{}]",
-        context.getEvent(), context.getSubscriber(), context.getSubscriberMethod(), exception);
+  public void handleException(final Throwable cause, final SubscriberExceptionContext context) {
+    logger.error("Could not dispatch event {} to subscriber {} method [{}]: {}",
+        context.getEvent(),
+        context.getSubscriber(),
+        context.getSubscriberMethod(),
+        ThrowableHelper.explain(cause),
+        cause
+    );
   }
 }
