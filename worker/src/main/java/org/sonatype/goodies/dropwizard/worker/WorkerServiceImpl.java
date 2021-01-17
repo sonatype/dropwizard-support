@@ -13,9 +13,11 @@
 package org.sonatype.goodies.dropwizard.worker;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
+import java.util.stream.Collectors;
 
 import javax.annotation.Nullable;
 import javax.inject.Inject;
@@ -215,8 +217,14 @@ public class WorkerServiceImpl
     log.debug("Consume: {}", event);
     checkState(!handlers.isEmpty(), "At least one handler must be configured");
 
+    // select handlers to handle event
+    List<WorkEventHandler> selected = handlers.stream()
+        .filter(h -> h.accept(event))
+        .collect(Collectors.toList());
+    checkState(!selected.isEmpty(), "No handlers accepted event");
+
     Map<WorkEventHandler,Throwable> failed = new LinkedHashMap<>();
-    for (WorkEventHandler handler : handlers) {
+    for (WorkEventHandler handler : selected) {
       log.debug("Handler: {}", handler);
       try {
         handler.handle(event);

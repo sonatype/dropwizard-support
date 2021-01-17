@@ -19,5 +19,7 @@ package org.sonatype.goodies.dropwizard.worker;
  */
 public interface WorkEventHandler
 {
+  boolean accept(WorkEvent event);
+
   void handle(WorkEvent event) throws Exception;
 }
