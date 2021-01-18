@@ -20,6 +20,7 @@ import org.sonatype.goodies.dropwizard.worker.internal.SnsEventProducerConfigura
 import org.sonatype.goodies.dropwizard.worker.internal.SnsEventProducerSupport;
 
 import com.amazonaws.services.sns.AmazonSNS;
+import com.codahale.metrics.MetricRegistry;
 import com.google.inject.Binder;
 import com.google.inject.Inject;
 import com.google.inject.Module;
@@ -35,11 +36,13 @@ public class WorkEventEnvelopeProducer
     extends SnsEventProducerSupport
 {
   @Inject
-  public WorkEventEnvelopeProducer(final Provider<CamelContextBuilder> camelContextBuilder,
+  public WorkEventEnvelopeProducer(final MetricRegistry metricRegistry,
+                                   final Provider<CamelContextBuilder> camelContextBuilder,
                                    final AmazonSNS snsClient,
                                    @Assisted final SnsEventProducerConfiguration configuration)
   {
     super(
+        metricRegistry,
         camelContextBuilder,
         snsClient,
         configuration,

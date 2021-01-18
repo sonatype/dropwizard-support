@@ -35,15 +35,8 @@ public final class ThrowableHelper
   public static String explain(final Throwable throwable) {
     checkNotNull(throwable);
 
-    StringBuilder buff = new StringBuilder();
+    StringBuilder buff = new StringBuilder(128);
     explain(buff, throwable);
-
-    Throwable cause = throwable;
-    while ((cause = cause.getCause()) != null) {
-      buff.append(", caused by: ");
-      explain(buff, cause);
-    }
-
     return buff.toString();
   }
 
@@ -57,6 +50,16 @@ public final class ThrowableHelper
       if (cause == null || !msg.equals(cause.toString())) {
         buff.append(": ").append(msg);
       }
+    }
+
+    Throwable cause = throwable.getCause();
+    if (cause != null) {
+      buff.append(", caused by: ");
+      explain(buff, cause);
+    }
+    for (Throwable suppressed : throwable.getSuppressed()) {
+      buff.append(", suppressed: ");
+      explain(buff, suppressed);
     }
   }
 

@@ -26,14 +26,14 @@ import static org.hamcrest.Matchers.is
 class ThrowableHelperTest
 {
   @Test
-  void explainThrowable() {
+  void 'explain single throwable'() {
     String msg = ThrowableHelper.explain(new RuntimeException('foo'))
     println(msg)
     assertThat(msg, is('java.lang.RuntimeException: foo'))
   }
 
   @Test
-  void explainThrowable2() {
+  void 'explain nested throwable'() {
     String msg = ThrowableHelper.explain(
         new RuntimeException('foo',
             new Exception('bar')
@@ -44,7 +44,7 @@ class ThrowableHelperTest
   }
 
   @Test
-  void explainThrowable3() {
+  void 'explain nested 3x throwable'() {
     String msg = ThrowableHelper.explain(
         new RuntimeException('foo',
             new Exception(
@@ -57,7 +57,7 @@ class ThrowableHelperTest
   }
 
   @Test
-  void explainThrowable4() {
+  void 'explain nested 4x throwable'() {
     String msg = ThrowableHelper.explain(
         new RuntimeException('foo',
             new Exception('bar',
@@ -70,7 +70,7 @@ class ThrowableHelperTest
   }
 
   @Test
-  void composite() {
+  void 'composite adds suppressed exceptions'() {
     Throwable foo = new Exception('foo')
     Throwable bar = new Exception('bar')
     try {
@@ -80,6 +80,22 @@ class ThrowableHelperTest
       assertThat(e.getSuppressed(), arrayWithSize(2))
       assertThat(e.getSuppressed()[0], is(foo))
       assertThat(e.getSuppressed()[1], is(bar))
+    }
+  }
+
+  @Test
+  void 'explain composite'() {
+    try {
+      ThrowableHelper.composite(
+          new Exception('test'),
+          new Exception('foo'),
+          new Exception('bar')
+      )
+    }
+    catch (e) {
+      def msg = ThrowableHelper.explain(e)
+      println msg
+      assert msg == 'java.lang.Exception: test, suppressed: java.lang.Exception: foo, suppressed: java.lang.Exception: bar'
     }
   }
 }

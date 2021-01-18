@@ -23,6 +23,8 @@ import org.sonatype.goodies.dropwizard.camel.sns.SnsMessageExtractionProcessor;
 import org.sonatype.goodies.dropwizard.service.ServiceSupport;
 
 import com.amazonaws.services.sqs.AmazonSQS;
+import com.codahale.metrics.Counter;
+import com.codahale.metrics.MetricRegistry;
 import com.google.common.collect.ImmutableMap;
 import org.apache.camel.CamelContext;
 import org.apache.camel.LoggingLevel;
@@ -52,15 +54,19 @@ public abstract class SqsEventConsumerSupport
 
   private final Predicate predicate;
 
+  private final Counter errorCounter;
+
   @Nullable
   private CamelContext camelContext;
 
-  public SqsEventConsumerSupport(final Provider<CamelContextBuilder> camelContextBuilder,
+  public SqsEventConsumerSupport(final MetricRegistry metricRegistry,
+                                 final Provider<CamelContextBuilder> camelContextBuilder,
                                  final AmazonSQS sqsClient,
                                  final SqsEventConsumerConfiguration configuration,
                                  final DataFormat dataFormat,
                                  final Predicate predicate)
   {
+    checkNotNull(metricRegistry);
     this.camelContextBuilder = checkNotNull(camelContextBuilder);
     this.sqsClient = checkNotNull(sqsClient);
     this.configuration = checkNotNull(configuration);
@@ -71,13 +77,13 @@ public abstract class SqsEventConsumerSupport
 
     this.predicate = checkNotNull(predicate);
     log.debug("Predicate: {}", predicate);
+
+    this.errorCounter = metricRegistry.counter(MetricRegistry.name("service", getName(), "errors"));
   }
 
   protected String getName() {
     return getClass().getSimpleName();
   }
-
-  // TODO: healthcheck
 
   @Override
   protected void doStart() throws Exception {
@@ -96,11 +102,12 @@ public abstract class SqsEventConsumerSupport
     {
       @Override
       public void configure() throws Exception {
-        errorHandler(deadLetterChannel("direct:error"));
-
-        from("direct:error")
-            .id("error")
-            .log(LoggingLevel.ERROR, "Error: ${exchange}; exception: ${exception}\n${exception.stacktrace}");
+        errorHandler(defaultErrorHandler()
+            .disableRedelivery()
+            .onExceptionOccurred(exchange -> {
+              errorCounter.inc();
+            })
+        );
 
         String queueUri = String.format("aws-sqs://%s", configuration.getQueue());
         Map<String, Object> queueOptions = ImmutableMap.<String, Object>builder()

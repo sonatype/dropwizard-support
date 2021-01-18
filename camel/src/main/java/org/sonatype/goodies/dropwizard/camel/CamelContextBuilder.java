@@ -19,9 +19,12 @@ import javax.annotation.Nullable;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.sonatype.goodies.dropwizard.camel.health.ContextHealthCheckLifecycleStrategy;
+import org.sonatype.goodies.dropwizard.camel.health.RouteHealthCheckLifecycleStrategy;
 import org.sonatype.goodies.dropwizard.camel.metrics.ServiceMetricsRoutePolicyFactory;
 
 import com.codahale.metrics.MetricRegistry;
+import com.codahale.metrics.health.HealthCheckRegistry;
 import org.apache.camel.CamelContext;
 import org.apache.camel.component.metrics.MetricsComponent;
 import org.apache.camel.impl.DefaultCamelContext;
@@ -45,14 +48,19 @@ public class CamelContextBuilder
 
   private final MetricRegistry metricRegistry;
 
+  private final HealthCheckRegistry healthCheckRegistry;
+
   private String name;
 
   @Nullable
   private Map<String,Object> binding;
 
   @Inject
-  public CamelContextBuilder(final MetricRegistry metricRegistry) {
+  public CamelContextBuilder(final MetricRegistry metricRegistry,
+                             final HealthCheckRegistry healthCheckRegistry)
+  {
     this.metricRegistry = checkNotNull(metricRegistry);
+    this.healthCheckRegistry = checkNotNull(healthCheckRegistry);
   }
 
   public CamelContextBuilder name(final String name) {
@@ -95,6 +103,10 @@ public class CamelContextBuilder
 
     // install adapter for route metrics
     camelContext.addRoutePolicyFactory(new ServiceMetricsRoutePolicyFactory());
+
+    // install heath-check adapters
+    camelContext.addLifecycleStrategy(new ContextHealthCheckLifecycleStrategy(healthCheckRegistry, camelContext));
+    camelContext.addLifecycleStrategy(new RouteHealthCheckLifecycleStrategy(healthCheckRegistry, camelContext));
 
     return camelContext;
   }

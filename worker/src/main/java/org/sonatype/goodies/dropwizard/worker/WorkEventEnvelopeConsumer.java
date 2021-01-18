@@ -23,6 +23,7 @@ import org.sonatype.goodies.dropwizard.worker.internal.SqsEventConsumerConfigura
 import org.sonatype.goodies.dropwizard.worker.internal.SqsEventConsumerSupport;
 
 import com.amazonaws.services.sqs.AmazonSQS;
+import com.codahale.metrics.MetricRegistry;
 import com.google.inject.Binder;
 import com.google.inject.Module;
 import com.google.inject.assistedinject.Assisted;
@@ -41,12 +42,14 @@ public class WorkEventEnvelopeConsumer
   private final Consumer<WorkEventEnvelope> consumer;
 
   @Inject
-  public WorkEventEnvelopeConsumer(final Provider<CamelContextBuilder> camelContextBuilder,
+  public WorkEventEnvelopeConsumer(final MetricRegistry metricRegistry,
+                                   final Provider<CamelContextBuilder> camelContextBuilder,
                                    final AmazonSQS sqsClient,
                                    @Assisted final SqsEventConsumerConfiguration configuration,
                                    @Assisted final Consumer<WorkEventEnvelope> consumer)
   {
     super(
+        metricRegistry,
         camelContextBuilder,
         sqsClient,
         configuration,

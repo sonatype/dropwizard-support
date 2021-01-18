@@ -12,16 +12,30 @@
  */
 package org.sonatype.goodies.dropwizard.worker;
 
+import com.google.common.base.MoreObjects;
+import static com.google.common.base.Preconditions.checkNotNull;
+
 /**
- * Worker service.
+ * Fired to consume {@link WorkEvent} locally in a separate thread.
  *
  * @since ???
  */
-public interface WorkerService
+public class LocalConsumeWorkEvent
 {
-  void addHandler(WorkEventHandler handler);
+  private final WorkEvent event;
 
-  void removeHandler(WorkEventHandler handler);
+  public LocalConsumeWorkEvent(final WorkEvent event) {
+    this.event = checkNotNull(event);
+  }
 
-  void dispatch(WorkEvent event);
+  public WorkEvent getEvent() {
+    return event;
+  }
+
+  @Override
+  public String toString() {
+    return MoreObjects.toStringHelper(this)
+        .add("event", event)
+        .toString();
+  }
 }
