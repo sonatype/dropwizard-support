@@ -12,7 +12,6 @@
  */
 package org.sonatype.goodies.dropwizard.camel.health;
 
-import com.codahale.metrics.MetricRegistry;
 import com.codahale.metrics.health.HealthCheck;
 import com.codahale.metrics.health.HealthCheckRegistry;
 import org.apache.camel.CamelContext;
@@ -40,7 +39,7 @@ public class ContextHealthCheckLifecycleStrategy
   {
     this.healthCheckRegistry = checkNotNull(healthCheckRegistry);
     this.camelContext = checkNotNull(camelContext);
-    this.name = MetricRegistry.name("service", camelContext.getName(), "context");
+    this.name = String.format("%s-context", camelContext.getName());
   }
 
   @Override

@@ -14,7 +14,6 @@ package org.sonatype.goodies.dropwizard.camel.health;
 
 import java.util.Collection;
 
-import com.codahale.metrics.MetricRegistry;
 import com.codahale.metrics.health.HealthCheck;
 import com.codahale.metrics.health.HealthCheckRegistry;
 import org.apache.camel.CamelContext;
@@ -44,7 +43,7 @@ public class RouteHealthCheckLifecycleStrategy
   }
 
   private String name(final Route route) {
-    return MetricRegistry.name("service", camelContext.getName(), "route", route.getId());
+    return String.format("%s-route-%s", camelContext.getName(), route.getId());
   }
 
   @Override
