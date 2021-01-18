@@ -87,13 +87,7 @@ public class CamelContextBuilder
     checkState(name != null, "Missing: name");
 
     log.debug("Create camel-context: {}", name);
-    DefaultCamelContext camelContext = new DefaultCamelContext()
-    {
-      @Override
-      protected org.apache.camel.health.HealthCheckRegistry createHealthCheckRegistry() {
-        return super.createHealthCheckRegistry();
-      }
-    };
+    DefaultCamelContext camelContext = new DefaultCamelContext();
     camelContext.setName(name);
 
     // install standard components into registry
