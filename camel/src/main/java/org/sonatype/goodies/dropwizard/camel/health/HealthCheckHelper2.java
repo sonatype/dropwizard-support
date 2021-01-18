@@ -29,12 +29,17 @@ public class HealthCheckHelper2
    */
   public static HealthCheck.Result convert(final org.apache.camel.health.HealthCheck.Result source) {
     ResultBuilder builder = Result.builder();
+    // copy details if present
     source.getDetails().forEach(builder::withDetail);
+    // copy message if present
     source.getMessage().ifPresent(builder::withMessage);
+
+    // translate UP to healthy
     if (source.getState() == State.UP) {
       builder.healthy();
     }
     else {
+      // everything else is unhealthy with optional cause
       source.getError().ifPresentOrElse(builder::unhealthy, builder::unhealthy);
     }
     return builder.build();
