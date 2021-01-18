@@ -27,7 +27,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * {@link LocalRealm} role.
  *
- * @since ???
+ * @since 1.3.0
  */
 public class LocalUser
 {

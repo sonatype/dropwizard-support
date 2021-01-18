@@ -12,10 +12,10 @@
  */
 package org.sonatype.goodies.dropwizard.rules.matcher.string
 
-import org.junit.Test
+import org.junit.jupiter.api.Test
 
-import static org.junit.Assert.fail
-import static org.mockito.Matchers.anyString
+import static org.junit.jupiter.api.Assertions.fail
+import static org.mockito.ArgumentMatchers.anyString
 import static org.mockito.Mockito.mock
 import static org.mockito.Mockito.never
 import static org.mockito.Mockito.verify
@@ -27,11 +27,10 @@ import static org.mockito.Mockito.when
  */
 class OrStringMatcherTest
 {
-  @SuppressWarnings("GroovyResultOfObjectAllocationIgnored")
   @Test
   void 'at least 2 matchers required'() {
     try {
-      new OrStringMatcher([])
+      def matcher = new OrStringMatcher([])
       fail()
     }
     catch (IllegalStateException expected) {
@@ -39,14 +38,14 @@ class OrStringMatcherTest
     }
 
     try {
-      new OrStringMatcher([ mock(StringMatcher.class) ])
+      def matcher = new OrStringMatcher([ mock(StringMatcher.class) ])
       fail()
     }
     catch (IllegalStateException expected) {
       println expected
     }
 
-    new OrStringMatcher([ mock(StringMatcher.class), mock(StringMatcher.class) ])
+    def matcher = new OrStringMatcher([ mock(StringMatcher.class), mock(StringMatcher.class) ])
   }
 
   @Test

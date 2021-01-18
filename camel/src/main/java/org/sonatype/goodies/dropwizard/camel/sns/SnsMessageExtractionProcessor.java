@@ -23,7 +23,7 @@ import org.apache.camel.Processor;
 /**
  * Extract {@link #MESSAGE} from {@literal in} and replace as {@literal out} body.
  *
- * @since ???
+ * @since 1.3.0
  */
 public class SnsMessageExtractionProcessor
     implements Processor

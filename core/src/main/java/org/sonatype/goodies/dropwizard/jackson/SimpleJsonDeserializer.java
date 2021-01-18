@@ -26,7 +26,7 @@ import com.fasterxml.jackson.databind.deser.std.StdScalarDeserializer;
 /**
  * Simple {@link JsonDeserializer}.
  *
- * @since ???
+ * @since 1.3.0
  */
 public abstract class SimpleJsonDeserializer<T>
     extends StdScalarDeserializer<T>

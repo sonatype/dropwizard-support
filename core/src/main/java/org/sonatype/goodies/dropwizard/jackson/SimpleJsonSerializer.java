@@ -27,7 +27,7 @@ import com.fasterxml.jackson.databind.ser.std.StdScalarSerializer;
 /**
  * Simple {@link JsonSerializer}.
  *
- * @since ???
+ * @since 1.3.0
  */
 public abstract class SimpleJsonSerializer<T>
     extends StdScalarSerializer<T>

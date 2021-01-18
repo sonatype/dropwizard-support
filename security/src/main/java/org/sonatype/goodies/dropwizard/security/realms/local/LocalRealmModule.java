@@ -20,7 +20,7 @@ import org.apache.shiro.realm.Realm;
 /**
  * {@link LocalRealm} module.
  *
- * @since ???
+ * @since 1.3.0
  */
 public class LocalRealmModule
     extends AbstractModule

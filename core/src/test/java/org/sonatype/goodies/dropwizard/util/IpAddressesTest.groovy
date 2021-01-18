@@ -12,8 +12,8 @@
  */
 package org.sonatype.goodies.dropwizard.util
 
-import org.junit.Before
-import org.junit.Test
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
 
 /**
  * Tests for {@link IpAddresses}.
@@ -22,7 +22,7 @@ class IpAddressesTest
 {
   private IpAddresses underTest
 
-  @Before
+  @BeforeEach
   void setUp() {
     underTest = new IpAddresses()
   }

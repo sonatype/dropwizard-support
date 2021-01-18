@@ -44,7 +44,7 @@ import org.apache.shiro.web.session.mgt.WebSessionManager;
 /**
  * Support for security modules.
  *
- * @since ???
+ * @since 1.3.0
  */
 @Beta
 public class SecurityModuleSupport

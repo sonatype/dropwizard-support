@@ -36,7 +36,7 @@ import static com.google.common.base.Preconditions.checkState;
 /**
  * {@link CamelContext} builder.
  *
- * @since ???
+ * @since 1.3.0
  */
 @Named
 public class CamelContextBuilder

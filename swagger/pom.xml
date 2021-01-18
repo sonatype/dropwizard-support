@@ -20,7 +20,7 @@
   <parent>
     <groupId>org.sonatype.goodies.dropwizard</groupId>
     <artifactId>dropwizard-support</artifactId>
-    <version>1.3.0-SNAPSHOT</version>
+    <version>2.0.0-SNAPSHOT</version>
   </parent>
 
   <artifactId>dropwizard-support-swagger</artifactId>
@@ -32,7 +32,7 @@
       <dependency>
         <groupId>org.sonatype.goodies.dropwizard</groupId>
         <artifactId>dropwizard-support-bom</artifactId>
-        <version>1.3.0-SNAPSHOT</version>
+        <version>2.0.0-SNAPSHOT</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -48,23 +48,17 @@
     <dependency>
       <groupId>io.swagger</groupId>
       <artifactId>swagger-jersey2-jaxrs</artifactId>
-      <exclusions>
-        <exclusion>
-          <groupId>org.glassfish.hk2.external</groupId>
-          <artifactId>javax.inject</artifactId>
-        </exclusion>
-      </exclusions>
+<!--      <exclusions>-->
+<!--        <exclusion>-->
+<!--          <groupId>org.glassfish.hk2.external</groupId>-->
+<!--          <artifactId>javax.inject</artifactId>-->
+<!--        </exclusion>-->
+<!--      </exclusions>-->
     </dependency>
 
     <dependency>
       <groupId>org.sonatype.goodies.dropwizard</groupId>
       <artifactId>dropwizard-support-testbase</artifactId>
-      <scope>test</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.codehaus.groovy</groupId>
-      <artifactId>groovy-all</artifactId>
       <scope>test</scope>
     </dependency>
   </dependencies>

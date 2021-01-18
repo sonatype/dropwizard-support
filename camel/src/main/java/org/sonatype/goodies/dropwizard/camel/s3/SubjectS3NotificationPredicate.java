@@ -19,7 +19,7 @@ import org.sonatype.goodies.dropwizard.camel.sns.SnsNotificationSubjectPredicate
 /**
  * Matches {@link Map} body which appears to be an S3 notification message.
  *
- * @since ???
+ * @since 1.3.0
  */
 public class SubjectS3NotificationPredicate
     extends SnsNotificationSubjectPredicateSupport

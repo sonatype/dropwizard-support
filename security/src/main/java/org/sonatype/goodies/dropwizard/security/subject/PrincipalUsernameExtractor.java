@@ -27,7 +27,7 @@ import org.apache.shiro.subject.Subject;
 public interface PrincipalUsernameExtractor
 {
   /**
-   * @since ???
+   * @since 1.3.0
    */
   @Nullable
   String extract(PrincipalCollection principals);

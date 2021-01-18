@@ -15,7 +15,7 @@ package org.sonatype.goodies.dropwizard.security.authz;
 /**
  * CRUD actions.
  *
- * @since ???
+ * @since 1.3.0
  */
 public class CrudActions
 {

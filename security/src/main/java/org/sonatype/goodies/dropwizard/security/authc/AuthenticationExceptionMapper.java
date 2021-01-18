@@ -12,8 +12,6 @@
  */
 package org.sonatype.goodies.dropwizard.security.authc;
 
-import javax.inject.Named;
-import javax.inject.Singleton;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
@@ -29,8 +27,6 @@ import org.apache.shiro.authc.AuthenticationException;
  *
  * @since 1.0.0
  */
-@Named
-@Singleton
 public class AuthenticationExceptionMapper
     extends LoggingExceptionMapper<AuthenticationException>
 {

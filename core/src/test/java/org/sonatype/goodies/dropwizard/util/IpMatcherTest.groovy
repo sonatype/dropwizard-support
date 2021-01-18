@@ -12,7 +12,7 @@
  */
 package org.sonatype.goodies.dropwizard.util
 
-import org.junit.Test
+import org.junit.jupiter.api.Test
 
 /**
  * Tests for {@link IpMatcher}.

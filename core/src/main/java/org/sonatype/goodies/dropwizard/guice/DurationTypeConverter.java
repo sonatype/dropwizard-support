@@ -20,7 +20,7 @@ import io.dropwizard.util.Duration;
 /**
  * {@link Duration} {@link TypeConverter}.
  *
- * @since ???
+ * @since 1.3.0
  */
 @Named
 public class DurationTypeConverter

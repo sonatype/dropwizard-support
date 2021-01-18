@@ -14,8 +14,8 @@ package org.sonatype.goodies.dropwizard.ratelimit
 
 import com.google.common.base.Ticker
 import io.dropwizard.util.Duration
-import org.junit.Before
-import org.junit.Test
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
 
 /**
  * Tests for {@link LeakyBucket}.
@@ -39,7 +39,7 @@ class LeakyBucketTest
 
   private AdjustableTicker ticker
 
-  @Before
+  @BeforeEach
   void setUp() {
     ticker = new AdjustableTicker()
   }

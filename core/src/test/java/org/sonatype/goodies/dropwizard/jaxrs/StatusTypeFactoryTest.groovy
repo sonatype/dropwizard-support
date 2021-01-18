@@ -14,7 +14,7 @@ package org.sonatype.goodies.dropwizard.jaxrs
 
 import javax.ws.rs.core.Response.Status.Family
 
-import org.junit.Test
+import org.junit.jupiter.api.Test
 
 /**
  * {@link StatusTypeFactory} tests.

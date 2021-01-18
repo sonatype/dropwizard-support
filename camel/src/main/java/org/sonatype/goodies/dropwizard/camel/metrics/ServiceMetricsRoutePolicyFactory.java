@@ -20,7 +20,7 @@ import org.apache.camel.component.metrics.routepolicy.MetricsRoutePolicyFactory;
  *
  * Sets up the default {@link MetricsRoutePolicyFactory#getNamePattern() name-pattern} for service usage.
  *
- * @since ???
+ * @since 1.3.0
  */
 public class ServiceMetricsRoutePolicyFactory
     extends MetricsRoutePolicyFactory

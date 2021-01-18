@@ -21,7 +21,7 @@ import org.apache.camel.spi.DataFormat;
 /**
  * AWS SNS {@link DataFormat}.
  *
- * @since ???
+ * @since 1.3.0
  */
 public class SnsDataFormat
     extends JacksonDataFormat

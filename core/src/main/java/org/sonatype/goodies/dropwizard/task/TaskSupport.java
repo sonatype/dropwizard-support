@@ -14,13 +14,13 @@ package org.sonatype.goodies.dropwizard.task;
 
 import java.io.PrintWriter;
 import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Nullable;
 
 import org.sonatype.goodies.dropwizard.util.Loggers;
 
-import com.google.common.collect.ImmutableMultimap;
-import com.google.common.collect.Multimap;
 import io.dropwizard.servlets.tasks.Task;
 import org.slf4j.Logger;
 
@@ -46,9 +46,9 @@ public abstract class TaskSupport
    */
   public static class Parameters
   {
-    private final Multimap<String, String> parameters;
+    private final Map<String, List<String>> parameters;
 
-    public Parameters(final Multimap<String, String> parameters) {
+    public Parameters(final Map<String, List<String>> parameters) {
       this.parameters = checkNotNull(parameters);
     }
 
@@ -79,7 +79,7 @@ public abstract class TaskSupport
   }
 
   @Override
-  public final void execute(final ImmutableMultimap<String, String> parameters, final PrintWriter output) throws Exception {
+  public void execute(final Map<String, List<String>> parameters, final PrintWriter output) throws Exception {
     doExecute(new Parameters(parameters), output);
   }
 

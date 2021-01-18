@@ -15,9 +15,9 @@ package org.sonatype.goodies.dropwizard.ratelimit
 import javax.servlet.http.HttpServletRequest
 
 import com.codahale.metrics.MetricRegistry
-import org.junit.After
-import org.junit.Before
-import org.junit.Test
+import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
 
 import static org.mockito.Mockito.mock
 import static org.mockito.Mockito.when
@@ -29,13 +29,13 @@ class RatelimitServiceImplTest
 {
   private RatelimitServiceImpl underTest
 
-  @Before
+  @BeforeEach
   void setUp() {
     underTest = new RatelimitServiceImpl(new RatelimitConfiguration(), new MetricRegistry())
     SecurityHelper.setup()
   }
 
-  @After
+  @AfterEach
   void tearDown() {
     SecurityHelper.reset()
   }

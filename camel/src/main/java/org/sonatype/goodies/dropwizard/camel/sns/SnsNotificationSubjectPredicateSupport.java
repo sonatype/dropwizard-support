@@ -22,7 +22,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * Support for AWS SNS predicates check {@link #TYPE} = {@link #NOTIFICATION} and {@link #SUBJECT}.
  *
- * @since ???
+ * @since 1.3.0
  */
 public class SnsNotificationSubjectPredicateSupport
     implements Predicate

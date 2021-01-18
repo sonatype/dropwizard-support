@@ -20,7 +20,7 @@
   <parent>
     <groupId>org.sonatype.goodies.dropwizard</groupId>
     <artifactId>dropwizard-support</artifactId>
-    <version>1.3.0-SNAPSHOT</version>
+    <version>2.0.0-SNAPSHOT</version>
   </parent>
 
   <artifactId>dropwizard-support-core</artifactId>
@@ -32,7 +32,7 @@
       <dependency>
         <groupId>org.sonatype.goodies.dropwizard</groupId>
         <artifactId>dropwizard-support-bom</artifactId>
-        <version>1.3.0-SNAPSHOT</version>
+        <version>2.0.0-SNAPSHOT</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -46,11 +46,6 @@
     </dependency>
 
     <dependency>
-      <groupId>io.dropwizard</groupId>
-      <artifactId>dropwizard-assets</artifactId>
-    </dependency>
-
-    <dependency>
       <groupId>com.google.inject</groupId>
       <artifactId>guice</artifactId>
     </dependency>
@@ -61,13 +56,13 @@
     </dependency>
 
     <dependency>
-      <groupId>com.palominolabs.metrics</groupId>
-      <artifactId>metrics-guice</artifactId>
+      <groupId>org.glassfish.hk2</groupId>
+      <artifactId>guice-bridge</artifactId>
     </dependency>
 
     <dependency>
-      <groupId>org.glassfish.hk2</groupId>
-      <artifactId>guice-bridge</artifactId>
+      <groupId>com.palominolabs.metrics</groupId>
+      <artifactId>metrics-guice</artifactId>
     </dependency>
 
     <dependency>
@@ -75,18 +70,7 @@
       <artifactId>guava</artifactId>
     </dependency>
 
-    <dependency>
-      <!-- include additional api for post-java-8 support -->
-      <groupId>javax.activation</groupId>
-      <artifactId>javax.activation-api</artifactId>
-    </dependency>
-
-    <dependency>
-      <!-- include additional api for post-java-8 support -->
-      <groupId>javax.xml.bind</groupId>
-      <artifactId>jaxb-api</artifactId>
-    </dependency>
-
+    <!-- exposed for version-resource -->
     <dependency>
       <groupId>io.swagger</groupId>
       <artifactId>swagger-annotations</artifactId>
@@ -96,18 +80,6 @@
     <dependency>
       <groupId>org.sonatype.goodies.dropwizard</groupId>
       <artifactId>dropwizard-support-testbase</artifactId>
-      <scope>test</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.codehaus.groovy</groupId>
-      <artifactId>groovy-all</artifactId>
-      <scope>test</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>io.dropwizard</groupId>
-      <artifactId>dropwizard-testing</artifactId>
       <scope>test</scope>
     </dependency>
   </dependencies>

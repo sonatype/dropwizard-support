@@ -72,7 +72,7 @@ public class S3Helper
   /**
    * Check if bucket exists.
    *
-   * @since ???
+   * @since 1.3.0
    */
   public boolean bucketExists(final String bucket) {
     checkNotNull(bucket);
@@ -101,7 +101,7 @@ public class S3Helper
   /**
    * Put object.
    *
-   * @since ???
+   * @since 1.3.0
    */
   public PutObjectResult put(final PutObjectRequest request) {
     checkNotNull(request);

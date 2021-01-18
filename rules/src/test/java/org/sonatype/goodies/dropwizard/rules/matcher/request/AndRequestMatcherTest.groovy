@@ -16,9 +16,9 @@ import javax.servlet.http.HttpServletRequest
 
 import org.sonatype.goodies.dropwizard.rules.matcher.string.ContainsStringMatcher
 
-import org.junit.Test
+import org.junit.jupiter.api.Test
 
-import static org.junit.Assert.fail
+import static org.junit.jupiter.api.Assertions.fail
 import static org.mockito.Mockito.mock
 import static org.mockito.Mockito.never
 import static org.mockito.Mockito.times
@@ -31,11 +31,10 @@ import static org.mockito.Mockito.when
  */
 class AndRequestMatcherTest
 {
-  @SuppressWarnings("GroovyResultOfObjectAllocationIgnored")
   @Test
   void 'at least 2 matchers required'() {
     try {
-      new AndRequestMatcher([])
+      def matcher = new AndRequestMatcher([])
       fail()
     }
     catch (IllegalStateException expected) {
@@ -43,14 +42,14 @@ class AndRequestMatcherTest
     }
 
     try {
-      new AndRequestMatcher([ mock(RequestMatcher.class) ])
+      def matcher = new AndRequestMatcher([ mock(RequestMatcher.class) ])
       fail()
     }
     catch (IllegalStateException expected) {
       println expected
     }
 
-    new AndRequestMatcher([ mock(RequestMatcher.class), mock(RequestMatcher.class) ])
+    def matcher = new AndRequestMatcher([ mock(RequestMatcher.class), mock(RequestMatcher.class) ])
   }
 
   @Test
