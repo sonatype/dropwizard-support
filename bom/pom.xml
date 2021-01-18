@@ -42,7 +42,7 @@
     <junit4.version>4.13.1</junit4.version>
     <junit5.version>5.7.0</junit5.version>
     <hamcrest.version>2.2</hamcrest.version>
-    <mockito.version>3.7.0</mockito.version>
+    <mockito.version>3.7.7</mockito.version>
   </properties>
 
   <dependencyManagement>
@@ -230,7 +230,7 @@
       <dependency>
         <groupId>commons-codec</groupId>
         <artifactId>commons-codec</artifactId>
-        <version>1.14</version>
+        <version>1.15</version>
       </dependency>
 
       <!-- INTERNAL -->
