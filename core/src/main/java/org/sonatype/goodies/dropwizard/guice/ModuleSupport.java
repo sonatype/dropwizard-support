@@ -17,6 +17,8 @@ import java.util.Map;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.multibindings.Multibinder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -31,6 +33,8 @@ import static com.google.common.base.Preconditions.checkNotNull;
 public class ModuleSupport
     extends AbstractModule
 {
+  protected final Logger log = LoggerFactory.getLogger(getClass());
+
   private final Map<Class<?>,Multibinder<?>> multibinders = new HashMap<>();
 
   @SuppressWarnings({"rawtypes", "unchecked"})
@@ -39,6 +43,7 @@ public class ModuleSupport
     Multibinder multibinder = multibinders.get(type);
     if (multibinder == null) {
       multibinder = Multibinder.newSetBinder(binder(), type);
+      log.trace("Created multibinder for: {}", type);
       multibinders.put(type, multibinder);
     }
     return (Multibinder<T>)multibinder;
@@ -46,6 +51,7 @@ public class ModuleSupport
 
   protected <T> void multibind(final Class<T> type, final Class<? extends T> target) {
     checkNotNull(target);
+    log.trace("Adding multibinding: {} -> {}", type, target);
     multibinder(type).addBinding().to(target);
   }
 
