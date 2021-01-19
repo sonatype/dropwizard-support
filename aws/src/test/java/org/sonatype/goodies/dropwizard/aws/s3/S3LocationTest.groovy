@@ -30,14 +30,14 @@ class S3LocationTest
   }
 
   @Test
-  void 'parse invalid scheme'() {
+  void 'parse uri invalid scheme'() {
     assertThrows(InvalidLocationException.class, {
       S3Location.parse(URI.create('http://example.com/foo'))
     })
   }
 
   @Test
-  void 'parse missing path'() {
+  void 'parse uri missing path'() {
     S3Location.parse(URI.create('s3://a')).with {
       assert bucket == 'a'
       assert key == ''
@@ -45,7 +45,7 @@ class S3LocationTest
   }
 
   @Test
-  void 'parse with path'() {
+  void 'parse uri with path'() {
     S3Location.parse(URI.create('s3://a/b/c')).with {
       assert bucket == 'a'
       assert key == 'b/c'
