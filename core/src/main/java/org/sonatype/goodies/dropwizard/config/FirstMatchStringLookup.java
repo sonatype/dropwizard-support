@@ -51,8 +51,16 @@ public class FirstMatchStringLookup
       }
     }
     if (strict) {
-      throw new RuntimeException("Missing substitution value for key: " + key);
+      throw new MissingSubstitutionValueException(key);
     }
     return null;
+  }
+
+  public static class MissingSubstitutionValueException
+    extends RuntimeException
+  {
+    public MissingSubstitutionValueException(final String key) {
+      super("Missing substitution value for key: " + key);
+    }
   }
 }
