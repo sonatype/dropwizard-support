@@ -12,6 +12,8 @@
  */
 package org.sonatype.goodies.dropwizard.util;
 
+import org.sonatype.goodies.dropwizard.guice.GuiceEnhanced;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
