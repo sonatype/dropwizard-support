@@ -117,6 +117,9 @@ public class S3Location
     return new S3Location(bucket, key);
   }
 
+  /**
+   * @since ???
+   */
   public static class InvalidLocationException
       extends RuntimeException
   {

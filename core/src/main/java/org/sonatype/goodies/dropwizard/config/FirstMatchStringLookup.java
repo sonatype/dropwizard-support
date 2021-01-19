@@ -56,6 +56,9 @@ public class FirstMatchStringLookup
     return null;
   }
 
+  /**
+   * @since ???
+   */
   public static class MissingSubstitutionValueException
     extends RuntimeException
   {
