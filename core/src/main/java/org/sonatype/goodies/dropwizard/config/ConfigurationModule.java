@@ -12,8 +12,6 @@
  */
 package org.sonatype.goodies.dropwizard.config;
 
-import org.sonatype.goodies.dropwizard.config.attachment.ConfigurationAttachmentModule;
-
 import io.dropwizard.Configuration;
 
 /**
@@ -35,8 +33,5 @@ public class ConfigurationModule
 
     // expose configuration member bindings
     expose(configuration);
-
-    // support configuration attachments
-    install(new ConfigurationAttachmentModule(configuration));
   }
 }

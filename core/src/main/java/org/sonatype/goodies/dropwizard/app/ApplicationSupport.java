@@ -25,6 +25,9 @@ import javax.annotation.Nullable;
 import org.sonatype.goodies.dropwizard.config.ComponentDiscovery;
 import org.sonatype.goodies.dropwizard.config.ConfigurationModule;
 import org.sonatype.goodies.dropwizard.config.ConfigurationSupport;
+import org.sonatype.goodies.dropwizard.config.attachment.ConfigurationAttachment;
+import org.sonatype.goodies.dropwizard.config.attachment.ConfigurationAttachmentAware;
+import org.sonatype.goodies.dropwizard.config.attachment.ConfigurationAttachmentModule;
 import org.sonatype.goodies.dropwizard.env.BasicEnvironmentReporter;
 import org.sonatype.goodies.dropwizard.env.EnvironmentModule;
 import org.sonatype.goodies.dropwizard.env.EnvironmentReporter;
@@ -185,6 +188,9 @@ public abstract class ApplicationSupport<T extends Configuration>
     // add binding for application configuration
     modules.add(new ConfigurationModule(config));
 
+    // support configuration attachments
+    modules.add(new ConfigurationAttachmentModule(config));
+
     // configure various environment bindings
     modules.add(new EnvironmentModule(environment));
 
@@ -206,6 +212,12 @@ public abstract class ApplicationSupport<T extends Configuration>
         Throwables.throwIfUnchecked(e);
         throw new RuntimeException(e);
       }
+    }
+
+    // allow for attachment to contribute modules
+    if (config instanceof ConfigurationAttachmentAware) {
+      List<ConfigurationAttachment> attachments = ((ConfigurationAttachmentAware)config).getConfigurationAttachments();
+      attachments.forEach(a -> modules.addAll(a.modules()));
     }
 
     BeanScanning scanning = scanning(config);

@@ -56,9 +56,6 @@ public class ConfigurationAttachmentModule
       );
     }
 
-    // install any additional modules
-    attachment.modules().forEach(this::install);
-
     // bind attachment and expose any nested bindings
     bind(type, name, attachment);
     expose(attachment);
