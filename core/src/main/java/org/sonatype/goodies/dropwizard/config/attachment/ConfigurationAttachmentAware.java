@@ -10,19 +10,19 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
-package org.sonatype.goodies.dropwizard.config;
+package org.sonatype.goodies.dropwizard.config.attachment;
 
-import java.util.Map;
+import java.util.List;
 
 import javax.annotation.Nonnull;
 
 /**
  * Marker for {@link io.dropwizard.Configuration} which is {@link ConfigurationAttachment} aware.
  *
- * @since 1.2.0
+ * @since ???
  */
 public interface ConfigurationAttachmentAware
 {
   @Nonnull
-  Map<String,ConfigurationAttachment> getConfigurationAttachments();
+  List<ConfigurationAttachment> getConfigurationAttachments();
 }

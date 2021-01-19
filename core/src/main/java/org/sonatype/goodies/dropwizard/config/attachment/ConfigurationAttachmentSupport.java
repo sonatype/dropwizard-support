@@ -10,33 +10,36 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
-package org.sonatype.goodies.dropwizard.config;
+package org.sonatype.goodies.dropwizard.config.attachment;
 
-import org.sonatype.goodies.dropwizard.config.attachment.ConfigurationAttachmentModule;
+import javax.annotation.Nullable;
 
-import io.dropwizard.Configuration;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Adds bindings for {@link Configuration}.
+ * {@link ConfigurationAttachment} support.
  *
- * @since 1.0.0
+ * @since ???
  */
-public class ConfigurationModule
-    extends BindModuleSupport
+public class ConfigurationAttachmentSupport
+    implements ConfigurationAttachment
 {
-  public ConfigurationModule(final Configuration configuration) {
-    super(configuration);
+  @Nullable
+  @JsonProperty
+  private String name;
+
+  @Nullable
+  public String getName() {
+    return name;
   }
 
+  public void setName(@Nullable final String name) {
+    this.name = name;
+  }
+
+  @Nullable
   @Override
-  protected void configure() {
-    // bind original configuration
-    bind(configuration.getClass(), null, configuration);
-
-    // expose configuration member bindings
-    expose(configuration);
-
-    // support configuration attachments
-    install(new ConfigurationAttachmentModule(configuration));
+  public String name() {
+    return getName();
   }
 }

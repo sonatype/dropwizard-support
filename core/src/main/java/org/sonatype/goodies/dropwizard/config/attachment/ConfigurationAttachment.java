@@ -10,10 +10,14 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
-package org.sonatype.goodies.dropwizard.config;
+package org.sonatype.goodies.dropwizard.config.attachment;
 
 import java.util.Collections;
 import java.util.List;
+
+import javax.annotation.Nullable;
+
+import org.sonatype.goodies.dropwizard.config.ConfigurationSupport;
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
@@ -21,14 +25,22 @@ import com.google.inject.Module;
 import io.dropwizard.jackson.Discoverable;
 
 /**
- * Allows for generic configuration attachment to standard configuration framework.
+ * Allows for dynamic configuration to be attached to primary {@link ConfigurationSupport}.
  *
- * @since 1.2.0
+ * @since ???
+ * @see ConfigurationAttachmentAware
+ * @see ConfigurationAttachmentModule
+ * @see ConfigurationAttachmentSupport
  */
 @JsonTypeInfo(use = Id.NAME, property = "type")
 public interface ConfigurationAttachment
     extends Discoverable
 {
+  @Nullable
+  default String name() {
+    return null;
+  }
+
   /**
    * Additional modules to install when attachment is configured.
    * 
