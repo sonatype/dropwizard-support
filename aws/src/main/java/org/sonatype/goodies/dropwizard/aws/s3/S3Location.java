@@ -103,14 +103,26 @@ public class S3Location
     checkNotNull(value);
 
     if (!SCHEME.equals(value.getScheme())) {
-      throw new RuntimeException("Invalid scheme for S3 location: " + value);
+      throw new InvalidLocationException("Invalid scheme", value);
     }
 
     String bucket = value.getHost();
+
     // strip off leading / from object key
-    String key = value.getPath().substring(1);
+    String key = value.getPath();
+    if (key.length() != 0) {
+      key = key.substring(1);
+    }
 
     return new S3Location(bucket, key);
+  }
+
+  public static class InvalidLocationException
+      extends RuntimeException
+  {
+    public InvalidLocationException(final String message, final URI value) {
+      super(message + ": " + value);
+    }
   }
 
   //

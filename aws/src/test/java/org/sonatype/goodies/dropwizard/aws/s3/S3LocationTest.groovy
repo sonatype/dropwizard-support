@@ -12,7 +12,11 @@
  */
 package org.sonatype.goodies.dropwizard.aws.s3
 
+import org.sonatype.goodies.dropwizard.aws.s3.S3Location.InvalidLocationException
+
 import org.junit.jupiter.api.Test
+
+import static org.junit.jupiter.api.Assertions.assertThrows
 
 /**
  * {@link S3Location} tests.
@@ -23,6 +27,29 @@ class S3LocationTest
   void 'to URI'() {
     def underTest = new S3Location('foo', 'bar/baz')
     underTest.toUri() == URI.create('s3://foo/bar/baz')
+  }
+
+  @Test
+  void 'parse invalid scheme'() {
+    assertThrows(InvalidLocationException.class, {
+      S3Location.parse(URI.create('http://example.com/foo'))
+    })
+  }
+
+  @Test
+  void 'parse missing path'() {
+    S3Location.parse(URI.create('s3://a')).with {
+      assert bucket == 'a'
+      assert key == ''
+    }
+  }
+
+  @Test
+  void 'parse with path'() {
+    S3Location.parse(URI.create('s3://a/b/c')).with {
+      assert bucket == 'a'
+      assert key == 'b/c'
+    }
   }
 
   @Test
