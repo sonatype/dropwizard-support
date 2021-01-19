@@ -59,4 +59,28 @@ public final class MoreStrings
     checkNotNull(value);
     return value.toUpperCase(Locale.ENGLISH);
   }
+
+  /**
+   * Quote given value with token if non-null.
+   *
+   * @since ???
+   */
+  @Nullable
+  public static String quote(@Nullable final String value, final String token) {
+    if (value != null) {
+      return String.format("%s%s%s", token, value, token);
+    }
+    else {
+      return null;
+    }
+  }
+
+  /**
+   * Double-quote given value if non-null.
+   *
+   * @since ???
+   */
+  public static String dquote(@Nullable final String value) {
+    return quote(value, "\"");
+  }
 }
