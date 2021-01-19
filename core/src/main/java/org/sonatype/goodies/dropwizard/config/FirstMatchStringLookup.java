@@ -18,7 +18,7 @@ import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * First-match {@link org.apache.commons.text.lookup.StringLookup}.
+ * First-match {@link StringLookup}.
  *
  * @since 1.2.0
  */
