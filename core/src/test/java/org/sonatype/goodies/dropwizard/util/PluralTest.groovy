@@ -12,6 +12,7 @@
  */
 package org.sonatype.goodies.dropwizard.util
 
+import com.google.common.collect.ImmutableList
 import org.junit.jupiter.api.Test
 
 // copied from: https://github.com/sonatype/nexus-internal/blob/master/components/nexus-common/src/test/java/org/sonatype/nexus/common/text/PluralTest.groovy
@@ -27,6 +28,13 @@ class PluralTest
     assert Plural.of(0, 'dog') == '0 dogs'
     assert Plural.of(1, 'dog') == '1 dog'
     assert Plural.of(2, 'dog') == '2 dogs'
+  }
+
+  @Test
+  void 'simple plural collection'() {
+    assert Plural.of(Collections.emptyList(), 'dog') == '0 dogs'
+    assert Plural.of(ImmutableList.of('fido'), 'dog') == '1 dog'
+    assert Plural.of(ImmutableList.of('fido', 'spot'), 'dog') == '2 dogs'
   }
 
   @Test
