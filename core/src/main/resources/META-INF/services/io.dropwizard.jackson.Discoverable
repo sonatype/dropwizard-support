@@ -1,1 +1,2 @@
 org.sonatype.goodies.dropwizard.config.attachment.ConfigurationAttachment
+org.sonatype.goodies.dropwizard.app.er.EnvironmentReport$Section

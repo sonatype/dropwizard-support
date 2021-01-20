@@ -10,35 +10,31 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
-package org.sonatype.goodies.dropwizard.env;
+package org.sonatype.goodies.dropwizard.app.er;
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import org.slf4j.Logger;
 
 /**
- * Debug {@link EnvironmentReporter}.
+ * Environment-variables {@link EnvironmentReport.Section}.
  *
  * @since ???
  */
-public class DebugEnvironmentReporter
-  extends DetailedEnvironmentReporter
+@JsonTypeName(EnvVarSection.TYPE)
+public class EnvVarSection
+  extends EnvironmentReport.Section
 {
+  public static final String TYPE = "env-var";
+
+  public EnvVarSection() {
+    super(TYPE);
+  }
+
   @Override
   public void report(final Logger logger) throws Exception {
-    super.report(logger);
-
-    boolean debug = logger.isDebugEnabled();
-    if (debug) {
-      logger.debug("Environment variables:");
-      System.getenv().forEach((key, value) -> {
-        logger.debug("  {}='{}'", key, value);
-      });
-    }
-
-    if (debug) {
-      logger.debug("System properties:");
-      System.getProperties().forEach((key, value) -> {
-        logger.debug("  {}='{}'", key, value);
-      });
-    }
+    log(logger, "Environment variables:");
+    System.getenv().forEach((key, value) -> {
+      log(logger, "  {}='{}'", key, value);
+    });
   }
 }

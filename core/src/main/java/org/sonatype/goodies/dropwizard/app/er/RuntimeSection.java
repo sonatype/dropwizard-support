@@ -10,16 +10,34 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
-package org.sonatype.goodies.dropwizard.env;
+package org.sonatype.goodies.dropwizard.app.er;
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import org.slf4j.Logger;
 
 /**
- * Report environment.
+ * Runtime {@link EnvironmentReport.Section}.
  *
- * @since 1.2.0
+ * @since ???
  */
-public interface EnvironmentReporter
+@JsonTypeName(RuntimeSection.TYPE)
+public class RuntimeSection
+  extends EnvironmentReport.Section
 {
-  void report(Logger logger) throws Exception;
+  public static final String TYPE = "runtime";
+
+  public RuntimeSection() {
+    super(TYPE);
+  }
+
+  @Override
+  public void report(final Logger logger) throws Exception {
+    Runtime runtime = Runtime.getRuntime();
+    log(logger,"CPU; processors={}", runtime.availableProcessors());
+    log(logger,"Memory; free={}, total={}, max={}",
+        runtime.freeMemory(),
+        runtime.totalMemory(),
+        runtime.maxMemory()
+    );
+  }
 }

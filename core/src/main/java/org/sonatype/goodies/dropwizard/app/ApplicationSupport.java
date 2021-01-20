@@ -20,17 +20,15 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Nullable;
-
+import org.sonatype.goodies.dropwizard.app.er.EnvironmentReport;
 import org.sonatype.goodies.dropwizard.config.ComponentDiscovery;
 import org.sonatype.goodies.dropwizard.config.ConfigurationModule;
 import org.sonatype.goodies.dropwizard.config.ConfigurationSupport;
+import org.sonatype.goodies.dropwizard.config.EnvironmentModule;
 import org.sonatype.goodies.dropwizard.config.attachment.ConfigurationAttachment;
 import org.sonatype.goodies.dropwizard.config.attachment.ConfigurationAttachmentAware;
 import org.sonatype.goodies.dropwizard.config.attachment.ConfigurationAttachmentModule;
-import org.sonatype.goodies.dropwizard.env.BasicEnvironmentReporter;
-import org.sonatype.goodies.dropwizard.env.EnvironmentModule;
-import org.sonatype.goodies.dropwizard.env.EnvironmentReporter;
+import org.sonatype.goodies.dropwizard.guice.ParameterPropertiesModule;
 import org.sonatype.goodies.dropwizard.jersey.JerseyGuiceBridgeFeature;
 import org.sonatype.goodies.dropwizard.jersey.JerseyModule;
 import org.sonatype.goodies.dropwizard.metrics.MetricsAopModule;
@@ -38,7 +36,6 @@ import org.sonatype.goodies.dropwizard.selection.ComponentSelectionConfiguration
 import org.sonatype.goodies.dropwizard.selection.ComponentSelectionConfigurationAware;
 import org.sonatype.goodies.dropwizard.selection.ComponentSelectionTypeListener;
 import org.sonatype.goodies.dropwizard.util.FileHelper;
-import org.sonatype.goodies.dropwizard.guice.ParameterPropertiesModule;
 import org.sonatype.goodies.dropwizard.version.VersionModule;
 
 import ch.qos.logback.classic.Level;
@@ -77,9 +74,6 @@ public abstract class ApplicationSupport<T extends Configuration>
 
   private final List<ApplicationCustomizer> customizers = new ArrayList<>();
 
-  @Nullable
-  private EnvironmentReporter environmentReporter = new BasicEnvironmentReporter();
-
   private Injector injector;
 
   /**
@@ -113,15 +107,6 @@ public abstract class ApplicationSupport<T extends Configuration>
   public void addCustomizer(final List<ApplicationCustomizer> customizers) {
     checkNotNull(customizers);
     this.customizers.addAll(customizers);
-  }
-
-  /**
-   * Set environment reporter.
-   *
-   * @since 1.2.0
-   */
-  public void setEnvironmentReporter(@Nullable final EnvironmentReporter environmentReporter) {
-    this.environmentReporter = environmentReporter;
   }
 
   /**
@@ -269,12 +254,10 @@ public abstract class ApplicationSupport<T extends Configuration>
     checkNotNull(config);
     checkNotNull(environment);
 
-    if (environmentReporter != null) {
-      try {
-        environmentReporter.report(LoggerFactory.getLogger(getClass()));
-      }
-      catch (Exception e) {
-        log.warn("Failed to display environment", e);
+    if (config instanceof ConfigurationSupport) {
+      EnvironmentReport report = ((ConfigurationSupport)config).getEnvironmentReport();
+      if (report != null) {
+        report.report(LoggerFactory.getLogger(getClass()));
       }
     }
 
