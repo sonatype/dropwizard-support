@@ -16,7 +16,7 @@ import javax.annotation.Nullable;
 import javax.servlet.http.HttpServletRequest;
 
 import org.sonatype.goodies.dropwizard.ratelimit.RatelimitConfiguration.RequestStrategy;
-import org.sonatype.goodies.dropwizard.common.ip.IpAddresses;
+import org.sonatype.goodies.dropwizard.util.IpAddresses;
 
 /**
  * Rate-limit service

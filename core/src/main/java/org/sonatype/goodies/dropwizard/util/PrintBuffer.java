@@ -10,20 +10,39 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
-package org.sonatype.goodies.dropwizard.jaxrs;
+package org.sonatype.goodies.dropwizard.util;
 
-import org.sonatype.goodies.dropwizard.util.Loggers;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 
-import org.slf4j.Logger;
+import javax.annotation.Nonnull;
 
 /**
- * Support for {@link Resource} implementations.
+ * Helper to wrap a {@link PrintWriter} with a {@link StringWriter} back-end buffer.
  *
- * @since 1.0.0
+ * @since 1.2.0
  */
-public abstract class ResourceSupport
-    implements Resource
+public class PrintBuffer
+    extends PrintWriter
 {
-  // Resources may end up with AOP augmentation, use sane loggers
-  protected final Logger log = Loggers.getLogger(getClass());
+  private final StringWriter buffer;
+
+  public PrintBuffer(@Nonnull final StringWriter buffer) {
+    super(buffer, false);
+    this.buffer = (StringWriter)out;
+  }
+
+  public PrintBuffer() {
+    this(new StringWriter());
+  }
+
+  public StringWriter getBuffer() {
+    return buffer;
+  }
+
+  @Override
+  public String toString() {
+    flush();
+    return buffer.toString();
+  }
 }

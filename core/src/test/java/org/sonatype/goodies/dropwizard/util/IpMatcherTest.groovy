@@ -10,20 +10,25 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
-package org.sonatype.goodies.dropwizard.jaxrs;
+package org.sonatype.goodies.dropwizard.util
 
-import org.sonatype.goodies.dropwizard.util.Loggers;
 
-import org.slf4j.Logger;
+import org.junit.jupiter.api.Test
 
 /**
- * Support for {@link Resource} implementations.
- *
- * @since 1.0.0
+ * Tests for {@link IpMatcher}.
  */
-public abstract class ResourceSupport
-    implements Resource
+class IpMatcherTest
 {
-  // Resources may end up with AOP augmentation, use sane loggers
-  protected final Logger log = Loggers.getLogger(getClass());
+  @Test
+  void 'match ipv4'() {
+    assert IpMatcher.match('1.2.3.4', ['1.2.3.4', '5.6.7.8' ])
+    assert !IpMatcher.match('6.6.6.0', [ '1.2.3.4', '5.6.7.8' ])
+  }
+
+  @Test
+  void 'match ipv4 subnet'() {
+    assert IpMatcher.match('1.2.3.4', [ '1.2.3.0/24', '5.6.7.0/24' ])
+    assert !IpMatcher.match('6.6.6.0', [ '1.2.3.0/24', '5.6.7.0/24' ])
+  }
 }

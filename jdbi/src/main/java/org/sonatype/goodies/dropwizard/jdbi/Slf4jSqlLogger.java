@@ -14,7 +14,7 @@ package org.sonatype.goodies.dropwizard.jdbi;
 
 import java.sql.SQLException;
 
-import org.sonatype.goodies.dropwizard.common.logging.Level;
+import org.sonatype.goodies.dropwizard.util.Level;
 
 import org.jdbi.v3.core.statement.SqlLogger;
 import org.jdbi.v3.core.statement.StatementContext;

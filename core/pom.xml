@@ -46,11 +46,6 @@
     </dependency>
 
     <dependency>
-      <groupId>org.sonatype.goodies.dropwizard</groupId>
-      <artifactId>dropwizard-support-common</artifactId>
-    </dependency>
-
-    <dependency>
       <groupId>com.google.inject</groupId>
       <artifactId>guice</artifactId>
     </dependency>

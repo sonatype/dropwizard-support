@@ -10,47 +10,41 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
-package org.sonatype.goodies.dropwizard.camel;
+package org.sonatype.goodies.dropwizard.util;
 
-import java.io.File;
-
-import org.sonatype.goodies.dropwizard.util.FileHelper;
-
-import org.apache.camel.Exchange;
-import org.apache.camel.spi.Synchronization;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * Delete file on {@link Exchange} completion.
+ * Logger utilities.
  *
- * @since 1.3.0
+ * For use in place of {@link LoggerFactory#getLogger(Class)} when target type is expected to be potentially AOP adapted.
+ *
+ * @since 1.0.0
  */
-public class DeleteFileSynchronization
-    implements Synchronization
+public final class Loggers
 {
-  private static final Logger log = LoggerFactory.getLogger(DeleteFileSynchronization.class);
-
-  private final File file;
-
-  public DeleteFileSynchronization(final File file) {
-    this.file = checkNotNull(file);
+  private Loggers() {
+    // empty
   }
 
-  @Override
-  public void onComplete(final Exchange exchange) {
-    on(exchange);
+  /**
+   * Helper to create a logger and deal with class-names created by AOP platforms.
+   */
+  public static Logger getLogger(final Class type) {
+    checkNotNull(type);
+    return LoggerFactory.getLogger(GuiceEnhanced.dereference(type));
   }
 
-  @Override
-  public void onFailure(final Exchange exchange) {
-    on(exchange);
+  public static Logger getLogger(final Object obj) {
+    checkNotNull(obj);
+    return getLogger(obj.getClass());
   }
 
-  private void on(final Exchange exchange) {
-    log.debug("Deleting: {}", file);
-    FileHelper.delete(file);
+  public static Logger getLogger(final String name) {
+    checkNotNull(name);
+    return LoggerFactory.getLogger(name);
   }
 }

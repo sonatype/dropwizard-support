@@ -16,7 +16,7 @@ import javax.servlet.Filter;
 import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 
-import org.sonatype.goodies.dropwizard.common.logging.Loggers;
+import org.sonatype.goodies.dropwizard.util.Loggers;
 
 import org.slf4j.Logger;
 

@@ -15,7 +15,7 @@ package org.sonatype.goodies.dropwizard.env;
 import org.slf4j.Logger;
 
 import static com.google.common.base.Preconditions.checkNotNull;
-import static org.sonatype.goodies.dropwizard.common.io.FileHelper.resolvePath;
+import static org.sonatype.goodies.dropwizard.util.FileHelper.resolvePath;
 
 /**
  * Basic {@link EnvironmentReporter}.

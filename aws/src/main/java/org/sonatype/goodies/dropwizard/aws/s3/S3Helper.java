@@ -22,7 +22,7 @@ import java.io.OutputStream;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.sonatype.goodies.dropwizard.common.io.FileHelper;
+import org.sonatype.goodies.dropwizard.util.FileHelper;
 
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;

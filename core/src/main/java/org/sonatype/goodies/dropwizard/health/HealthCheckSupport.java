@@ -12,7 +12,7 @@
  */
 package org.sonatype.goodies.dropwizard.health;
 
-import org.sonatype.goodies.dropwizard.common.logging.Loggers;
+import org.sonatype.goodies.dropwizard.util.Loggers;
 
 import com.codahale.metrics.health.HealthCheck;
 import org.slf4j.Logger;

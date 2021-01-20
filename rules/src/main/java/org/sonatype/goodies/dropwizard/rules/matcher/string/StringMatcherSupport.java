@@ -14,7 +14,7 @@ package org.sonatype.goodies.dropwizard.rules.matcher.string;
 
 import javax.annotation.Nullable;
 
-import org.sonatype.goodies.dropwizard.common.text.MoreStrings;
+import org.sonatype.goodies.dropwizard.util.MoreStrings;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
