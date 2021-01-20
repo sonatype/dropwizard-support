@@ -12,8 +12,9 @@
  */
 package org.sonatype.goodies.dropwizard.client;
 
+import javax.validation.constraints.NotEmpty;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * Configuration for BASIC authentication credentials.
