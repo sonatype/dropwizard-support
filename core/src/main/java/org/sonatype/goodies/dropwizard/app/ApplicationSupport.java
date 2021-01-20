@@ -73,6 +73,7 @@ public abstract class ApplicationSupport<T extends Configuration>
 {
   protected final Logger log = LoggerFactory.getLogger(getClass());
 
+  @SuppressWarnings("rawtypes")
   private final List<ApplicationCustomizer> customizers = new ArrayList<>();
 
   private Injector injector;
@@ -95,6 +96,7 @@ public abstract class ApplicationSupport<T extends Configuration>
   /**
    * Add application customizers.
    */
+  @SuppressWarnings("rawtypes")
   @VisibleForTesting
   public void addCustomizer(final ApplicationCustomizer... customizers) {
     checkNotNull(customizers);
@@ -104,6 +106,7 @@ public abstract class ApplicationSupport<T extends Configuration>
   /**
    * Add application customizers.
    */
+  @SuppressWarnings("rawtypes")
   @VisibleForTesting
   public void addCustomizer(final List<ApplicationCustomizer> customizers) {
     checkNotNull(customizers);
@@ -268,6 +271,7 @@ public abstract class ApplicationSupport<T extends Configuration>
 
     injector.injectMembers(this);
 
+    //noinspection rawtypes
     for (ApplicationCustomizer customizer : customizers) {
       log.debug("Customizer customize: {}", customizer);
       try {
