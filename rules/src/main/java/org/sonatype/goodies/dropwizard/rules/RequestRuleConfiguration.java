@@ -15,6 +15,7 @@ package org.sonatype.goodies.dropwizard.rules;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.annotation.Nonnull;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
@@ -34,12 +35,12 @@ public class RequestRuleConfiguration
   @JsonProperty
   private List<RequestRule> rules = new LinkedList<>();
 
-  @NotNull
+  @Nonnull
   public List<RequestRule> getRules() {
     return rules;
   }
 
-  public void setRules(@NotNull final List<RequestRule> rules) {
+  public void setRules(@Nonnull final List<RequestRule> rules) {
     this.rules = checkNotNull(rules);
   }
 }
