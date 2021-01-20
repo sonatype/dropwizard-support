@@ -19,5 +19,9 @@ package org.sonatype.goodies.dropwizard.worker;
  */
 public interface WorkerService
 {
+  void addHandler(WorkEventHandler handler);
+
+  void removeHandler(WorkEventHandler handler);
+
   void dispatch(WorkEvent event);
 }

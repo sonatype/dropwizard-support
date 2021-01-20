@@ -168,7 +168,9 @@ public class ComponentDiscovery
       log.debug("Added JAX-RS resource: {}", component);
     }
 
+    //noinspection rawtypes
     for (BeanEntry<Annotation, ExceptionMapper> entry : locate(ExceptionMapper.class)) {
+      //noinspection rawtypes
       ExceptionMapper component = entry.getValue();
       environment.jersey().register(component);
       log.debug("Added JAX-RS exception-mapper: {}", component);

@@ -10,24 +10,34 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
-package org.sonatype.goodies.dropwizard.util
+package org.sonatype.goodies.dropwizard.config
 
+import org.sonatype.goodies.dropwizard.config.FirstMatchStringLookup.MissingSubstitutionValueException
+
+import org.apache.commons.text.lookup.StringLookup
 import org.junit.jupiter.api.Test
 
+import static org.junit.jupiter.api.Assertions.assertThrows
+
 /**
- * Tests for {@link IpMatcher}.
+ * {@link FirstMatchStringLookup} tests.
  */
-class IpMatcherTest
+class FirstMatchStringLookupTest
 {
   @Test
-  void 'match ipv4'() {
-    assert IpMatcher.match('1.2.3.4', ['1.2.3.4', '5.6.7.8' ])
-    assert !IpMatcher.match('6.6.6.0', [ '1.2.3.4', '5.6.7.8' ])
-  }
+  void 'missing substitution value throws exception when strict'() {
+    StringLookup keyUnlessMissing = { key ->
+      if (key == 'missing') {
+        return null
+      }
+      return key
+    }
 
-  @Test
-  void 'match ipv4 subnet'() {
-    assert IpMatcher.match('1.2.3.4', [ '1.2.3.0/24', '5.6.7.0/24' ])
-    assert !IpMatcher.match('6.6.6.0', [ '1.2.3.0/24', '5.6.7.0/24' ])
+    def underTest = new FirstMatchStringLookup(true, keyUnlessMissing)
+
+    underTest.lookup('example') == 'example'
+    assertThrows(MissingSubstitutionValueException.class, {
+      underTest.lookup('missing')
+    })
   }
 }

@@ -19,8 +19,6 @@ import java.net.URL;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 
-import javax.ws.rs.core.UriBuilder;
-
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
@@ -58,15 +56,6 @@ public final class Urls
     catch (MalformedURLException e) {
       throw new RuntimeException(e);
     }
-  }
-
-  /**
-   * Create a URL from builder.
-   *
-   * @since 1.2.0
-   */
-  public static URL create(final UriBuilder builder) {
-    return create(builder.build());
   }
 
   private static final String UTF_8 = "UTF-8";

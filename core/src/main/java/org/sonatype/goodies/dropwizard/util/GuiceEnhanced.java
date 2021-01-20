@@ -16,8 +16,6 @@ import java.lang.reflect.Method;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-// TODO: move to guice package
-
 /**
  * Helper to cope with Guice AOP enhanced classes.
  *

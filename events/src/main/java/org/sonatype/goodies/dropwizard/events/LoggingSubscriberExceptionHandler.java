@@ -12,13 +12,13 @@
  */
 package org.sonatype.goodies.dropwizard.events;
 
+import java.lang.reflect.Method;
+
 import com.google.common.eventbus.SubscriberExceptionContext;
 import com.google.common.eventbus.SubscriberExceptionHandler;
 import org.slf4j.Logger;
 
 import static com.google.common.base.Preconditions.checkNotNull;
-
-// see: https://github.com/sonatype/nexus-public/blob/master/components/nexus-common/src/main/java/org/sonatype/nexus/common/event/Slf4jSubscriberExceptionHandler.java
 
 /**
  * Logging {@link SubscriberExceptionHandler}.
@@ -36,7 +36,16 @@ public class LoggingSubscriberExceptionHandler
 
   @Override
   public void handleException(final Throwable exception, final SubscriberExceptionContext context) {
-    logger.error("Could not dispatch event {} to subscriber {} method [{}]",
-        context.getEvent(), context.getSubscriber(), context.getSubscriberMethod(), exception);
+    if (logger.isErrorEnabled()) {
+      // aligns with https://github.com/google/guava/blob/master/guava/src/com/google/common/eventbus/EventBus.java#L240
+      Method method = context.getSubscriberMethod();
+      logger.error("Exception thrown by subscriber method {}({}) on subscriber {} when dispatching event: {}",
+          method.getName(),
+          method.getParameterTypes()[0].getName(),
+          context.getSubscriber(),
+          context.getEvent(),
+          exception
+      );
+    }
   }
 }

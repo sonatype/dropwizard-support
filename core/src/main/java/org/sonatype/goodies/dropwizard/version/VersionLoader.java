@@ -25,7 +25,7 @@ import org.slf4j.LoggerFactory;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * Helper to load version information from build via resource.
+ * Helper to load version information from build via classpath-resource.
  *
  * @since 1.2.0
  */

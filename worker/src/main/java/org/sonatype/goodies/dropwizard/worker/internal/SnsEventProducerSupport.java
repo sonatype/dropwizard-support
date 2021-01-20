@@ -22,6 +22,8 @@ import org.sonatype.goodies.dropwizard.camel.ExchangeHelper2;
 import org.sonatype.goodies.dropwizard.service.ServiceSupport;
 
 import com.amazonaws.services.sns.AmazonSNS;
+import com.codahale.metrics.Counter;
+import com.codahale.metrics.MetricRegistry;
 import com.google.common.collect.ImmutableMap;
 import org.apache.camel.CamelContext;
 import org.apache.camel.LoggingLevel;
@@ -53,15 +55,19 @@ public class SnsEventProducerSupport
 
   private final String subject;
 
+  private final Counter errorCounter;
+
   @Nullable
   private CamelContext camelContext;
 
-  public SnsEventProducerSupport(final Provider<CamelContextBuilder> camelContextBuilder,
+  public SnsEventProducerSupport(final MetricRegistry metricRegistry,
+                                 final Provider<CamelContextBuilder> camelContextBuilder,
                                  final AmazonSNS snsClient,
                                  final SnsEventProducerConfiguration configuration,
                                  final DataFormat dataFormat,
                                  final String subject)
   {
+    checkNotNull(metricRegistry);
     this.camelContextBuilder = checkNotNull(camelContextBuilder);
     this.snsClient = checkNotNull(snsClient);
     this.configuration = checkNotNull(configuration);
@@ -72,13 +78,13 @@ public class SnsEventProducerSupport
 
     this.subject = checkNotNull(subject);
     log.debug("Subject: {}", subject);
+
+    this.errorCounter = metricRegistry.counter(MetricRegistry.name("service", getName(), "errors"));
   }
 
   protected String getName() {
     return getClass().getSimpleName();
   }
-
-  // TODO: healthcheck
 
   @Override
   protected void doStart() throws Exception {
@@ -97,11 +103,12 @@ public class SnsEventProducerSupport
     {
       @Override
       public void configure() throws Exception {
-        errorHandler(deadLetterChannel("direct:error"));
-
-        from("direct:error")
-            .id("error")
-            .log(LoggingLevel.ERROR, "Error: ${exchange}; exception: ${exception}\n${exception.stacktrace}");
+        errorHandler(defaultErrorHandler()
+            .disableRedelivery()
+            .onExceptionOccurred(exchange -> {
+              errorCounter.inc();
+            })
+        );
 
         String topicUri = String.format("aws-sns://%s", configuration.getTopic());
         Map<String, Object> topicOptions = ImmutableMap.<String, Object>builder()

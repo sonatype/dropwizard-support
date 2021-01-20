@@ -78,7 +78,8 @@ public class EventExecutorImpl
     threadPool.shutdown();
     Duration gracePeriod = configuration.getShutdownGracePeriod();
     log.debug("Awaiting termination: {}", gracePeriod);
-    threadPool.awaitTermination(gracePeriod.getQuantity(), gracePeriod.getUnit());
+    boolean terminated = threadPool.awaitTermination(gracePeriod.getQuantity(), gracePeriod.getUnit());
+    log.debug("Terminated: {}", terminated);
     threadPool = null;
   }
 

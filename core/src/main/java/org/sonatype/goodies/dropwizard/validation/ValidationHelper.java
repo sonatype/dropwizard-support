@@ -56,7 +56,7 @@ public class ValidationHelper
     if (!violations.isEmpty()) {
       if (log.isDebugEnabled()) {
         log.debug("Constraint violations: {}", violations.size());
-        for (ConstraintViolation violation : violations) {
+        for (ConstraintViolation<?> violation : violations) {
           log.debug("  {}", violation);
         }
       }

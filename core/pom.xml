@@ -65,11 +65,6 @@
       <artifactId>metrics-guice</artifactId>
     </dependency>
 
-    <dependency>
-      <groupId>com.google.guava</groupId>
-      <artifactId>guava</artifactId>
-    </dependency>
-
     <!-- exposed for version-resource -->
     <dependency>
       <groupId>io.swagger</groupId>

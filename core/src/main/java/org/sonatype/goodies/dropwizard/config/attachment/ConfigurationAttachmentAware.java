@@ -10,34 +10,19 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
-package org.sonatype.goodies.dropwizard.worker;
+package org.sonatype.goodies.dropwizard.config.attachment;
 
-import com.google.common.base.MoreObjects;
-import static com.google.common.base.Preconditions.checkNotNull;
+import java.util.List;
+
+import javax.annotation.Nonnull;
 
 /**
- * Fired to consume {@link WorkEvent}.
- *
- * This is for local mode event consumption to consume event in separate thread.
+ * Marker for {@link io.dropwizard.Configuration} which is {@link ConfigurationAttachment} aware.
  *
  * @since ???
  */
-public class ConsumeWorkEvent
+public interface ConfigurationAttachmentAware
 {
-  private final WorkEvent event;
-
-  public ConsumeWorkEvent(final WorkEvent event) {
-    this.event = checkNotNull(event);
-  }
-
-  public WorkEvent getEvent() {
-    return event;
-  }
-
-  @Override
-  public String toString() {
-    return MoreObjects.toStringHelper(this)
-        .add("event", event)
-        .toString();
-  }
+  @Nonnull
+  List<ConfigurationAttachment> getConfigurationAttachments();
 }

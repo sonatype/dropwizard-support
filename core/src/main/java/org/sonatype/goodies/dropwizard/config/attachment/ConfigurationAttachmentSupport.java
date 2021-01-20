@@ -10,49 +10,36 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
-package org.sonatype.goodies.dropwizard.client;
+package org.sonatype.goodies.dropwizard.config.attachment;
 
-import javax.validation.constraints.NotEmpty;
+import javax.annotation.Nullable;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Configuration for BASIC authentication credentials.
+ * {@link ConfigurationAttachment} support.
  *
- * @since 1.0.0
+ * @since ???
  */
-public class BasicAuthenticationConfiguration
+public class ConfigurationAttachmentSupport
+    implements ConfigurationAttachment
 {
-  @NotEmpty
+  @Nullable
   @JsonProperty
-  private String username;
+  private String name;
 
-  @NotEmpty
-  @JsonProperty
-  private String password;
-
-  public BasicAuthenticationConfiguration(final String username, final String password) {
-    this.username = username;
-    this.password = password;
+  @Nullable
+  public String getName() {
+    return name;
   }
 
-  public BasicAuthenticationConfiguration() {
-    // empty
+  public void setName(@Nullable final String name) {
+    this.name = name;
   }
 
-  public String getUsername() {
-    return username;
-  }
-
-  public void setUsername(final String username) {
-    this.username = username;
-  }
-
-  public String getPassword() {
-    return password;
-  }
-
-  public void setPassword(final String password) {
-    this.password = password;
+  @Nullable
+  @Override
+  public String name() {
+    return getName();
   }
 }

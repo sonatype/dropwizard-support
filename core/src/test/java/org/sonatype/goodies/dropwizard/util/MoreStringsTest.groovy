@@ -44,4 +44,14 @@ class MoreStringsTest
     def value = 'FooBar'
     assert MoreStrings.upper(value) == 'FOOBAR'
   }
+
+  @Test
+  void 'dquote string value'() {
+    assert MoreStrings.dquote('foo') == '"foo"'
+  }
+
+  @Test
+  void 'dquote null value'() {
+    assert MoreStrings.dquote(null) == null
+  }
 }

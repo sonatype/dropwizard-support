@@ -10,37 +10,32 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
-package org.sonatype.goodies.dropwizard.rules;
+package org.sonatype.goodies.dropwizard.worker;
 
-import java.util.LinkedList;
-import java.util.List;
-
-import javax.annotation.Nonnull;
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
-
+import com.google.common.base.MoreObjects;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * {@link RequestRuleService} configuration.
+ * Fired to consume {@link WorkEvent} locally in a separate thread.
  *
- * @since 1.2.0
+ * @since ???
  */
-public class RequestRuleConfiguration
+public class LocalConsumeWorkEvent
 {
-  @NotNull
-  @Valid
-  @JsonProperty
-  private List<RequestRule> rules = new LinkedList<>();
+  private final WorkEvent event;
 
-  @Nonnull
-  public List<RequestRule> getRules() {
-    return rules;
+  public LocalConsumeWorkEvent(final WorkEvent event) {
+    this.event = checkNotNull(event);
   }
 
-  public void setRules(@Nonnull final List<RequestRule> rules) {
-    this.rules = checkNotNull(rules);
+  public WorkEvent getEvent() {
+    return event;
+  }
+
+  @Override
+  public String toString() {
+    return MoreObjects.toStringHelper(this)
+        .add("event", event)
+        .toString();
   }
 }
