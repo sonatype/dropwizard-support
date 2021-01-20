@@ -168,6 +168,19 @@
 
       <dependency>
         <groupId>io.swagger</groupId>
+        <artifactId>swagger-core</artifactId>
+        <version>${swagger.version}</version>
+        <exclusions>
+          <!-- exclude incompatible javax.validation 1.1.x -->
+          <exclusion>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+
+      <dependency>
+        <groupId>io.swagger</groupId>
         <artifactId>swagger-annotations</artifactId>
         <version>${swagger.version}</version>
       </dependency>
