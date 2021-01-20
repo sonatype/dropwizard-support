@@ -24,7 +24,6 @@ import javax.ws.rs.container.DynamicFeature;
 import javax.ws.rs.core.Feature;
 import javax.ws.rs.ext.ExceptionMapper;
 
-import org.sonatype.goodies.dropwizard.env.EnvironmentCustomizer;
 import org.sonatype.goodies.dropwizard.jaxrs.Component;
 import org.sonatype.goodies.dropwizard.jaxrs.Resource;
 

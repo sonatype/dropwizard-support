@@ -1,0 +1,6 @@
+org.sonatype.goodies.dropwizard.app.er.BasicSection
+org.sonatype.goodies.dropwizard.app.er.EnvVarSection
+org.sonatype.goodies.dropwizard.app.er.FilesystemSection
+org.sonatype.goodies.dropwizard.app.er.NetworkSection
+org.sonatype.goodies.dropwizard.app.er.RuntimeSection
+org.sonatype.goodies.dropwizard.app.er.SysPropSection

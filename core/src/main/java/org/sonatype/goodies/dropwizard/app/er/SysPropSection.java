@@ -10,16 +10,31 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
-package org.sonatype.goodies.dropwizard.env;
+package org.sonatype.goodies.dropwizard.app.er;
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import org.slf4j.Logger;
 
 /**
- * Report environment.
+ * System-properties {@link EnvironmentReport.Section}.
  *
- * @since 1.2.0
+ * @since ???
  */
-public interface EnvironmentReporter
+@JsonTypeName(SysPropSection.TYPE)
+public class SysPropSection
+  extends EnvironmentReport.Section
 {
-  void report(Logger logger) throws Exception;
+  public static final String TYPE = "sys-prop";
+
+  public SysPropSection() {
+    super(TYPE);
+  }
+
+  @Override
+  public void render(final Logger logger) throws Exception {
+    log(logger, "System properties:");
+    System.getProperties().forEach((key, value) -> {
+      log(logger, "  {}='{}'", key, value);
+    });
+  }
 }

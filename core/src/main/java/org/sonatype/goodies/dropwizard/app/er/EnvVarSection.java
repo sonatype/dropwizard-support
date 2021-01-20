@@ -10,19 +10,31 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
-package org.sonatype.goodies.dropwizard.env;
+package org.sonatype.goodies.dropwizard.app.er;
 
-import io.dropwizard.setup.Environment;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import org.slf4j.Logger;
 
 /**
- * Allows customization of application {@link Environment}.
+ * Environment-variables {@link EnvironmentReport.Section}.
  *
- * @since 1.0.0
+ * @since ???
  */
-public interface EnvironmentCustomizer
+@JsonTypeName(EnvVarSection.TYPE)
+public class EnvVarSection
+  extends EnvironmentReport.Section
 {
-  /**
-   * Apply configuration to environment.
-   */
-  void customize(Environment environment);
+  public static final String TYPE = "env-var";
+
+  public EnvVarSection() {
+    super(TYPE);
+  }
+
+  @Override
+  public void render(final Logger logger) throws Exception {
+    log(logger, "Environment variables:");
+    System.getenv().forEach((key, value) -> {
+      log(logger, "  {}='{}'", key, value);
+    });
+  }
 }
