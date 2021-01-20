@@ -12,7 +12,6 @@
  */
 package org.sonatype.goodies.dropwizard.util
 
-
 import com.google.common.collect.ImmutableList
 import org.junit.jupiter.api.Test
 

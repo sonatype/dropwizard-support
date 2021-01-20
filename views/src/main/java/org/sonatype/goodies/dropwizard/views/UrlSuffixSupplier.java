@@ -19,7 +19,7 @@ import javax.inject.Named;
 import javax.inject.Singleton;
 
 import org.sonatype.goodies.dropwizard.app.ApplicationMetadata;
-import org.sonatype.goodies.dropwizard.util.VersionLoader;
+import org.sonatype.goodies.dropwizard.version.VersionLoader;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 

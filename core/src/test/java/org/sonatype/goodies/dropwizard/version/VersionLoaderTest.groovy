@@ -10,8 +10,9 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
-package org.sonatype.goodies.dropwizard.util
+package org.sonatype.goodies.dropwizard.version
 
+import org.sonatype.goodies.dropwizard.version.VersionLoader
 
 import com.google.common.io.Resources
 import org.junit.jupiter.api.Test

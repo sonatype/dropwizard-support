@@ -16,7 +16,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
-import org.sonatype.goodies.dropwizard.util.VersionLoader;
+import org.sonatype.goodies.dropwizard.version.VersionLoader;
 
 import io.dropwizard.setup.Environment;
 
