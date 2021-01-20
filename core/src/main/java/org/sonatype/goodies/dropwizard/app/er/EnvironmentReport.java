@@ -26,6 +26,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 import com.google.common.collect.ImmutableList;
 import io.dropwizard.jackson.Discoverable;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -37,6 +38,8 @@ import static com.google.common.base.Preconditions.checkNotNull;
  */
 public class EnvironmentReport
 {
+  private static final Logger log = LoggerFactory.getLogger(EnvironmentReport.class);
+
   @NotNull
   @JsonProperty
   private Level level = Level.INFO;
@@ -77,7 +80,7 @@ public class EnvironmentReport
       level.log(logger, format, arguments);
     }
 
-    public abstract void report(Logger logger) throws Exception;
+    public abstract void render(Logger logger) throws Exception;
 
     @Override
     public String toString() {
@@ -98,7 +101,7 @@ public class EnvironmentReport
   }
 
   public void report(final Logger logger) {
-    logger.trace("Report {} sections", sections.size());
+    log.trace("Report {} sections", sections.size());
     for (Section section : sections) {
       // if section has no level; inherit from report
       Level level = section.getLevel();
@@ -106,15 +109,14 @@ public class EnvironmentReport
         level = this.level;
         section.setLevel(level);
       }
-      logger.trace("Report section: {} as {}", section, level);
-      if (!level.isEnabled(logger)) {
-        continue;
-      }
-      try {
-        section.report(logger);
-      }
-      catch (Exception e) {
-        logger.warn("Failed to report section: {}", section, e);
+      if (level.isEnabled(logger)) {
+        log.trace("Render section: {} as {}", section, level);
+        try {
+          section.render(logger);
+        }
+        catch (Exception e) {
+          log.warn("Failed to render section: {}", section, e);
+        }
       }
     }
   }

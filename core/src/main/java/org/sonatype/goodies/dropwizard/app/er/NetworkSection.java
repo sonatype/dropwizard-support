@@ -38,7 +38,7 @@ public class NetworkSection
   }
 
   @Override
-  public void report(final Logger logger) throws Exception {
+  public void render(final Logger logger) throws Exception {
     for (NetworkInterface intf : Collections.list(NetworkInterface.getNetworkInterfaces())) {
       try {
         log(logger, "Network-interface: name={}, display-name={}, up={}, virtual={}, multicast={}, loopback={}, ptp={}, mtu={}, addresses={}",

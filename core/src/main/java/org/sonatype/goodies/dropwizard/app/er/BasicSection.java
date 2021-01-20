@@ -44,7 +44,7 @@ public class BasicSection
   }
 
   @Override
-  public void report(final Logger logger) throws Exception {
+  public void render(final Logger logger) throws Exception {
     logger.trace("Includes: {}", includes);
 
     if (includes.contains(Include.JAVA)) {

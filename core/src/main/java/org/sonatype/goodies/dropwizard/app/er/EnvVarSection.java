@@ -31,7 +31,7 @@ public class EnvVarSection
   }
 
   @Override
-  public void report(final Logger logger) throws Exception {
+  public void render(final Logger logger) throws Exception {
     log(logger, "Environment variables:");
     System.getenv().forEach((key, value) -> {
       log(logger, "  {}='{}'", key, value);

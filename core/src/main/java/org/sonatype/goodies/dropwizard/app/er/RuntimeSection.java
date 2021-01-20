@@ -31,7 +31,7 @@ public class RuntimeSection
   }
 
   @Override
-  public void report(final Logger logger) throws Exception {
+  public void render(final Logger logger) throws Exception {
     Runtime runtime = Runtime.getRuntime();
     log(logger,"CPU; processors={}", runtime.availableProcessors());
     log(logger,"Memory; free={}, total={}, max={}",

@@ -31,7 +31,7 @@ public class SysPropSection
   }
 
   @Override
-  public void report(final Logger logger) throws Exception {
+  public void render(final Logger logger) throws Exception {
     log(logger, "System properties:");
     System.getProperties().forEach((key, value) -> {
       log(logger, "  {}='{}'", key, value);

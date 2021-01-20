@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 import org.sonatype.goodies.dropwizard.app.er.EnvironmentReport;
 import org.sonatype.goodies.dropwizard.app.er.EnvironmentReportAware;
@@ -259,7 +258,9 @@ public abstract class ApplicationSupport<T extends Configuration>
     // maybe display environment-report
     if (config instanceof EnvironmentReportAware) {
       EnvironmentReport report = ((EnvironmentReportAware)config).getEnvironmentReport();
-      Optional.ofNullable(report).ifPresent(r -> r.report(log));
+      if (report != null) {
+        report.report(log);
+      }
     }
 
     injector = createInjector(config, environment);

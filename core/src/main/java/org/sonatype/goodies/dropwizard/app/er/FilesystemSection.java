@@ -34,7 +34,7 @@ public class FilesystemSection
   }
 
   @Override
-  public void report(final Logger logger) throws Exception {
+  public void render(final Logger logger) throws Exception {
     for (FileStore fileStore : FileSystems.getDefault().getFileStores()) {
       try {
         log(logger, "File-store; name={}, type={}, total={}, usable={}, unallocated={}, read-only={}",
