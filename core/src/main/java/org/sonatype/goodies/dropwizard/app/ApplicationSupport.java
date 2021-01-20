@@ -19,8 +19,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.sonatype.goodies.dropwizard.app.er.EnvironmentReport;
+import org.sonatype.goodies.dropwizard.app.er.EnvironmentReportAware;
 import org.sonatype.goodies.dropwizard.config.ComponentDiscovery;
 import org.sonatype.goodies.dropwizard.config.ConfigurationModule;
 import org.sonatype.goodies.dropwizard.config.ConfigurationSupport;
@@ -254,11 +256,10 @@ public abstract class ApplicationSupport<T extends Configuration>
     checkNotNull(config);
     checkNotNull(environment);
 
-    if (config instanceof ConfigurationSupport) {
-      EnvironmentReport report = ((ConfigurationSupport)config).getEnvironmentReport();
-      if (report != null) {
-        report.report(LoggerFactory.getLogger(getClass()));
-      }
+    // maybe display environment-report
+    if (config instanceof EnvironmentReportAware) {
+      EnvironmentReport report = ((EnvironmentReportAware)config).getEnvironmentReport();
+      Optional.ofNullable(report).ifPresent(r -> r.report(log));
     }
 
     injector = createInjector(config, environment);

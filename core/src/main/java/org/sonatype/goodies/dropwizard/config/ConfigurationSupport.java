@@ -21,6 +21,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import org.sonatype.goodies.dropwizard.app.er.EnvironmentReport;
+import org.sonatype.goodies.dropwizard.app.er.EnvironmentReportAware;
 import org.sonatype.goodies.dropwizard.health.HealthCheckConfiguration;
 import org.sonatype.goodies.dropwizard.selection.ComponentSelectionConfiguration;
 import org.sonatype.goodies.dropwizard.selection.ComponentSelectionConfigurationAware;
@@ -37,13 +38,13 @@ import static com.google.common.base.Preconditions.checkNotNull;
  */
 public class ConfigurationSupport
     extends Configuration
-    implements ComponentSelectionConfigurationAware
+    implements ComponentSelectionConfigurationAware, EnvironmentReportAware
 {
   /**
    * Additional properties for Sisu injection.
    */
   @NotNull
-  @Bind(name="configuration-properties")
+  @Bind(name = "configuration-properties")
   @JsonProperty("properties")
   private Map<String, Object> properties = new HashMap<>();
 
@@ -96,7 +97,7 @@ public class ConfigurationSupport
   @Nullable
   @Valid
   @JsonProperty("environment-report")
-  private EnvironmentReport environmentReport;
+  private EnvironmentReport environmentReport = EnvironmentReport.createDefault();
 
   @Nullable
   public EnvironmentReport getEnvironmentReport() {

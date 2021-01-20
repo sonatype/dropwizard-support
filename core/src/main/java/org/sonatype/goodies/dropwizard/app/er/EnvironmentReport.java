@@ -23,6 +23,7 @@ import org.sonatype.goodies.dropwizard.util.Level;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
+import com.google.common.collect.ImmutableList;
 import io.dropwizard.jackson.Discoverable;
 import org.slf4j.Logger;
 
@@ -116,5 +117,18 @@ public class EnvironmentReport
         logger.warn("Failed to report section: {}", section, e);
       }
     }
+  }
+
+  //
+  // Factory
+  //
+
+  public static EnvironmentReport createDefault() {
+    EnvironmentReport report = new EnvironmentReport();
+    report.setLevel(Level.INFO);
+    report.setSections(ImmutableList.of(
+        new BasicSection()
+    ));
+    return report;
   }
 }
