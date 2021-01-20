@@ -16,7 +16,6 @@ import java.util.List;
 
 import org.sonatype.goodies.dropwizard.config.BindModuleSupport;
 import org.sonatype.goodies.dropwizard.util.MoreStrings;
-import org.sonatype.goodies.dropwizard.util.Plural;
 
 import io.dropwizard.Configuration;
 
@@ -37,9 +36,7 @@ public class ConfigurationAttachmentModule
     // apply all attachments
     if (configuration instanceof ConfigurationAttachmentAware) {
       List<ConfigurationAttachment> attachments = ((ConfigurationAttachmentAware)configuration).getConfigurationAttachments();
-      if (log.isDebugEnabled()) {
-        log.debug("Applying {}", Plural.of(attachments, "attachment"));
-      }
+      log.debug("Applying {} attachments", attachments.size());
       attachments.forEach(this::apply);
     }
   }
