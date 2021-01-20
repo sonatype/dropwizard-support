@@ -55,26 +55,6 @@
         <scope>import</scope>
       </dependency>
 
-      <!-- re-define some dropwizard DM to exclude duplicate/conflicting dependencies -->
-
-<!--      <dependency>-->
-<!--        <groupId>io.dropwizard</groupId>-->
-<!--        <artifactId>dropwizard-core</artifactId>-->
-<!--        <version>${dropwizard.version}</version>-->
-<!--        <exclusions>-->
-<!--          <exclusion>-->
-<!--            <groupId>org.glassfish.hk2.external</groupId>-->
-<!--            <artifactId>jakarta.inject</artifactId>-->
-<!--          </exclusion>-->
-<!--        </exclusions>-->
-<!--      </dependency>-->
-
-      <dependency>
-        <groupId>javax.inject</groupId>
-        <artifactId>javax.inject</artifactId>
-        <version>1</version>
-      </dependency>
-
       <dependency>
         <groupId>org.codehaus.groovy</groupId>
         <artifactId>groovy</artifactId>
@@ -121,6 +101,24 @@
         <groupId>com.google.inject</groupId>
         <artifactId>guice</artifactId>
         <version>${guice.version}</version>
+        <exclusions>
+          <!--
+          prefer org.glassfish.hk2.external:jakarta.inject as its easier to exclude use of javax.inject
+          this dependency _should_ be compatible and apparently has additional OSGI metadata
+          -->
+          <exclusion>
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>
+          </exclusion>
+          <!--
+          prefer org.glassfish.hk2.external:aopalliance-repackaged; easier to exclude use of aopalliance
+          this dependency _should_ be compatible and apparently has additional OSGI metadata
+          -->
+          <exclusion>
+            <groupId>aopalliance</groupId>
+            <artifactId>aopalliance</artifactId>
+          </exclusion>
+        </exclusions>
       </dependency>
 
       <dependency>
