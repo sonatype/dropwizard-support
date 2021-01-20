@@ -12,8 +12,6 @@
  */
 package org.sonatype.goodies.dropwizard.version
 
-import org.sonatype.goodies.dropwizard.version.VersionLoader
-
 import com.google.common.io.Resources
 import org.junit.jupiter.api.Test
 
