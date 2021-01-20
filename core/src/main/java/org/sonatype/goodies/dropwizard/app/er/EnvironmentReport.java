@@ -52,6 +52,9 @@ public class EnvironmentReport
     this.level = checkNotNull(level);
   }
 
+  /**
+   * Environment-report section.
+   */
   @JsonTypeInfo(use = Id.NAME, property = "type")
   public abstract static class Section
       implements Discoverable
@@ -100,8 +103,8 @@ public class EnvironmentReport
     this.sections = checkNotNull(sections);
   }
 
-  public void report(final Logger logger) {
-    log.trace("Report {} sections", sections.size());
+  public void render(final Logger logger) {
+    log.trace("Render {} sections", sections.size());
     for (Section section : sections) {
       // if section has no level; inherit from report
       Level level = section.getLevel();

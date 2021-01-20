@@ -259,7 +259,7 @@ public abstract class ApplicationSupport<T extends Configuration>
     if (config instanceof EnvironmentReportAware) {
       EnvironmentReport report = ((EnvironmentReportAware)config).getEnvironmentReport();
       if (report != null) {
-        report.report(log);
+        report.render(log);
       }
     }
 
