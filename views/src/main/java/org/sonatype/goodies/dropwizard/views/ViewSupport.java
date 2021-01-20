@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 
-import org.sonatype.goodies.dropwizard.util.LoremIpsum;
+import org.sonatype.goodies.dropwizard.common.text.LoremIpsum;
 
 import com.google.common.base.Strings;
 import io.dropwizard.views.View;

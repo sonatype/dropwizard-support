@@ -15,7 +15,7 @@ package org.sonatype.goodies.dropwizard.jersey;
 import javax.ws.rs.core.Feature;
 import javax.ws.rs.core.FeatureContext;
 
-import org.sonatype.goodies.dropwizard.util.Levels;
+import org.sonatype.goodies.dropwizard.common.logging.Levels;
 
 import ch.qos.logback.classic.Level;
 import org.glassfish.jersey.logging.LoggingFeature.Verbosity;

@@ -17,6 +17,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Produces;
 
 import org.sonatype.goodies.dropwizard.app.ApplicationMetadata;
+import org.sonatype.goodies.dropwizard.common.version.Version;
 import org.sonatype.goodies.dropwizard.jaxrs.ResourceSupport;
 
 import io.swagger.annotations.Api;

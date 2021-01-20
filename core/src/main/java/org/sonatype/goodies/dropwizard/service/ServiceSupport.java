@@ -12,7 +12,7 @@
  */
 package org.sonatype.goodies.dropwizard.service;
 
-import org.sonatype.goodies.dropwizard.util.Loggers;
+import org.sonatype.goodies.dropwizard.common.logging.Loggers;
 
 import com.google.common.base.Throwables;
 import io.dropwizard.lifecycle.Managed;

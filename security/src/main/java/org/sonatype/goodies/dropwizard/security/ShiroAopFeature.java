@@ -25,7 +25,7 @@ import javax.ws.rs.container.DynamicFeature;
 import javax.ws.rs.container.ResourceInfo;
 import javax.ws.rs.core.FeatureContext;
 
-import org.sonatype.goodies.dropwizard.guice.GuiceEnhanced;
+import org.sonatype.goodies.dropwizard.common.guice.GuiceEnhanced;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.ImmutableMap;

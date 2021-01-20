@@ -18,7 +18,7 @@ import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.constraints.NotNull;
 
-import org.sonatype.goodies.dropwizard.util.MoreStrings;
+import org.sonatype.goodies.dropwizard.common.text.MoreStrings;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;

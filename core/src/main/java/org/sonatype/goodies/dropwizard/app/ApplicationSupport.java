@@ -37,7 +37,7 @@ import org.sonatype.goodies.dropwizard.metrics.MetricsAopModule;
 import org.sonatype.goodies.dropwizard.selection.ComponentSelectionConfiguration;
 import org.sonatype.goodies.dropwizard.selection.ComponentSelectionConfigurationAware;
 import org.sonatype.goodies.dropwizard.selection.ComponentSelectionTypeListener;
-import org.sonatype.goodies.dropwizard.util.FileHelper;
+import org.sonatype.goodies.dropwizard.common.io.FileHelper;
 import org.sonatype.goodies.dropwizard.guice.ParameterPropertiesModule;
 import org.sonatype.goodies.dropwizard.version.VersionModule;
 

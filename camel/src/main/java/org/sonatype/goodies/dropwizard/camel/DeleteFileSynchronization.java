@@ -14,7 +14,7 @@ package org.sonatype.goodies.dropwizard.camel;
 
 import java.io.File;
 
-import org.sonatype.goodies.dropwizard.util.FileHelper;
+import org.sonatype.goodies.dropwizard.common.io.FileHelper;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.spi.Synchronization;

@@ -17,7 +17,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.constraints.NotNull;
 
-import org.sonatype.goodies.dropwizard.util.IpAddresses;
+import org.sonatype.goodies.dropwizard.common.ip.IpAddresses;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;

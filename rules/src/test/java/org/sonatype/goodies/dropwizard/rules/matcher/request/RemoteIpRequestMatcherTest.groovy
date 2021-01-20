@@ -14,7 +14,7 @@ package org.sonatype.goodies.dropwizard.rules.matcher.request
 
 import javax.servlet.http.HttpServletRequest
 
-import org.sonatype.goodies.dropwizard.util.IpAddresses
+import org.sonatype.goodies.dropwizard.common.ip.IpAddresses
 
 import org.junit.jupiter.api.Test
 

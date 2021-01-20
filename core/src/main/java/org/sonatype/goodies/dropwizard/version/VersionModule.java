@@ -13,6 +13,7 @@
 package org.sonatype.goodies.dropwizard.version;
 
 import org.sonatype.goodies.dropwizard.app.ApplicationSupport;
+import org.sonatype.goodies.dropwizard.common.version.VersionLoader;
 
 import com.google.inject.AbstractModule;
 

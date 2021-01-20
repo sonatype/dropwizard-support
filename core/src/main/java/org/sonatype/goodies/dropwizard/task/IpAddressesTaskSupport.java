@@ -14,7 +14,7 @@ package org.sonatype.goodies.dropwizard.task;
 
 import java.io.PrintWriter;
 
-import org.sonatype.goodies.dropwizard.util.IpAddresses;
+import org.sonatype.goodies.dropwizard.common.ip.IpAddresses;
 
 /**
  * Support for tasks to manage {@link IpAddresses}.

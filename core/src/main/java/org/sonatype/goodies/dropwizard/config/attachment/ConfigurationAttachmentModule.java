@@ -15,7 +15,7 @@ package org.sonatype.goodies.dropwizard.config.attachment;
 import java.util.List;
 
 import org.sonatype.goodies.dropwizard.config.BindModuleSupport;
-import org.sonatype.goodies.dropwizard.util.MoreStrings;
+import org.sonatype.goodies.dropwizard.common.text.MoreStrings;
 
 import io.dropwizard.Configuration;
 
