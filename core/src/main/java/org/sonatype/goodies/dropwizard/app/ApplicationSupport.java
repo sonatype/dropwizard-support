@@ -41,6 +41,7 @@ import org.sonatype.goodies.dropwizard.util.FileHelper;
 import org.sonatype.goodies.dropwizard.guice.ParameterPropertiesModule;
 import org.sonatype.goodies.dropwizard.version.VersionModule;
 
+import ch.qos.logback.classic.Level;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Throwables;
 import com.google.inject.Guice;
@@ -80,6 +81,21 @@ public abstract class ApplicationSupport<T extends Configuration>
   private EnvironmentReporter environmentReporter = new BasicEnvironmentReporter();
 
   private Injector injector;
+
+  /**
+   * Allow configuration of bootstrap logging level from system-property.
+   *
+   * @since ???
+   */
+  @Override
+  protected Level bootstrapLogLevel() {
+    Level level = Level.WARN;
+    String value = System.getProperty(getClass().getCanonicalName() + ".bootstrapLogLevel");
+    if (value != null) {
+      level = Level.toLevel(value);
+    }
+    return level;
+  }
 
   /**
    * Add application customizers.
