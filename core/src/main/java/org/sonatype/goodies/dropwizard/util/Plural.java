@@ -12,6 +12,8 @@
  */
 package org.sonatype.goodies.dropwizard.util;
 
+import java.util.Collection;
+
 import javax.annotation.Nullable;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -67,13 +69,13 @@ public final class Plural
     return of(value, singular, null);
   }
 
-  //public static String of(final Collection<?> collection, final String singular, @Nullable final String plural) {
-  //  checkNotNull(collection);
-  //  return of(collection.size(), singular, plural);
-  //}
-  //
-  //public static String of(final Collection<?> collection, final String singular) {
-  //  checkNotNull(collection);
-  //  return of(collection.size(), singular, null);
-  //}
+  public static String of(final Collection<?> collection, final String singular, @Nullable final String plural) {
+    checkNotNull(collection);
+    return of(collection.size(), singular, plural);
+  }
+
+  public static String of(final Collection<?> collection, final String singular) {
+    checkNotNull(collection);
+    return of(collection.size(), singular, null);
+  }
 }

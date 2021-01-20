@@ -10,16 +10,19 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
-package org.sonatype.goodies.dropwizard.config;
+package org.sonatype.goodies.dropwizard.config.attachment;
 
-import java.util.Map;
+import java.util.List;
+
+import org.sonatype.goodies.dropwizard.config.BindModuleSupport;
+import org.sonatype.goodies.dropwizard.util.MoreStrings;
 
 import io.dropwizard.Configuration;
 
 /**
- * Adds bindings for {@link ConfigurationAttachment configuration-attachements}.
+ * Adds bindings for {@link ConfigurationAttachment}.
  *
- * @since 1.2.0
+ * @since ???
  */
 public class ConfigurationAttachmentModule
     extends BindModuleSupport
@@ -30,22 +33,28 @@ public class ConfigurationAttachmentModule
 
   @Override
   protected void configure() {
-    // bind named attachments; and expose any bindings
+    // apply all attachments
     if (configuration instanceof ConfigurationAttachmentAware) {
-      Map<String, ConfigurationAttachment> attachments = ((ConfigurationAttachmentAware)configuration).getConfigurationAttachments();
-      log.debug("{} attachments", attachments.size());
-      for (Map.Entry<String,ConfigurationAttachment> entry : attachments.entrySet()) {
-        String name = entry.getKey();
-        ConfigurationAttachment value = entry.getValue();
-        log.debug("Attachment: {} -> {}", name, value);
-
-        // install any additional modules
-        value.modules().forEach(this::install);
-
-        // bind attachment and expose any nested bindings
-        bind(value.getClass(), name, value);
-        expose(value);
-      }
+      List<ConfigurationAttachment> attachments = ((ConfigurationAttachmentAware)configuration).getConfigurationAttachments();
+      log.debug("Applying {} attachments", attachments.size());
+      attachments.forEach(this::apply);
     }
+  }
+
+  private void apply(final ConfigurationAttachment attachment) {
+    Class<?> type = attachment.getClass();
+    String name = attachment.name();
+    if (log.isDebugEnabled()) {
+      String typeName = type.getCanonicalName();
+      log.debug("Attachment: {} named {} -> {}",
+          typeName,
+          MoreStrings.dquote(name),
+          attachment
+      );
+    }
+
+    // bind attachment and expose any nested bindings
+    bind(type, name, attachment);
+    expose(attachment);
   }
 }

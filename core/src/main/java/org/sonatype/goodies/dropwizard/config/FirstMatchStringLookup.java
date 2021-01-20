@@ -18,7 +18,7 @@ import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * First-match {@link org.apache.commons.text.lookup.StringLookup}.
+ * First-match {@link StringLookup}.
  *
  * @since 1.2.0
  */
@@ -51,8 +51,19 @@ public class FirstMatchStringLookup
       }
     }
     if (strict) {
-      throw new RuntimeException("Missing substitution value for key: " + key);
+      throw new MissingSubstitutionValueException(key);
     }
     return null;
+  }
+
+  /**
+   * @since ???
+   */
+  public static class MissingSubstitutionValueException
+    extends RuntimeException
+  {
+    public MissingSubstitutionValueException(final String key) {
+      super("Missing substitution value for key: " + key);
+    }
   }
 }

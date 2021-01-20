@@ -33,6 +33,10 @@ import static com.google.common.base.Preconditions.checkState;
  */
 public class FileHelper
 {
+  private FileHelper() {
+    // empty
+  }
+
   private static final Logger log = LoggerFactory.getLogger(FileHelper.class);
 
   /**
