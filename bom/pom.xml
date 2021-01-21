@@ -55,47 +55,6 @@
         <scope>import</scope>
       </dependency>
 
-<!-- FIXME: still overlapping activation api and impl which is unclear how to _properly_ fix -->
-
-<!--      <dependency>-->
-<!--        <groupId>io.dropwizard</groupId>-->
-<!--        <artifactId>dropwizard-hibernate</artifactId>-->
-<!--        <version>${dropwizard.version}</version>-->
-<!--        <exclusions>-->
-<!--          &lt;!&ndash; HACK: overlaps with com.sun.activation:jakarta.activation &ndash;&gt;-->
-<!--          <exclusion>-->
-<!--            <groupId>jakarta.activation</groupId>-->
-<!--            <artifactId>jakarta.activation-api</artifactId>-->
-<!--          </exclusion>-->
-<!--        </exclusions>-->
-<!--      </dependency>-->
-
-<!--      <dependency>-->
-<!--        <groupId>io.dropwizard</groupId>-->
-<!--        <artifactId>dropwizard-jersey</artifactId>-->
-<!--        <version>${dropwizard.version}</version>-->
-<!--        <exclusions>-->
-<!--          &lt;!&ndash; HACK: overlaps with com.sun.activation:jakarta.activation &ndash;&gt;-->
-<!--          <exclusion>-->
-<!--            <groupId>jakarta.activation</groupId>-->
-<!--            <artifactId>jakarta.activation-api</artifactId>-->
-<!--          </exclusion>-->
-<!--        </exclusions>-->
-<!--      </dependency>-->
-
-<!--      <dependency>-->
-<!--        <groupId>io.dropwizard</groupId>-->
-<!--        <artifactId>dropwizard-views</artifactId>-->
-<!--        <version>${dropwizard.version}</version>-->
-<!--        <exclusions>-->
-<!--          &lt;!&ndash; HACK: overlaps with com.sun.activation:jakarta.activation &ndash;&gt;-->
-<!--          <exclusion>-->
-<!--            <groupId>jakarta.activation</groupId>-->
-<!--            <artifactId>jakarta.activation-api</artifactId>-->
-<!--          </exclusion>-->
-<!--        </exclusions>-->
-<!--      </dependency>-->
-
       <dependency>
         <groupId>org.codehaus.groovy</groupId>
         <artifactId>groovy</artifactId>
