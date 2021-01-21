@@ -53,12 +53,6 @@
     <dependency>
       <groupId>org.glassfish.jersey.ext</groupId>
       <artifactId>jersey-proxy-client</artifactId>
-<!--      <exclusions>-->
-<!--        <exclusion>-->
-<!--          <groupId>org.glassfish.hk2.external</groupId>-->
-<!--          <artifactId>javax.inject</artifactId>-->
-<!--        </exclusion>-->
-<!--      </exclusions>-->
     </dependency>
 
     <dependency>

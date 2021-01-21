@@ -65,6 +65,13 @@
         <groupId>org.apache.shiro</groupId>
         <artifactId>shiro-jaxrs</artifactId>
         <version>${apache-shiro.version}</version>
+        <exclusions>
+          <!-- exclude incompatible javax.ws.rs-api 2.0.x -->
+          <exclusion>
+            <groupId>javax.ws.rs</groupId>
+            <artifactId>javax.ws.rs-api</artifactId>
+          </exclusion>
+        </exclusions>
       </dependency>
 
       <dependency>
