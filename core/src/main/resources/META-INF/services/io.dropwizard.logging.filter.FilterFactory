@@ -1,0 +1,2 @@
+org.sonatype.goodies.dropwizard.logging.LoggerNameFilter$Factory
+org.sonatype.goodies.dropwizard.logging.MessageBlacklistFilter$Factory
