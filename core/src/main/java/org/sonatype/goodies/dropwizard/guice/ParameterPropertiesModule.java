@@ -14,8 +14,7 @@ package org.sonatype.goodies.dropwizard.guice;
 
 import java.util.Map;
 
-import com.google.inject.Binder;
-import com.google.inject.Module;
+import com.google.inject.AbstractModule;
 import org.eclipse.sisu.wire.ParameterKeys;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -28,7 +27,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
  * @since 1.0.2
  */
 public class ParameterPropertiesModule
-    implements Module
+    extends AbstractModule
 {
   private final Map<String,Object> properties;
 
@@ -37,7 +36,7 @@ public class ParameterPropertiesModule
   }
 
   @Override
-  public void configure(final Binder binder) {
-    binder.bind(ParameterKeys.PROPERTIES).toInstance(properties);
+  protected void configure() {
+    bind(ParameterKeys.PROPERTIES).toInstance(properties);
   }
 }
