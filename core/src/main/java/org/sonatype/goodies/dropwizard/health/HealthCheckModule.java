@@ -18,7 +18,7 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 
 /**
- * Health-check Guice module.
+ * Exposes {@link HealthCheckConfiguration} defined health-checks.
  *
  * @since 1.2.0
  */
