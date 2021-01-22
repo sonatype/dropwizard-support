@@ -10,7 +10,7 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
-package org.sonatype.goodies.dropwizard.guice.selection;
+package org.sonatype.goodies.dropwizard.config.selection;
 
 import java.util.HashSet;
 import java.util.Set;
