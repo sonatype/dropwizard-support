@@ -44,7 +44,7 @@ public abstract class BindModuleSupport
     this.configuration = checkNotNull(configuration);
   }
 
-  @SuppressWarnings("unchecked")
+  @SuppressWarnings({"unchecked", "rawtypes"})
   protected void bind(final Class type, @Nullable final String name, final Object value) {
     if (name != null && !Bind.DEFAULT_NAME.equals(name)) {
       log.trace("Binding: {}({}) -> {}", type.getCanonicalName(), name, value);
@@ -60,38 +60,47 @@ public abstract class BindModuleSupport
    * Attempt to expose bindings for given object.
    */
   protected void expose(final Object owner) {
-    log.trace("Exposing bindings: {}", owner);
-
     Class<?> type = owner.getClass();
+    if (exposable(type)) {
+      log.trace("Exposing bindings: {}", owner);
+      try {
+        // attempt to expose all fields
+        for (Field field : FieldUtils.getAllFields(type)) {
+          expose(owner, field);
+        }
 
-    try {
-      // attempt to expose all fields
-      for (Field field : FieldUtils.getAllFields(type)) {
-        expose(owner, field);
+        // attempt to expose all methods
+        for (Method method : type.getMethods()) {
+          expose(owner, method);
+        }
       }
-
-      // attempt to expose all methods
-      for (Method method : type.getMethods()) {
-        expose(owner, method);
+      catch (Exception e) {
+        Throwables.throwIfUnchecked(e);
+        throw new RuntimeException(e);
       }
-    }
-    catch (Exception e) {
-      Throwables.throwIfUnchecked(e);
-      throw new RuntimeException(e);
     }
   }
 
-  // FIXME: need to resolve how this works with java9+ module and access
-  // FIXME: java11 reports warnings when attempting to detect bindings via reflection
+  /**
+   * Check if given type is exposable.
+   */
+  private static boolean exposable(final Class<?> type) {
+    ClassLoader cl = type.getClassLoader();
+    // looks like non-exposable types lack class-loader and/or cl parent
+    return cl != null && cl.getParent() != null;
+  }
 
   /**
    * Attempt to expose bindings for given member.
    */
   private void expose(final Object owner, final AccessibleObject member) throws Exception {
-    member.setAccessible(true);
-    Bind bind = member.getAnnotation(Bind.class);
+    // skip if unable to access member
+    if (!member.trySetAccessible()) {
+      return;
+    }
 
-    // skip if no binding for member
+    // check for bind configuration; skip if missing
+    Bind bind = member.getAnnotation(Bind.class);
     if (bind == null) {
       return;
     }
