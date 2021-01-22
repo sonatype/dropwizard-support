@@ -35,7 +35,7 @@ public final class Loggers
   /**
    * Helper to create a logger and deal with class-names created by AOP platforms.
    */
-  public static Logger getLogger(final Class type) {
+  public static Logger getLogger(final Class<?> type) {
     checkNotNull(type);
     return LoggerFactory.getLogger(GuiceEnhanced.dereference(type));
   }
