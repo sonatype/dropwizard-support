@@ -169,7 +169,7 @@ public class ComponentSelectionTypeListener
     if (result == null) {
       String typename = name + ".package-info";
       try {
-        Class type = Class.forName(typename, true, cl);
+        Class<?> type = Class.forName(typename, true, cl);
         log.trace("Resolved package-info: {}", type);
         result = type.getPackage();
       }
