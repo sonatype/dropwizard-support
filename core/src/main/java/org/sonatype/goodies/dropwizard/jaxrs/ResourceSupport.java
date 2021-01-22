@@ -12,7 +12,7 @@
  */
 package org.sonatype.goodies.dropwizard.jaxrs;
 
-import org.sonatype.goodies.dropwizard.util.Loggers;
+import org.sonatype.goodies.dropwizard.logging.Loggers;
 
 import org.slf4j.Logger;
 

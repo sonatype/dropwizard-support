@@ -10,9 +10,11 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
-package org.sonatype.goodies.dropwizard.util;
+package org.sonatype.goodies.dropwizard.text;
 
 // copied and modified from: https://github.com/sonatype/nexus-public/blob/master/components/nexus-common/src/main/java/org/sonatype/nexus/common/text/LoremIpsum.groovy
+
+import org.sonatype.goodies.dropwizard.util.Rando;
 
 import static com.google.common.base.Preconditions.checkArgument;
 

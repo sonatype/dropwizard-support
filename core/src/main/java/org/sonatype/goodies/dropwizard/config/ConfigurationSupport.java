@@ -23,8 +23,8 @@ import javax.validation.constraints.NotNull;
 import org.sonatype.goodies.dropwizard.app.er.EnvironmentReport;
 import org.sonatype.goodies.dropwizard.app.er.EnvironmentReportAware;
 import org.sonatype.goodies.dropwizard.health.HealthCheckConfiguration;
-import org.sonatype.goodies.dropwizard.selection.ComponentSelectionConfiguration;
-import org.sonatype.goodies.dropwizard.selection.ComponentSelectionConfigurationAware;
+import org.sonatype.goodies.dropwizard.config.selection.ComponentSelectionConfiguration;
+import org.sonatype.goodies.dropwizard.config.selection.ComponentSelectionConfigurationAware;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.dropwizard.Configuration;

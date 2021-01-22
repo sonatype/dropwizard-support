@@ -25,7 +25,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import io.dropwizard.logging.filter.FilterFactory;
 
 import static com.google.common.base.Preconditions.checkNotNull;
-import static org.sonatype.goodies.dropwizard.util.MoreStrings.blankToNull;
+import static org.sonatype.goodies.dropwizard.text.MoreStrings.blankToNull;
 
 /**
  * Blacklist event based on event message with optional logger and level predicates.

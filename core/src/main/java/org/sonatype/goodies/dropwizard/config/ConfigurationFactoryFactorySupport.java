@@ -24,7 +24,7 @@ import io.dropwizard.configuration.ConfigurationException;
 import io.dropwizard.configuration.ConfigurationFactory;
 import io.dropwizard.configuration.ConfigurationFactoryFactory;
 import io.dropwizard.configuration.YamlConfigurationFactory;
-import io.dropwizard.jackson.LogbackModule;
+import org.sonatype.goodies.dropwizard.logging.LogbackModule;
 
 /**
  * {@link ConfigurationFactoryFactory} support.

@@ -29,11 +29,6 @@ public class HealthCheckConfiguration
   @JsonProperty
   private MemoryHealthCheck.Configuration memory = new MemoryHealthCheck.Configuration();
 
-  @NotNull
-  @Valid
-  @JsonProperty("temporary-directory")
-  private TemporaryDirectoryHealthCheck.Configuration temporaryDirectory = new TemporaryDirectoryHealthCheck.Configuration();
-
   public MemoryHealthCheck.Configuration getMemory() {
     return memory;
   }
@@ -41,6 +36,11 @@ public class HealthCheckConfiguration
   public void setMemory(final MemoryHealthCheck.Configuration memory) {
     this.memory = memory;
   }
+
+  @NotNull
+  @Valid
+  @JsonProperty("temporary-directory")
+  private TemporaryDirectoryHealthCheck.Configuration temporaryDirectory = new TemporaryDirectoryHealthCheck.Configuration();
 
   public TemporaryDirectoryHealthCheck.Configuration getTemporaryDirectory() {
     return temporaryDirectory;

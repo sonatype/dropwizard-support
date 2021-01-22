@@ -28,7 +28,7 @@ import org.sonatype.goodies.dropwizard.events.EventAware;
 import org.sonatype.goodies.dropwizard.events.EventService;
 import org.sonatype.goodies.dropwizard.service.ServiceSupport;
 import org.sonatype.goodies.dropwizard.service.ManagedHelper;
-import org.sonatype.goodies.dropwizard.util.Plural;
+import org.sonatype.goodies.dropwizard.text.Plural;
 import org.sonatype.goodies.dropwizard.worker.internal.SnsEventProducerConfiguration;
 import org.sonatype.goodies.dropwizard.worker.internal.SqsEventConsumerConfiguration;
 

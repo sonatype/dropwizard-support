@@ -10,7 +10,9 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
-package org.sonatype.goodies.dropwizard.util;
+package org.sonatype.goodies.dropwizard.logging;
+
+import org.sonatype.goodies.dropwizard.guice.GuiceEnhanced;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,7 +35,7 @@ public final class Loggers
   /**
    * Helper to create a logger and deal with class-names created by AOP platforms.
    */
-  public static Logger getLogger(final Class type) {
+  public static Logger getLogger(final Class<?> type) {
     checkNotNull(type);
     return LoggerFactory.getLogger(GuiceEnhanced.dereference(type));
   }
