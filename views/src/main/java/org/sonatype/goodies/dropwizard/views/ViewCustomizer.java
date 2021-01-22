@@ -34,8 +34,8 @@ public class ViewCustomizer
       @Override
       public Map<String, Map<String, String>> getViewConfiguration(final Configuration configuration) {
         if (configuration instanceof ViewConfigurationAware) {
-          ViewConfiguration vconfig = ((ViewConfigurationAware)configuration).getViewConfiguration();
-          return vconfig.getRenderersConfiguration();
+          ViewConfiguration config = ((ViewConfigurationAware)configuration).getViewConfiguration();
+          return config.getRenderersConfiguration();
         }
         return Collections.emptyMap();
       }

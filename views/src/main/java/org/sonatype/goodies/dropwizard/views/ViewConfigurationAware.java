@@ -12,12 +12,15 @@
  */
 package org.sonatype.goodies.dropwizard.views;
 
+import javax.annotation.Nonnull;
+
 /**
- * {@link ViewConfiguration} aware.
+ * Marker for {@link io.dropwizard.Configuration} which is {@link ViewConfiguration} aware.
  *
  * @since 1.3.0
  */
 public interface ViewConfigurationAware
 {
+  @Nonnull
   ViewConfiguration getViewConfiguration();
 }
