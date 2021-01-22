@@ -15,7 +15,7 @@ package org.sonatype.goodies.dropwizard.rules.matcher.string;
 import javax.annotation.Nullable;
 import javax.validation.constraints.NotNull;
 
-import org.sonatype.goodies.dropwizard.util.MoreStrings;
+import org.sonatype.goodies.dropwizard.text.MoreStrings;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
