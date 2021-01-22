@@ -18,7 +18,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 import javax.validation.constraints.NotNull;
 
-import org.sonatype.goodies.dropwizard.util.Level;
+import org.sonatype.goodies.dropwizard.logging.Level;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;

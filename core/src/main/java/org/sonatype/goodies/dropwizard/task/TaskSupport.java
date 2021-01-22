@@ -19,7 +19,7 @@ import java.util.Map;
 
 import javax.annotation.Nullable;
 
-import org.sonatype.goodies.dropwizard.util.Loggers;
+import org.sonatype.goodies.dropwizard.logging.Loggers;
 
 import io.dropwizard.servlets.tasks.Task;
 import org.slf4j.Logger;
