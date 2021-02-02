@@ -115,7 +115,7 @@
           <version>3.0.0</version>
         </plugin>
 
-        <!-- FIXME: some versions of surefire > 2.20 seems to have broken some tests with mysterious failures -->
+        <!-- FIXME: some versions of surefire > 2.20 seems to have broken some tests with mysterious failures; 2.21.0 seems okay -->
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-surefire-plugin</artifactId>
