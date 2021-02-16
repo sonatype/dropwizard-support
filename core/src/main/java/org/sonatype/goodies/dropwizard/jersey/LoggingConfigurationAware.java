@@ -12,6 +12,8 @@
  */
 package org.sonatype.goodies.dropwizard.jersey;
 
+// FIXME: rename, this is a bit confusing w/o additional context from package namespace
+
 /**
  * {@link LoggingConfiguration} aware.
  *
