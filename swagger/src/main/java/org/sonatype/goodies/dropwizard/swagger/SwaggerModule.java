@@ -14,7 +14,6 @@ package org.sonatype.goodies.dropwizard.swagger;
 
 import org.sonatype.goodies.dropwizard.guice.ModuleSupport;
 import org.sonatype.goodies.dropwizard.jaxrs.Resource;
-import org.sonatype.goodies.dropwizard.swagger.internal.GroovyModelFilter;
 
 import io.dropwizard.lifecycle.Managed;
 import io.swagger.converter.ModelConverter;
