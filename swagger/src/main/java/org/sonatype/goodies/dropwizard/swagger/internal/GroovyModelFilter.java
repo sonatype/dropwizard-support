@@ -17,7 +17,6 @@ import java.lang.reflect.Type;
 import java.util.Iterator;
 import java.util.Set;
 
-import javax.inject.Named;
 import javax.inject.Singleton;
 
 import com.google.common.collect.ImmutableSet;
@@ -31,7 +30,6 @@ import io.swagger.models.properties.Property;
  *
  * @since 1.0.0
  */
-@Named
 @Singleton
 public class GroovyModelFilter
     implements ModelConverter

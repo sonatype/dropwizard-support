@@ -13,7 +13,6 @@
 package org.sonatype.goodies.dropwizard.swagger;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 import javax.inject.Singleton;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
@@ -35,7 +34,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
  * @see SwaggerModel
  * @since 1.0.0
  */
-@Named
 @Singleton
 @Path("/swagger.{type:json|yaml}")
 public class SwaggerResource

@@ -12,6 +12,7 @@
  */
 package org.sonatype.goodies.dropwizard.swagger;
 
+import java.lang.annotation.Annotation;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -19,12 +20,16 @@ import javax.inject.Named;
 import javax.inject.Singleton;
 
 import org.sonatype.goodies.dropwizard.jaxrs.Resource;
+import org.sonatype.goodies.dropwizard.service.ServiceSupport;
 
+import com.google.inject.Key;
 import io.swagger.converter.ModelConverter;
 import io.swagger.converter.ModelConverters;
 import io.swagger.jaxrs.Reader;
-import io.swagger.models.Info;
 import io.swagger.models.Swagger;
+import org.eclipse.sisu.BeanEntry;
+import org.eclipse.sisu.Mediator;
+import org.eclipse.sisu.inject.BeanLocator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -36,20 +41,24 @@ import static com.google.common.base.Preconditions.checkNotNull;
  * @see SwaggerContributor
  * @since 1.0.0
  */
-@Named
 @Singleton
 public class SwaggerModel
+    extends ServiceSupport
 {
   private static final Logger log = LoggerFactory.getLogger(SwaggerModel.class);
+
+  private final BeanLocator beanLocator;
 
   private final List<SwaggerContributor> contributors;
 
   private final Reader reader;
 
   @Inject
-  public SwaggerModel(final List<SwaggerContributor> contributors,
+  public SwaggerModel(final BeanLocator beanLocator,
+                      final List<SwaggerContributor> contributors,
                       final List<ModelConverter> converters)
   {
+    this.beanLocator = checkNotNull(beanLocator);
     this.contributors = checkNotNull(contributors);
 
     // register converters
@@ -61,9 +70,33 @@ public class SwaggerModel
     this.reader = new Reader(createSwagger());
   }
 
-  public void scan(final Class<Resource> resourceClass) {
-    reader.read(resourceClass);
+  private static class ResourceMediator
+      implements Mediator<Named, Resource, SwaggerModel>
+  {
+    @Override
+    public void add(final BeanEntry<Named, Resource> entry, final SwaggerModel swagger) {
+      swagger.scan(entry.getImplementationClass());
+    }
+
+    @Override
+    public void remove(final BeanEntry<Named, Resource> entry, final SwaggerModel swagger) {
+      // empty
+    }
+  }
+
+  @Override
+  protected void doStart() throws Exception {
+    for (BeanEntry<Annotation, Resource> entry : beanLocator.locate(Key.get(Resource.class))) {
+      scan(entry.getImplementationClass());
+    }
+    beanLocator.watch(Key.get(Resource.class, Named.class), new ResourceMediator(), this);
     contributors.forEach(c -> c.contribute(getSwagger()));
+  }
+
+  public void scan(final Class<Resource> type) {
+    checkNotNull(type);
+    log.debug("Scan: {}", type);
+    reader.read(type);
   }
 
   public Swagger getSwagger() {
