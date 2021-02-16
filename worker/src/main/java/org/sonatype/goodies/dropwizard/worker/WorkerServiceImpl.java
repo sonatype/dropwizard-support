@@ -16,7 +16,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.stream.Collectors;
 
 import javax.annotation.Nullable;
@@ -34,10 +33,6 @@ import org.sonatype.goodies.dropwizard.worker.internal.SqsEventConsumerConfigura
 
 import com.google.common.eventbus.AllowConcurrentEvents;
 import com.google.common.eventbus.Subscribe;
-import com.google.inject.Key;
-import org.eclipse.sisu.BeanEntry;
-import org.eclipse.sisu.Mediator;
-import org.eclipse.sisu.inject.BeanLocator;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkState;
@@ -53,8 +48,6 @@ public class WorkerServiceImpl
     extends ServiceSupport
     implements WorkerService, EventAware.Asynchronous
 {
-  private final BeanLocator beanLocator;
-
   private final EventService eventService;
 
   private final WorkEventEnvelopeProducer.Factory producerFactory;
@@ -63,7 +56,7 @@ public class WorkerServiceImpl
 
   private final WorkerServiceConfiguration configuration;
 
-  private final Set<WorkEventHandler> handlers = new CopyOnWriteArraySet<>();
+  private final Set<WorkEventHandler> handlers;
 
   @Nullable
   private WorkEventEnvelopeProducer producer;
@@ -72,16 +65,16 @@ public class WorkerServiceImpl
   private WorkEventEnvelopeConsumer consumer;
 
   @Inject
-  public WorkerServiceImpl(final BeanLocator beanLocator,
-                           final EventService eventService,
+  public WorkerServiceImpl(final EventService eventService,
                            final WorkEventEnvelopeProducer.Factory producerFactory,
                            final WorkEventEnvelopeConsumer.Factory consumerFactory,
+                           final Set<WorkEventHandler> handlers,
                            final WorkerServiceConfiguration configuration)
   {
-    this.beanLocator = checkNotNull(beanLocator);
     this.eventService = checkNotNull(eventService);
     this.producerFactory = checkNotNull(producerFactory);
     this.consumerFactory = checkNotNull(consumerFactory);
+    this.handlers = checkNotNull(handlers);
     this.configuration = checkNotNull(configuration);
   }
 
@@ -102,29 +95,11 @@ public class WorkerServiceImpl
     ManagedHelper.start(consumer);
     ManagedHelper.start(producer);
 
+    for (WorkEventHandler handler : handlers) {
+      log.debug("Handler: {}", handler);
+    }
+
     eventService.register(this);
-  }
-
-  /**
-   * Mediator to register and unregister {@link WorkEventHandler} components.
-   */
-  private static class WorkEventHandlerMediator
-      implements Mediator<Named, WorkEventHandler, WorkerServiceImpl>
-  {
-    @Override
-    public void add(final BeanEntry<Named, WorkEventHandler> entry, final WorkerServiceImpl watcher) {
-      watcher.addHandler(entry.getValue());
-    }
-
-    @Override
-    public void remove(final BeanEntry<Named, WorkEventHandler> entry, final WorkerServiceImpl watcher) {
-      watcher.removeHandler(entry.getValue());
-    }
-  }
-
-  @Override
-  protected void doStarted() throws Exception {
-    beanLocator.watch(Key.get(WorkEventHandler.class, Named.class), new WorkEventHandlerMediator(), this);
   }
 
   @Override
@@ -135,24 +110,6 @@ public class WorkerServiceImpl
     producer = null;
     ManagedHelper.stop(consumer);
     consumer = null;
-  }
-
-  @Override
-  public void addHandler(final WorkEventHandler handler) {
-    checkNotNull(handler);
-    ensureStarted();
-    log.debug("Add handler: {}", handler);
-
-    handlers.add(handler);
-  }
-
-  @Override
-  public void removeHandler(final WorkEventHandler handler) {
-    checkNotNull(handler);
-    ensureStarted();
-    log.debug("Remove handler: {}", handler);
-
-    handlers.remove(handler);
   }
 
   /**
