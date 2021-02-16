@@ -10,14 +10,13 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
-package org.sonatype.goodies.dropwizard.swagger.internal;
+package org.sonatype.goodies.dropwizard.swagger;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
 import java.util.Iterator;
 import java.util.Set;
 
-import javax.inject.Named;
 import javax.inject.Singleton;
 
 import com.google.common.collect.ImmutableSet;
@@ -31,7 +30,6 @@ import io.swagger.models.properties.Property;
  *
  * @since 1.0.0
  */
-@Named
 @Singleton
 public class GroovyModelFilter
     implements ModelConverter
