@@ -9,6 +9,7 @@ import java.util.Optional;
 import javax.inject.Singleton;
 
 import org.sonatype.goodies.dropwizard.aws.auth.AwsCredentialsProviderFactory;
+import org.sonatype.goodies.dropwizard.guice.ModuleSupport;
 
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.auth.AWSCredentialsProvider;
@@ -16,11 +17,8 @@ import com.amazonaws.regions.AwsRegionProvider;
 import com.amazonaws.regions.DefaultAwsRegionProviderChain;
 import com.amazonaws.regions.Regions;
 import com.google.common.primitives.Ints;
-import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import io.dropwizard.util.Duration;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * AWS module.
@@ -28,10 +26,8 @@ import org.slf4j.LoggerFactory;
  * @since ???
  */
 public class AwsModule
-    extends AbstractModule
+    extends ModuleSupport
 {
-  private static final Logger log = LoggerFactory.getLogger(AwsModule.class);
-
   @Provides
   @Singleton
   AwsRegionProvider getRegionProvider() {
