@@ -10,16 +10,21 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
-package org.sonatype.goodies.dropwizard.jersey;
+package org.sonatype.goodies.dropwizard.aws.auth;
 
-// FIXME: rename, this is a bit confusing w/o additional context from package namespace
+import com.amazonaws.auth.AWSCredentialsProvider;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
+import io.dropwizard.jackson.Discoverable;
 
 /**
- * {@link LoggingConfiguration} aware.
+ * {@link AWSCredentialsProvider} factory.
  *
- * @since 1.3.0
+ * @since ???
  */
-public interface LoggingConfigurationAware
+@JsonTypeInfo(use = Id.NAME, property = "type")
+public interface AwsCredentialsProviderFactory
+    extends Discoverable
 {
-  LoggingConfiguration getLoggingConfiguration();
+  AWSCredentialsProvider create();
 }
