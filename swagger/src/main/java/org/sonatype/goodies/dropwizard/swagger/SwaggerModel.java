@@ -74,22 +74,27 @@ public class SwaggerModel
       implements Mediator<Named, Resource, SwaggerModel>
   {
     @Override
-    public void add(final BeanEntry<Named, Resource> entry, final SwaggerModel swagger) {
-      swagger.scan(entry.getImplementationClass());
+    public void add(final BeanEntry<Named, Resource> entry, final SwaggerModel model) {
+      model.scan(entry.getImplementationClass());
     }
 
     @Override
-    public void remove(final BeanEntry<Named, Resource> entry, final SwaggerModel swagger) {
+    public void remove(final BeanEntry<Named, Resource> entry, final SwaggerModel model) {
       // empty
     }
   }
 
   @Override
   protected void doStart() throws Exception {
+    // scan all bound resources
     for (BeanEntry<Annotation, Resource> entry : beanLocator.locate(Key.get(Resource.class))) {
       scan(entry.getImplementationClass());
     }
+
+    // watch for more resources
     beanLocator.watch(Key.get(Resource.class, Named.class), new ResourceMediator(), this);
+
+    // apply all contributors
     contributors.forEach(c -> c.contribute(getSwagger()));
   }
 
