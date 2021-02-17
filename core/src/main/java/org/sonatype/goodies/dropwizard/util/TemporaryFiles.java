@@ -12,6 +12,7 @@
  */
 package org.sonatype.goodies.dropwizard.util;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FilterInputStream;
 import java.io.IOException;
@@ -21,7 +22,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.function.Function;
 
-import com.google.common.io.ByteStreams;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -137,8 +137,7 @@ public class TemporaryFiles
       if (content != null) {
         try {
           try (OutputStream output = maybeDecorate(Files.newOutputStream(file, WRITE))) {
-            // copy internally buffers
-            long bytes = ByteStreams.copy(content, output);
+            long bytes = content.transferTo(output);
             log.trace("Wrote: {} {} bytes", file, bytes);
           }
         }
@@ -154,7 +153,8 @@ public class TemporaryFiles
 
     private OutputStream maybeDecorate(final OutputStream source) {
       if (decorator != null) {
-        return decorator.apply(source);
+        // buffer when decorating
+        return decorator.apply(new BufferedOutputStream(source));
       }
       return source;
     }
