@@ -79,7 +79,7 @@
     <module>assets</module>
     <module>client</module>
     <module>views</module>
-    <module>security</module>
+    <module>shiro</module>
     <module>events</module>
     <module>hibernate</module>
     <module>jdbi</module>

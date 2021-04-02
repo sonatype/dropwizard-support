@@ -23,9 +23,7 @@
     <version>2.0.0-SNAPSHOT</version>
   </parent>
 
-  <!-- TODO: consider renaming to dropwizard-support-shiro -->
-
-  <artifactId>dropwizard-support-security</artifactId>
+  <artifactId>dropwizard-support-shiro</artifactId>
   <name>${project.groupId}:${project.artifactId}</name>
   <packaging>jar</packaging>
 
