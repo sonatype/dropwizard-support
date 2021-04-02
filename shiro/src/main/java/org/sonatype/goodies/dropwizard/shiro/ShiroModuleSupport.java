@@ -47,7 +47,7 @@ import org.apache.shiro.web.session.mgt.WebSessionManager;
  * @since 1.3.0
  */
 @Beta
-public class SecurityModuleSupport
+public class ShiroModuleSupport
     extends ShiroModule
 {
   // NOTE: overly complex guice bindings here due to ShiroModule being private, and generally having poor integration with guice+sisu

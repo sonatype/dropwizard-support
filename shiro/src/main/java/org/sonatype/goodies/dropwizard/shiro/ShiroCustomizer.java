@@ -42,10 +42,10 @@ import org.slf4j.LoggerFactory;
  * @since 1.3.0
  */
 @Beta
-public class SecurityCustomizer<T extends ApplicationSupport<C>, C extends Configuration>
+public class ShiroCustomizer<T extends ApplicationSupport<C>, C extends Configuration>
     implements ApplicationCustomizer<T, C>
 {
-  private static final Logger log = LoggerFactory.getLogger(SecurityCustomizer.class);
+  private static final Logger log = LoggerFactory.getLogger(ShiroCustomizer.class);
 
   @Override
   public List<Module> modules(final C config, final Environment environment) {
@@ -56,8 +56,8 @@ public class SecurityCustomizer<T extends ApplicationSupport<C>, C extends Confi
     );
   }
 
-  protected SecurityModuleSupport createSecurityModule() {
-    return new SecurityModuleSupport();
+  protected ShiroModuleSupport createSecurityModule() {
+    return new ShiroModuleSupport();
   }
 
   @Override
