@@ -31,7 +31,7 @@
     <groovy.version>3.0.7</groovy.version>
 
     <dropwizard.version>2.0.20</dropwizard.version>
-    <guice.version>4.2.3</guice.version>
+    <guice.version>5.0.1</guice.version>
     <hk2.version>2.6.1</hk2.version>
 
     <hibernate-core.version>5.4.28.Final</hibernate-core.version>
@@ -125,12 +125,6 @@
             <artifactId>aopalliance</artifactId>
           </exclusion>
         </exclusions>
-      </dependency>
-
-      <dependency>
-        <groupId>com.google.inject.extensions</groupId>
-        <artifactId>guice-multibindings</artifactId>
-        <version>${guice.version}</version>
       </dependency>
 
       <dependency>
