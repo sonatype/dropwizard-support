@@ -12,6 +12,8 @@
  */
 package org.sonatype.goodies.dropwizard.events
 
+import java.util.concurrent.Executor
+
 import com.google.common.eventbus.EventBus
 import org.eclipse.sisu.inject.BeanLocator
 import org.junit.jupiter.api.AfterEach
@@ -21,13 +23,10 @@ import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.Mock
 import org.mockito.junit.jupiter.MockitoExtension
 
-import static org.mockito.ArgumentMatchers.anyString
-import static org.mockito.ArgumentMatchers.eq
 import static org.mockito.Mockito.inOrder
 import static org.mockito.Mockito.verify
-import static org.mockito.Mockito.verifyNoMoreInteractions
 import static org.mockito.Mockito.verifyNoInteractions
-import static org.mockito.Mockito.when
+import static org.mockito.Mockito.verifyNoMoreInteractions
 
 /**
  * {@link EventServiceImpl} tests
@@ -39,9 +38,6 @@ class EventServiceImplTest
   BeanLocator beanLocator
 
   @Mock
-  EventBusFactory eventBusFactory
-
-  @Mock
   EventBus synchronous
 
   @Mock
@@ -50,12 +46,24 @@ class EventServiceImplTest
   @Mock
   EventExecutor eventExecutor
 
+  EventBusFactory eventBusFactory
+
   EventServiceImpl underTest
 
   @BeforeEach
   void setUp() {
-    when(eventBusFactory.create(anyString())).thenReturn(synchronous)
-    when(eventBusFactory.create(anyString(), eq(eventExecutor))).thenReturn(asynchronous)
+    // HACK: use of mocking here for some reason causes failures to execute tests w/ surefire
+    eventBusFactory = new EventBusFactory() {
+      @Override
+      EventBus create(final String name) {
+        return synchronous
+      }
+
+      @Override
+      EventBus create(final String name, final Executor executor) {
+        return asynchronous
+      }
+    }
     underTest = new EventServiceImpl(beanLocator, eventBusFactory, eventExecutor)
     underTest.start()
   }
