@@ -16,7 +16,7 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 
 import org.sonatype.goodies.dropwizard.jaxrs.Resource;
-import org.sonatype.goodies.dropwizard.security.ShiroAopFeature;
+import org.sonatype.goodies.dropwizard.shiro.ShiroAopFeature;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.matcher.AbstractMatcher;
