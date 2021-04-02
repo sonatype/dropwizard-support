@@ -47,7 +47,7 @@
 
     <dependency>
       <groupId>org.sonatype.goodies.dropwizard</groupId>
-      <artifactId>dropwizard-support-security</artifactId>
+      <artifactId>dropwizard-support-shiro</artifactId>
     </dependency>
 
     <dependency>
