@@ -87,7 +87,7 @@
     <module>rules</module>
     <module>datadog</module>
     <module>swagger</module>
-    <module>swagger3</module>
+    <module>swagger2</module>
     <module>aws</module>
     <module>camel</module>
     <module>worker</module>
