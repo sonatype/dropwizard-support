@@ -12,33 +12,27 @@
  */
 package org.sonatype.goodies.dropwizard.swagger3;
 
+import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
-import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
-import javax.ws.rs.core.UriInfo;
 
 import org.sonatype.goodies.dropwizard.jaxrs.Resource;
 import org.sonatype.goodies.dropwizard.service.ServiceSupport;
 
-import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.google.inject.Key;
 import io.dropwizard.lifecycle.Managed;
 import io.swagger.v3.jaxrs2.integration.JaxrsOpenApiContextBuilder;
-import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.integration.OpenApiConfigurationException;
 import io.swagger.v3.oas.integration.SwaggerConfiguration;
 import io.swagger.v3.oas.integration.api.OpenApiContext;
 import io.swagger.v3.oas.models.OpenAPI;
@@ -46,22 +40,20 @@ import org.eclipse.sisu.BeanEntry;
 import org.eclipse.sisu.inject.BeanLocator;
 
 import static com.google.common.base.Preconditions.checkNotNull;
-import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static org.sonatype.goodies.dropwizard.jaxrs.WebPreconditions.checkFound;
 
 /**
- * OpenAPI resource.
+ * {@link OpenApiEndpoint} resource.
  *
  * @since ???
  */
 @Singleton
 @Path("/openapi.{type:json|yaml}")
+@Tag(name = "Service")
 public class OpenApiResource
     extends ServiceSupport
-    implements Managed, Resource
+    implements OpenApiEndpoint, Managed, Resource
 {
-  public static final String APPLICATION_YAML = "application/yaml";
-
   private final BeanLocator beanLocator;
 
   @Inject
@@ -87,53 +79,40 @@ public class OpenApiResource
         .openApiConfiguration(config)
         .buildContext(true);
 
-    log.debug("Context: {}", context);
+    log.debug("Context: {} -> {}", context.getId(), context);
   }
 
-  enum Type
-  {
-    JSON(APPLICATION_JSON),
-    YAML(APPLICATION_YAML);
-
-    final String contentType;
-
-    Type(final String contentType) {
-      this.contentType = contentType;
+  @Override
+  public Response get(final Type type, final boolean pretty) throws IOException {
+    OpenApiContext context;
+    try {
+      //noinspection rawtypes
+      context = new JaxrsOpenApiContextBuilder()
+          .ctxId(OpenApiContext.OPENAPI_CONTEXT_ID_DEFAULT)
+          .buildContext(true);
     }
-
-    ObjectMapper mapper(final OpenApiContext ctx) {
-      switch (this) {
-        case JSON:
-          return ctx.getOutputJsonMapper();
-        case YAML:
-          return ctx.getOutputYamlMapper();
-      }
-      throw new RuntimeException();
+    catch (OpenApiConfigurationException e) {
+      throw new RuntimeException(e);
     }
-  }
-
-  @GET
-  @Produces({APPLICATION_JSON, APPLICATION_YAML})
-  @Operation(hidden = true)
-  public Response getOpenApi(final @Context HttpHeaders headers,
-                             final @Context UriInfo uriInfo,
-                             final @PathParam("type") Type type,
-                             final @QueryParam("pretty") boolean pretty)
-      throws Exception
-  {
-    //noinspection rawtypes
-    OpenApiContext context = new JaxrsOpenApiContextBuilder()
-        .ctxId(OpenApiContext.OPENAPI_CONTEXT_ID_DEFAULT)
-        .buildContext(true);
 
     OpenAPI api = context.read();
     checkFound(api);
 
-    ObjectMapper mapper = type.mapper(context);
-    ObjectWriter writer = pretty ? mapper.writer(new DefaultPrettyPrinter()) : mapper.writer();
+    ObjectMapper mapper = mapper(context, type);
+    ObjectWriter writer = pretty ? mapper.writerWithDefaultPrettyPrinter() : mapper.writer();
     return Response.status(Status.OK)
         .type(type.contentType)
         .entity(writer.writeValueAsString(api))
         .build();
+  }
+
+  private static ObjectMapper mapper(final OpenApiContext context, final Type type) {
+    switch (type) {
+      case json:
+        return context.getOutputJsonMapper();
+      case yaml:
+        return context.getOutputYamlMapper();
+    }
+    throw new RuntimeException("Invalid type: " + type);
   }
 }
