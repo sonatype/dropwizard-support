@@ -10,7 +10,7 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
-package org.sonatype.goodies.dropwizard.swagger3;
+package org.sonatype.goodies.dropwizard.swagger2;
 
 import org.sonatype.goodies.dropwizard.guice.ModuleSupport;
 import org.sonatype.goodies.dropwizard.jaxrs.Resource;
@@ -22,7 +22,7 @@ import io.dropwizard.lifecycle.Managed;
  *
  * @since ???
  */
-public class Swagger3Module
+public class Swagger2Module
     extends ModuleSupport
 {
   @Override

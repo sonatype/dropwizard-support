@@ -23,14 +23,12 @@
     <version>2.0.0-SNAPSHOT</version>
   </parent>
 
-  <!-- TODO: resolve naming; v3 and actual version are confusing -->
-
   <artifactId>dropwizard-support-swagger3</artifactId>
   <name>${project.groupId}:${project.artifactId}</name>
   <packaging>jar</packaging>
 
   <properties>
-    <swagger3.version>2.1.7</swagger3.version>
+    <swagger2.version>2.1.7</swagger2.version>
   </properties>
 
   <dependencyManagement>
@@ -54,31 +52,13 @@
     <dependency>
       <groupId>io.swagger.core.v3</groupId>
       <artifactId>swagger-annotations</artifactId>
-      <version>${swagger3.version}</version>
+      <version>${swagger2.version}</version>
     </dependency>
-
-<!--    <dependency>-->
-<!--      <groupId>io.swagger.core.v3</groupId>-->
-<!--      <artifactId>swagger-models</artifactId>-->
-<!--      <version>${swagger.version}</version>-->
-<!--    </dependency>-->
-
-<!--    <dependency>-->
-<!--      <groupId>io.swagger.core.v3</groupId>-->
-<!--      <artifactId>swagger-core</artifactId>-->
-<!--      <version>${swagger.version}</version>-->
-<!--    </dependency>-->
-
-<!--    <dependency>-->
-<!--      <groupId>io.swagger.core.v3</groupId>-->
-<!--      <artifactId>swagger-integration</artifactId>-->
-<!--      <version>${swagger.version}</version>-->
-<!--    </dependency>-->
 
     <dependency>
       <groupId>io.swagger.core.v3</groupId>
       <artifactId>swagger-jaxrs2</artifactId>
-      <version>${swagger3.version}</version>
+      <version>${swagger2.version}</version>
     </dependency>
 
     <dependency>

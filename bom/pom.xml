@@ -37,8 +37,11 @@
     <hibernate-core.version>5.4.28.Final</hibernate-core.version>
     <hibernate-validator.version>6.1.7.Final</hibernate-validator.version>
     <apache-httpclient.version>4.5.13</apache-httpclient.version>
+
+    <!-- keep in sync with swagger/pom.xml -->
     <swagger.version>1.6.2</swagger.version>
-    <swagger3.version>2.1.7</swagger3.version>
+    <!-- keep in sync with swagger2/pom.xml -->
+    <swagger2.version>2.1.7</swagger2.version>
 
     <junit4.version>4.13.2</junit4.version>
     <junit5.version>5.7.1</junit5.version>
@@ -161,31 +164,6 @@
 
       <dependency>
         <groupId>io.swagger</groupId>
-        <artifactId>swagger-jersey2-jaxrs</artifactId>
-        <version>${swagger.version}</version>
-        <exclusions>
-          <exclusion>
-            <groupId>jakarta.activation</groupId>
-            <artifactId>jakarta.activation-api</artifactId>
-          </exclusion>
-        </exclusions>
-      </dependency>
-
-      <dependency>
-        <groupId>io.swagger</groupId>
-        <artifactId>swagger-core</artifactId>
-        <version>${swagger.version}</version>
-        <exclusions>
-          <!-- exclude incompatible javax.validation 1.1.x -->
-          <exclusion>
-            <groupId>javax.validation</groupId>
-            <artifactId>validation-api</artifactId>
-          </exclusion>
-        </exclusions>
-      </dependency>
-
-      <dependency>
-        <groupId>io.swagger</groupId>
         <artifactId>swagger-annotations</artifactId>
         <version>${swagger.version}</version>
       </dependency>
@@ -193,7 +171,7 @@
       <dependency>
         <groupId>io.swagger.core.v3</groupId>
         <artifactId>swagger-annotations</artifactId>
-        <version>${swagger3.version}</version>
+        <version>${swagger2.version}</version>
       </dependency>
 
       <dependency>
