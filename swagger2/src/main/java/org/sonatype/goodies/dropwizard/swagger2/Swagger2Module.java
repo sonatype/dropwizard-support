@@ -18,7 +18,7 @@ import org.sonatype.goodies.dropwizard.jaxrs.Resource;
 import io.dropwizard.lifecycle.Managed;
 
 /**
- * ???
+ * Swagger v2 (OpenAPI v3) module.
  *
  * @since ???
  */
