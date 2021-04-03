@@ -28,6 +28,8 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkState;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
+// TODO: remove, the value of this is pretty low and the complexity to maintain swagger annotations here non-zero
+
 /**
  * Support for {@link Version} resources.
  *
