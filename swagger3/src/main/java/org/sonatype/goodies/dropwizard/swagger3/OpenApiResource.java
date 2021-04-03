@@ -15,13 +15,17 @@ package org.sonatype.goodies.dropwizard.swagger3;
 import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.util.LinkedHashSet;
+import java.util.Map;
 import java.util.Set;
 
 import javax.inject.Inject;
+import javax.inject.Provider;
 import javax.inject.Singleton;
 import javax.ws.rs.Path;
+import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
+import javax.ws.rs.core.UriInfo;
 
 import org.sonatype.goodies.dropwizard.jaxrs.Resource;
 import org.sonatype.goodies.dropwizard.service.ServiceSupport;
@@ -30,6 +34,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.google.inject.Key;
 import io.dropwizard.lifecycle.Managed;
+import io.swagger.v3.core.filter.AbstractSpecFilter;
+import io.swagger.v3.jaxrs2.Reader;
 import io.swagger.v3.jaxrs2.integration.JaxrsOpenApiContextBuilder;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.integration.OpenApiConfigurationException;
@@ -40,6 +46,7 @@ import org.eclipse.sisu.BeanEntry;
 import org.eclipse.sisu.inject.BeanLocator;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.checkState;
 import static org.sonatype.goodies.dropwizard.jaxrs.WebPreconditions.checkFound;
 
 /**
@@ -56,21 +63,42 @@ public class OpenApiResource
 {
   private final BeanLocator beanLocator;
 
+  private final Provider<HttpHeaders> headers;
+
+  private final Provider<UriInfo> uriInfo;
+
   @Inject
-  public OpenApiResource(final BeanLocator beanLocator) {
+  public OpenApiResource(final BeanLocator beanLocator,
+                         final Provider<HttpHeaders> headers,
+                         final Provider<UriInfo> uriInfo)
+  {
     this.beanLocator = checkNotNull(beanLocator);
+    this.headers = checkNotNull(headers);
+    this.uriInfo = checkNotNull(uriInfo);
+  }
+
+  private HttpHeaders headers() {
+    HttpHeaders result = headers.get();
+    checkState(result != null, "Missing context: %s", HttpHeaders.class);
+    return result;
+  }
+
+  private UriInfo uriInfo() {
+    UriInfo result = uriInfo.get();
+    checkState(result != null, "Missing context: %s", UriInfo.class);
+    return result;
   }
 
   @Override
   protected void doStart() throws Exception {
+    // scan for bound resources
     Set<String> resources = new LinkedHashSet<>();
     for (BeanEntry<Annotation, Resource> entry : beanLocator.locate(Key.get(Resource.class))) {
       resources.add(entry.getImplementationClass().getName());
     }
 
-    OpenAPI api = new OpenAPI();
     SwaggerConfiguration config = new SwaggerConfiguration()
-        .openAPI(api)
+        .openAPI(new OpenAPI())
         .resourceClasses(resources);
 
     //noinspection rawtypes
@@ -78,6 +106,29 @@ public class OpenApiResource
         .ctxId(OpenApiContext.OPENAPI_CONTEXT_ID_DEFAULT)
         .openApiConfiguration(config)
         .buildContext(true);
+
+    // install custom reader to omit unresolved references on cached model
+    Reader reader = new Reader()
+    {
+      @Override
+      public OpenAPI read(final Set<Class<?>> classes, final Map<String, Object> resources) {
+        OpenAPI model = super.read(classes, resources);
+
+        // exclude any unreferenced definitions
+        return SpecFilterHelper.filter(
+            model,
+            new AbstractSpecFilter() {
+              @Override
+              public boolean isRemovingUnreferencedDefinitions() {
+                return true;
+              }
+            },
+            uriInfo(),
+            headers()
+        );
+      }
+    };
+    context.setOpenApiReader(reader);
 
     log.debug("Context: {} -> {}", context.getId(), context);
   }
@@ -95,14 +146,14 @@ public class OpenApiResource
       throw new RuntimeException(e);
     }
 
-    OpenAPI api = context.read();
-    checkFound(api);
+    OpenAPI model = context.read();
+    checkFound(model);
 
     ObjectMapper mapper = mapper(context, type);
     ObjectWriter writer = pretty ? mapper.writerWithDefaultPrettyPrinter() : mapper.writer();
     return Response.status(Status.OK)
         .type(type.contentType)
-        .entity(writer.writeValueAsString(api))
+        .entity(writer.writeValueAsString(model))
         .build();
   }
 
