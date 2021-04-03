@@ -35,6 +35,7 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.google.inject.Key;
 import io.dropwizard.lifecycle.Managed;
 import io.swagger.v3.core.filter.AbstractSpecFilter;
+import io.swagger.v3.core.filter.OpenAPISpecFilter;
 import io.swagger.v3.jaxrs2.Reader;
 import io.swagger.v3.jaxrs2.integration.JaxrsOpenApiContextBuilder;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -68,9 +69,10 @@ public class OpenApiResource
   private final Provider<UriInfo> uriInfo;
 
   @Inject
-  public OpenApiResource(final BeanLocator beanLocator,
-                         final Provider<HttpHeaders> headers,
-                         final Provider<UriInfo> uriInfo)
+  public OpenApiResource(
+      final BeanLocator beanLocator,
+      final Provider<HttpHeaders> headers,
+      final Provider<UriInfo> uriInfo)
   {
     this.beanLocator = checkNotNull(beanLocator);
     this.headers = checkNotNull(headers);
@@ -108,27 +110,13 @@ public class OpenApiResource
         .buildContext(true);
 
     // install custom reader to omit unresolved references on cached model
-    Reader reader = new Reader()
+    context.setOpenApiReader(new FilterReader(new AbstractSpecFilter()
     {
       @Override
-      public OpenAPI read(final Set<Class<?>> classes, final Map<String, Object> resources) {
-        OpenAPI model = super.read(classes, resources);
-
-        // exclude any unreferenced definitions
-        return SpecFilterHelper.filter(
-            model,
-            new AbstractSpecFilter() {
-              @Override
-              public boolean isRemovingUnreferencedDefinitions() {
-                return true;
-              }
-            },
-            uriInfo(),
-            headers()
-        );
+      public boolean isRemovingUnreferencedDefinitions() {
+        return true;
       }
-    };
-    context.setOpenApiReader(reader);
+    }));
 
     log.debug("Context: {} -> {}", context.getId(), context);
   }
@@ -165,5 +153,21 @@ public class OpenApiResource
         return context.getOutputYamlMapper();
     }
     throw new RuntimeException("Invalid type: " + type);
+  }
+
+  private class FilterReader
+      extends Reader
+  {
+    private final OpenAPISpecFilter filter;
+
+    public FilterReader(final OpenAPISpecFilter filter) {
+      this.filter = checkNotNull(filter);
+    }
+
+    @Override
+    public OpenAPI read(final Set<Class<?>> classes, final Map<String, Object> resources) {
+      OpenAPI model = super.read(classes, resources);
+      return SpecFilterHelper.filter(model, filter, uriInfo(), headers());
+    }
   }
 }
