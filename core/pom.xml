@@ -73,6 +73,12 @@
     </dependency>
 
     <dependency>
+      <groupId>io.swagger.core.v3</groupId>
+      <artifactId>swagger-annotations</artifactId>
+      <optional>true</optional>
+    </dependency>
+
+    <dependency>
       <groupId>org.sonatype.goodies.dropwizard</groupId>
       <artifactId>dropwizard-support-testbase</artifactId>
       <scope>test</scope>

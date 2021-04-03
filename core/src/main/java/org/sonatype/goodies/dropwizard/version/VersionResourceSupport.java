@@ -19,10 +19,10 @@ import javax.ws.rs.Produces;
 import org.sonatype.goodies.dropwizard.app.ApplicationMetadata;
 import org.sonatype.goodies.dropwizard.jaxrs.ResourceSupport;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkState;
@@ -33,7 +33,6 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
  *
  * @since 1.2.0
  */
-@Api(value = "Version")
 public abstract class VersionResourceSupport
     extends ResourceSupport
 {
@@ -46,10 +45,11 @@ public abstract class VersionResourceSupport
 
   @GET
   @Produces({APPLICATION_JSON})
-  @ApiOperation(value = "Get version information")
-  @ApiResponses({
-      @ApiResponse(code = 200, message = "Version information", response = Version.class)
-  })
+  @Operation(summary = "Get version information",
+    responses = {
+        @ApiResponse(responseCode = "200", description = "Version information", content = {@Content(schema = @Schema(implementation = Version.class))})
+    }
+  )
   public Version get() {
     checkState(applicationMetadata != null, "Not configured");
     return new Version(
