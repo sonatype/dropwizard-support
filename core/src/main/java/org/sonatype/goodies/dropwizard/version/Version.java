@@ -17,12 +17,14 @@ import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.MoreObjects;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 /**
  * Version.
  *
  * @since 1.2.0
  */
+@Schema(name = "Version")
 public class Version
     implements Serializable
 {
