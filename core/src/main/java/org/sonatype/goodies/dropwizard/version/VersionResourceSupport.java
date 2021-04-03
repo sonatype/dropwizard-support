@@ -48,7 +48,7 @@ public abstract class VersionResourceSupport
   @Produces({APPLICATION_JSON})
   @ApiOperation(value = "Get version information")
   @ApiResponses({
-      @ApiResponse(code = 200, message = "Version information")
+      @ApiResponse(code = 200, message = "Version information", response = Version.class)
   })
   public Version get() {
     checkState(applicationMetadata != null, "Not configured");
