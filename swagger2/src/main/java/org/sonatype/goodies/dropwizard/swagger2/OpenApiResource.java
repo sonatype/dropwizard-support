@@ -101,7 +101,8 @@ public class OpenApiResource
 
     SwaggerConfiguration config = new SwaggerConfiguration()
         .openAPI(new OpenAPI())
-        .resourceClasses(resources);
+        .resourceClasses(resources)
+        .sortOutput(true);
 
     //noinspection rawtypes
     OpenApiContext context = new JaxrsOpenApiContextBuilder()
