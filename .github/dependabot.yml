@@ -4,9 +4,11 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
+    open-pull-requests-limit: 10
   - package-ecosystem: "npm"
     directory: "/src/site/hugo"
     schedule:
       interval: "monthly"
     ignore:
       - dependency-name: "*"
+    open-pull-requests-limit: 0
