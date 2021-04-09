@@ -99,19 +99,6 @@
       <plugins>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-javadoc-plugin</artifactId>
-          <version>3.0.1</version>
-          <configuration>
-            <source>${maven.compiler.source}</source>
-            <additionalOptions>
-              <!-- Turn off strict javadoc checks in Java-8 -->
-              <option>-Xdoclint:none</option>
-            </additionalOptions>
-          </configuration>
-        </plugin>
-
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-jxr-plugin</artifactId>
           <version>3.0.0</version>
         </plugin>
