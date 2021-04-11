@@ -17,6 +17,7 @@ import java.util.function.Supplier;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
+import javax.ws.rs.core.HttpHeaders;
 
 import org.sonatype.goodies.dropwizard.app.ApplicationMetadata;
 
@@ -27,7 +28,7 @@ import org.slf4j.LoggerFactory;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * Supplies {@link com.google.common.net.HttpHeaders#USER_AGENT} value.
+ * Supplies {@link HttpHeaders#USER_AGENT} value.
  *
  * @see JerseyClientFactory
  * @since 1.0.0
