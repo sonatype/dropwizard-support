@@ -138,7 +138,7 @@ public class ShiroModuleSupport
   protected <T extends Filter> T filter(final Class<T> type) {
     T instance;
     try {
-      instance = type.newInstance();
+      instance = type.getDeclaredConstructor().newInstance();
     }
     catch (Exception e) {
       throw new RuntimeException(e);
