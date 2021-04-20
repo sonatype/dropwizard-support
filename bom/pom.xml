@@ -28,7 +28,7 @@
   <packaging>pom</packaging>
 
   <properties>
-    <groovy.version>3.0.7</groovy.version>
+    <groovy.version>3.0.8</groovy.version>
 
     <dropwizard.version>2.0.21</dropwizard.version>
     <guice.version>5.0.1</guice.version>
