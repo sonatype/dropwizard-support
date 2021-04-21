@@ -14,56 +14,16 @@ package org.sonatype.goodies.dropwizard.client;
 
 import java.util.function.Supplier;
 
-import javax.inject.Inject;
-import javax.inject.Named;
-import javax.inject.Singleton;
-
-import org.sonatype.goodies.dropwizard.app.ApplicationMetadata;
-
-import com.google.common.annotations.VisibleForTesting;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import static com.google.common.base.Preconditions.checkNotNull;
+import javax.ws.rs.core.HttpHeaders;
 
 /**
- * Supplies {@link com.google.common.net.HttpHeaders#USER_AGENT} value.
+ * Supplies {@link HttpHeaders#USER_AGENT} value.
  *
  * @see JerseyClientFactory
  * @since 1.0.0
  */
-@Named
-@Singleton
-public class UserAgentSupplier
-    implements Supplier<String>
+public interface UserAgentSupplier
+    extends Supplier<String>
 {
-  private static final Logger log = LoggerFactory.getLogger(UserAgentSupplier.class);
-
-  private final String value;
-
-  @Inject
-  public UserAgentSupplier(final ApplicationMetadata applicationMetadata) {
-    this(applicationMetadata.getName(), applicationMetadata.getVersion());
-  }
-
-  @VisibleForTesting
-  public UserAgentSupplier(final String product, final String version) {
-    checkNotNull(product);
-    checkNotNull(version);
-
-    value = String.format("%s/%s (%s; %s; %s; %s)",
-        product,
-        version,
-        System.getProperty("os.name"),
-        System.getProperty("os.version"),
-        System.getProperty("os.arch"),
-        System.getProperty("java.version")
-    );
-    log.debug("User-agent: {}", value);
-  }
-
-  @Override
-  public String get() {
-    return value;
-  }
+  // empty
 }
