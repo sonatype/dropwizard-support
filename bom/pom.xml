@@ -28,7 +28,7 @@
   <packaging>pom</packaging>
 
   <properties>
-    <groovy.version>3.0.7</groovy.version>
+    <groovy.version>3.0.8</groovy.version>
 
     <dropwizard.version>2.0.21</dropwizard.version>
     <guice.version>5.0.1</guice.version>
@@ -41,12 +41,12 @@
     <!-- keep in sync with swagger/pom.xml -->
     <swagger.version>1.6.2</swagger.version>
     <!-- keep in sync with swagger2/pom.xml -->
-    <swagger2.version>2.1.7</swagger2.version>
+    <swagger2.version>2.1.9</swagger2.version>
 
     <junit4.version>4.13.2</junit4.version>
     <junit5.version>5.7.1</junit5.version>
     <hamcrest.version>2.2</hamcrest.version>
-    <mockito.version>3.8.0</mockito.version>
+    <mockito.version>3.9.0</mockito.version>
   </properties>
 
   <dependencyManagement>
@@ -225,7 +225,7 @@
       <dependency>
         <groupId>org.objenesis</groupId>
         <artifactId>objenesis</artifactId>
-        <version>3.1</version>
+        <version>3.2</version>
       </dependency>
 
       <!-- Adjust commons-codec; transitive from httpclient; to use fixed version -->
