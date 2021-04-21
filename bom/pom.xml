@@ -41,7 +41,7 @@
     <!-- keep in sync with swagger/pom.xml -->
     <swagger.version>1.6.2</swagger.version>
     <!-- keep in sync with swagger2/pom.xml -->
-    <swagger2.version>2.1.7</swagger2.version>
+    <swagger2.version>2.1.9</swagger2.version>
 
     <junit4.version>4.13.2</junit4.version>
     <junit5.version>5.7.1</junit5.version>
