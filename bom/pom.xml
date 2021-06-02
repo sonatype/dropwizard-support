@@ -34,7 +34,7 @@
     <guice.version>5.0.1</guice.version>
     <hk2.version>2.6.1</hk2.version>
 
-    <hibernate-core.version>5.4.30.Final</hibernate-core.version>
+    <hibernate-core.version>5.5.0.Final</hibernate-core.version>
     <hibernate-validator.version>6.1.7.Final</hibernate-validator.version>
     <apache-httpclient.version>4.5.13</apache-httpclient.version>
 
