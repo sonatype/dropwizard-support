@@ -11,7 +11,7 @@ mavenSnapshotPipeline(
   },
   testResults: [ '**/target/*-reports/*.xml' ],
   iqPolicyEvaluation: { stage ->
-    nexusPolicyEvaluation iqStage: stage, iqApplication: 'goodies',
+    nexusPolicyEvaluation iqStage: stage, iqApplication: 'dropwizard-support',
       iqScanPatterns: [[scanPattern: 'scan_nothing']]
   }
 )
