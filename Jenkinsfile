@@ -2,7 +2,7 @@
 
 Set<String> deployBranches = ['main', 'master', 'release-1.x']
 
-void prepare() {
+def prepare = {
   def jobName = currentBuild.fullProjectName
   println "Job name: $jobName"
 
