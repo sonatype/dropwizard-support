@@ -1,5 +1,9 @@
 @Library(['private-pipeline-library', 'jenkins-shared']) _
 
+properties([
+  disableConcurrentBuilds()
+])
+
 mavenSnapshotPipeline(
   mavenVersion: 'Maven 3.6.x',
   javaVersion: 'OpenJDK 11',
