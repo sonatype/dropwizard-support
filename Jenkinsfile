@@ -1,19 +1,8 @@
 @Library(['private-pipeline-library', 'jenkins-shared']) _
 
-boolean isDeployBranch() {
-  return gitBranch(env) in ['main', 'master', 'release-1.x']
-}
-
-void prepare() {
-  def propertyList = []
-  if (isDeployBranch()) {
-    propertyList << disableConcurrentBuilds()
-  }
-
-  properties(propertyList)
-}
-
-prepare()
+properties([
+  disableConcurrentBuilds()
+])
 
 mavenSnapshotPipeline(
   mavenVersion: 'Maven 3.6.x',
@@ -21,7 +10,9 @@ mavenSnapshotPipeline(
   mavenOptions: '-Dit -Dbuild.notes="b:${BRANCH_NAME}, j:${JOB_NAME}, n:#${BUILD_NUMBER}"',
   usePublicSettingsXmlFile: true,
   useEventSpy: false,
-  deployCondition: { return isDeployBranch() },
+  deployCondition: {
+    return gitBranch(env) in ['main', 'master', 'release-1.x']
+  },
   testResults: [ '**/target/*-reports/*.xml' ],
   iqPolicyEvaluation: { stage ->
     nexusPolicyEvaluation iqStage: stage, iqApplication: 'dropwizard-support',
