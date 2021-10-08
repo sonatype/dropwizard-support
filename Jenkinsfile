@@ -3,11 +3,17 @@
 Set<String> deployBranches = ['main', 'master', 'release-1.x']
 
 void prepare() {
+  def jobName = currentBuild.fullProjectName
+  println "Job name: $jobName"
+
+  // branch-name is encoded in multibranch-pipeline job names as the last element seperated by '/'
+  def branchName = jobName.split('/').last()
+  println "Branch name: $branchName"
+
   def propertyList = []
 
-  println "Project name: $currentBuild.fullProjectName"
-
-  if (false) {
+  // disable concurrent builds for deploy branches
+  if (branchName in deployBranches) {
     propertyList << disableConcurrentBuilds()
   }
 
