@@ -28,7 +28,7 @@
   <packaging>jar</packaging>
 
   <properties>
-    <apache-shiro.version>1.7.1</apache-shiro.version>
+    <apache-shiro.version>1.8.0</apache-shiro.version>
   </properties>
 
   <dependencyManagement>
