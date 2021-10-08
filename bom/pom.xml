@@ -30,11 +30,11 @@
   <properties>
     <groovy.version>3.0.8</groovy.version>
 
-    <dropwizard.version>2.0.24</dropwizard.version>
+    <dropwizard.version>2.0.25</dropwizard.version>
     <guice.version>5.0.1</guice.version>
     <hk2.version>2.6.1</hk2.version>
 
-    <hibernate-core.version>5.5.3.Final</hibernate-core.version>
+    <hibernate-core.version>5.5.7.Final</hibernate-core.version>
     <hibernate-validator.version>6.1.7.Final</hibernate-validator.version>
     <apache-httpclient.version>4.5.13</apache-httpclient.version>
 
@@ -46,7 +46,7 @@
     <junit4.version>4.13.2</junit4.version>
     <junit5.version>5.7.2</junit5.version>
     <hamcrest.version>2.2</hamcrest.version>
-    <mockito.version>3.12.4</mockito.version>
+    <mockito.version>4.0.0</mockito.version>
   </properties>
 
   <dependencyManagement>
