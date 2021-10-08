@@ -3,12 +3,8 @@
 Set<String> deployBranches = ['main', 'master', 'release-1.x']
 
 def prepare = {
-  def jobName = currentBuild.fullProjectName
-  println "Job name: $jobName"
-
   // branch-name is encoded in multibranch-pipeline job names as the last element seperated by '/'
-  def branchName = jobName.split('/').last()
-  println "Branch name: $branchName"
+  def branchName = currentBuild.fullProjectName.split('/').last()
 
   def propertyList = []
 
