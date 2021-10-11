@@ -1,6 +1,6 @@
 setup = ".lift/setup.sh"
 
-build = "mvn -B -V -s .lift/maven-settings.xml"
+build = "mvn --batch-mode --show-version"
 
 ignoreFiles = """
 src/site/hugo/
