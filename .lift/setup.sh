@@ -17,5 +17,39 @@ cat <<EOF > "$HOME/.m2/settings.xml"
     </mirror>
   </mirrors>
 
+  <profiles>
+    <profile>
+      <id>lift-analysis</id>
+      <repositories>
+        <repository>
+          <id>central</id>
+          <url>http://central</url>
+          <releases>
+            <enabled>true</enabled>
+          </releases>
+          <snapshots>
+            <enabled>true</enabled>
+          </snapshots>
+        </repository>
+      </repositories>
+      <pluginRepositories>
+        <pluginRepository>
+          <id>central</id>
+          <url>http://central</url>
+          <releases>
+            <enabled>true</enabled>
+          </releases>
+          <snapshots>
+            <enabled>true</enabled>
+          </snapshots>
+        </pluginRepository>
+      </pluginRepositories>
+    </profile>
+  </profiles>
+
+  <activeProfiles>
+    <activeProfile>lift-analysis</activeProfile>
+  </activeProfiles>
+
 </settings>
 EOF
