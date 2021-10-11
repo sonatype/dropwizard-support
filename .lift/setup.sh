@@ -3,7 +3,7 @@
 # setup custom settings.xml to resolve content from RSO
 
 mkdir "$HOME/.m2"
-cat <<EOF > "$HOME/.m2/settings.xml"
+cat <<EOF > "$HOME/.m2/lift-settings.xml"
 <?xml version="1.0" encoding="UTF-8"?>
 <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
