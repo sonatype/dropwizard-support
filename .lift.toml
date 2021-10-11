@@ -1,3 +1,5 @@
+setup = ".lift/setup.sh"
+
 ignoreFiles = """
 src/site/hugo/
 """
