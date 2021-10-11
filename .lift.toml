@@ -1,6 +1,6 @@
 setup = ".lift/setup.sh"
 
-build = "mvn -s ~/.m2/lift-settings.xml"
+build = "mvn -s .lift/maven-settings.xml"
 
 ignoreFiles = """
 src/site/hugo/
