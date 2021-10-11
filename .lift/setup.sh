@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 
 echo "HOME: $HOME"
+echo "----8<----"
+(cd $HOME; ls -l)
+echo "---->8----"
+
 echo "CWD: $(pwd)"
-echo "LS: ----8<----"
+echo "----8<----"
 ls -l
 echo "---->8----"
