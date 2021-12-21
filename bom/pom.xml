@@ -146,7 +146,7 @@
       <dependency>
         <groupId>com.palominolabs.metrics</groupId>
         <artifactId>metrics-guice</artifactId>
-        <version>4.0.0</version>
+        <version>5.0.1</version>
         <!-- Release only exists in jcenter *NOT* in central; https://bintray.com/marshallpierce/maven/com.palominolabs.metrics%3Ametrics-guice -->
       </dependency>
 
