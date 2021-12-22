@@ -1,3 +1,7 @@
+setup = ".lift/setup.sh"
+
+build = "mvn --batch-mode --show-version"
+
 ignoreFiles = """
 src/site/hugo/
 """
