@@ -52,10 +52,10 @@ public class CustomMetricNameFormatter
     replacements.put("org.apache.http.conn.HttpClientConnectionManager", "httpclient.connection-manager");
     replacements.put("org.apache.http.client.HttpClient", "httpclient");
     // fallbacks
-    //replacements.put("io.dropwizard", "dropwizard");
-    //replacements.put("org.eclipse.jetty", "jetty");
-    //replacements.put("ch.qos.logback.core", "logback");
-    //replacements.put("org.apache.http", "httpclient");
+    replacements.put("io.dropwizard", "dropwizard");
+    replacements.put("org.eclipse.jetty", "jetty");
+    replacements.put("ch.qos.logback.core", "logback");
+    replacements.put("org.apache.http", "httpclient");
     DEFAULT_REPLACEMENTS = replacements;
   }
 
