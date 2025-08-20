@@ -28,15 +28,40 @@
   <packaging>pom</packaging>
 
   <properties>
-    <dropwizard.version>1.3.27</dropwizard.version>
+    <dropwizard.version>1.3.29</dropwizard.version>
     <apache-httpclient.version>4.5.10</apache-httpclient.version>
-    <groovy.version>3.0.6</groovy.version>
     <swagger.version>1.5.23</swagger.version>
     <apache-shiro.version>1.6.0</apache-shiro.version>
   </properties>
 
   <dependencyManagement>
     <dependencies>
+      <!-- IMPORTS; order matters, first wins -->
+
+      <dependency>
+        <groupId>org.eclipse.jetty</groupId>
+        <artifactId>jetty-bom</artifactId>
+        <version>9.4.44.v20210927</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.codehaus.groovy</groupId>
+        <artifactId>groovy-bom</artifactId>
+        <version>3.0.6</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-core</artifactId>
+        <version>1.2.9</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+
       <dependency>
         <groupId>io.dropwizard</groupId>
         <artifactId>dropwizard-bom</artifactId>
@@ -45,7 +70,7 @@
         <scope>import</scope>
       </dependency>
 
-      <!-- re-define some dropwizard DM to exclude duplicate/conflicting dependencies -->
+      <!-- IMPORT OVERRIDES -->
 
       <dependency>
         <groupId>io.dropwizard</groupId>
@@ -91,6 +116,8 @@
         </exclusions>
       </dependency>
 
+      <!-- MAIN -->
+
       <dependency>
         <groupId>javax.inject</groupId>
         <artifactId>javax.inject</artifactId>
@@ -110,41 +137,17 @@
       </dependency>
 
       <dependency>
+        <groupId>org.yaml</groupId>
+        <artifactId>snakeyaml</artifactId>
+        <classifier>android</classifier>
+        <version>1.26</version>
+      </dependency>
+
+      <dependency>
         <groupId>javax.ws.rs</groupId>
         <artifactId>javax.ws.rs-api</artifactId>
         <version>2.0.1</version>
         <!-- keep in sync with jersey -->
-      </dependency>
-
-      <dependency>
-        <groupId>org.codehaus.groovy</groupId>
-        <artifactId>groovy</artifactId>
-        <version>${groovy.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.codehaus.groovy</groupId>
-        <artifactId>groovy</artifactId>
-        <classifier>indy</classifier>
-        <version>${groovy.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.codehaus.groovy</groupId>
-        <artifactId>groovy-xml</artifactId>
-        <version>${groovy.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.codehaus.groovy</groupId>
-        <artifactId>groovy-json</artifactId>
-        <version>${groovy.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.codehaus.groovy</groupId>
-        <artifactId>groovy-ant</artifactId>
-        <version>${groovy.version}</version>
       </dependency>
 
       <dependency>
@@ -209,8 +212,8 @@
         <version>1.13</version>
       </dependency>
 
+      <!-- used by shiro -->
       <dependency>
-        <!-- used by shiro -->
         <groupId>commons-beanutils</groupId>
         <artifactId>commons-beanutils</artifactId>
         <version>1.9.4</version>
@@ -222,8 +225,8 @@
         </exclusions>
       </dependency>
 
+      <!-- used by shiro -->
       <dependency>
-        <!-- used by shiro -->
         <groupId>commons-collections</groupId>
         <artifactId>commons-collections</artifactId>
         <version>3.2.2</version>
@@ -316,6 +319,8 @@
         <version>2.3.1</version>
       </dependency>
 
+      <!-- TEST -->
+
       <dependency>
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
@@ -346,7 +351,7 @@
         <version>3.1</version>
       </dependency>
 
-      <!-- INTERNAL -->
+      <!-- MODULES -->
 
       <dependency>
         <groupId>org.sonatype.goodies.dropwizard</groupId>
