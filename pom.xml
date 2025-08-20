@@ -157,12 +157,19 @@
           <groupId>com.mycila</groupId>
           <artifactId>license-maven-plugin</artifactId>
           <configuration>
-            <includes combine.children="append">
-              <include>**/*.ftl</include>
-            </includes>
-            <excludes combine.children="append">
-              <exclude>src/site/hugo/**</exclude>
-            </excludes>
+            <basedir>${maven.multiModuleProjectDirectory}</basedir>
+            <licenseSets>
+              <licenseSet>
+                <header>header.txt</header>
+                <includes combine.children="append">
+                  <include>**/*.ftl</include>
+                </includes>
+                <excludes combine.children="append">
+                  <exclude>build-*.bash</exclude>
+                  <exclude>src/site/hugo/**</exclude>
+                </excludes>
+              </licenseSet>
+            </licenseSets>
           </configuration>
         </plugin>
 
