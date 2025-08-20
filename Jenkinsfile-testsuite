@@ -1,0 +1,43 @@
+#!groovy
+library('private-pipeline-library')
+library('jenkins-shared')
+
+properties([
+  disableConcurrentBuilds(),
+  pipelineTriggers([
+    cron('@midnight')
+  ])
+])
+
+mavenOptions = []
+
+mavenProfiles = [
+  'zion',
+  'it',
+]
+
+mavenSnapshotPipeline(
+  javaVersion: 'Java 8',
+  useMvnw: true,
+  usePublicSettingsXmlFile: true,
+  useEventSpy: false,
+  deployCondition: { false },
+  mavenOptions: mavenOptions.join(' '),
+  mavenProfiles: mavenProfiles,
+  testResults: ['**/target/*-reports/*.xml'],
+  runFeatureBranchPolicyEvaluations: true,
+  iqPolicyEvaluation: { stage ->
+    nexusPolicyEvaluation(
+      // use 'build' stage explicitly for nightly testsuite builds w/policy
+      iqStage: 'build',
+      iqApplication: 'dropwizard-support',
+      failBuildOnNetworkError: true,
+      iqScanPatterns: [
+        [scanPattern: '**/target/sonatype-clm/module.xml']
+      ]
+    )
+  },
+  notificationSender: {
+    notifyChat(currentBuild: currentBuild, env: env, room: 'ossindex-alerts')
+  }
+)

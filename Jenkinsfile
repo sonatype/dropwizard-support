@@ -1,33 +1,63 @@
-@Library(['private-pipeline-library', 'jenkins-shared']) _
+#!groovy
+library('private-pipeline-library')
+library('jenkins-shared')
 
-Set<String> deployBranches = ['main', 'master', 'release-1.x']
-
-def prepare = {
-  // branch-name is encoded in multibranch-pipeline job names as the last element seperated by '/'
-  def branchName = currentBuild.fullProjectName.split('/').last()
-
-  def propertyList = []
-
-  // disable concurrent builds for deploy branches
-  if (branchName in deployBranches) {
-    propertyList << disableConcurrentBuilds()
-  }
-
-  properties(propertyList)
+// only deploy on specific branches
+def deployBranches = [ 'main' ]
+// include release-*.x branches for deploy
+if (BRANCH_NAME.startsWith('release-') && BRANCH_NAME.endsWith('.x')) {
+  deployBranches << BRANCH_NAME
 }
 
-prepare()
+def propertyList = [
+  parameters([
+    booleanParam(name: 'testsuite', defaultValue: false, description: 'Enable integration testsuite'),
+    booleanParam(name: 'policy', defaultValue: false, description: 'Enable IQ policy evaluation')
+  ])
+]
 
-mavenSnapshotPipeline(
-  mavenVersion: 'Maven 3.6.x',
-  javaVersion: 'OpenJDK 11',
-  mavenOptions: '-Dit -Dbuild.notes="b:${BRANCH_NAME}, j:${JOB_NAME}, n:#${BUILD_NUMBER}"',
+// disable concurrent builds for any deploy branches
+if (BRANCH_NAME in deployBranches) {
+  propertyList << disableConcurrentBuilds()
+}
+
+properties(propertyList)
+
+def mavenOptions = [
+  "-Dbuild.notes='b:${BRANCH_NAME}, j:${JOB_NAME}, n:#${BUILD_NUMBER}'"
+]
+
+def mavenProfiles = [
+  'zion'
+]
+if (params.testsuite) {
+  mavenProfiles << 'it'
+}
+
+mavenPipeline(
+  javaVersion: 'Java 8',
+  useMvnw: true,
+  mavenStandardOptions: '--errors --strict-checksums --fail-fast -Dmaven.test.failure.ignore',
   usePublicSettingsXmlFile: true,
   useEventSpy: false,
-  deployCondition: { return gitBranch(env) in deployBranches },
-  testResults: [ '**/target/*-reports/*.xml' ],
+  deployCondition: { BRANCH_NAME in deployBranches },
+  mavenOptions: mavenOptions.join(' '),
+  mavenProfiles: mavenProfiles,
+  testResults: ['**/target/*-reports/*.xml'],
+  runFeatureBranchPolicyEvaluations: true,
   iqPolicyEvaluation: { stage ->
-    nexusPolicyEvaluation iqStage: stage, iqApplication: 'dropwizard-support',
-      iqScanPatterns: [[scanPattern: 'scan_nothing']]
+    if (params.policy) {
+      nexusPolicyEvaluation(
+        iqStage: stage,
+        iqApplication: 'dropwizard-support',
+        failBuildOnNetworkError: true,
+        iqScanPatterns: [
+          [scanPattern: '**/target/sonatype-clm/module.xml']
+        ]
+      )
+    }
+  },
+  notificationSender: {
+    notifyChat(currentBuild: currentBuild, env: env, room: 'ossindex-alerts')
   }
 )
