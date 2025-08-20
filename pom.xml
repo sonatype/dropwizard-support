@@ -308,6 +308,12 @@
 
   <profiles>
     <profile>
+      <id>zion</id>
+      <!-- empty profile to keep CI happy due to enforcer-rule (buildsupport-bestpractices) banning missing profiles -->
+      <build/>
+    </profile>
+
+    <profile>
       <id>it</id>
       <activation>
         <property>
