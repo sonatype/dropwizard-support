@@ -9,7 +9,7 @@ mavenProfiles = [
 ]
 
 mavenSnapshotPipeline(
-  javaVersion: 'Java 8',
+  javaVersion: 'OpenJDK 11',
   useMvnw: true,
   usePublicSettingsXmlFile: true,
   useEventSpy: false,
