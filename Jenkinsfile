@@ -35,7 +35,7 @@ if (params.testsuite) {
 }
 
 mavenPipeline(
-  javaVersion: 'OpenJDK 11',
+  javaVersion: 'OpenJDK 17',
   useMvnw: true,
   mavenStandardOptions: '--errors --strict-checksums --fail-fast -Dmaven.test.failure.ignore',
   usePublicSettingsXmlFile: true,
