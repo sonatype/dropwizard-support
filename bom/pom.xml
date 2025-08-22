@@ -177,7 +177,7 @@
       <dependency>
         <groupId>javax.validation</groupId>
         <artifactId>validation-api</artifactId>
-        <version>1.1.0.Final</version>
+        <version>2.0.1.Final</version>
         <!-- keep in sync with hibernate-validator via dropwizard-validation -->
       </dependency>
 
