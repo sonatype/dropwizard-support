@@ -39,7 +39,7 @@
     <apache-httpclient.version>4.5.13</apache-httpclient.version>
 
     <!-- keep in sync with swagger/pom.xml -->
-    <swagger.version>1.6.3</swagger.version>
+    <swagger.version>1.6.16</swagger.version>
     <!-- keep in sync with swagger2/pom.xml -->
     <swagger2.version>2.1.11</swagger2.version>
 
