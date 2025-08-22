@@ -36,7 +36,7 @@
 
     <hibernate-core.version>5.6.3.Final</hibernate-core.version>
     <hibernate-validator.version>6.1.7.Final</hibernate-validator.version>
-    <apache-httpclient.version>4.5.13</apache-httpclient.version>
+    <apache-httpclient.version>4.5.14</apache-httpclient.version>
 
     <!-- keep in sync with swagger/pom.xml -->
     <swagger.version>1.6.3</swagger.version>
