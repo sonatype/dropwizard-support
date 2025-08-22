@@ -287,7 +287,6 @@
           </dependency>
         </dependencies>
         <configuration>
-          <!-- see: https://github.com/groovy/groovy-eclipse/wiki/Groovy-Eclipse-Maven-plugin -->
           <compilerId>groovy-eclipse-compiler</compilerId>
         </configuration>
       </plugin>
