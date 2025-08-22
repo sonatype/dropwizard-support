@@ -340,7 +340,7 @@
       <dependency>
         <groupId>org.jvnet.mimepull</groupId>
         <artifactId>mimepull</artifactId>
-        <version>1.9.15</version>
+        <version>1.10.0</version>
       </dependency>
 
       <!-- TEST -->
