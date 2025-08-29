@@ -96,6 +96,44 @@ public final class SubjectHelper
     return null;
   }
 
+  /**
+   * Extract user-id from given subject.
+   *
+   * Assumes a Long principal represents the user-id. {@literal null} implies anonymous/guest or missing id.
+   */
+  @Nullable
+  public static Long getUserId(@Nullable final Subject subject) {
+    if (subject != null) {
+      PrincipalCollection principals = subject.getPrincipals();
+      return getUserId(principals);
+    }
+    return null;
+  }
+
+  /**
+   * Extract user-id from current subject.
+   *
+   * {@code null} return implies anonymous/guest.
+   */
+  @Nullable
+  public static Long getUserId() {
+    return getUserId(SecurityUtils.getSubject());
+  }
+
+  /**
+   * Extract user-id from given principals.
+   *
+   * Assumes a Long principal represents the user-id. {@literal null} implies anonymous/guest or missing id.
+   */
+  @Nullable
+  private static Long getUserId(@Nullable final PrincipalCollection principals) {
+    if (principals != null) {
+      // FIXME: replace with extension point
+      return principals.oneByType(Long.class);
+    }
+    return null;
+  }
+
   private static volatile PrincipalUsernameExtractor usernameExtractor = new SimplePrincipalUsernameExtractor();
 
   /**
