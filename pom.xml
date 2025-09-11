@@ -66,8 +66,11 @@
   </distributionManagement>
 
   <properties>
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
+    <java.version>11</java.version>
+    <maven.compiler.source>${java.version}</maven.compiler.source>
+    <maven.compiler.target>${java.version}</maven.compiler.target>
+    <maven.compiler.release>${java.version}</maven.compiler.release>
+    <maven.version.range>[3.9,)</maven.version.range>
 
     <dionysus.version>1.0.3</dionysus.version>
   </properties>
@@ -205,7 +208,7 @@
                   <version>[3.9,)</version>
                 </requireMavenVersion>
                 <requireJavaVersion>
-                  <version>[1.8,)</version>
+                  <version>[17,)</version>
                 </requireJavaVersion>
               </rules>
             </configuration>
@@ -223,26 +226,6 @@
           <!--    </rules>-->
           <!--  </configuration>-->
           <!--</execution>-->
-        </executions>
-      </plugin>
-
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>animal-sniffer-maven-plugin</artifactId>
-        <configuration>
-          <signature>
-            <groupId>org.codehaus.mojo.signature</groupId>
-            <artifactId>java18</artifactId>
-            <version>1.0</version>
-          </signature>
-        </configuration>
-        <executions>
-          <execution>
-            <phase>test</phase>
-            <goals>
-              <goal>check</goal>
-            </goals>
-          </execution>
         </executions>
       </plugin>
 
