@@ -353,14 +353,8 @@
 
       <dependency>
         <groupId>org.hamcrest</groupId>
-        <artifactId>hamcrest-core</artifactId>
-        <version>2.2</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.hamcrest</groupId>
-        <artifactId>hamcrest-library</artifactId>
-        <version>2.2</version>
+        <artifactId>hamcrest</artifactId>
+        <version>3.0</version>
       </dependency>
 
       <dependency>
