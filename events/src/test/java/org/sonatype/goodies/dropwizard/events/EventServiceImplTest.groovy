@@ -21,12 +21,12 @@ import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
 
-import static org.mockito.Matchers.anyString
-import static org.mockito.Matchers.eq
+import static org.mockito.ArgumentMatchers.anyString
+import static org.mockito.ArgumentMatchers.eq
 import static org.mockito.Mockito.inOrder
 import static org.mockito.Mockito.verify
+import static org.mockito.Mockito.verifyNoInteractions
 import static org.mockito.Mockito.verifyNoMoreInteractions
-import static org.mockito.Mockito.verifyZeroInteractions
 import static org.mockito.Mockito.when
 
 /**
@@ -79,7 +79,7 @@ class EventServiceImplTest
 
     verify(synchronous).register(handler)
     verifyNoMoreInteractions(synchronous)
-    verifyZeroInteractions(asynchronous)
+    verifyNoInteractions(asynchronous)
   }
 
   @Test
@@ -89,7 +89,7 @@ class EventServiceImplTest
 
     verify(synchronous).unregister(handler)
     verifyNoMoreInteractions(synchronous)
-    verifyZeroInteractions(asynchronous)
+    verifyNoInteractions(asynchronous)
   }
 
   private static class AsyncHandler
@@ -105,7 +105,7 @@ class EventServiceImplTest
 
     verify(asynchronous).register(handler)
     verifyNoMoreInteractions(asynchronous)
-    verifyZeroInteractions(synchronous)
+    verifyNoInteractions(synchronous)
   }
 
   @Test
@@ -115,7 +115,7 @@ class EventServiceImplTest
 
     verify(asynchronous).unregister(handler)
     verifyNoMoreInteractions(asynchronous)
-    verifyZeroInteractions(synchronous)
+    verifyNoInteractions(synchronous)
   }
 
   @Test

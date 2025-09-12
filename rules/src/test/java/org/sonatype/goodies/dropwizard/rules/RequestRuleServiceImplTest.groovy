@@ -16,18 +16,17 @@ import javax.servlet.FilterChain
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
-import org.sonatype.goodies.dropwizard.rules.matcher.request.RemoteIpRequestMatcher
-import org.sonatype.goodies.dropwizard.rules.standard.BlacklistRequestRule
-import org.sonatype.goodies.dropwizard.rules.standard.WhitelistRequestRule
-
 import org.junit.After
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
+import org.sonatype.goodies.dropwizard.rules.matcher.request.RemoteIpRequestMatcher
+import org.sonatype.goodies.dropwizard.rules.standard.BlacklistRequestRule
+import org.sonatype.goodies.dropwizard.rules.standard.WhitelistRequestRule
 
 import static org.mockito.Mockito.verify
-import static org.mockito.Mockito.verifyZeroInteractions
+import static org.mockito.Mockito.verifyNoInteractions
 import static org.mockito.Mockito.when
 
 /**
@@ -152,7 +151,7 @@ class RequestRuleServiceImplTest
 
     verify(chain).doFilter(request, response)
     verify(firstRule).evaluate(request)
-    verifyZeroInteractions(middleRule, lastRule)
+    verifyNoInteractions(middleRule, lastRule)
   }
 
   @Test
@@ -169,7 +168,7 @@ class RequestRuleServiceImplTest
     verify(response).sendError(BlacklistRequestRule.DEFAULT_STATUS.statusCode, BlacklistRequestRule.DEFAULT_REASON)
     verify(firstRule).evaluate(request)
     verify(middleRule).evaluate(request)
-    verifyZeroInteractions(lastRule)
+    verifyNoInteractions(lastRule)
   }
 
   @Test

@@ -24,7 +24,7 @@ import org.mockito.junit.MockitoJUnitRunner
 
 import static org.mockito.Mockito.mock
 import static org.mockito.Mockito.verify
-import static org.mockito.Mockito.verifyZeroInteractions
+import static org.mockito.Mockito.verifyNoInteractions
 import static org.mockito.Mockito.when
 
 /**
@@ -61,7 +61,7 @@ class RequestRuleFilterTest
 
     verify(requestRuleService).evaluate(request)
     verify(result).apply(request, response, chain)
-    verifyZeroInteractions(chain)
+    verifyNoInteractions(chain)
   }
 
   @Test
