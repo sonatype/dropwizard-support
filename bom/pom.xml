@@ -89,6 +89,14 @@
       </dependency>
 
       <dependency>
+        <groupId>org.apache.shiro</groupId>
+        <artifactId>shiro-bom</artifactId>
+        <version>2.0.5</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+
+      <dependency>
         <groupId>io.dropwizard</groupId>
         <artifactId>dropwizard-bom</artifactId>
         <version>${dropwizard.version}</version>
@@ -211,30 +219,6 @@
         <artifactId>hibernate-jpamodelgen</artifactId>
         <version>5.2.18.Final</version>
         <!-- keep in sync with hibernate-core via dropwizard-dependencies -->
-      </dependency>
-
-      <dependency>
-        <groupId>org.apache.shiro</groupId>
-        <artifactId>shiro-core</artifactId>
-        <version>${apache-shiro.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.apache.shiro</groupId>
-        <artifactId>shiro-web</artifactId>
-        <version>${apache-shiro.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.apache.shiro</groupId>
-        <artifactId>shiro-guice</artifactId>
-        <version>${apache-shiro.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.apache.shiro</groupId>
-        <artifactId>shiro-jaxrs</artifactId>
-        <version>${apache-shiro.version}</version>
       </dependency>
 
       <dependency>
